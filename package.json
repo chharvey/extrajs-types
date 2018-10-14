@@ -1,0 +1,23 @@
+{
+  "name": "number-types",
+  "version": "0.0.0",
+  "description": "Different number types in JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chharvey/number-types.git"
+  },
+  "keywords": [
+    "javascript",
+    "number"
+  ],
+  "author": "Chris Harvey <chrisharvey2pi@gmail.com> (https://chharvey.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chharvey/number-types/issues"
+  },
+  "homepage": "https://github.com/chharvey/number-types#readme"
+}
