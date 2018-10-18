@@ -1,10 +1,5 @@
 import * as xjs from 'extrajs'
 
-// TODO update extrajs@0.15.0+
-function xjs_Number_approx(x: number, y: number, epsilon: number = Number.EPSILON): boolean {
-	return Math.abs(x - y) < epsilon
-}
-
 
 /**
  * A fraction of some other value.
