@@ -1,4 +1,5 @@
 import * as xjs from 'extrajs'
+import Percentage from './Percentage.class'
 
 // TODO update extrajs@0.15.0+
 function xjs_Number_approx(x: number, y: number, epsilon: number = Number.EPSILON): boolean {
@@ -236,10 +237,10 @@ export default class Angle extends Number {
 	 * @param   scalar the non-negative scale factor
 	 * @returns a new Angle representing the product
 	 */
-	scale(scalar: number = 1): Angle {
-		xjs.Number.assertType(scalar, 'non-negative')
-		xjs.Number.assertType(scalar, 'finite')
-		return new Angle(this.valueOf() * scalar)
+	scale(scalar: Percentage|number = 1): Angle {
+		return (scalar instanceof Percentage) ?
+			new Angle(this.valueOf() * scalar.valueOf()) :
+			this.scale(new Percentage(scalar).of(this.valueOf()))
 	}
 	/**
 	 * Return this Angle’s measurement in the given unit.
