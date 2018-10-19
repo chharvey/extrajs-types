@@ -208,7 +208,7 @@ export default class Angle extends Number {
 	}
 	/**
 	 * Add this Angle (the augend) to another (the addend).
-	 * @param   addend the Integer to add to this one
+	 * @param   addend the Angle to add to this one
 	 * @returns a new Angle representing the sum, `augend + addend`
 	 */
 	plus(addend: Angle|number): Angle {
