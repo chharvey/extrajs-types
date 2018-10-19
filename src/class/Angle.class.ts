@@ -96,11 +96,11 @@ export default class Angle extends Number {
 
 	/**
 	 * Construct a new Angle object.
-	 * @param   x the numeric value of this Angle
+	 * @param   theta the numeric value of this Angle
 	 */
-	constructor(x: Angle|number = 0) {
-		x = x.valueOf()
-		super(xjs.Math.mod(x, 1))
+	constructor(theta: Angle|number = 0) {
+		theta = theta.valueOf()
+		super(xjs.Math.mod(theta, 1))
 	}
 
 	/**

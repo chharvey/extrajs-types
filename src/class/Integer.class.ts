@@ -74,6 +74,14 @@ export default class Integer extends Number {
 	}
 
 	/**
+	 * Return the absolute value of this Integer; `Math.abs(this)`.
+	 * @returns `(this < 0) ? -this : this`
+	 */
+	get abs(): Integer {
+		return new Integer(Math.abs(this.valueOf()))
+	}
+
+	/**
 	 * Return whether this Integer’s value equals the argument’s.
 	 * @param   int the Integer to compare
 	 * @returns does this Integer equal the argument?
@@ -192,5 +200,37 @@ export default class Integer extends Number {
 		return (exponent instanceof Integer) ?
 			this.valueOf() ** exponent.valueOf() :
 			this.exp(new Integer(exponent))
+	}
+
+	/**
+	 * Return the `n`th tetration of this Integer.
+	 *
+	 * Tetration is considered the next hyperoperation after exponentiation
+	 * (which follows multiplication, following addition).
+	 * For example, `tetrate(5, 3)` returns the result of `5 ** 5 ** 5`: repeated exponentiation.
+	 * (Note that with ambiguous grouping, `a ** b ** c` is equal to `a ** (b ** c)`.)
+	 *
+	 * If there were a native JavaScript operator for tetration,
+	 * it might be a triple-asterisk: `5 *** 3`.
+	 *
+	 * Currently, there is only support for non-negative integer hyperexponents.
+	 * Negative numbers and non-integers are not yet allowed.
+	 *
+	 * ```js
+	 * new Integer(5).tetrate(3) // returns 5 ** 5 ** 5 // equal to 5 ** (5 ** 5)
+	 * new Integer(5).tetrate(1) // returns 5
+	 * new Integer(5).tetrate(0) // returns 1
+	 * ```
+	 *
+	 * @param   x the root, any number
+	 * @param   n the hyper-exponent to which the root is raised, a non-negative integer
+	 * @returns `this *** hyperexponent`
+	 */
+	tetrate(hyperexponent: Integer|number = 1): Integer {
+		return (hyperexponent instanceof Integer) ? (
+			xjs.Number.assertType(hyperexponent.valueOf(), 'natural'),
+			(hyperexponent.equals(Integer.MULT_ABSORB)) ? Integer.MULT_IDEN :
+				new Integer(this.exp(this.tetrate(hyperexponent.minus(1))))
+		) : this.tetrate(new Integer(hyperexponent))
 	}
 }
