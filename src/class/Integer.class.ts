@@ -42,6 +42,26 @@ export default class Integer extends Number {
 	/** The multiplicative absorber of the group of Integers. */
 	static readonly MULT_ABSORB: Integer = new Integer()
 
+	/**
+	 * Return the maximum of two or more Integers.
+	 * @param   ints two or more Integers to compare
+	 * @returns the greatest of all the arguments
+	 */
+	static max(...ints: Integer[]): Integer {
+		return new Integer(Math.max(...ints.map((z) => z.valueOf())))
+		// return ints.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).slice(-1)[0]
+	}
+
+	/**
+	 * Return the minimum of two or more Integers.
+	 * @param   ints two or more Integers to compare
+	 * @returns the least of all the arguments
+	 */
+	static min(...ints: Integer[]): Integer {
+		return new Integer(Math.min(...ints.map((z) => z.valueOf())))
+		// return ints.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
+	}
+
 
 	/**
 	 * Construct a new Integer object.
@@ -61,6 +81,7 @@ export default class Integer extends Number {
 	equals(int: Integer|number): boolean {
 		return (int instanceof Integer) ? this.valueOf() === int.valueOf() : this.equals(new Integer(int))
 	}
+
 	/**
 	 * Return how this Integer compares to (is less than) another.
 	 * @param   int the Integer to compare
@@ -69,6 +90,23 @@ export default class Integer extends Number {
 	lessThan(int: Integer|number): boolean {
 		return (int instanceof Integer) ? this.valueOf() < int.valueOf() : this.lessThan(new Integer(int))
 	}
+
+	/**
+	 * Return this Integer, clamped between two bounds.
+	 *
+	 * This method returns this unchanged iff it is weakly between `min` and `max`;
+	 * it returns `min` iff this is strictly less than `min`;
+	 * and `max` iff this is strictly greater than `max`.
+	 * If `min === max` then this method returns that value.
+	 * If `min > max` then this method switches the bounds.
+	 * @param   min the lower bound
+	 * @param   max the upper bound
+	 * @returns `Integer.min(Integer.max(min, this), max)`
+	 */
+	clamp(min: Integer, max: Integer): Integer {
+		return (min.lessThan(max) || min.equals(max)) ? Integer.min(Integer.max(min, this), max) : this.clamp(max, min)
+	}
+
 	/**
 	 * Negate this Integer.
 	 * @returns a new Integer representing the additive inverse
@@ -76,6 +114,7 @@ export default class Integer extends Number {
 	negate(): Integer {
 		return new Integer(-this.valueOf())
 	}
+
 	/**
 	 * Add this Integer (the augend) to another (the addend).
 	 *
@@ -88,6 +127,7 @@ export default class Integer extends Number {
 			(addend.equals(Integer.ADD_IDEN)) ? this : new Integer(this.valueOf() + addend.valueOf()) :
 			this.plus(new Integer(addend))
 	}
+
 	/**
 	 * Subtract another Integer (the subtrahend) from this (the minuend).
 	 *
@@ -102,6 +142,7 @@ export default class Integer extends Number {
 			this.plus(subtrahend.negate()) :
 			this.minus(new Integer(subtrahend))
 	}
+
 	/**
 	 * Multiply this Integer (the multiplicand) by another (the multiplier).
 	 * @param   multiplier the Integer to multiply this one by
@@ -112,6 +153,7 @@ export default class Integer extends Number {
 			(multiplier.equals(Integer.MULT_IDEN)) ? this : new Integer(this.valueOf() * multiplier.valueOf()) :
 			this.times(new Integer(multiplier))
 	}
+
 	/**
 	 * Divide this Integer (the dividend) by another (the divisor).
 	 *
@@ -130,6 +172,7 @@ export default class Integer extends Number {
 			this.valueOf() / divisor.valueOf() :
 			this.dividedBy(new Integer(divisor))
 	}
+
 	/**
 	 * Exponentiate this Integer (the base) by another (the exponent).
 	 *
