@@ -93,6 +93,67 @@ export default class Angle extends Number {
 		// return angles.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
 	}
 
+	/**
+	 * Return the arcsine of a number.
+	 * @param   x the argument of arcsin
+	 * @returns `arcsin(x)`
+	 * @throws {RangeError} if the argument is not within the domain `[-1,1]`
+	 */
+	static asin(x: number): Angle {
+		xjs.Number.assertType(x)
+		if (x < -1 || 1 < x) throw new RangeError(`Argument ${x} is outside of \`asin\` domain \`[-1,1]\`.`)
+		return new Angle(Math.asin(x) / Angle.CONVERSION[Unit.RAD])
+	}
+
+	/**
+	 * Return the arccosine of a number.
+	 * @param   x the argument of arccos
+	 * @returns `arccos(x)`
+	 * @throws {RangeError} if the argument is not within the domain `[-1,1]`
+	 */
+	static acos(x: number): Angle {
+		xjs.Number.assertType(x)
+		if (x < -1 || 1 < x) throw new RangeError(`Argument ${x} is outside of \`acos\` domain \`[-1,1]\`.`)
+		return new Angle(Math.acos(x) / Angle.CONVERSION[Unit.RAD])
+	}
+
+	/**
+	 * Return the arctangent of a number.
+	 * @param   x the argument of arctan
+	 * @returns `arctan(x)`
+	 */
+	static atan(x: number): Angle {
+		xjs.Number.assertType(x)
+		return new Angle(Math.atan(x) / Angle.CONVERSION[Unit.RAD])
+	}
+
+	/**
+	 * Return the arccosecant of a number.
+	 * @param   x the argument of arccsc
+	 * @returns `arcsin(1 / x)`
+	 */
+	static acsc(x: number): Angle {
+		return Angle.asin(1 / x)
+	}
+
+	/**
+	 * Return the arcsecant of a number.
+	 * @param   x the argument of arcsec
+	 * @returns `arccos(1 / x)`
+	 */
+	static asec(x: number): Angle {
+		return Angle.acos(1 / x)
+	}
+
+	/**
+	 * Return the arccotangent of a number.
+	 * @param   x the argument of arccot
+	 * @returns `arctan(1 / x)`
+	 */
+	static acot(x: number): Angle {
+		return Angle.atan(1 / x)
+	}
+
 
 	/**
 	 * Construct a new Angle object.
@@ -168,7 +229,7 @@ export default class Angle extends Number {
 
 	/**
 	 * Get the sine of this angle.
-	 * @returns the result of `Math.sin()`
+	 * @returns `sin(this)`
 	 */
 	get sin(): number {
 		return Math.sin(this.convert(Unit.RAD))
@@ -176,7 +237,7 @@ export default class Angle extends Number {
 
 	/**
 	 * Get the cosine of this angle.
-	 * @returns the result of `Math.cos()`
+	 * @returns `cos(this)`
 	 */
 	get cos(): number {
 		return Math.cos(this.convert(Unit.RAD))
@@ -184,7 +245,7 @@ export default class Angle extends Number {
 
 	/**
 	 * Get the tangent of this angle.
-	 * @returns the result of `Math.tan()`
+	 * @returns `tan(this)`
 	 */
 	get tan(): number {
 		return Math.tan(this.convert(Unit.RAD))
@@ -192,7 +253,7 @@ export default class Angle extends Number {
 
 	/**
 	 * Get the cosecant of this angle.
-	 * @returns the result of `1 / Math.sin()`
+	 * @returns `1 / sin(this)`
 	 */
 	get csc(): number {
 		return 1 / this.sin
@@ -200,7 +261,7 @@ export default class Angle extends Number {
 
 	/**
 	 * Get the secant of this angle.
-	 * @returns the result of `1 / Math.cos()`
+	 * @returns `1 / cos(this)`
 	 */
 	get sec(): number {
 		return 1 / this.cos
@@ -208,7 +269,7 @@ export default class Angle extends Number {
 
 	/**
 	 * Get the cotangent of this angle.
-	 * @returns the result of `1 / Math.tan()`
+	 * @returns `1 / tan(this)`
 	 */
 	get cot(): number {
 		return 1 / this.tan
