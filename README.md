@@ -1,2 +1,2 @@
-# [number-types](https://chharvey.github.io/number-types/docs/api/)
-Different number types in JavaScript.
+# [extrajs-types](https://chharvey.github.io/extrajs-types/docs/api/)
+Additional all-purpose JavaScript classes.

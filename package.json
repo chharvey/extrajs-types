@@ -1,7 +1,7 @@
 {
-  "name": "number-types",
-  "version": "0.1.0",
-  "description": "Different number types in JavaScript.",
+  "name": "extrajs-types",
+  "version": "0.2.0",
+  "description": "Additional all-purpose JavaScript classes.",
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
@@ -14,7 +14,7 @@
   },
   "keywords": [
     "javascript",
-    "number"
+    "classes"
   ],
   "author": "Chris Harvey <chrisharvey2pi@gmail.com> (https://chharvey.github.io/)",
   "license": "MIT",
