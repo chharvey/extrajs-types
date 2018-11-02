@@ -140,8 +140,15 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="integer.html#abs" class="tsd-kind-icon">abs</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="integer.html#clamp" class="tsd-kind-icon">clamp</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="integer.html#dividedby" class="tsd-kind-icon">divided<wbr>By</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="integer.html#equals" class="tsd-kind-icon">equals</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="integer.html#exp" class="tsd-kind-icon">exp</a></li>
@@ -149,6 +156,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="integer.html#minus" class="tsd-kind-icon">minus</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="integer.html#negate" class="tsd-kind-icon">negate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="integer.html#plus" class="tsd-kind-icon">plus</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="integer.html#tetrate" class="tsd-kind-icon">tetrate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="integer.html#times" class="tsd-kind-icon">times</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="integer.html#toexponential" class="tsd-kind-icon">to<wbr>Exponential</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="integer.html#tofixed" class="tsd-kind-icon">to<wbr>Fixed</a></li>
@@ -156,6 +164,8 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="integer.html#toprecision" class="tsd-kind-icon">to<wbr>Precision</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="integer.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="integer.html#valueof" class="tsd-kind-icon">value<wbr>Of</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="integer.html#max" class="tsd-kind-icon">max</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="integer.html#min" class="tsd-kind-icon">min</a></li>
 							</ul>
 						</section>
 					</div>
@@ -173,7 +183,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Integer.class.ts#L43">Integer.class.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L63">Integer.class.ts:63</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -205,7 +215,7 @@
 					<div class="tsd-signature tsd-kind-icon">ADD_<wbr>IDEN<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> =&nbsp;new Integer()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Integer.class.ts#L39">Integer.class.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L39">Integer.class.ts:39</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -220,7 +230,7 @@
 					<div class="tsd-signature tsd-kind-icon">MULT_<wbr>ABSORB<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> =&nbsp;new Integer()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Integer.class.ts#L43">Integer.class.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L43">Integer.class.ts:43</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -235,7 +245,7 @@
 					<div class="tsd-signature tsd-kind-icon">MULT_<wbr>IDEN<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> =&nbsp;new Integer(1)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Integer.class.ts#L41">Integer.class.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L41">Integer.class.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -250,7 +260,7 @@
 					<div class="tsd-signature tsd-kind-icon">Number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">NumberConstructor</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in /Users/Chris/Repositories/number-types/node_modules/typescript/lib/lib.es5.d.ts:532</li>
+							<li>Defined in /Users/Chris/Repositories/extrajs-types/node_modules/typescript/lib/lib.es5.d.ts:532</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -261,7 +271,76 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="abs" class="tsd-anchor"></a>
+					<h3>abs</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> abs<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L80">Integer.class.ts:80</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the absolute value of this Integer; <code>Math.abs(this)</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a></h4>
+							<p><code>(this &lt; 0) ? -this : this</code></p>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="clamp" class="tsd-anchor"></a>
+					<h3>clamp</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">clamp<span class="tsd-signature-symbol">(</span>min<span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a>, max<span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L114">Integer.class.ts:114</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return this Integer, clamped between two bounds.</p>
+								</div>
+								<p>This method returns this unchanged iff it is weakly between <code>min</code> and <code>max</code>;
+									it returns <code>min</code> iff this is strictly less than <code>min</code>;
+									and <code>max</code> iff this is strictly greater than <code>max</code>.
+									If <code>min === max</code> then this method returns that value.
+								If <code>min &gt; max</code> then this method switches the bounds.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>min: <a href="integer.html" class="tsd-signature-type">Integer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the lower bound</p>
+									</div>
+								</li>
+								<li>
+									<h5>max: <a href="integer.html" class="tsd-signature-type">Integer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the upper bound</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a></h4>
+							<p><code>Integer.min(Integer.max(min, this), max)</code></p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="dividedby" class="tsd-anchor"></a>
 					<h3>divided<wbr>By</h3>
@@ -272,7 +351,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Integer.class.ts#L128">Integer.class.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L178">Integer.class.ts:178</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -308,7 +387,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Integer.class.ts#L61">Integer.class.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L89">Integer.class.ts:89</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -340,7 +419,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Integer.class.ts#L148">Integer.class.ts:148</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L199">Integer.class.ts:199</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -377,7 +456,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Integer.class.ts#L69">Integer.class.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L98">Integer.class.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -409,7 +488,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Integer.class.ts#L100">Integer.class.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L148">Integer.class.ts:148</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -443,7 +522,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Integer.class.ts#L76">Integer.class.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L122">Integer.class.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -466,7 +545,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Integer.class.ts#L86">Integer.class.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L133">Integer.class.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -490,6 +569,46 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="tetrate" class="tsd-anchor"></a>
+					<h3>tetrate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">tetrate<span class="tsd-signature-symbol">(</span>hyperexponent<span class="tsd-signature-symbol">?: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L229">Integer.class.ts:229</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the <code>n</code>th tetration of this Integer.</p>
+								</div>
+								<p>Tetration is considered the next hyperoperation after exponentiation
+									(which follows multiplication, following addition).
+									For example, <code>tetrate(5, 3)</code> returns the result of <code>5 ** 5 ** 5</code>: repeated exponentiation.
+								(Note that with ambiguous grouping, <code>a ** b ** c</code> is equal to <code>a ** (b ** c)</code>.)</p>
+								<p>If there were a native JavaScript operator for tetration,
+								it might be a triple-asterisk: <code>5 *** 3</code>.</p>
+								<p>Currently, there is only support for non-negative integer hyperexponents.
+								Negative numbers and non-integers are not yet allowed.</p>
+								<pre><code class="language-js"><span class="hljs-keyword">new</span> Integer(<span class="hljs-number">5</span>).tetrate(<span class="hljs-number">3</span>) <span class="hljs-comment">// returns 5 ** 5 ** 5 // equal to 5 ** (5 ** 5)</span>
+<span class="hljs-keyword">new</span> Integer(<span class="hljs-number">5</span>).tetrate(<span class="hljs-number">1</span>) <span class="hljs-comment">// returns 5</span>
+<span class="hljs-keyword">new</span> Integer(<span class="hljs-number">5</span>).tetrate(<span class="hljs-number">0</span>) <span class="hljs-comment">// returns 1</span></code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> hyperexponent: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a></h4>
+							<p><code>this *** hyperexponent</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="times" class="tsd-anchor"></a>
 					<h3>times</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -499,7 +618,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Integer.class.ts#L110">Integer.class.ts:110</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L159">Integer.class.ts:159</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -532,7 +651,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Number.toExponential</p>
 								<ul>
-									<li>Defined in /Users/Chris/Repositories/number-types/node_modules/typescript/lib/lib.es5.d.ts:489</li>
+									<li>Defined in /Users/Chris/Repositories/extrajs-types/node_modules/typescript/lib/lib.es5.d.ts:489</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -564,7 +683,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Number.toFixed</p>
 								<ul>
-									<li>Defined in /Users/Chris/Repositories/number-types/node_modules/typescript/lib/lib.es5.d.ts:483</li>
+									<li>Defined in /Users/Chris/Repositories/extrajs-types/node_modules/typescript/lib/lib.es5.d.ts:483</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -596,7 +715,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Number.toLocaleString</p>
 								<ul>
-									<li>Defined in /Users/Chris/Repositories/number-types/node_modules/typescript/lib/lib.es5.d.ts:4160</li>
+									<li>Defined in /Users/Chris/Repositories/extrajs-types/node_modules/typescript/lib/lib.es5.d.ts:4160</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -634,7 +753,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Number.toPrecision</p>
 								<ul>
-									<li>Defined in /Users/Chris/Repositories/number-types/node_modules/typescript/lib/lib.es5.d.ts:495</li>
+									<li>Defined in /Users/Chris/Repositories/extrajs-types/node_modules/typescript/lib/lib.es5.d.ts:495</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -666,7 +785,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Number.toString</p>
 								<ul>
-									<li>Defined in /Users/Chris/Repositories/number-types/node_modules/typescript/lib/lib.es5.d.ts:477</li>
+									<li>Defined in /Users/Chris/Repositories/extrajs-types/node_modules/typescript/lib/lib.es5.d.ts:477</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -698,7 +817,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Number.valueOf</p>
 								<ul>
-									<li>Defined in /Users/Chris/Repositories/number-types/node_modules/typescript/lib/lib.es5.d.ts:498</li>
+									<li>Defined in /Users/Chris/Repositories/extrajs-types/node_modules/typescript/lib/lib.es5.d.ts:498</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -707,6 +826,70 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="max" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> max</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>ints<span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L50">Integer.class.ts:50</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the maximum of two or more Integers.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>ints: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>two or more Integers to compare</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a></h4>
+							<p>the greatest of all the arguments</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="min" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> min</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>ints<span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Integer.class.ts#L60">Integer.class.ts:60</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the minimum of two or more Integers.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>ints: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>two or more Integers to compare</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a></h4>
+							<p>the least of all the arguments</p>
 						</li>
 					</ul>
 				</section>
@@ -748,6 +931,12 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
 								<a href="integer.html#number" class="tsd-kind-icon">Number</a>
 							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="integer.html#abs" class="tsd-kind-icon">abs</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="integer.html#clamp" class="tsd-kind-icon">clamp</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="integer.html#dividedby" class="tsd-kind-icon">divided<wbr>By</a>
 							</li>
@@ -770,6 +959,9 @@
 								<a href="integer.html#plus" class="tsd-kind-icon">plus</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="integer.html#tetrate" class="tsd-kind-icon">tetrate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="integer.html#times" class="tsd-kind-icon">times</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
@@ -789,6 +981,12 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="integer.html#valueof" class="tsd-kind-icon">value<wbr>Of</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="integer.html#max" class="tsd-kind-icon">max</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="integer.html#min" class="tsd-kind-icon">min</a>
 							</li>
 						</ul>
 					</li>

@@ -130,6 +130,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="angle.html#clamp" class="tsd-kind-icon">clamp</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="angle.html#convert" class="tsd-kind-icon">convert</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="angle.html#equals" class="tsd-kind-icon">equals</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="angle.html#lessthan" class="tsd-kind-icon">less<wbr>Than</a></li>
@@ -142,6 +143,14 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="angle.html#toprecision" class="tsd-kind-icon">to<wbr>Precision</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="angle.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="angle.html#valueof" class="tsd-kind-icon">value<wbr>Of</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="angle.html#acos" class="tsd-kind-icon">acos</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="angle.html#acot" class="tsd-kind-icon">acot</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="angle.html#acsc" class="tsd-kind-icon">acsc</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="angle.html#asec" class="tsd-kind-icon">asec</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="angle.html#asin" class="tsd-kind-icon">asin</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="angle.html#atan" class="tsd-kind-icon">atan</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="angle.html#max" class="tsd-kind-icon">max</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="angle.html#min" class="tsd-kind-icon">min</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -159,13 +168,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Angle<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">?: </span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Angle<span class="tsd-signature-symbol">(</span>theta<span class="tsd-signature-symbol">?: </span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L74">Angle.class.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L155">Angle.class.ts:155</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -176,7 +185,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> x: <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> theta: <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>the numeric value of this Angle</p>
@@ -197,7 +206,7 @@
 					<div class="tsd-signature tsd-kind-icon">FULL<span class="tsd-signature-symbol">:</span> <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> =&nbsp;new Angle(1)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L62">Angle.class.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L62">Angle.class.ts:62</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -215,7 +224,7 @@
 					<div class="tsd-signature tsd-kind-icon">Number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">NumberConstructor</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in /Users/Chris/Repositories/number-types/node_modules/typescript/lib/lib.es5.d.ts:532</li>
+							<li>Defined in /Users/Chris/Repositories/extrajs-types/node_modules/typescript/lib/lib.es5.d.ts:532</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -230,7 +239,7 @@
 					<div class="tsd-signature tsd-kind-icon">RIGHT<span class="tsd-signature-symbol">:</span> <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> =&nbsp;new Angle(0.25)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L47">Angle.class.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L47">Angle.class.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -246,7 +255,7 @@
 					<div class="tsd-signature tsd-kind-icon">STRAIGHT<span class="tsd-signature-symbol">:</span> <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> =&nbsp;new Angle(0.5)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L53">Angle.class.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L53">Angle.class.ts:53</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -262,7 +271,7 @@
 					<div class="tsd-signature tsd-kind-icon">ZERO<span class="tsd-signature-symbol">:</span> <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> =&nbsp;new Angle(0)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L41">Angle.class.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L41">Angle.class.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -285,7 +294,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L92">Angle.class.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L173">Angle.class.ts:173</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -309,7 +318,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L111">Angle.class.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L194">Angle.class.ts:194</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -334,7 +343,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L155">Angle.class.ts:155</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L242">Angle.class.ts:242</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -343,7 +352,7 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>the result of <code>Math.cos()</code></p>
+							<p><code>cos(this)</code></p>
 						</li>
 					</ul>
 				</section>
@@ -357,7 +366,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L183">Angle.class.ts:183</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L274">Angle.class.ts:274</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -366,7 +375,7 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>the result of <code>1 / Math.tan()</code></p>
+							<p><code>1 / tan(this)</code></p>
 						</li>
 					</ul>
 				</section>
@@ -380,7 +389,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L169">Angle.class.ts:169</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L258">Angle.class.ts:258</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -389,7 +398,7 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>the result of <code>1 / Math.sin()</code></p>
+							<p><code>1 / sin(this)</code></p>
 						</li>
 					</ul>
 				</section>
@@ -403,7 +412,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L118">Angle.class.ts:118</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L202">Angle.class.ts:202</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -426,7 +435,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L126">Angle.class.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L210">Angle.class.ts:210</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -449,7 +458,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L133">Angle.class.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L218">Angle.class.ts:218</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -472,7 +481,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L140">Angle.class.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L226">Angle.class.ts:226</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -495,7 +504,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L176">Angle.class.ts:176</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L266">Angle.class.ts:266</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -504,7 +513,7 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>the result of <code>1 / Math.cos()</code></p>
+							<p><code>1 / cos(this)</code></p>
 						</li>
 					</ul>
 				</section>
@@ -518,7 +527,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L148">Angle.class.ts:148</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L234">Angle.class.ts:234</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -527,7 +536,7 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>the result of <code>Math.sin()</code></p>
+							<p><code>sin(this)</code></p>
 						</li>
 					</ul>
 				</section>
@@ -541,7 +550,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L101">Angle.class.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L183">Angle.class.ts:183</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -565,7 +574,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L162">Angle.class.ts:162</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L250">Angle.class.ts:250</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -574,13 +583,56 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>the result of <code>Math.tan()</code></p>
+							<p><code>tan(this)</code></p>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="clamp" class="tsd-anchor"></a>
+					<h3>clamp</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">clamp<span class="tsd-signature-symbol">(</span>min<span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a>, max<span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L315">Angle.class.ts:315</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return this Angle, clamped between two bounds.</p>
+								</div>
+								<p>This method returns this unchanged iff it is weakly between <code>min</code> and <code>max</code>;
+									it returns <code>min</code> iff this is strictly less than <code>min</code>;
+									and <code>max</code> iff this is strictly greater than <code>max</code>.
+									If <code>min === max</code> then this method returns that value.
+								If <code>min &gt; max</code> then this method switches the bounds.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>min: <a href="angle.html" class="tsd-signature-type">Angle</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the lower bound</p>
+									</div>
+								</li>
+								<li>
+									<h5>max: <a href="angle.html" class="tsd-signature-type">Angle</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the upper bound</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
+							<p><code>Angle.min(Angle.max(min, this), max)</code></p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="convert" class="tsd-anchor"></a>
 					<h3>convert</h3>
@@ -591,7 +643,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L250">Angle.class.ts:250</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L363">Angle.class.ts:363</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -623,7 +675,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L198">Angle.class.ts:198</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L290">Angle.class.ts:290</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -655,7 +707,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L206">Angle.class.ts:206</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L299">Angle.class.ts:299</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -687,7 +739,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L226">Angle.class.ts:226</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L337">Angle.class.ts:337</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -720,7 +772,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L214">Angle.class.ts:214</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L324">Angle.class.ts:324</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -733,7 +785,7 @@
 								<li>
 									<h5>addend: <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the Integer to add to this one</p>
+										<p>the Angle to add to this one</p>
 									</div>
 								</li>
 							</ul>
@@ -752,7 +804,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L240">Angle.class.ts:240</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L352">Angle.class.ts:352</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -788,7 +840,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Number.toExponential</p>
 								<ul>
-									<li>Defined in /Users/Chris/Repositories/number-types/node_modules/typescript/lib/lib.es5.d.ts:489</li>
+									<li>Defined in /Users/Chris/Repositories/extrajs-types/node_modules/typescript/lib/lib.es5.d.ts:489</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -820,7 +872,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Number.toFixed</p>
 								<ul>
-									<li>Defined in /Users/Chris/Repositories/number-types/node_modules/typescript/lib/lib.es5.d.ts:483</li>
+									<li>Defined in /Users/Chris/Repositories/extrajs-types/node_modules/typescript/lib/lib.es5.d.ts:483</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -852,7 +904,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Number.toLocaleString</p>
 								<ul>
-									<li>Defined in /Users/Chris/Repositories/number-types/node_modules/typescript/lib/lib.es5.d.ts:4160</li>
+									<li>Defined in /Users/Chris/Repositories/extrajs-types/node_modules/typescript/lib/lib.es5.d.ts:4160</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -890,7 +942,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Number.toPrecision</p>
 								<ul>
-									<li>Defined in /Users/Chris/Repositories/number-types/node_modules/typescript/lib/lib.es5.d.ts:495</li>
+									<li>Defined in /Users/Chris/Repositories/extrajs-types/node_modules/typescript/lib/lib.es5.d.ts:495</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -922,7 +974,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Number.toString</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L188">Angle.class.ts:188</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L279">Angle.class.ts:279</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -955,7 +1007,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Number.valueOf</p>
 								<ul>
-									<li>Defined in /Users/Chris/Repositories/number-types/node_modules/typescript/lib/lib.es5.d.ts:498</li>
+									<li>Defined in /Users/Chris/Repositories/extrajs-types/node_modules/typescript/lib/lib.es5.d.ts:498</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -964,6 +1016,272 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="acos" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> acos</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">acos<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L114">Angle.class.ts:114</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the arccosine of a number.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{RangeError} if the argument is not within the domain <code>[-1,1]</code></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the argument of arccos</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
+							<p><code>arccos(x)</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="acot" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> acot</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">acot<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L153">Angle.class.ts:153</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the arccotangent of a number.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the argument of arccot</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
+							<p><code>arctan(1 / x)</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="acsc" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> acsc</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">acsc<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L135">Angle.class.ts:135</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the arccosecant of a number.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the argument of arccsc</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
+							<p><code>arcsin(1 / x)</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="asec" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> asec</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">asec<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L144">Angle.class.ts:144</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the arcsecant of a number.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the argument of arcsec</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
+							<p><code>arccos(1 / x)</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="asin" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> asin</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">asin<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L102">Angle.class.ts:102</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the arcsine of a number.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{RangeError} if the argument is not within the domain <code>[-1,1]</code></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the argument of arcsin</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
+							<p><code>arcsin(x)</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="atan" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> atan</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">atan<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L125">Angle.class.ts:125</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the arctangent of a number.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the argument of arctan</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
+							<p><code>arctan(x)</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="max" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> max</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>angles<span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L81">Angle.class.ts:81</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the maximum of two or more Angles.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>angles: <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>two or more Angles to compare</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
+							<p>the greatest of all the arguments</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="min" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> min</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>angles<span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L91">Angle.class.ts:91</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the minimum of two or more Angles.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>angles: <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>two or more Angles to compare</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
+							<p>the least of all the arguments</p>
 						</li>
 					</ul>
 				</section>
@@ -976,7 +1294,7 @@
 					<div class="tsd-signature tsd-kind-icon">CONVERSION<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L69">Angle.class.ts:69</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L69">Angle.class.ts:69</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -991,10 +1309,10 @@
 						<div class="tsd-signature tsd-kind-icon">__computed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L70">Angle.class.ts:70</a></li>
-								<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L71">Angle.class.ts:71</a></li>
-								<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L72">Angle.class.ts:72</a></li>
-								<li>Defined in <a href="https://github.com/chharvey/number-types/blob/e3dbef4/src/class/Angle.class.ts#L73">Angle.class.ts:73</a></li>
+								<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L70">Angle.class.ts:70</a></li>
+								<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L71">Angle.class.ts:71</a></li>
+								<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L72">Angle.class.ts:72</a></li>
+								<li>Defined in <a href="https://github.com/chharvey/number-types/blob/86fea7d/src/class/Angle.class.ts#L73">Angle.class.ts:73</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1077,6 +1395,9 @@
 								<a href="angle.html#tan" class="tsd-kind-icon">tan</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="angle.html#clamp" class="tsd-kind-icon">clamp</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="angle.html#convert" class="tsd-kind-icon">convert</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -1111,6 +1432,30 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="angle.html#valueof" class="tsd-kind-icon">value<wbr>Of</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="angle.html#acos" class="tsd-kind-icon">acos</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="angle.html#acot" class="tsd-kind-icon">acot</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="angle.html#acsc" class="tsd-kind-icon">acsc</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="angle.html#asec" class="tsd-kind-icon">asec</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="angle.html#asin" class="tsd-kind-icon">asin</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="angle.html#atan" class="tsd-kind-icon">atan</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="angle.html#max" class="tsd-kind-icon">max</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="angle.html#min" class="tsd-kind-icon">min</a>
 							</li>
 							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-static">
 								<a href="angle.html#conversion" class="tsd-kind-icon">CONVERSION</a>

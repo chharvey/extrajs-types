@@ -1,10 +1,5 @@
 import * as xjs from 'extrajs'
 
-// TODO update extrajs@0.15.0+
-function xjs_Number_approx(x: number, y: number, epsilon: number = Number.EPSILON): boolean {
-	return Math.abs(x - y) < epsilon
-}
-
 
 /**
  * A fraction of some other value.
@@ -12,8 +7,6 @@ function xjs_Number_approx(x: number, y: number, epsilon: number = Number.EPSILO
  * Represented by a unitless number within the interval `[0, ∞)`, where `1` is the whole of the value.
  */
 export default class Percentage extends Number {
-
-
 	/**
 	 * Construct a new Percentage object.
 	 * @param   p the numeric value of this Percentage
@@ -30,6 +23,7 @@ export default class Percentage extends Number {
 	toString(radix?: number): string {
 		return `${(100 * this.valueOf()).toString(radix)}%`
 	}
+
 	/**
 	 * Return whether this Percentage’s value equals the argument’s.
 	 * @param   percentage the Percentage to compare
@@ -38,6 +32,7 @@ export default class Percentage extends Number {
 	equals(percentage: Percentage|number): boolean {
 		return (percentage instanceof Percentage) ? this.valueOf() === percentage.valueOf() : this.equals(new Percentage(percentage))
 	}
+
 	/**
 	 * Return how this Percentage compares to (is less than) another.
 	 * @param   percentage  the Percentage to compare
@@ -46,6 +41,7 @@ export default class Percentage extends Number {
 	lessThan(percentage: Percentage|number): boolean {
 		return (percentage instanceof Percentage) ? this.valueOf() < percentage.valueOf() : this.lessThan(new Percentage(percentage))
 	}
+
 	/**
 	 * Multiply this Percentage (the multiplicand) by another (the multiplier).
 	 * @param   multiplier the Percentage to multiply this one by
@@ -56,6 +52,7 @@ export default class Percentage extends Number {
 			new Percentage(this.valueOf() * multiplier.valueOf()) :
 			this.times(new Percentage(multiplier))
 	}
+
 	/**
 	 * Return the argument scaled by this Percentage.
 	 * @param   x the value to take this Percentage of
