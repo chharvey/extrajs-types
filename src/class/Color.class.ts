@@ -6,13 +6,19 @@ const NAMES: { [index: string]: string } = require('../../src/color-names.json')
 /**
  * Enum for the types of string representations of colors.
  */
-enum Space {
-	/** #rrggbb / #rrggbbaa / #rgb / #rgba */ HEX = 'hex',
-	/** rgb(r g b [/ a]) */ RGB = 'rgb',
-	/** hsv(h s v [/ a]) */ HSV = 'hsv',
-	/** hsl(h s l [/ a]) */ HSL = 'hsl',
-	/** hwb(h w b [/ a]) */ HWB = 'hwb',
-	/** cmyk(c m y k [/ a]) */ CMYK = 'cmyk',
+export enum ColorSpace {
+	/** #rrggbb / #rrggbbaa / #rgb / #rgba */
+	HEX,
+	/** rgb(r g b [/ a]) */
+	RGB,
+	/** hsv(h s v [/ a]) */
+	HSV,
+	/** hsl(h s l [/ a]) */
+	HSL,
+	/** hwb(h w b [/ a]) */
+	HWB,
+	/** cmyk(c m y k [/ a]) */
+	CMYK,
 }
 
 
@@ -21,8 +27,6 @@ enum Space {
  * and a possible transparency channel.
  */
 export default class Color {
-  static readonly Space = Space
-
 	/**
 	 * Calculate the alpha of two or more overlapping translucent colors.
 	 *
@@ -400,7 +404,7 @@ export default class Color {
 	 * Otherwise, the string returned will represent a translucent color,
 	 * `hsv(h s v / a)`, `hsl(h s l / a)`, etc.
 	 *
-	 * The format of the numbers returned will be as follows. The default format is {@link Color.Space.HEX}.
+	 * The format of the numbers returned will be as follows. The default format is {@link ColorSpace.HEX}.
 	 * - all HEX values will be base 16 integers in [00,FF], two digits
 	 * - HSV/HSL/HWB-hue values will be base 10 decimals in [0,360) rounded to the nearest 0.1
 	 * - HSV/HSL-sat/val/lum, HWB-white/black, and CMYK-cyan/magenta/yellow/black values will be base 10 decimals in [0,1] rounded to the nearest 0.01
@@ -410,36 +414,36 @@ export default class Color {
 	 * @param   space represents the space in which this color exists
 	 * @returns a string representing this color
 	 */
-	toString(space = Color.Space.HEX): string {
+	toString(space = ColorSpace.HEX): string {
 		const leadingZero = (n: number, r: number = 10) => `0${n.toString(r)}`.slice(-2)
-		if (space === Color.Space.HEX) {
+		if (space === ColorSpace.HEX) {
 			return `#${this.rgb.slice(0,3).map((c) => leadingZero(Math.round(c * 255), 16)).join('')}${(this.alpha < 1) ? leadingZero(Math.round(this.alpha * 255), 16) : ''}`
 		}
-		const returned = xjs.Object.switch<number[]>(space, {
-			[Color.Space.RGB]: () => this.rgb.slice(0,3).map((c) => Math.round(c * 255)),
-			[Color.Space.HSV]: () => [
+		const returned = xjs.Object.switch<number[]>(`${space}`, {
+			[ColorSpace.RGB]: () => this.rgb.slice(0,3).map((c) => Math.round(c * 255)),
+			[ColorSpace.HSV]: () => [
 				Math.round(this.hsvHue *  10) /  10,
 				Math.round(this.hsvSat * 100) / 100,
 				Math.round(this.hsvVal * 100) / 100,
 			],
-			[Color.Space.HSL]: () => [
+			[ColorSpace.HSL]: () => [
 				Math.round(this.hslHue *  10) /  10,
 				Math.round(this.hslSat * 100) / 100,
 				Math.round(this.hslLum * 100) / 100,
 			],
-			[Color.Space.HWB]: () => [
+			[ColorSpace.HWB]: () => [
 				Math.round(this.hwbHue   *  10) /  10,
 				Math.round(this.hwbWhite * 100) / 100,
 				Math.round(this.hwbBlack * 100) / 100,
 			],
-			[Color.Space.CMYK]: () => [
+			[ColorSpace.CMYK]: () => [
 				Math.round(this.cmykCyan    * 100) / 100,
 				Math.round(this.cmykMagenta * 100) / 100,
 				Math.round(this.cmykYellow  * 100) / 100,
 				Math.round(this.cmykBlack   * 100) / 100,
 			],
 		})()
-		return `${space}(${returned.join(' ')}${
+		return `${ColorSpace[space].toLowerCase()}(${returned.join(' ')}${
 			(this.alpha < 1) ? ` / ${Math.round(this.alpha * 1000) / 1000}` : ''
 		})`
 	}
@@ -909,7 +913,7 @@ export default class Color {
 	 */
 	name(): string|null {
 		let named_colors: [string, string][] = Object.entries(NAMES)
-		const returned: [string, string]|null = named_colors.find((c) => c[1].toLowerCase() === this.toString(Color.Space.HEX)) || null
+		const returned: [string, string]|null = named_colors.find((c) => c[1].toLowerCase() === this.toString()) || null
 		return (returned) ? returned[0] : null
 	}
 }
