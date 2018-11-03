@@ -6,7 +6,7 @@ import Percentage from './Percentage.class'
  * A list of possible angle units.
  * @see https://drafts.csswg.org/css-values-3/#angles
  */
-enum Unit {
+export enum AngleUnit {
 	/** Degrees. There are 360 degrees in a full circle. */
 	DEG,
 	/** Gradians, also known as "gons" or "grades". There are 400 gradians in a full circle. */
@@ -61,11 +61,11 @@ export default class Angle extends Number {
 	 *
 	 * The value assigned to each unit is the number of units in one full circle.
 	 */
-	static readonly CONVERSION: { readonly [index in Unit]: number } = {
-		[Unit.DEG ]: 360,
-		[Unit.GRAD]: 400,
-		[Unit.RAD ]: 2 * Math.PI,
-		[Unit.TURN]: 1,
+	static readonly CONVERSION: { readonly [index in AngleUnit]: number } = {
+		[AngleUnit.DEG ]: 360,
+		[AngleUnit.GRAD]: 400,
+		[AngleUnit.RAD ]: 2 * Math.PI,
+		[AngleUnit.TURN]: 1,
 	}
 
 	/**
@@ -97,7 +97,7 @@ export default class Angle extends Number {
 	static asin(x: number): Angle {
 		xjs.Number.assertType(x)
 		if (x < -1 || 1 < x) throw new RangeError(`Argument ${x} is outside of \`asin\` domain \`[-1,1]\`.`)
-		return new Angle(Math.asin(x) / Angle.CONVERSION[Unit.RAD])
+		return new Angle(Math.asin(x) / Angle.CONVERSION[AngleUnit.RAD])
 	}
 
 	/**
@@ -109,7 +109,7 @@ export default class Angle extends Number {
 	static acos(x: number): Angle {
 		xjs.Number.assertType(x)
 		if (x < -1 || 1 < x) throw new RangeError(`Argument ${x} is outside of \`acos\` domain \`[-1,1]\`.`)
-		return new Angle(Math.acos(x) / Angle.CONVERSION[Unit.RAD])
+		return new Angle(Math.acos(x) / Angle.CONVERSION[AngleUnit.RAD])
 	}
 
 	/**
@@ -119,7 +119,7 @@ export default class Angle extends Number {
 	 */
 	static atan(x: number): Angle {
 		xjs.Number.assertType(x)
-		return new Angle(Math.atan(x) / Angle.CONVERSION[Unit.RAD])
+		return new Angle(Math.atan(x) / Angle.CONVERSION[AngleUnit.RAD])
 	}
 
 	/**
@@ -227,7 +227,7 @@ export default class Angle extends Number {
 	 * @returns `sin(this)`
 	 */
 	get sin(): number {
-		return Math.sin(this.convert(Unit.RAD))
+		return Math.sin(this.convert(AngleUnit.RAD))
 	}
 
 	/**
@@ -235,7 +235,7 @@ export default class Angle extends Number {
 	 * @returns `cos(this)`
 	 */
 	get cos(): number {
-		return Math.cos(this.convert(Unit.RAD))
+		return Math.cos(this.convert(AngleUnit.RAD))
 	}
 
 	/**
@@ -243,7 +243,7 @@ export default class Angle extends Number {
 	 * @returns `tan(this)`
 	 */
 	get tan(): number {
-		return Math.tan(this.convert(Unit.RAD))
+		return Math.tan(this.convert(AngleUnit.RAD))
 	}
 
 	/**
@@ -271,9 +271,9 @@ export default class Angle extends Number {
 	}
 
 	/** @override */
-	toString(radix?: number, unit?: Unit): string {
+	toString(radix?: number, unit?: AngleUnit): string {
 		return (unit) ?
-			`${this.convert(unit).toString(radix)}${Unit[unit].toLowerCase()}` :
+			`${this.convert(unit).toString(radix)}${AngleUnit[unit].toLowerCase()}` :
 			super.toString(radix)
 	}
 
@@ -355,7 +355,7 @@ export default class Angle extends Number {
 	 * @param   unit the unit to convert to
 	 * @returns the numeric value of the measure of this Angle
 	 */
-	convert(unit: Unit): number {
+	convert(unit: AngleUnit): number {
 		return this.valueOf() * Angle.CONVERSION[unit]
 	}
 }
