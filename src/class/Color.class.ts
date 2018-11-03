@@ -242,7 +242,7 @@ export default class Color {
 	static fromString(str = ''): Color {
 		if (str === '') return new Color()
 		if (str[0] === '#') {
-			if (![4,5,7,9].includes(str.length)) throw new RangeError(`Invalid string format: '${str}'.`)
+			if (![4,5,7,9].includes(str.length)) throw new RangeError(`Invalid string format: '${str}'. Hex color must have 3, 4, 6, or 8 digits.`)
 			if ([4,5].includes(str.length)) {
 				let [r, g, b, a]: string[] = [str[1], str[2], str[3], str[4] || '']
 				return Color.fromString(`#${r}${r}${g}${g}${b}${b}${a}${a}`)
@@ -257,7 +257,7 @@ export default class Color {
 				xjs.Number.assertType(blue , 'non-negative')
 				xjs.Number.assertType(alpha, 'non-negative')
 			} catch (e) {
-				throw new RangeError(`Invalid string format: '${str}'.`)
+				throw new RangeError(`Invalid string format: '${str}'. ${e.message}`)
 			}
 			return new Color(red, green, blue, alpha)
 		}
@@ -266,66 +266,67 @@ export default class Color {
 			if (!returned) throw new ReferenceError(`No color found for the name given: '${str}'.`)
 			return Color.fromString(returned)
 		}
-		try {
-			return (() => {
-				const space : string = str.split('(')[0]
-				const cssarg: string = str.split('(')[1].slice(0, -1)
-				const channelstrings: string[] = (cssarg.includes(',')) ?
-					cssarg.split(',') : // legacy syntax — COMBAK{DEPRECATED}
-					cssarg.split('/')[0].split(' ').filter((s) => s !== '')
-				if (cssarg.includes('/')) {
-					channelstrings.push(cssarg.split('/')[1])
-				}
-				function _rgbStrings(channels: string[]): Color {
-					// NOTE: allows different components to mix and match numbers & percents.
-					// TODO: starting in CSS Colors 4, all components must be all numbers or all percents
-					const returned: number[] = channels.map((s) => (!Number.isNaN(+s)) ? +s / 255 : Percentage.fromString(s).valueOf())
-					return new Color(...returned)
-				}
-				function _hsvStrings(channels: string[]): Color {
-					const returned: number[] = [
-						...channels.slice(0, 1).map((s) => (!Number.isNaN(+s)) ? +s : Angle     .fromString(s).convert(AngleUnit.DEG)),
-						...channels.slice(1,-1).map((s) =>                            Percentage.fromString(s).valueOf()),
-						...channels.slice(-1  ).map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf()),
-					]
-					return Color.fromHSV(...returned)
-				}
-				function _hslStrings(channels: string[]): Color {
-					const returned: number[] = [
-						...channels.slice(0, 1).map((s) => (!Number.isNaN(+s)) ? +s : Angle     .fromString(s).convert(AngleUnit.DEG)),
-						...channels.slice(1,-1).map((s) =>                            Percentage.fromString(s).valueOf()),
-						...channels.slice(-1  ).map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf()),
-					]
-					return Color.fromHSL(...returned)
-				}
-				function _hwbStrings(channels: string[]): Color {
-					const returned: number[] = [
-						...channels.slice(0, 1).map((s) => (!Number.isNaN(+s)) ? +s : Angle     .fromString(s).convert(AngleUnit.DEG)),
-						...channels.slice(1,-1).map((s) =>                            Percentage.fromString(s).valueOf()),
-						...channels.slice(-1  ).map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf()),
-					]
-					return Color.fromHWB(...returned)
-				}
-				function _cmykStrings(channels: string[]): Color {
-					const returned: number[] = channels.map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf())
-					return Color.fromCMYK(...returned)
-				}
-				return xjs.Object.switch<Color>(space, {
-					rgb   : _rgbStrings,
-					rgba  : _rgbStrings, // COMBAK{DEPRECATED}
-					hsv   : _hsvStrings,
-					hsva  : _hsvStrings, // COMBAK{DEPRECATED}
-					hsl   : _hslStrings,
-					hsla  : _hslStrings, // COMBAK{DEPRECATED}
-					hwb   : _hwbStrings,
-					hwba  : _hwbStrings, // COMBAK{DEPRECATED}
-					cmyk  : _cmykStrings,
-					cmyka : _cmykStrings, // COMBAK{DEPRECATED}
-				})(channelstrings.map((s) => s.trim()))
-			})()
-		} catch (e) {
-			throw new RangeError(`Invalid string format: '${str}'.`)
+
+		const space : string = str.split('(')[0]
+		const cssarg: string = str.split('(')[1].slice(0, -1)
+		const channelstrings: string[] = (cssarg.includes(',')) ?
+			cssarg.split(',') : // legacy syntax — COMBAK{DEPRECATED}
+			cssarg.split('/')[0].split(' ').filter((s) => s !== '')
+		if (cssarg.includes('/')) {
+			channelstrings.push(cssarg.split('/')[1])
 		}
+		function _rgbStrings(channels: string[]): Color {
+			// NOTE: allows different components to mix and match numbers & percents.
+			// TODO: starting in CSS Colors 4, all components must be all numbers or all percents
+			const returned: number[] = channels.map((s) => (!Number.isNaN(+s)) ? +s / 255 : Percentage.fromString(s).valueOf())
+			return new Color(...returned)
+		}
+		function _hsvStrings(channels: string[]): Color {
+			const returned: number[] = [
+				...channels.slice(0, 1).map((s) => (!Number.isNaN(+s)) ? +s : Angle     .fromString(s).convert(AngleUnit.DEG)),
+				...channels.slice(1,-1).map((s) =>                            Percentage.fromString(s).valueOf()),
+				...channels.slice(-1  ).map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf()),
+			]
+			return Color.fromHSV(...returned)
+		}
+		function _hslStrings(channels: string[]): Color {
+			const returned: number[] = [
+				...channels.slice(0, 1).map((s) => (!Number.isNaN(+s)) ? +s : Angle     .fromString(s).convert(AngleUnit.DEG)),
+				...channels.slice(1,-1).map((s) =>                            Percentage.fromString(s).valueOf()),
+				...channels.slice(-1  ).map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf()),
+			]
+			return Color.fromHSL(...returned)
+		}
+		function _hwbStrings(channels: string[]): Color {
+			const returned: number[] = [
+				...channels.slice(0, 1).map((s) => (!Number.isNaN(+s)) ? +s : Angle     .fromString(s).convert(AngleUnit.DEG)),
+				...channels.slice(1,-1).map((s) =>                            Percentage.fromString(s).valueOf()),
+				...channels.slice(-1  ).map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf()),
+			]
+			return Color.fromHWB(...returned)
+		}
+		function _cmykStrings(channels: string[]): Color {
+			const returned: number[] = channels.map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf())
+			return Color.fromCMYK(...returned)
+		}
+		let returned: (channels: string[]) => Color;
+		try {
+			returned = xjs.Object.switch<Color>(space, {
+				rgb   : _rgbStrings,
+				rgba  : _rgbStrings, // COMBAK{DEPRECATED}
+				hsv   : _hsvStrings,
+				hsva  : _hsvStrings, // COMBAK{DEPRECATED}
+				hsl   : _hslStrings,
+				hsla  : _hslStrings, // COMBAK{DEPRECATED}
+				hwb   : _hwbStrings,
+				hwba  : _hwbStrings, // COMBAK{DEPRECATED}
+				cmyk  : _cmykStrings,
+				cmyka : _cmykStrings, // COMBAK{DEPRECATED}
+			})
+		} catch (e) {
+			throw new RangeError(`Invalid string format: '${str}'. No CSS function found.`)
+		}
+		return returned(channelstrings.map((s) => s.trim()))
   }
 
 	/**
