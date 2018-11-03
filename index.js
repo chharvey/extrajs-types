@@ -5,4 +5,5 @@ module.exports = {
 	Percentage : require('./dist/class/Percentage.class.js').default,
 	Angle      : Angle_module.default,
 	AngleUnit  : Angle_module.AngleUnit,
+	Color: require('./dist/class/Color.class.js').default,
 }
