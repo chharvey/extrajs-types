@@ -321,8 +321,10 @@ export default class Angle extends Number {
 	 * @param   max the upper bound
 	 * @returns `Angle.min(Angle.max(min, this), max)`
 	 */
-	clamp(min: Angle, max: Angle): Angle {
-		return (min.lessThan(max) || min.equals(max)) ? Angle.min(Angle.max(min, this), max) : this.clamp(max, min)
+	clamp(min: Angle|number = 0, max: Angle|number = 1): Angle {
+		return (min instanceof Angle && max instanceof Angle) ?
+			(min.lessThan(max) || min.equals(max)) ? Angle.min(Angle.max(min, this), max) : this.clamp(max, min) :
+			this.clamp(new Angle(min), new Angle(max))
 	}
 
 	/**

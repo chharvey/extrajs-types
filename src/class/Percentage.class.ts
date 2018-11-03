@@ -93,11 +93,21 @@ export default class Percentage extends Number {
 	}
 
 	/**
-	 * Clamp this Percentage between 0 and 1.
-	 * @returns a Percentage within the bounds [0, 1]
+	 * Return this Percentage, clamped between two bounds.
+	 *
+	 * This method returns this unchanged iff it is weakly between `min` and `max`;
+	 * it returns `min` iff this is strictly less than `min`;
+	 * and `max` iff this is strictly greater than `max`.
+	 * If `min === max` then this method returns that value.
+	 * If `min > max` then this method switches the bounds.
+	 * @param   min the lower bound
+	 * @param   max the upper bound
+	 * @returns `Percentage.min(Percentage.max(min, this), max)`
 	 */
-	clamp(): Percentage {
-		return Percentage.min(this, new Percentage(1))
+	clamp(min: Percentage|number = 0, max: Percentage|number = 1): Percentage {
+		return (min instanceof Percentage && max instanceof Percentage) ?
+			(min.lessThan(max) || min.equals(max)) ? Percentage.min(Percentage.max(min, this), max) : this.clamp(max, min) :
+			this.clamp(new Percentage(min), new Percentage(max))
 	}
 
 	/**
