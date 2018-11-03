@@ -419,28 +419,28 @@ export default class Color {
 		if (space === ColorSpace.HEX) {
 			return `#${this.rgb.slice(0,3).map((c) => leadingZero(Math.round(c * 255), 16)).join('')}${(this.alpha < 1) ? leadingZero(Math.round(this.alpha * 255), 16) : ''}`
 		}
-		const returned = xjs.Object.switch<number[]>(`${space}`, {
-			[ColorSpace.RGB]: () => this.rgb.slice(0,3).map((c) => Math.round(c * 255)),
+		const returned = xjs.Object.switch<string[]>(`${space}`, {
+			[ColorSpace.RGB]: () => this.rgb.slice(0,3).map((c) => `${Math.round(c * 255)}`),
 			[ColorSpace.HSV]: () => [
-				Math.round(this.hsvHue *  10) /  10,
-				Math.round(this.hsvSat * 100) / 100,
-				Math.round(this.hsvVal * 100) / 100,
+				`${Math.round(this.hsvHue *  10) /  10}deg`,
+				`${Math.round(this.hsvSat * 100)}%`,
+				`${Math.round(this.hsvVal * 100)}%`,
 			],
 			[ColorSpace.HSL]: () => [
-				Math.round(this.hslHue *  10) /  10,
-				Math.round(this.hslSat * 100) / 100,
-				Math.round(this.hslLum * 100) / 100,
+				`${Math.round(this.hslHue *  10) /  10}deg`,
+				`${Math.round(this.hslSat * 100)}%`,
+				`${Math.round(this.hslLum * 100)}%`,
 			],
 			[ColorSpace.HWB]: () => [
-				Math.round(this.hwbHue   *  10) /  10,
-				Math.round(this.hwbWhite * 100) / 100,
-				Math.round(this.hwbBlack * 100) / 100,
+				`${Math.round(this.hwbHue   *  10) /  10}deg`,
+				`${Math.round(this.hwbWhite * 100)}%`,
+				`${Math.round(this.hwbBlack * 100)}%`,
 			],
 			[ColorSpace.CMYK]: () => [
-				Math.round(this.cmykCyan    * 100) / 100,
-				Math.round(this.cmykMagenta * 100) / 100,
-				Math.round(this.cmykYellow  * 100) / 100,
-				Math.round(this.cmykBlack   * 100) / 100,
+				`${Math.round(this.cmykCyan    * 100) / 100}`,
+				`${Math.round(this.cmykMagenta * 100) / 100}`,
+				`${Math.round(this.cmykYellow  * 100) / 100}`,
+				`${Math.round(this.cmykBlack   * 100) / 100}`,
 			],
 		})()
 		return `${ColorSpace[space].toLowerCase()}(${returned.join(' ')}${
