@@ -1,11 +1,6 @@
 import * as xjs from 'extrajs'
 import Percentage from './Percentage.class'
 
-// TODO update extrajs@0.15.0+
-function xjs_Number_approx(x: number, y: number, epsilon: number = Number.EPSILON): boolean {
-	return Math.abs(x - y) < epsilon
-}
-
 
 /**
  * A list of possible angle units.
@@ -288,7 +283,7 @@ export default class Angle extends Number {
 	 * @returns does this Angle equal the argument?
 	 */
 	equals(angle: Angle|number): boolean {
-		return (angle instanceof Angle) ? xjs_Number_approx(this.valueOf(), angle.valueOf()) : this.equals(new Angle(angle))
+		return (angle instanceof Angle) ? xjs.Math.approx(this.valueOf(), angle.valueOf()) : this.equals(new Angle(angle))
 	}
 
 	/**
