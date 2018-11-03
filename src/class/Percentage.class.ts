@@ -8,6 +8,26 @@ import * as xjs from 'extrajs'
  */
 export default class Percentage extends Number {
 	/**
+	 * Return the maximum of two or more Percentages.
+	 * @param   pcts two or more Percentages to compare
+	 * @returns the greatest of all the arguments
+	 */
+	static max(...pcts: Percentage[]): Percentage {
+		return new Percentage(Math.max(...pcts.map((p) => p.valueOf())))
+		// return pcts.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).slice(-1)[0]
+	}
+
+	/**
+	 * Return the minimum of two or more Percentages.
+	 * @param   pcts two or more Percentages to compare
+	 * @returns the least of all the arguments
+	 */
+	static min(...pcts: Percentage[]): Percentage {
+		return new Percentage(Math.min(...pcts.map((p) => p.valueOf())))
+		// return pcts.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
+	}
+
+	/**
 	 * Parse a string of the form `'‹n›%'`, where `‹n›` is a number.
 	 * @param   str the string to parse
 	 * @returns a new Percentage emulating the string
@@ -30,10 +50,28 @@ export default class Percentage extends Number {
 		super(p)
 	}
 
+	/**
+	 * Get the conjugate of this Percentage.
+	 *
+	 * The conjugate of a Percentage is the remaining Percentage required
+	 * to add to a one full percentage (1 or 100%).
+	 *
+	 * This method may only be called on percentages less than or equal to 100%.
+	 * @returns the conjugate of this Percentage
+	 * @throws if this Percentage is more than 100%
+	 */
+	get conjugate(): Percentage {
+		try {
+			return new Percentage(1 - this.valueOf())
+		} catch (e) {
+			throw new RangeError(`No conjugate exists for ${this.toString()}`)
+		}
+	}
+
 
 	/** @override */
-	toString(radix?: number): string {
-		return `${(100 * this.valueOf()).toString(radix)}%`
+	toString(radix: number = 10): string {
+		return `${(radix**2 * this.valueOf()).toString(radix)}%`
 	}
 
 	/**
@@ -52,6 +90,14 @@ export default class Percentage extends Number {
 	 */
 	lessThan(percentage: Percentage|number): boolean {
 		return (percentage instanceof Percentage) ? this.valueOf() < percentage.valueOf() : this.lessThan(new Percentage(percentage))
+	}
+
+	/**
+	 * Clamp this Percentage between 0 and 1.
+	 * @returns a Percentage within the bounds [0, 1]
+	 */
+	clamp(): Percentage {
+		return Percentage.min(this, new Percentage(1))
 	}
 
 	/**
