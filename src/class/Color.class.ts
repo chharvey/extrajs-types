@@ -1,5 +1,8 @@
 import * as xjs from 'extrajs'
 
+import Percentage from './Percentage.class'
+import Angle, {AngleUnit} from './Angle.class'
+
 const NAMES: { [index: string]: string } = require('../../src/color-names.json') // NB relative to dist
 
 
@@ -273,18 +276,52 @@ export default class Color {
 				if (cssarg.includes('/')) {
 					channelstrings.push(cssarg.split('/')[1])
 				}
+				function _rgbStrings(channels: string[]): Color {
+					// NOTE: allows different components to mix and match numbers & percents.
+					// TODO: starting in CSS Colors 4, all components must be all numbers or all percents
+					const returned: number[] = channels.map((s) => (!Number.isNaN(+s)) ? +s / 255 : Percentage.fromString(s).valueOf())
+					return new Color(...returned)
+				}
+				function _hsvStrings(channels: string[]): Color {
+					const returned: number[] = [
+						...channels.slice(0, 1).map((s) => (!Number.isNaN(+s)) ? +s : Angle     .fromString(s).convert(AngleUnit.DEG)),
+						...channels.slice(1,-1).map((s) =>                            Percentage.fromString(s).valueOf()),
+						...channels.slice(-1  ).map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf()),
+					]
+					return Color.fromHSV(...returned)
+				}
+				function _hslStrings(channels: string[]): Color {
+					const returned: number[] = [
+						...channels.slice(0, 1).map((s) => (!Number.isNaN(+s)) ? +s : Angle     .fromString(s).convert(AngleUnit.DEG)),
+						...channels.slice(1,-1).map((s) =>                            Percentage.fromString(s).valueOf()),
+						...channels.slice(-1  ).map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf()),
+					]
+					return Color.fromHSL(...returned)
+				}
+				function _hwbStrings(channels: string[]): Color {
+					const returned: number[] = [
+						...channels.slice(0, 1).map((s) => (!Number.isNaN(+s)) ? +s : Angle     .fromString(s).convert(AngleUnit.DEG)),
+						...channels.slice(1,-1).map((s) =>                            Percentage.fromString(s).valueOf()),
+						...channels.slice(-1  ).map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf()),
+					]
+					return Color.fromHWB(...returned)
+				}
+				function _cmykStrings(channels: string[]): Color {
+					const returned: number[] = channels.map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf())
+					return Color.fromCMYK(...returned)
+				}
 				return xjs.Object.switch<Color>(space, {
-					rgb  : (channels: number[]) => new Color     (...channels.map((c) => c / 255)),
-					rgba : (channels: number[]) => new Color     (...channels.map((c) => c / 255)), // COMBAK{DEPRECATED}
-					hsv  : (channels: number[]) => Color.fromHSV (...channels),
-					hsva : (channels: number[]) => Color.fromHSV (...channels), // COMBAK{DEPRECATED}
-					hsl  : (channels: number[]) => Color.fromHSL (...channels),
-					hsla : (channels: number[]) => Color.fromHSL (...channels), // COMBAK{DEPRECATED}
-					hwb  : (channels: number[]) => Color.fromHWB (...channels),
-					hwba : (channels: number[]) => Color.fromHWB (...channels), // COMBAK{DEPRECATED}
-					cmyk : (channels: number[]) => Color.fromCMYK(...channels),
-					cmyka: (channels: number[]) => Color.fromCMYK(...channels), // COMBAK{DEPRECATED}
-				})(channelstrings.map((s) => +s))
+					rgb   : _rgbStrings,
+					rgba  : _rgbStrings, // COMBAK{DEPRECATED}
+					hsv   : _hsvStrings,
+					hsva  : _hsvStrings, // COMBAK{DEPRECATED}
+					hsl   : _hslStrings,
+					hsla  : _hslStrings, // COMBAK{DEPRECATED}
+					hwb   : _hwbStrings,
+					hwba  : _hwbStrings, // COMBAK{DEPRECATED}
+					cmyk  : _cmykStrings,
+					cmyka : _cmykStrings, // COMBAK{DEPRECATED}
+				})(channelstrings.map((s) => s.trim()))
 			})()
 		} catch (e) {
 			throw new RangeError(`Invalid string format: '${str}'.`)

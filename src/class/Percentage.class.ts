@@ -8,6 +8,18 @@ import * as xjs from 'extrajs'
  */
 export default class Percentage extends Number {
 	/**
+	 * Parse a string of the form `'‹n›%'`, where `‹n›` is a number.
+	 * @param   str the string to parse
+	 * @returns a new Percentage emulating the string
+	 * @throws  {RangeError} if the string given is not of the correct format
+	 */
+	static fromString(str: string): Percentage {
+		if (str.slice(-1) !== '%') throw new RangeError(`Invalid string format: '${str}'.`)
+		return new Percentage(+str.slice(0, -1) / 100)
+	}
+
+
+	/**
 	 * Construct a new Percentage object.
 	 * @param   p the numeric value of this Percentage
 	 */
