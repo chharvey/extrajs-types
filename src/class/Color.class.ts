@@ -1,5 +1,6 @@
 import * as xjs from 'extrajs'
 
+import Integer from './Integer.class'
 import Percentage from './Percentage.class'
 import Angle, {AngleUnit} from './Angle.class'
 
@@ -76,14 +77,16 @@ export default class Color {
 	/**
 	 * Return a new Color object, given red, green, and blue, in RGB-space, where
 	 * each color channel is an integer 0–255.
-	 * @param   red   the RGB-red   channel of this color (an integer in 0–255)
-	 * @param   green the RGB-green channel of this color (an integer in 0–255)
-	 * @param   blue  the RGB-blue  channel of this color (an integer in 0–255)
+	 * @param   red   the RGB-red   channel of this color
+	 * @param   green the RGB-green channel of this color
+	 * @param   blue  the RGB-blue  channel of this color
 	 * @param   alpha the alpha channel of this color (a number 0–1)
 	 * @returns a new Color object with rgba(red, green, blue, alpha)
 	 */
-	static fromRGB(red = 0, green = 0, blue = 0, alpha = 1): Color {
-		return new Color(red/255, green/255, blue/255, alpha)
+	static fromRGB(red: Integer|number = 0, green: Integer|number = 0, blue: Integer|number = 0, alpha = 1): Color {
+		return ([red, green, blue].every((c) => c instanceof Integer)) ?
+			new Color(...[red, green, blue].map((c) => new Percentage((c as Integer).clamp(0, 255).dividedBy(255))), alpha) :
+			Color.fromRGB(...[red, green, blue].map((c) => new Integer(c)), alpha)
 	}
 
 	/**
@@ -269,6 +272,7 @@ export default class Color {
 			return Color.fromString(returned)
 		}
 
+		/* ---- else, the string is a CSS function ---- */
 		const space : string = str.split('(')[0]
 		const cssarg: string = str.split('(')[1].slice(0, -1)
 		const channelstrings: string[] = (cssarg.includes(',')) ?
@@ -280,8 +284,11 @@ export default class Color {
 		function _rgbStrings(channels: string[]): Color {
 			// NOTE: allows different components to mix and match numbers & percents.
 			// TODO: starting in CSS Colors 4, all components must be all numbers or all percents
-			const returned: number[] = channels.map((s) => (!Number.isNaN(+s)) ? +s / 255 : Percentage.fromString(s).valueOf())
-			return new Color(...returned)
+			let red  : Percentage      =                 (!Number.isNaN(+channels[0])) ? new Percentage(+channels[0] / 255) : Percentage.fromString(channels[0])
+			let green: Percentage      =                 (!Number.isNaN(+channels[1])) ? new Percentage(+channels[1] / 255) : Percentage.fromString(channels[1])
+			let blue : Percentage      =                 (!Number.isNaN(+channels[2])) ? new Percentage(+channels[2] / 255) : Percentage.fromString(channels[2])
+			let alpha: Percentage|null = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]      ) : Percentage.fromString(channels[3]) : null
+			return new Color(red, green, blue, (alpha) ? alpha.valueOf() : undefined)
 		}
 		function _hsvStrings(channels: string[]): Color {
 			const returned: number[] = [
