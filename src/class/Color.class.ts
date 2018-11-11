@@ -1,5 +1,6 @@
 import * as xjs from 'extrajs'
 
+import Integer from './Integer.class'
 import Percentage from './Percentage.class'
 import Angle, {AngleUnit} from './Angle.class'
 
@@ -26,24 +27,44 @@ export enum ColorSpace {
 
 
 /**
- * A 24/32-bit color ("True Color") that can be displayed in a pixel, given three primary color channels
- * and a possible transparency channel.
+ * An abstract representation of a color that can be displayed in a pixel,
+ * given three primary color channels and a possible transparency channel.
  */
 export default class Color {
 	/**
-	 * Calculate the alpha of two or more overlapping translucent colors.
+	 * Calculate the weighed compound opacity of two or more overlapping translucent colors.
 	 *
-	 * For two overlapping colors with respective alphas `a` and `b`, the compounded alpha
-	 * of an even mix will be `1 - (1-a)*(1-b)`.
-	 * For three, it would be `1 - (1-a)*(1-b)*(1-c)`.
-	 * An alpha is a number within the interval [0,1], and represents the opacity
-	 * of a translucent color. An alpha of 0 is completely transparent; an alpha
-	 * of 1 is completely opaque.
-	 * @param  alphas an array of alphas
-	 * @return the compounded alpha
+	 * For two overlapping colors with respective alphas `a` and `b`,
+	 * the compounded alpha of an even mix will be `1  -  (1 - a)*(1 - b)`
+	 * (equivalent to `1  -  ((1-a)**0.5 * (1-b)**0.5)  **  2`).
+	 * For an uneven mix, a weight 0.75 favoring a2, it will be
+	 * `1  -  ((1-a)**0.25 * (1-b)**0.75)  **  2`.
+	 * @param   a1 the first alpha value
+	 * @param   a2 the second alpha value
+	 * @param   w the weight favoring the second alpha
+	 * @returns the compounded alpha
 	 */
-	private static _compoundOpacity(alphas: number[]): number {
-		return 1 - alphas.map((a) => 1-a).reduce((a,b) => a*b)
+	private static _compoundOpacityWeighted(a1: Percentage, a2: Percentage, w: Percentage): Percentage {
+		// TODO: import from xjs.Math
+		function xjs_Math_meanGeometricWeighted(x: number, y: number, w: number = 0.5): number {
+			xjs.Number.assertType(x, 'finite')
+			xjs.Number.assertType(y, 'finite')
+			xjs.Number.assertType(w, 'finite')
+			return (x ** (1 - w)) * (y ** w)
+		}
+		return new Percentage(xjs_Math_meanGeometricWeighted(a1.conjugate.valueOf(), a2.conjugate.valueOf(), w.valueOf()) ** 2).conjugate
+	}
+	/**
+	 * Calculate the alpha of several overlapping translucent colors.
+	 *
+	 * For three overlapping colors with respective alphas `a`, `b` and `c`,
+	 * the compounded alpha will be `1  -  (1 - a)*(1 - b)*(1 - c)`.
+	 * @param   alphas the alphas to compound
+	 * @returns the compounded alpha
+	 */
+	private static _compoundOpacity(...alphas: Percentage[]): Percentage {
+		return alphas.map((a) => a.conjugate).reduce((a,b) => a.times(b)).conjugate
+		// return new Percentage(xjs.Math.meanGeometric(...alphas.map((a) => a.conjugate.valueOf())) ** alphas.length).conjugate
 	}
 
 	/**
@@ -52,11 +73,12 @@ export default class Color {
 	 * Approximately, the square of the value: `(x) => x * x`.
 	 * @see https://www.w3.org/Graphics/Color/sRGB.html
 	 * @see https://en.wikipedia.org/wiki/SRGB#The_reverse_transformation
-	 * @param   c_srgb an rgb component (0–1) of a color
+	 * @param   c_srgb an rgb component of a color
 	 * @returns the transformed linear value
 	 */
-	private static _sRGB_Linear(c_srgb: number): number {
-		return (c_srgb <= 0.03928) ? c_srgb / 12.92 : ((c_srgb + 0.055) / 1.055) ** 2.4
+	private static _sRGB_Linear(c_srgb: Percentage): Percentage {
+		let c = c_srgb.valueOf()
+		return new Percentage((c <= 0.03928) ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4)
 	}
 	/**
 	 * Return the inverse of {@link Color._sRGB_Linear}.
@@ -64,132 +86,143 @@ export default class Color {
 	 * Approximately, the square root of the value: `(x) => Math.sqrt(x)`.
 	 * @see https://www.w3.org/Graphics/Color/sRGB.html
 	 * @see https://en.wikipedia.org/wiki/SRGB#The_forward_transformation_(CIE_XYZ_to_sRGB)
-	 * @param   c_lin a perceived luminance (linear) of a color’s rgb component (0–1)
+	 * @param   c_lin a perceived luminance (linear) of a color’s rgb component
 	 * @returns the transformed sRGB value
 	 */
-	private static _linear_sRGB(c_lin: number): number {
-		return (c_lin <= 0.00304) ? c_lin * 12.92 : 1.055 * c_lin ** (1 / 2.4) - 0.055
+	private static _linear_sRGB(c_lin: Percentage): Percentage {
+		let c = c_lin.valueOf()
+		return new Percentage((c <= 0.00304) ? c * 12.92 : 1.055 * c ** (1 / 2.4) - 0.055)
 	}
 
 	/**
 	 * Return a new Color object, given red, green, and blue, in RGB-space, where
 	 * each color channel is an integer 0–255.
-	 * @param   red   the RGB-red   channel of this color (an integer in 0–255)
-	 * @param   green the RGB-green channel of this color (an integer in 0–255)
-	 * @param   blue  the RGB-blue  channel of this color (an integer in 0–255)
-	 * @param   alpha the alpha channel of this color (a number 0–1)
+	 * @param   red   the RGB-red   channel of this color
+	 * @param   green the RGB-green channel of this color
+	 * @param   blue  the RGB-blue  channel of this color
+	 * @param   alpha the alpha channel of this color
 	 * @returns a new Color object with rgba(red, green, blue, alpha)
 	 */
-	static fromRGB(red = 0, green = 0, blue = 0, alpha = 1): Color {
-		return new Color(red/255, green/255, blue/255, alpha)
+	static fromRGB(red: Integer|number = 0, green: Integer|number = 0, blue: Integer|number = 0, alpha: Percentage|number = 1): Color {
+		return (red instanceof Integer && green instanceof Integer && blue instanceof Integer && alpha instanceof Percentage) ?
+			new Color(...[red, green, blue].map((c) => new Percentage(c.clamp(0, 255).dividedBy(255))), alpha) :
+			Color.fromRGB(new Integer(red), new Integer(green), new Integer(blue), new Percentage(alpha))
 	}
 
 	/**
 	 * Return a new Color object, given hue, saturation, and value in HSV-space.
 	 *
-	 * The HSV-hue        must be between 0 and 360.
-	 * The HSV-saturation must be between 0.0 and 1.0.
-	 * The HSV-value      must be between 0.0 and 1.0.
-	 * The alpha must be between 0.0 and 1.0.
-	 * @param   hue the HSV-hue channel of this color (a number 0—360)
-	 * @param   sat the HSV-sat channel of this color (a number 0—1)
-	 * @param   val the HSV-val channel of this color (a number 0—1)
-	 * @param   alpha the alpha channel of this color (a number 0—1)
+	 * @param   hue the HSV-hue channel of this color
+	 * @param   sat the HSV-sat channel of this color
+	 * @param   val the HSV-val channel of this color
+	 * @param   alpha the alpha channel of this color
 	 * @returns a new Color object with hsva(hue, sat, val, alpha)
 	 */
-	static fromHSV(hue = 0, sat = 0, val = 0, alpha = 1): Color {
-		hue = xjs.Math.mod(hue, 360)
-		let c: number = sat * val
-		let x: number = c * (1 - Math.abs(hue/60 % 2 - 1))
-		let m: number = val - c
-		let rgb: number[] = [c, x, 0]
-		;    if (  0 <= hue && hue <  60) { rgb = [c, x, 0] }
-		else if ( 60 <= hue && hue < 120) { rgb = [x, c, 0] }
-		else if (120 <= hue && hue < 180) { rgb = [0, c, x] }
-		else if (180 <= hue && hue < 240) { rgb = [0, x, c] }
-		else if (240 <= hue && hue < 300) { rgb = [x, 0, c] }
-		else if (300 <= hue && hue < 360) { rgb = [c, 0, x] }
-		return new Color(...rgb.map((el) => el + m), alpha)
+	static fromHSV(hue: Angle|number = 0, sat: Percentage|number = 0, val: Percentage|number = 0, alpha: Percentage|number = 1): Color {
+		return (hue instanceof Angle && sat instanceof Percentage && val instanceof Percentage && alpha instanceof Percentage) ? (() => {
+			const [s, v]: number[] = [sat, val].map((p) => p.valueOf())
+			let c: number = s * v
+			let x: number = c * (1 - Math.abs(hue.convert(AngleUnit.DEG) / 60 % 2 - 1))
+			let m: number = v - c
+			let rgb: number[] = [c, x, 0]
+			;    if (!hue.lessThan(0/6) && hue.lessThan(1/6)) { rgb = [c, x, 0] }
+			else if (!hue.lessThan(1/6) && hue.lessThan(2/6)) { rgb = [x, c, 0] }
+			else if (!hue.lessThan(2/6) && hue.lessThan(3/6)) { rgb = [0, c, x] }
+			else if (!hue.lessThan(3/6) && hue.lessThan(4/6)) { rgb = [0, x, c] }
+			else if (!hue.lessThan(4/6) && hue.lessThan(5/6)) { rgb = [x, 0, c] }
+			else if (!hue.lessThan(5/6) && hue.lessThan(6/6)) { rgb = [c, 0, x] }
+			return new Color(...rgb.map((c) => new Percentage(c + m)), alpha)
+		})() : Color.fromHSV(
+			new Angle(hue),
+			new Percentage(sat),
+			new Percentage(val),
+			new Percentage(alpha)
+		)
 	}
 
 	/**
 	 * Return a new Color object, given hue, saturation, and luminosity in HSL-space.
 	 *
-	 * The HSL-hue        must be between 0 and 360.
-	 * The HSL-saturation must be between 0.0 and 1.0.
-	 * The HSL-luminosity must be between 0.0 and 1.0.
-	 * The alpha must be between 0.0 and 1.0.
 	 * @see https://www.w3.org/TR/css-color-4/#hsl-to-rgb
-	 * @param   hue the HSL-hue channel of this color (a number 0—360)
-	 * @param   sat the HSL-sat channel of this color (a number 0—1)
-	 * @param   lum the HSL-lum channel of this color (a number 0—1)
-	 * @param   alpha the alpha channel of this color (a number 0—1)
+	 * @param   hue the HSL-hue channel of this color
+	 * @param   sat the HSL-sat channel of this color
+	 * @param   lum the HSL-lum channel of this color
+	 * @param   alpha the alpha channel of this color
 	 * @returns a new Color object with hsla(hue, sat, lum, alpha)
 	 */
-	static fromHSL(hue = 0, sat = 0, lum = 0, alpha = 1): Color {
-		hue = xjs.Math.mod(hue, 360)
-		let c: number = sat * (1 - Math.abs(2*lum - 1))
-		let x: number = c * (1 - Math.abs(hue/60 % 2 - 1))
-		let m: number = lum - c/2
-		let rgb: number[] = [c, x, 0]
-		;    if (  0 <= hue && hue <  60) { rgb = [c, x, 0] }
-		else if ( 60 <= hue && hue < 120) { rgb = [x, c, 0] }
-		else if (120 <= hue && hue < 180) { rgb = [0, c, x] }
-		else if (180 <= hue && hue < 240) { rgb = [0, x, c] }
-		else if (240 <= hue && hue < 300) { rgb = [x, 0, c] }
-		else if (300 <= hue && hue < 360) { rgb = [c, 0, x] }
-		return new Color(...rgb.map((el) => el + m), alpha)
+	static fromHSL(hue: Angle|number = 0, sat: Percentage|number = 0, lum: Percentage|number = 0, alpha: Percentage|number = 1): Color {
+		return (hue instanceof Angle && sat instanceof Percentage && lum instanceof Percentage && alpha instanceof Percentage) ? (() => {
+			const [s, l]: number[] = [sat, lum].map((p) => p.valueOf())
+			let c: number = s * (1 - Math.abs(2*l - 1))
+			let x: number = c * (1 - Math.abs(hue.convert(AngleUnit.DEG) / 60 % 2 - 1))
+			let m: number = l - c/2
+			let rgb: number[] = [c, x, 0]
+			;    if (!hue.lessThan(0/6) && hue.lessThan(1/6)) { rgb = [c, x, 0] }
+			else if (!hue.lessThan(1/6) && hue.lessThan(2/6)) { rgb = [x, c, 0] }
+			else if (!hue.lessThan(2/6) && hue.lessThan(3/6)) { rgb = [0, c, x] }
+			else if (!hue.lessThan(3/6) && hue.lessThan(4/6)) { rgb = [0, x, c] }
+			else if (!hue.lessThan(4/6) && hue.lessThan(5/6)) { rgb = [x, 0, c] }
+			else if (!hue.lessThan(5/6) && hue.lessThan(6/6)) { rgb = [c, 0, x] }
+			return new Color(...rgb.map((c) => new Percentage(c + m)), alpha)
+		})() : Color.fromHSL(
+			new Angle(hue),
+			new Percentage(sat),
+			new Percentage(lum),
+			new Percentage(alpha)
+		)
 	}
 
 	/**
 	 * Return a new Color object, given hue, white, and black in HWB-space.
 	 *
-	 * The HWB-hue   must be between 0 and 360.
-	 * The HWB-white must be between 0.0 and 1.0.
-	 * The HWB-black must be between 0.0 and 1.0.
-	 * The alpha must be between 0.0 and 1.0.
 	 * @see https://www.w3.org/TR/css-color-4/#hwb-to-rgb
-	 * @param   hue   the HWB-hue   channel of this color (a number 0—360)
-	 * @param   white the HWB-white channel of this color (a number 0—1)
-	 * @param   black the HWB-black channel of this color (a number 0—1)
-	 * @param   alpha the alpha     channel of this color (a number 0—1)
+	 * @param   hue   the HWB-hue   channel of this color
+	 * @param   white the HWB-white channel of this color
+	 * @param   black the HWB-black channel of this color
+	 * @param   alpha the alpha     channel of this color
 	 * @returns a new Color object with hwba(hue, white, black, alpha)
 	 */
-	static fromHWB(hue = 0, white = 0, black = 0, alpha = 1): Color {
-		return Color.fromHSV(hue, 1 - white / (1 - black), 1 - black, alpha)
+	static fromHWB(hue: Angle|number = 0, white: Percentage|number = 0, black: Percentage|number = 0, alpha: Percentage|number = 1): Color {
+		return (hue instanceof Angle && white instanceof Percentage && black instanceof Percentage && alpha instanceof Percentage) ? (() => {
+			const [w, b]: number[] = [white, black].map((p) => p.valueOf())
+			let rgb: Percentage[] = Color.fromHSL(hue, new Percentage(1), new Percentage(0.5)).rgb.slice(0, 3)
+				.map((c) => new Percentage(c.valueOf() * (1 - w - b) + w))
+			return new Color(...rgb, alpha)
+		})() : Color.fromHWB(
+			new Angle(hue),
+			new Percentage(white),
+			new Percentage(black),
+			new Percentage(alpha)
+		)
 		/*
-		 * HWB -> RGB:
-		 * var rgb = Color.fromHSL([hue, 1, 0.5]).rgb
-		 * for (var i = 0; i < 3; i++) {
-		 *   rgb[i] *= (1 - white - black)
-		 *   rgb[i] += white
-		 * }
-		 * return new Color(...rgb)
+		 * Exercise: prove:
+		 * hwb = fromHSV(hue, 1 - w / (1 - b), 1 - b, a)
 		 */
 	}
 
 	/**
 	 * Return a new Color object, given cyan, magenta, yellow, and black in CMYK-space.
 	 *
-	 * The CMYK-cyan    must be between 0.0 and 1.0.
-	 * The CMYK-magenta must be between 0.0 and 1.0.
-	 * The CMYK-yellow  must be between 0.0 and 1.0.
-	 * The CMYK-black   must be between 0.0 and 1.0.
-	 * The alpha        must be between 0.0 and 1.0.
 	 * @see https://www.w3.org/TR/css-color-4/#cmyk-rgb
-	 * @param   cyan    the CMYK-cyan    channel of this color (a number 0—1)
-	 * @param   magenta the CMYK-magenta channel of this color (a number 0—1)
-	 * @param   yellow  the CMYK-yellow  channel of this color (a number 0—1)
-	 * @param   black   the CMYK-black   channel of this color (a number 0—1)
-	 * @param   alpha   the alpha channel of this color (a number 0—1)
+	 * @param   cyan    the CMYK-cyan    channel of this color
+	 * @param   magenta the CMYK-magenta channel of this color
+	 * @param   yellow  the CMYK-yellow  channel of this color
+	 * @param   black   the CMYK-black   channel of this color
+	 * @param   alpha   the alpha        channel of this color
 	 * @returns a new Color object with cmyka(cyan, magenta, yellow, black, alpha)
 	 */
-	static fromCMYK(cyan = 0, magenta = 0, yellow = 0, black = 0, alpha = 1): Color {
-		return new Color(
-			1 - Math.min(cyan    * (1 - black) + black, 1),
-			1 - Math.min(magenta * (1 - black) + black, 1),
-			1 - Math.min(yellow  * (1 - black) + black, 1),
+	static fromCMYK(cyan: Percentage|number = 0, magenta: Percentage|number = 0, yellow: Percentage|number = 0, black: Percentage|number = 0, alpha: Percentage|number = 1): Color {
+		return (cyan instanceof Percentage && magenta instanceof Percentage && yellow instanceof Percentage && black instanceof Percentage && alpha instanceof Percentage) ? new Color(
+			new Percentage(cyan   .times(black.conjugate).valueOf() + black.valueOf()).clamp().conjugate,
+			new Percentage(magenta.times(black.conjugate).valueOf() + black.valueOf()).clamp().conjugate,
+			new Percentage(yellow .times(black.conjugate).valueOf() + black.valueOf()).clamp().conjugate,
 			alpha
+		) : Color.fromCMYK(
+			new Percentage(cyan),
+			new Percentage(magenta),
+			new Percentage(yellow),
+			new Percentage(black),
+			new Percentage(alpha)
 		)
 	}
 
@@ -247,18 +280,10 @@ export default class Color {
 				let [r, g, b, a]: string[] = [str[1], str[2], str[3], str[4] || '']
 				return Color.fromString(`#${r}${r}${g}${g}${b}${b}${a}${a}`)
 			}
-			let red  : number = parseInt(str.slice(1,3), 16) / 255
-			let green: number = parseInt(str.slice(3,5), 16) / 255
-			let blue : number = parseInt(str.slice(5,7), 16) / 255
-			let alpha: number = (str.length === 9) ? parseInt(str.slice(7,9), 16)/255 : 1
-			try {
-				xjs.Number.assertType(red  , 'non-negative')
-				xjs.Number.assertType(green, 'non-negative')
-				xjs.Number.assertType(blue , 'non-negative')
-				xjs.Number.assertType(alpha, 'non-negative')
-			} catch (e) {
-				throw new RangeError(`Invalid string format: '${str}'. ${e.message}`)
-			}
+			let red  : Percentage = new Percentage(                     parseInt(str.slice(1,3), 16) / 255)
+			let green: Percentage = new Percentage(                     parseInt(str.slice(3,5), 16) / 255)
+			let blue : Percentage = new Percentage(                     parseInt(str.slice(5,7), 16) / 255)
+			let alpha: Percentage = new Percentage((str.length === 9) ? parseInt(str.slice(7,9), 16) / 255 : 1)
 			return new Color(red, green, blue, alpha)
 		}
 		if (!str.includes('(')) {
@@ -267,9 +292,10 @@ export default class Color {
 			return Color.fromString(returned)
 		}
 
-		const space : string = str.split('(')[0]
-		const cssarg: string = str.split('(')[1].slice(0, -1)
-		const channelstrings: string[] = (cssarg.includes(',')) ?
+		/* ---- else, the string is a CSS function ---- */
+		let space : string = str.split('(')[0]
+		let cssarg: string = str.split('(')[1].slice(0, -1)
+		let channelstrings: string[] = (cssarg.includes(',')) ?
 			cssarg.split(',') : // legacy syntax — COMBAK{DEPRECATED}
 			cssarg.split('/')[0].split(' ').filter((s) => s !== '')
 		if (cssarg.includes('/')) {
@@ -278,36 +304,40 @@ export default class Color {
 		function _rgbStrings(channels: string[]): Color {
 			// NOTE: allows different components to mix and match numbers & percents.
 			// TODO: starting in CSS Colors 4, all components must be all numbers or all percents
-			const returned: number[] = channels.map((s) => (!Number.isNaN(+s)) ? +s / 255 : Percentage.fromString(s).valueOf())
-			return new Color(...returned)
+			let red  : Percentage      =                 (!Number.isNaN(+channels[0])) ? new Percentage(+channels[0] / 255) : Percentage.fromString(channels[0])
+			let green: Percentage      =                 (!Number.isNaN(+channels[1])) ? new Percentage(+channels[1] / 255) : Percentage.fromString(channels[1])
+			let blue : Percentage      =                 (!Number.isNaN(+channels[2])) ? new Percentage(+channels[2] / 255) : Percentage.fromString(channels[2])
+			let alpha: Percentage|null = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]      ) : Percentage.fromString(channels[3]) : null
+			return new Color(red, green, blue, (alpha) ? alpha.valueOf() : undefined)
 		}
 		function _hsvStrings(channels: string[]): Color {
-			const returned: number[] = [
-				...channels.slice(0, 1).map((s) => (!Number.isNaN(+s)) ? +s : Angle     .fromString(s).convert(AngleUnit.DEG)),
-				...channels.slice(1,-1).map((s) =>                            Percentage.fromString(s).valueOf()),
-				...channels.slice(-1  ).map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf()),
-			]
-			return Color.fromHSV(...returned)
+			let hue  : Angle      = Angle     .fromString((!Number.isNaN(+channels[0])) ? `${channels[0]}deg` : channels[0])
+			let sat  : Percentage = Percentage.fromString(channels[1])
+			let val  : Percentage = Percentage.fromString(channels[2])
+			let alpha: Percentage = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3]) : new Percentage(1)
+			return Color.fromHSV(hue, sat, val, alpha)
 		}
 		function _hslStrings(channels: string[]): Color {
-			const returned: number[] = [
-				...channels.slice(0, 1).map((s) => (!Number.isNaN(+s)) ? +s : Angle     .fromString(s).convert(AngleUnit.DEG)),
-				...channels.slice(1,-1).map((s) =>                            Percentage.fromString(s).valueOf()),
-				...channels.slice(-1  ).map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf()),
-			]
-			return Color.fromHSL(...returned)
+			let hue  : Angle      = Angle     .fromString((!Number.isNaN(+channels[0])) ? `${channels[0]}deg` : channels[0])
+			let sat  : Percentage = Percentage.fromString(channels[1])
+			let lum  : Percentage = Percentage.fromString(channels[2])
+			let alpha: Percentage = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3]) : new Percentage(1)
+			return Color.fromHSL(hue, sat, lum, alpha)
 		}
 		function _hwbStrings(channels: string[]): Color {
-			const returned: number[] = [
-				...channels.slice(0, 1).map((s) => (!Number.isNaN(+s)) ? +s : Angle     .fromString(s).convert(AngleUnit.DEG)),
-				...channels.slice(1,-1).map((s) =>                            Percentage.fromString(s).valueOf()),
-				...channels.slice(-1  ).map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf()),
-			]
-			return Color.fromHWB(...returned)
+			let hue  : Angle      = Angle     .fromString((!Number.isNaN(+channels[0])) ? `${channels[0]}deg` : channels[0])
+			let white: Percentage = Percentage.fromString(channels[1])
+			let black: Percentage = Percentage.fromString(channels[2])
+			let alpha: Percentage = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3]) : new Percentage(1)
+			return Color.fromHWB(hue, white, black, alpha)
 		}
 		function _cmykStrings(channels: string[]): Color {
-			const returned: number[] = channels.map((s) => (!Number.isNaN(+s)) ? +s : Percentage.fromString(s).valueOf())
-			return Color.fromCMYK(...returned)
+			let cyan   : Percentage =                 (!Number.isNaN(+channels[0])) ? new Percentage(+channels[0]) : Percentage.fromString(channels[0])
+			let magenta: Percentage =                 (!Number.isNaN(+channels[1])) ? new Percentage(+channels[1]) : Percentage.fromString(channels[1])
+			let yellow : Percentage =                 (!Number.isNaN(+channels[2])) ? new Percentage(+channels[2]) : Percentage.fromString(channels[2])
+			let black  : Percentage =                 (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3])
+			let alpha  : Percentage = (channels[4]) ? (!Number.isNaN(+channels[4])) ? new Percentage(+channels[4]) : Percentage.fromString(channels[4]) : new Percentage(1)
+			return Color.fromCMYK(cyan, magenta, yellow, black, alpha)
 		}
 		let returned: (channels: string[]) => Color;
 		try {
@@ -330,7 +360,7 @@ export default class Color {
   }
 
 	/**
-	 * Mix (average) a set of 2 or more colors. The average will be weighted evenly.
+	 * Mix two or more colors. The average will be weighted evenly.
 	 *
 	 * If two colors `a` and `b` are given, calling this static method, `Color.mix([a, b])`,
 	 * is equivalent to calling `a.mix(b)` without a weight.
@@ -339,40 +369,61 @@ export default class Color {
 	 * Note that the order of the given colors does not change the result, that is,
 	 * `Color.mix([a, b, c])` returns the same result as `Color.mix([c, b, a])`.
 	 * @see Color.mix
-	 * @param   colors an array of Color objects, of length >=2
+	 * @param   colors several Colors to mix
 	 * @returns a mix of the given colors
 	 */
 	static mix(colors: Color[]): Color {
-		let red  : number = xjs.Math.meanArithmetic(colors.map((c) => c.red  ))
-		let green: number = xjs.Math.meanArithmetic(colors.map((c) => c.green))
-		let blue : number = xjs.Math.meanArithmetic(colors.map((c) => c.blue ))
-		let alpha: number = Color._compoundOpacity (colors.map((c) => c.alpha))
+		/**
+		 * Return the unweighted arithmetic mean of several channels.
+		 *
+		 * Algorithm:
+		 * 1. convert all channels to a numeric value
+		 * 2. take the unweighted arithmetic mean of the numbers
+		 * 3. convert the mean back to a Percentage
+		 * @private
+		 * @param   comps a set of channel value (red, green, or blue)
+		 * @returns the compounded value
+		 */
+		function mixChannels(...comps: Percentage[]): Percentage {
+			return new Percentage(xjs.Math.meanArithmetic(comps.map((c) => c.valueOf()))) // TODO: spread the arg to meanArithmetic
+		}
+		let red  : Percentage =            mixChannels(...colors.map((c) => c.red  ))
+		let green: Percentage =            mixChannels(...colors.map((c) => c.green))
+		let blue : Percentage =            mixChannels(...colors.map((c) => c.blue ))
+		let alpha: Percentage = Color._compoundOpacity(...colors.map((c) => c.alpha))
 		return new Color(red, green, blue, alpha)
 	}
 
 	/**
-	 * Blur a set of 2 or more colors. The average will be weighted evenly.
+	 * Blur two or more colors. The average will be weighted evenly.
 	 *
 	 * Behaves almost exactly the same as {@link Color.mix},
 	 * except that this method uses a more visually accurate, slightly brighter, mix.
 	 * @see Color.blur
-	 * @param   colors an array of Color objects, of length >=2
+	 * @param   colors several Colors to blur
 	 * @returns a blur of the given colors
 	 */
 	static blur(colors: Color[]): Color {
 		/**
-		 * Calculate the compound value of two or more overlapping same-channel values.
+		 * Return the unweighted combination of several channels, using a blurring algorithm.
+		 *
+		 * Algorithm:
+		 * 1. {@link Color._sRGB_Linear|‘square’} all channels
+		 * 2. convert all squares to a numeric value
+		 * 3. take the unweighted arithmetic mean of the squares
+		 * 4. convert the mean back to a Percentage
+		 * 5. {@link Color._linear_sRGB|‘square root’} the result
 		 * @private
-		 * @param   arr an array of same-channel values (red, green, or blue)
+		 * @param   comps a set of channel value (red, green, or blue)
 		 * @returns the compounded value
 		 */
-		function compoundChannel(arr: number[]): number {
-			return Color._linear_sRGB(xjs.Math.meanArithmetic(arr.map(Color._sRGB_Linear)))
+		function blurChannels(...comps: Percentage[]): Percentage {
+			return Color._linear_sRGB(new Percentage(xjs.Math.meanArithmetic(comps.map((c) => Color._sRGB_Linear(c).valueOf())))) // TODO: spread the arg to meanArithmetic
 		}
-		let red  : number =        compoundChannel(colors.map((c) => c.red  ))
-		let green: number =        compoundChannel(colors.map((c) => c.green))
-		let blue : number =        compoundChannel(colors.map((c) => c.blue ))
-		let alpha: number = Color._compoundOpacity(colors.map((c) => c.alpha))
+		let red  : Percentage =           blurChannels(...colors.map((c) => c.red  ))
+		let green: Percentage =           blurChannels(...colors.map((c) => c.green))
+		let blue : Percentage =           blurChannels(...colors.map((c) => c.blue ))
+		let alpha: Percentage = Color._compoundOpacity(...colors.map((c) => c.alpha))
 		return new Color(red, green, blue, alpha)
 	}
 
@@ -395,42 +446,38 @@ export default class Color {
 	}
 
 
-	/** The red channel of this color. A number in [0,1]. */
-	private readonly _RED: number
-	/** The green channel of this color. A number in [0,1]. */
-	private readonly _GREEN: number
-	/** The blue channel of this color. A number in [0,1]. */
-	private readonly _BLUE: number
-	/** The alpha channel of this color. A number in [0,1]. */
-	private readonly _ALPHA: number
+	/** The red channel of this color. */
+	private readonly _RED: Percentage;
+	/** The green channel of this color. */
+	private readonly _GREEN: Percentage;
+	/** The blue channel of this color. */
+	private readonly _BLUE: Percentage;
+	/** The alpha channel of this color. */
+	private readonly _ALPHA: Percentage;
 
 	private readonly _MAX: number
 	private readonly _MIN: number
 	private readonly _CHROMA: number
 
 	/**
-	 *
 	 * Construct a new Color object.
 	 *
 	 * Calling `new Color(r, g, b, a)` (4 arguments) specifies default behavior.
 	 * Calling `new Color(r, g, b)` (3 arguments) will result in an opaque color (`#rrggbbFF`),
 	 * where the alpha is 1 by default.
 	 * Calling `new Color()` (no arguments) will result in transparent (`#00000000`).
-	 * @param r the red   channel of this color (a number 0—1)
-	 * @param g the green channel of this color (a number 0—1)
-	 * @param b the blue  channel of this color (a number 0—1)
-	 * @param a the alpha channel of this color (a number 0–1)
+	 * @param red   the red   channel of this color
+	 * @param green the green channel of this color
+	 * @param blue  the blue  channel of this color
+	 * @param alpha the alpha channel of this color
 	 */
-	constructor(r = 0, g = 0, b = 0, a = 1) {
-		if (arguments.length === 0) a = 0
+	constructor(red: Percentage|number = 0, green: Percentage|number = 0, blue: Percentage|number = 0, alpha: Percentage|number = 1) {
+		if (arguments.length === 0) alpha = 0
+		;[this._RED, this._GREEN, this._BLUE] = [red, green, blue].map((c) => new Percentage(c).clamp())
+		this._ALPHA = new Percentage(alpha).clamp()
 
-		this._RED   = xjs.Math.clamp(0, r, 1)
-		this._GREEN = xjs.Math.clamp(0, g, 1)
-		this._BLUE  = xjs.Math.clamp(0, b, 1)
-		this._ALPHA = xjs.Math.clamp(0, a, 1)
-
-		this._MAX    = Math.max(this._RED, this._GREEN, this._BLUE)
-		this._MIN    = Math.min(this._RED, this._GREEN, this._BLUE)
+		this._MAX    = Math.max(...[this._RED, this._GREEN, this._BLUE].map((c) => c.valueOf()))
+		this._MIN    = Math.min(...[this._RED, this._GREEN, this._BLUE].map((c) => c.valueOf()))
 		this._CHROMA = this._MAX - this._MIN
 	}
 
@@ -455,75 +502,71 @@ export default class Color {
 	toString(space = ColorSpace.HEX): string {
 		const leadingZero = (n: number, r: number = 10) => `0${n.toString(r)}`.slice(-2)
 		if (space === ColorSpace.HEX) {
-			return `#${this.rgb.slice(0,3).map((c) => leadingZero(Math.round(c * 255), 16)).join('')}${(this.alpha < 1) ? leadingZero(Math.round(this.alpha * 255), 16) : ''}`
+			return `#${this.rgb.slice(0,3).map((c) => leadingZero(Math.round(c.of(255)), 16)).join('')}${(this.alpha.lessThan(1)) ? leadingZero(Math.round(this.alpha.of(255)), 16) : ''}`
 		}
-		const returned = xjs.Object.switch<string[]>(`${space}`, {
-			[ColorSpace.RGB]: () => this.rgb.slice(0,3).map((c) => `${Math.round(c * 255)}`),
+		/* ---- else, the string is a CSS function ---- */
+		const returned: string[] = xjs.Object.switch<string[]>(`${space}`, {
+			[ColorSpace.RGB]: () => this.rgb.slice(0,3).map((c) => `${Math.round(c.of(255))}`),
 			[ColorSpace.HSV]: () => [
-				`${Math.round(this.hsvHue *  10) /  10}deg`,
-				`${Math.round(this.hsvSat * 100)}%`,
-				`${Math.round(this.hsvVal * 100)}%`,
+				`${Math.round(this.hsvHue.convert(AngleUnit.DEG) * 10) / 10}deg`,
+				`${Math.round(this.hsvSat.of(100))}%`,
+				`${Math.round(this.hsvVal.of(100))}%`,
 			],
 			[ColorSpace.HSL]: () => [
-				`${Math.round(this.hslHue *  10) /  10}deg`,
-				`${Math.round(this.hslSat * 100)}%`,
-				`${Math.round(this.hslLum * 100)}%`,
+				`${Math.round(this.hslHue.convert(AngleUnit.DEG) * 10) / 10}deg`,
+				`${Math.round(this.hslSat.of(100))}%`,
+				`${Math.round(this.hslLum.of(100))}%`,
 			],
 			[ColorSpace.HWB]: () => [
-				`${Math.round(this.hwbHue   *  10) /  10}deg`,
-				`${Math.round(this.hwbWhite * 100)}%`,
-				`${Math.round(this.hwbBlack * 100)}%`,
+				`${Math.round(this.hwbHue.convert(AngleUnit.DEG) * 10) / 10}deg`,
+				`${Math.round(this.hwbWhite.of(100))}%`,
+				`${Math.round(this.hwbBlack.of(100))}%`,
 			],
-			[ColorSpace.CMYK]: () => [
-				`${Math.round(this.cmykCyan    * 100) / 100}`,
-				`${Math.round(this.cmykMagenta * 100) / 100}`,
-				`${Math.round(this.cmykYellow  * 100) / 100}`,
-				`${Math.round(this.cmykBlack   * 100) / 100}`,
-			],
+			[ColorSpace.CMYK]: () => this.cmyk.slice(0,4).map((c) => `${Math.round(c.of(100)) / 100}`),
 		})()
 		return `${ColorSpace[space].toLowerCase()}(${returned.join(' ')}${
-			(this.alpha < 1) ? ` / ${Math.round(this.alpha * 1000) / 1000}` : ''
+			(this.alpha.lessThan(1)) ? ` / ${Math.round(this.alpha.of(1000)) / 1000}` : ''
 		})`
 	}
 
 	/**
 	 * Get the red channel of this color.
 	 */
-	get red(): number { return this._RED }
+	get red(): Percentage { return this._RED }
 
 	/**
 	 * Get the green channel of this color.
 	 */
-	get green(): number { return this._GREEN }
+	get green(): Percentage { return this._GREEN }
 
 	/**
 	 * Get the blue channel of this color.
 	 */
-	get blue(): number { return this._BLUE }
+	get blue(): Percentage { return this._BLUE }
 
 	/**
 	 * Get the alpha (opacity) of this color.
 	 */
-	get alpha(): number { return this._ALPHA }
+	get alpha(): Percentage { return this._ALPHA }
 
 	/**
 	 * Get the hsv-hue of this color.
 	 *
 	 * The HSV-space hue (in degrees) of this color, or what "color" this color is.
-	 * A number bound by [0, 360).
+	 * @returns the hsv-hue of this color
 	 */
-	get hsvHue(): number {
-		if (this._CHROMA === 0) return 0
-		let rgb_norm: [number, number, number] = [
-			this._RED,
-			this._GREEN,
-			this._BLUE,
+	get hsvHue(): Angle {
+		if (this._CHROMA === 0) return new Angle()
+		let [r, g, b]: [number, number, number] = [
+			this._RED.valueOf(),
+			this._GREEN.valueOf(),
+			this._BLUE.valueOf(),
 		]
-		return [
-			(r: number, g: number, b: number) => ((g - b) / this._CHROMA + 6) % 6 * 60,
-			(r: number, g: number, b: number) => ((b - r) / this._CHROMA + 2)     * 60,
-			(r: number, g: number, b: number) => ((r - g) / this._CHROMA + 4)     * 60,
-		][rgb_norm.indexOf(this._MAX)](...rgb_norm)
+		return new Angle(xjs.Object.switch<number>(`${this._MAX}`, {
+			[r]: () => ((g - b) / this._CHROMA + 6) % 6 * 1/6,
+			[g]: () => ((b - r) / this._CHROMA + 2)     * 1/6,
+			[b]: () => ((r - g) / this._CHROMA + 4)     * 1/6,
+		})())
 		/*
 		 * Exercise: prove:
 		 * _HSV_HUE === Math.atan2(Math.sqrt(3) * (g - b), 2*r - g - b)
@@ -535,10 +578,11 @@ export default class Color {
 	 *
 	 * The vividness of this color. A lower saturation means the color is closer to white,
 	 * a higher saturation means the color is more true to its hue.
-	 * A number bound by [0, 1].
+	 * @see https://en.wikipedia.org/wiki/HSL_and_HSV#Saturation
+	 * @returns the hsv-saturation of this color.
 	 */
-	get hsvSat(): number {
-		return (this._CHROMA === 0) ? 0 : this._CHROMA / this.hsvVal
+	get hsvSat(): Percentage {
+		return new Percentage((this._CHROMA === 0) ? 0 : this._CHROMA / this.hsvVal.valueOf())
 	}
 
 	/**
@@ -546,19 +590,20 @@ export default class Color {
 	 *
 	 * The brightness of this color. A lower value means the color is closer to black, a higher
 	 * value means the color is more true to its hue.
-	 * A number bound by [0, 1].
+	 * @see https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness
+	 * @returns the hsv-value of this color.
 	 */
-	get hsvVal(): number {
-		return this._MAX
+	get hsvVal(): Percentage {
+		return new Percentage(this._MAX)
 	}
 
 	/**
 	 * Get the hsl-hue of this color.
 	 *
 	 * The Hue of this color. Identical to {@link Color.hsvHue}.
-	 * A number bound by [0, 360).
+	 * @returns the hsl-hue of this color
 	 */
-	get hslHue(): number {
+	get hslHue(): Angle {
 		return this.hsvHue
 	}
 
@@ -567,22 +612,19 @@ export default class Color {
 	 *
 	 * The amount of "color" in the color. A lower saturation means the color is more grayer,
 	 * a higher saturation means the color is more colorful.
-	 * A number bound by [0, 1].
+	 * @see https://en.wikipedia.org/wiki/HSL_and_HSV#Saturation
+	 * @returns the hsl-saturation of this color.
 	 */
-	get hslSat(): number {
-		return (this._CHROMA === 0) ? 0 : (this._CHROMA / ((this.hslLum <= 0.5) ? 2*this.hslLum : (2 - 2*this.hslLum)))
+	get hslSat(): Percentage {
+		return new Percentage((this._CHROMA === 0) ? 0 : this._CHROMA / (1 - Math.abs(2 * this.hslLum.valueOf() - 1)))
 		/*
-		 * Exercise: prove:
-		 * _HSL_SAT === _CHROMA / (1 - Math.abs(2*this.hslLum - 1))
+		 * Prove:
+		 * 1 - |2x - 1| == { x <= 0.5 ? 2x : (2 - 2x) }
 		 * Proof:
-		 * denom == (function (x) {
-		 *   if (x <= 0.5) return 2x
-		 *   else          return 2 - 2x
-		 * })(_HSL_LUM)
-		 * Part A. Let x <= 0.5. Then 2x - 1 <= 0, and |2x - 1| == -(2x - 1).
-		 * Then 1 - |2x - 1| == 1 + (2x - 1) = 2x. //
-		 * Part B. Let 0.5 < x. Then 1 < 2x - 1, and |2x - 1| == 2x - 1.
-		 * Then 1 - |2x - 1| == 1 - (2x - 1) = 2 - 2x. //
+		 * Case A. Let x <= 0.5. Then 2x - 1 <= 0, and |2x - 1| == -(2x - 1).
+		 * Then 1 - |2x - 1| == 1 + (2x - 1) == 2x. //
+		 * Case B. Let 0.5 < x. Then 0 < 2x - 1, and |2x - 1| == 2x - 1.
+		 * Then 1 - |2x - 1| == 1 - (2x - 1) == 2 - 2x. //
 		 */
 	}
 
@@ -591,19 +633,20 @@ export default class Color {
 	 *
 	 * How "white" or "black" the color is. A lower luminosity means the color is closer to black,
 	 * a higher luminosity means the color is closer to white.
-	 * A number bound by [0, 1].
+	 * @see https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness
+	 * @returns the hsl-luminosity of this color.
 	 */
-	get hslLum(): number {
-		return 0.5 * (this._MAX + this._MIN)
+	get hslLum(): Percentage {
+		return new Percentage(0.5 * (this._MAX + this._MIN))
 	}
 
 	/**
 	 * Get the hwb-hue of this color.
 	 *
 	 * The Hue of this color. Identical to {@link Color.hsvHue}.
-	 * A number bound by [0, 360).
+	 * @returns the hwb-hue of this color
 	 */
-	get hwbHue(): number {
+	get hwbHue(): Angle {
 		return this.hsvHue
 	}
 
@@ -612,10 +655,10 @@ export default class Color {
 	 *
 	 * The amount of White in this color. A higher white means the color is closer to #fff,
 	 * a lower white means the color has a true hue (more colorful).
-	 * A number bound by [0, 1].
+	 * @returns the hwb-white of this color
 	 */
-	get hwbWhite(): number {
-		return this._MIN
+	get hwbWhite(): Percentage {
+		return new Percentage(this._MIN)
 	}
 
 	/**
@@ -623,76 +666,87 @@ export default class Color {
 	 *
 	 * The amount of Black in this color. A higher black means the color is closer to #000,
 	 * a lower black means the color has a true hue (more colorful).
-	 * A number bound by [0, 1].
+	 * Identical to {@link Color.cmykBlack}.
+	 * @returns the hwb-black of this color
 	 */
-	get hwbBlack(): number {
-		return 1 - this._MAX
+	get hwbBlack(): Percentage {
+		return this.cmykBlack
 	}
 
 	/**
 	 * Get the cmyk-cyan of this color.
 	 *
 	 * The amount of Cyan in this color, or a subtraction of the amount of Red in this color.
-	 * A number bound by [0, 1].
+	 * @returns the cmyk-cyan of this color
 	 */
-	get cmykCyan(): number {
-		return (this.cmykBlack === 1) ? 0 : (1 - this.red - this.cmykBlack) / (1 - this.cmykBlack)
+	get cmykCyan(): Percentage {
+		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._RED.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
 	}
 
 	/**
 	 * Get the cmyk-magenta of this color.
 	 *
 	 * The amount of Magenta in this color, or a subtraction of the amount of Green in this color.
-	 * A number bound by [0, 1].
+	 * @returns the cmyk-magenta of this color
 	 */
-	get cmykMagenta(): number {
-		return (this.cmykBlack === 1) ? 0 : (1 - this.green - this.cmykBlack) / (1 - this.cmykBlack)
+	get cmykMagenta(): Percentage {
+		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._GREEN.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
 	}
 
 	/**
 	 * Get the cmyk-yellow of this color.
 	 *
 	 * The amount of Yellow in this color, or a subtraction of the amount of Blue in this color.
-	 * A number bound by [0, 1].
+	 * @returns the cmyk-yellow of this color
 	 */
-	get cmykYellow(): number {
-		return (this.cmykBlack === 1) ? 0 : (1 - this.blue - this.cmykBlack) / (1 - this.cmykBlack)
+	get cmykYellow(): Percentage {
+		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._BLUE.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
 	}
 
 	/**
 	 * Get the cmyk-black of this color.
 	 *
 	 * The amount of Black in this color in the CMYK color space.
-	 * A number bound by [0, 1].
+	 * @returns the cmyk-black of this color
 	 */
-	get cmykBlack(): number {
-		return 1 - this._MAX
+	get cmykBlack(): Percentage {
+		return new Percentage(1 - this._MAX)
 	}
 
 	/**
 	 * Get an array of RGBA channels.
 	 */
-	get rgb(): number[] { return [this.red, this.green, this.blue, this.alpha] }
+	get rgb(): [Percentage, Percentage, Percentage, Percentage] {
+		return [this.red, this.green, this.blue, this.alpha]
+	}
 
 	/**
 	 * Get an array of HSVA channels.
 	 */
-	get hsv(): number[] { return [this.hsvHue, this.hsvSat, this.hsvVal, this.alpha] }
+	get hsv(): [Angle, Percentage, Percentage, Percentage] {
+		return [this.hsvHue, this.hsvSat, this.hsvVal, this.alpha]
+	}
 
 	/**
 	 * Get an array of HSLA channels.
 	 */
-	get hsl(): number[] { return [this.hslHue, this.hslSat, this.hslLum, this.alpha] }
+	get hsl(): [Angle, Percentage, Percentage, Percentage] {
+		return [this.hslHue, this.hslSat, this.hslLum, this.alpha]
+	}
 
 	/**
 	 * Get an array of HWBA channels.
 	 */
-	get hwb(): number[] { return [this.hwbHue, this.hwbWhite, this.hwbBlack, this.alpha] }
+	get hwb(): [Angle, Percentage, Percentage, Percentage] {
+		return [this.hwbHue, this.hwbWhite, this.hwbBlack, this.alpha]
+	}
 
 	/**
 	 * Get an array of CMYKA channels.
 	 */
-	get cmyk(): number[] { return [this.cmykCyan, this.cmykMagenta, this.cmykYellow, this.cmykBlack, this.alpha] }
+	get cmyk(): [Percentage, Percentage, Percentage, Percentage, Percentage] {
+		return [this.cmykCyan, this.cmykMagenta, this.cmykYellow, this.cmykBlack, this.alpha]
+	}
 
 	/**
 	 * Return the inversion of this color, preserving alpha.
@@ -702,9 +756,9 @@ export default class Color {
 	 */
 	invert(): Color {
 		return new Color(
-			1 - this.red,
-			1 - this.green,
-			1 - this.blue,
+			this.red  .conjugate,
+			this.green.conjugate,
+			this.blue .conjugate,
 			this.alpha
 		)
 	}
@@ -712,11 +766,16 @@ export default class Color {
 	/**
 	 * Return a hue-rotation of this color, preserving alpha.
 	 *
-	 * a the number of degrees to rotate
-	 * @returns a new Color object corresponding to this color rotated by `a` degrees
+	 * @param   theta the angle to rotate, or a number of degrees
+	 * @returns a new Color object corresponding to this color rotated by `theta` degrees
 	 */
-	rotate(a: number): Color {
-		return Color.fromHSV(((this.hsvHue + a) % 360), this.hsvSat, this.hsvVal, this.alpha)
+	rotate(theta: Angle|number): Color {
+		return (theta instanceof Angle) ? Color.fromHSV(
+			this.hsvHue.plus(theta),
+			this.hsvSat,
+			this.hsvVal,
+			this.alpha
+		) : this.rotate(new Angle(theta / Angle.CONVERSION[AngleUnit.DEG]))
 	}
 
 	/**
@@ -726,7 +785,7 @@ export default class Color {
 	 * @returns a new Color object that corresponds to this color’s complement
 	 */
 	complement(): Color {
-		return this.rotate(180)
+		return this.rotate(Angle.STRAIGHT)
 	}
 
 	/**
@@ -734,7 +793,6 @@ export default class Color {
 	 *
 	 * This method calculates saturation in the HSL space.
 	 * A parameter of 1.0 returns a color with full saturation, and 0.0 returns an identical color.
-	 * A negative number will {@link Color.desaturate|desaturate} this color.
 	 * Set `relative = true` to specify the amount as relative to the color’s current saturation.
 	 *
 	 * For example, if `$color` has an HSL-sat of 0.5, then calling `$color.saturate(0.5)` will return
@@ -743,26 +801,28 @@ export default class Color {
 	 * because the argument 0.5, relative to the color’s current saturation of 0.5, results in
 	 * an added saturation of 0.25.
 	 *
-	 * @param   p must be between -1.0 and 1.0; the value by which to saturate this color
+	 * @param   p the value by which to saturate this color
 	 * @param   relative should the saturation added be relative?
 	 * @returns a new Color object that corresponds to this color saturated by `p`
 	 */
-	saturate(p: number, relative = false): Color {
-		let newsat: number = this.hslSat + (relative ? (this.hslSat * p) : p)
-		newsat = xjs.Math.clamp(0, newsat, 1)
-		return Color.fromHSL(this.hslHue, newsat, this.hslLum, this.alpha)
+	saturate(p: Percentage|number, relative: boolean = false): Color {
+		return (p instanceof Percentage) ? Color.fromHSL(
+			this.hslHue,
+			new Percentage(this.hslSat.valueOf() + ((relative) ? (p.times(this.hslSat)) : p).valueOf()),
+			this.hslLum,
+			this.alpha
+		) : this.saturate(new Percentage(p), relative)
 	}
 
 	/**
 	 * Return a less saturated version of this color by a percentage.
 	 *
 	 * A parameter of 1.0 returns a grayscale color, and 0.0 returns an identical color.
-	 * @see Color.saturate
-	 * @param   p must be between -1.0 and 1.0; the value by which to desaturate this color
+	 * @param   p the value by which to desaturate this color
 	 * @param   relative should the saturation subtracted be relative?
 	 * @returns a new Color object that corresponds to this color desaturated by `p`
 	 */
-	desaturate(p: number, relative = false): Color {
+	desaturate(p: Percentage, relative: boolean = false): Color {
 		return this.saturate(-p, relative)
 	}
 
@@ -771,7 +831,6 @@ export default class Color {
 	 *
 	 * This method calculates with luminosity in the HSL space.
 	 * A parameter of 1.0 returns white, and 0.0 returns an identical color.
-	 * A negative parameter will {@link Color.darken|darken} this color.
 	 * Set `relative = true` to specify the amount as relative to the color’s current luminosity.
 	 *
 	 * For example, if `$color` has an HSL-lum of 0.5, then calling `$color.lighten(0.5)` will return
@@ -780,26 +839,28 @@ export default class Color {
 	 * because the argument 0.5, relative to the color’s current luminosity of 0.5, results in
 	 * an added luminosity of 0.25.
 	 *
-	 * @param   p must be between -1.0 and 1.0; the amount by which to lighten this color
+	 * @param   p the amount by which to lighten this color
 	 * @param   relative should the luminosity added be relative?
 	 * @returns a new Color object that corresponds to this color lightened by `p`
 	 */
-	lighten(p: number, relative = false): Color {
-		let newlum: number = this.hslLum + (relative ? (this.hslLum * p) : p)
-		newlum = xjs.Math.clamp(0, newlum, 1)
-		return Color.fromHSL(this.hslHue, this.hslSat, newlum, this.alpha)
+	lighten(p: Percentage|number, relative: boolean = false): Color {
+		return (p instanceof Percentage) ? Color.fromHSL(
+			this.hslHue,
+			this.hslSat,
+			new Percentage(this.hslLum.valueOf() + ((relative) ? (p.times(this.hslLum)) : p).valueOf()),
+			this.alpha
+		) : this.lighten(new Percentage(p), relative)
 	}
 
 	/**
 	 * Return a darker version of this color by a percentage.
 	 *
 	 * A parameter of 1.0 returns black, and 0.0 returns an identical color.
-	 * @see Color.lighten
-	 * @param   p must be between -1.0 and 1.0; the amount by which to darken this color
+	 * @param   p the amount by which to darken this color
 	 * @param   relative should the luminosity subtracted be relative?
 	 * @returns a new Color object that corresponds to this color darkened by `p`
 	 */
-	darken(p: number, relative = false): Color {
+	darken(p: Percentage|number, relative: boolean = false): Color {
 		return this.lighten(-p, relative)
 	}
 
@@ -810,35 +871,44 @@ export default class Color {
 	 * @returns a new Color object with the same color but complemented alpha
 	 */
 	negate(): Color {
-		return new Color(...this.rgb, 1 - this.alpha)
+		return new Color(this.red, this.green, this.blue, this.alpha.conjugate)
 	}
 
 	/**
 	 * Return a less faded (larger alpha) version of this color.
 	 *
 	 * A parameter of 1.0 returns full opaqueness, and 0.0 returns an identical color.
-	 * A negative parameter will {@link Color.fadeOut|fade out} this color.
 	 * Set `relative = true` to specify the amount as relative to the color’s current opacity.
-	 * @param   p must be between -1.0 and 1.0; the amount by which to fade in this color
+	 *
+	 * For example, if `$color` has an alpha of 0.5, then calling `$color.fadeIn(0.5)` will return
+	 * a new color with an alpha of 1.0, because the argument 0.5 is simply added to the color’s alpha.
+	 * However, calling `$color.fadeIn(0.5, true)` will return a new color with an alpha of 0.75,
+	 * because the argument 0.5, relative to the color’s current alpha of 0.5, results in
+	 * an added alpha of 0.25.
+	 *
+	 * @param   p the amount by which to fade in this color
 	 * @param   relative should the alpha added be relative?
 	 * @returns a new Color object that corresponds to this color faded in by `p`
 	 */
-	fadeIn(p: number, relative = false): Color {
-		let newalpha: number = this.alpha + (relative ? (this.alpha * p) : p)
-		newalpha = xjs.Math.clamp(0, newalpha, 1)
-		return new Color(...this.rgb, newalpha)
+	fadeIn(p: Percentage|number, relative: boolean = false): Color {
+		return (p instanceof Percentage) ? new Color(
+			this.red,
+			this.green,
+			this.blue,
+			new Percentage(this.alpha.valueOf() + ((relative) ? p.times(this.alpha) : p).valueOf())
+		) : this.fadeIn(new Percentage(p), relative)
 	}
 
 	/**
 	 * Return a more faded (smaller alpha) version of this color.
 	 *
 	 * A parameter of 1.0 returns transparent, and 0.0 returns an identical color.
-	 * @see Color.fadeIn
-	 * @param   p must be between -1.0 and 1.0; the amount by which to fade out this color
+	 * Set `relative = true` to specify the amount as relative to the color’s current opacity.
+	 * @param   p the amount by which to fade out this color
 	 * @param   relative should the alpha subtracted be relative?
 	 * @returns a new Color object that corresponds to this color faded out by `p`
 	 */
-	fadeOut(p: number, relative = false): Color {
+	fadeOut(p: Percentage|number, relative: boolean = false): Color {
 		return this.fadeIn(-p, relative)
 	}
 
@@ -851,15 +921,37 @@ export default class Color {
 	 * In other words, `weight` is "how much of the other color you want."
 	 * Note that `color1.mix(color2, weight)` returns the same result as `color2.mix(color1, 1-weight)`.
 	 * @param   color the second color
-	 * @param   weight between 0.0 and 1.0; the weight favoring the other color
+	 * @param   weight the weight favoring the other color
 	 * @returns a mix of the two given colors
 	 */
-	mix(color: Color, weight = 0.5): Color {
-		let red  : number = xjs.Math.average(this.red  , color.red  , weight)
-		let green: number = xjs.Math.average(this.green, color.green, weight)
-		let blue : number = xjs.Math.average(this.blue , color.blue , weight)
-		let alpha: number = Color._compoundOpacity([this.alpha, color.alpha])
-		return new Color(red, green, blue, alpha)
+	mix(color: Color, weight: Percentage|number = 0.5): Color {
+		if (weight instanceof Percentage) {
+			/**
+			 * Return the weighted arithmetic mean of two channels.
+			 *
+			 * Algorithm:
+			 * 1. convert both channels to a numeric value
+			 * 2. take the weighted arithmetic mean of the numbers
+			 * 3. convert the mean back to a Percentage
+			 * @private
+			 * @param   c1 the first channel value (red, green, or blue)
+			 * @param   c2 the second channel value (corresponding to `c1`)
+			 * @param   w the weight favoring the second channel
+			 * @returns the compounded value
+			 */
+			function mixChannelsWeighted(c1: Percentage, c2: Percentage, w: Percentage): Percentage {
+				return new Percentage(xjs.Math.average( // TODO use `xjs.Math.arithmeticMeanWeighted`
+					c1.valueOf(),
+					c2.valueOf(),
+					w.valueOf()
+				))
+			}
+			let red  : Percentage =            mixChannelsWeighted(this.red   , color.red  , weight)
+			let green: Percentage =            mixChannelsWeighted(this.green , color.green, weight)
+			let blue : Percentage =            mixChannelsWeighted(this.blue  , color.blue , weight)
+			let alpha: Percentage = Color._compoundOpacityWeighted(this.alpha , color.alpha, weight)
+			return new Color(red, green, blue, alpha)
+		} else return this.mix(color, new Percentage(weight))
 	}
 
 	/**
@@ -869,25 +961,39 @@ export default class Color {
 	 * except that this method uses a more visually accurate, slightly brighter, mix.
 	 * @see {@link https://www.youtube.com/watch?v=LKnqECcg6Gw|“Computer Color is Broken” by minutephysics}
 	 * @param   color the second color
-	 * @param   weight between 0.0 and 1.0; the weight favoring the other color
+	 * @param   weight the weight favoring the other color
 	 * @returns a blur of the two given colors
 	 */
-	blur(color: Color, weight = 0.5): Color {
-		/**
-		 * Calculate the compound value of two overlapping same-channel values.
-		 * @private
-		 * @param   c1 the first channel value (red, green, or blue)
-		 * @param   c2 the second channel value (corresponding to `c1`)
-		 * @returns the compounded value
-		 */
-		function compoundChannel(c1: number, c2: number) {
-			return Color._linear_sRGB(xjs.Math.average(Color._sRGB_Linear(c1), Color._sRGB_Linear(c2), weight))
-		}
-		let red  : number =        compoundChannel( this.red   , color.red   )
-		let green: number =        compoundChannel( this.green , color.green )
-		let blue : number =        compoundChannel( this.blue  , color.blue  )
-		let alpha: number = Color._compoundOpacity([this.alpha , color.alpha])
-		return new Color(red, green, blue, alpha)
+	blur(color: Color, weight: Percentage|number = 0.5): Color {
+		if (weight instanceof Percentage) {
+			/**
+			 * Return the weighted combination of two channels, using a blurring algorithm.
+			 *
+			 * Algorithm:
+			 * 1. {@link Color._sRGB_Linear|‘square’} both channels
+			 * 2. convert both squares to a numeric value
+			 * 3. take the weighted arithmetic mean of the squares
+			 * 4. convert the mean back to a Percentage
+			 * 5. {@link Color._linear_sRGB|‘square root’} the result
+			 * @private
+			 * @param   c1 the first channel value (red, green, or blue)
+			 * @param   c2 the second channel value (corresponding to `c1`)
+			 * @param   w the weight favoring the second channel
+			 * @returns the compounded value
+			 */
+			function blurChannelsWeighted(c1: Percentage, c2: Percentage, w: Percentage): Percentage {
+				return Color._linear_sRGB(new Percentage(xjs.Math.average( // TODO use `xjs.Math.arithmeticMeanWeighted`
+					Color._sRGB_Linear(c1).valueOf(),
+					Color._sRGB_Linear(c2).valueOf(),
+					w.valueOf()
+				)))
+			}
+			let red  : Percentage =           blurChannelsWeighted(this.red   , color.red  , weight)
+			let green: Percentage =           blurChannelsWeighted(this.green , color.green, weight)
+			let blue : Percentage =           blurChannelsWeighted(this.blue  , color.blue , weight)
+			let alpha: Percentage = Color._compoundOpacityWeighted(this.alpha , color.alpha, weight)
+			return new Color(red, green, blue, alpha)
+		} else return this.blur(color, new Percentage(weight))
 	}
 
 	/**
@@ -900,13 +1006,15 @@ export default class Color {
 	 * @returns is the argument the “same” color as this color?
 	 */
 	equals(color: Color): boolean {
-		if (this === color) return true
-		if (this.alpha === 0 && color.alpha === 0) return true
 		return (
-			this.red   === color.red &&
-			this.green === color.green &&
-			this.blue  === color.blue &&
-			this.alpha === color.alpha
+			(this === color) ||
+			(this.alpha.equals(0) && color.alpha.equals(0)) ||
+			(
+				this.red  .equals(color.red  ) &&
+				this.green.equals(color.green) &&
+				this.blue .equals(color.blue ) &&
+				this.alpha.equals(color.alpha)
+			)
 		)
 	}
 
@@ -926,9 +1034,9 @@ export default class Color {
 	 */
 	relativeLuminance(): number {
 		return (
-			0.2126 * Color._sRGB_Linear(this.red) +
-			0.7152 * Color._sRGB_Linear(this.green) +
-			0.0722 * Color._sRGB_Linear(this.blue)
+			Color._sRGB_Linear(this.red  ).of(0.2126) +
+			Color._sRGB_Linear(this.green).of(0.7152) +
+			Color._sRGB_Linear(this.blue ).of(0.0722)
 		)
 	}
 
@@ -939,7 +1047,7 @@ export default class Color {
 	 * @returns the contrast ratio of this color with the argument, a number 1–21
 	 */
 	contrastRatio(color: Color): number {
-		let rl_this:  number =  this.relativeLuminance()
+		let rl_this : number =  this.relativeLuminance()
 		let rl_color: number = color.relativeLuminance()
 		return (Math.max(rl_this, rl_color) + 0.05) / (Math.min(rl_this, rl_color) + 0.05)
 	}

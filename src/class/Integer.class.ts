@@ -111,8 +111,10 @@ export default class Integer extends Number {
 	 * @param   max the upper bound
 	 * @returns `Integer.min(Integer.max(min, this), max)`
 	 */
-	clamp(min: Integer, max: Integer): Integer {
-		return (min.lessThan(max) || min.equals(max)) ? Integer.min(Integer.max(min, this), max) : this.clamp(max, min)
+	clamp(min: Integer|number, max: Integer|number): Integer {
+		return (min instanceof Integer && max instanceof Integer) ?
+			(min.lessThan(max) || min.equals(max)) ? Integer.min(Integer.max(min, this), max) : this.clamp(max, min) :
+			this.clamp(new Integer(min), new Integer(max))
 	}
 
 	/**
