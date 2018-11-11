@@ -190,27 +190,27 @@ export default class Color {
 	/**
 	 * Return a new Color object, given cyan, magenta, yellow, and black in CMYK-space.
 	 *
-	 * The CMYK-cyan    must be between 0.0 and 1.0.
-	 * The CMYK-magenta must be between 0.0 and 1.0.
-	 * The CMYK-yellow  must be between 0.0 and 1.0.
-	 * The CMYK-black   must be between 0.0 and 1.0.
 	 * @see https://www.w3.org/TR/css-color-4/#cmyk-rgb
-	 * @param   cyan    the CMYK-cyan    channel of this color (a number 0—1)
-	 * @param   magenta the CMYK-magenta channel of this color (a number 0—1)
-	 * @param   yellow  the CMYK-yellow  channel of this color (a number 0—1)
-	 * @param   black   the CMYK-black   channel of this color (a number 0—1)
+	 * @param   cyan    the CMYK-cyan    channel of this color
+	 * @param   magenta the CMYK-magenta channel of this color
+	 * @param   yellow  the CMYK-yellow  channel of this color
+	 * @param   black   the CMYK-black   channel of this color
 	 * @param   alpha   the alpha channel of this color
 	 * @returns a new Color object with cmyka(cyan, magenta, yellow, black, alpha)
 	 */
-	static fromCMYK(cyan = 0, magenta = 0, yellow = 0, black = 0, alpha: Percentage|number = 1): Color {
-		return (alpha instanceof Percentage) ? (() => {
-		return new Color(
-			new Percentage(1 - Math.min(cyan    * (1 - black) + black, 1)),
-			new Percentage(1 - Math.min(magenta * (1 - black) + black, 1)),
-			new Percentage(1 - Math.min(yellow  * (1 - black) + black, 1)),
+	static fromCMYK(cyan: Percentage|number = 0, magenta: Percentage|number = 0, yellow: Percentage|number = 0, black: Percentage|number = 0, alpha: Percentage|number = 1): Color {
+		return (cyan instanceof Percentage && magenta instanceof Percentage && yellow instanceof Percentage && black instanceof Percentage && alpha instanceof Percentage) ? new Color(
+			new Percentage(cyan   .times(black.conjugate).valueOf() + black.valueOf()).clamp().conjugate,
+			new Percentage(magenta.times(black.conjugate).valueOf() + black.valueOf()).clamp().conjugate,
+			new Percentage(yellow .times(black.conjugate).valueOf() + black.valueOf()).clamp().conjugate,
 			alpha
+		) : Color.fromCMYK(
+			new Percentage(cyan),
+			new Percentage(magenta),
+			new Percentage(yellow),
+			new Percentage(black),
+			new Percentage(alpha)
 		)
-		})() : Color.fromCMYK(cyan, magenta, yellow, black, new Percentage(alpha))
 	}
 
 	/**
@@ -319,10 +319,10 @@ export default class Color {
 			return Color.fromHWB(hue, white, black, alpha)
 		}
 		function _cmykStrings(channels: string[]): Color {
-			let cyan   : number = (!Number.isNaN(+channels[0])) ? +channels[0] : Percentage.fromString(channels[0]).valueOf()
-			let magenta: number = (!Number.isNaN(+channels[1])) ? +channels[1] : Percentage.fromString(channels[1]).valueOf()
-			let yellow : number = (!Number.isNaN(+channels[2])) ? +channels[2] : Percentage.fromString(channels[2]).valueOf()
-			let black  : number = (!Number.isNaN(+channels[3])) ? +channels[3] : Percentage.fromString(channels[3]).valueOf()
+			let cyan   : Percentage =                 (!Number.isNaN(+channels[0])) ? new Percentage(+channels[0]) : Percentage.fromString(channels[0])
+			let magenta: Percentage =                 (!Number.isNaN(+channels[1])) ? new Percentage(+channels[1]) : Percentage.fromString(channels[1])
+			let yellow : Percentage =                 (!Number.isNaN(+channels[2])) ? new Percentage(+channels[2]) : Percentage.fromString(channels[2])
+			let black  : Percentage =                 (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3])
 			let alpha  : Percentage = (channels[4]) ? (!Number.isNaN(+channels[4])) ? new Percentage(+channels[4]) : Percentage.fromString(channels[4]) : new Percentage(1)
 			return Color.fromCMYK(cyan, magenta, yellow, black, alpha)
 		}
@@ -472,7 +472,7 @@ export default class Color {
 			return `#${this.rgb.slice(0,3).map((c) => leadingZero(Math.round(c.of(255)), 16)).join('')}${(this.alpha.lessThan(1)) ? leadingZero(Math.round(this.alpha.of(255)), 16) : ''}`
 		}
 		/* ---- else, the string is a CSS function ---- */
-		const returned = xjs.Object.switch<string[]>(`${space}`, {
+		const returned: string[] = xjs.Object.switch<string[]>(`${space}`, {
 			[ColorSpace.RGB]: () => this.rgb.slice(0,3).map((c) => `${Math.round(c.of(255))}`),
 			[ColorSpace.HSV]: () => [
 				`${Math.round(this.hsvHue *  10) /  10}deg`,
@@ -489,12 +489,7 @@ export default class Color {
 				`${Math.round(this.hwbWhite.of(100))}%`,
 				`${Math.round(this.hwbBlack.of(100))}%`,
 			],
-			[ColorSpace.CMYK]: () => [
-				`${Math.round(this.cmykCyan    * 100) / 100}`,
-				`${Math.round(this.cmykMagenta * 100) / 100}`,
-				`${Math.round(this.cmykYellow  * 100) / 100}`,
-				`${Math.round(this.cmykBlack   * 100) / 100}`,
-			],
+			[ColorSpace.CMYK]: () => this.cmyk.slice(0,4).map((c) => `${Math.round(c.of(100)) / 100}`),
 		})()
 		return `${ColorSpace[space].toLowerCase()}(${returned.join(' ')}${
 			(this.alpha.lessThan(1)) ? ` / ${Math.round(this.alpha.of(1000)) / 1000}` : ''
@@ -642,40 +637,36 @@ export default class Color {
 	 * Get the cmyk-cyan of this color.
 	 *
 	 * The amount of Cyan in this color, or a subtraction of the amount of Red in this color.
-	 * A number bound by [0, 1].
 	 */
-	get cmykCyan(): number {
-		return (this.cmykBlack === 1) ? 0 : (1 - this._RED.valueOf() - this.cmykBlack) / (1 - this.cmykBlack)
+	get cmykCyan(): Percentage {
+		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._RED.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
 	}
 
 	/**
 	 * Get the cmyk-magenta of this color.
 	 *
 	 * The amount of Magenta in this color, or a subtraction of the amount of Green in this color.
-	 * A number bound by [0, 1].
 	 */
-	get cmykMagenta(): number {
-		return (this.cmykBlack === 1) ? 0 : (1 - this._GREEN.valueOf() - this.cmykBlack) / (1 - this.cmykBlack)
+	get cmykMagenta(): Percentage {
+		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._GREEN.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
 	}
 
 	/**
 	 * Get the cmyk-yellow of this color.
 	 *
 	 * The amount of Yellow in this color, or a subtraction of the amount of Blue in this color.
-	 * A number bound by [0, 1].
 	 */
-	get cmykYellow(): number {
-		return (this.cmykBlack === 1) ? 0 : (1 - this._BLUE.valueOf() - this.cmykBlack) / (1 - this.cmykBlack)
+	get cmykYellow(): Percentage {
+		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._BLUE.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
 	}
 
 	/**
 	 * Get the cmyk-black of this color.
 	 *
 	 * The amount of Black in this color in the CMYK color space.
-	 * A number bound by [0, 1].
 	 */
-	get cmykBlack(): number {
-		return 1 - this._MAX
+	get cmykBlack(): Percentage {
+		return new Percentage(1 - this._MAX)
 	}
 
 	/**
@@ -709,7 +700,7 @@ export default class Color {
 	/**
 	 * Get an array of CMYKA channels.
 	 */
-	get cmyk(): [number, number, number, number, Percentage] {
+	get cmyk(): [Percentage, Percentage, Percentage, Percentage, Percentage] {
 		return [this.cmykCyan, this.cmykMagenta, this.cmykYellow, this.cmykBlack, this.alpha]
 	}
 
