@@ -93,20 +93,19 @@ export default class Color {
 	 * Return a new Color object, given hue, saturation, and value in HSV-space.
 	 *
 	 * The HSV-hue        must be between 0 and 360.
-	 * The HSV-saturation must be between 0.0 and 1.0.
-	 * The HSV-value      must be between 0.0 and 1.0.
 	 * @param   hue the HSV-hue channel of this color (a number 0—360)
-	 * @param   sat the HSV-sat channel of this color (a number 0—1)
-	 * @param   val the HSV-val channel of this color (a number 0—1)
+	 * @param   sat the HSV-sat channel of this color
+	 * @param   val the HSV-val channel of this color
 	 * @param   alpha the alpha channel of this color
 	 * @returns a new Color object with hsva(hue, sat, val, alpha)
 	 */
-	static fromHSV(hue = 0, sat = 0, val = 0, alpha: Percentage|number = 1): Color {
-		return (alpha instanceof Percentage) ? (() => {
+	static fromHSV(hue = 0, sat: Percentage|number = 0, val: Percentage|number = 0, alpha: Percentage|number = 1): Color {
+		return (sat instanceof Percentage && val instanceof Percentage && alpha instanceof Percentage) ? (() => {
 		hue = xjs.Math.mod(hue, 360)
-		let c: number = sat * val
-		let x: number = c * (1 - Math.abs(hue/60 % 2 - 1))
-		let m: number = val - c
+			const [s, v]: number[] = [sat, val].map((p) => p.valueOf())
+			let c: number = s * v
+			let x: number = c * (1 - Math.abs(hue/60 % 2 - 1))
+			let m: number = v - c
 		let rgb: number[] = [c, x, 0]
 		;    if (  0 <= hue && hue <  60) { rgb = [c, x, 0] }
 		else if ( 60 <= hue && hue < 120) { rgb = [x, c, 0] }
@@ -115,7 +114,12 @@ export default class Color {
 		else if (240 <= hue && hue < 300) { rgb = [x, 0, c] }
 		else if (300 <= hue && hue < 360) { rgb = [c, 0, x] }
 		return new Color(...rgb.map((c) => new Percentage(c + m)), alpha)
-		})() : Color.fromHSV(hue, sat, val, new Percentage(alpha))
+		})() : Color.fromHSV(
+			hue,
+			new Percentage(sat),
+			new Percentage(val),
+			new Percentage(alpha)
+		)
 	}
 
 	/**
@@ -288,8 +292,8 @@ export default class Color {
 		}
 		function _hsvStrings(channels: string[]): Color {
 			let hue  : number = (!Number.isNaN(+channels[0])) ? +channels[0] : Angle.fromString(channels[0]).convert(AngleUnit.DEG)
-			let sat  : number = Percentage.fromString(channels[1]).valueOf()
-			let val  : number = Percentage.fromString(channels[2]).valueOf()
+			let sat  : Percentage = Percentage.fromString(channels[1])
+			let val  : Percentage = Percentage.fromString(channels[2])
 			let alpha: Percentage = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3]) : new Percentage(1)
 			return Color.fromHSV(hue, sat, val, alpha)
 		}
@@ -465,8 +469,8 @@ export default class Color {
 			[ColorSpace.RGB]: () => this.rgb.slice(0,3).map((c) => `${Math.round(c.of(255))}`),
 			[ColorSpace.HSV]: () => [
 				`${Math.round(this.hsvHue *  10) /  10}deg`,
-				`${Math.round(this.hsvSat * 100)}%`,
-				`${Math.round(this.hsvVal * 100)}%`,
+				`${Math.round(this.hsvSat.of(100))}%`,
+				`${Math.round(this.hsvVal.of(100))}%`,
 			],
 			[ColorSpace.HSL]: () => [
 				`${Math.round(this.hslHue *  10) /  10}deg`,
@@ -539,10 +543,9 @@ export default class Color {
 	 *
 	 * The vividness of this color. A lower saturation means the color is closer to white,
 	 * a higher saturation means the color is more true to its hue.
-	 * A number bound by [0, 1].
 	 */
-	get hsvSat(): number {
-		return (this._CHROMA === 0) ? 0 : this._CHROMA / this.hsvVal
+	get hsvSat(): Percentage {
+		return new Percentage((this._CHROMA === 0) ? 0 : this._CHROMA / this.hsvVal.valueOf())
 	}
 
 	/**
@@ -550,10 +553,9 @@ export default class Color {
 	 *
 	 * The brightness of this color. A lower value means the color is closer to black, a higher
 	 * value means the color is more true to its hue.
-	 * A number bound by [0, 1].
 	 */
-	get hsvVal(): number {
-		return this._MAX
+	get hsvVal(): Percentage {
+		return new Percentage(this._MAX)
 	}
 
 	/**
@@ -683,7 +685,7 @@ export default class Color {
 	/**
 	 * Get an array of HSVA channels.
 	 */
-	get hsv(): [number, number, number, Percentage] {
+	get hsv(): [number, Percentage, Percentage, Percentage] {
 		return [this.hsvHue, this.hsvSat, this.hsvVal, this.alpha]
 	}
 
