@@ -9,9 +9,9 @@ export default Promise.all([
 	test(Color.fromString('#e4f'      ).toString(), '#ee44ff'),
 	test(Color.fromString('#6a43'     ).toString(), '#66aa4433'),
 	test(Color.fromString('rgb(0,0,0)').toString(), '#000000'),
-	test(Color.fromString('rgb(20%, 30,  40%,  .5)').toString(), '#331e6601'),
-	test(Color.fromString('rgba(20%, 30,  40%,  .5)').toString(), '#331e6601'),
-	test(Color.fromString('rgb(20%   30%  40% / .5)' ).toString(), '#334d6601'),
+	test(Color.fromString('rgb(20%, 30,  40%,  .5)').toString(), '#331e6680'),
+	test(Color.fromString('rgba(20%, 30,  40%,  .5)').toString(), '#331e6680'),
+	test(Color.fromString('rgb(20%   30%  40% / .5)' ).toString(), '#334d6680'),
 	test(Color.fromString('rgb(20    30   40  / 50%)').toString(), '#141e2880'),
 	test((() => {
 		try {
