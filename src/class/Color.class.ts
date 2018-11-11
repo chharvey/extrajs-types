@@ -372,7 +372,7 @@ export default class Color {
 	 * @param   colors several Colors to mix
 	 * @returns a mix of the given colors
 	 */
-	static mix(colors: Color[]): Color {
+	static mix(...colors: Color[]): Color {
 		/**
 		 * Return the unweighted arithmetic mean of several channels.
 		 *
@@ -385,7 +385,7 @@ export default class Color {
 		 * @returns the compounded value
 		 */
 		function mixChannels(...comps: Percentage[]): Percentage {
-			return new Percentage(xjs.Math.meanArithmetic(comps.map((c) => c.valueOf()))) // TODO: spread the arg to meanArithmetic
+			return new Percentage(xjs.Math.meanArithmetic(...comps.map((c) => c.valueOf())))
 		}
 		let red  : Percentage =            mixChannels(...colors.map((c) => c.red  ))
 		let green: Percentage =            mixChannels(...colors.map((c) => c.green))
@@ -403,7 +403,7 @@ export default class Color {
 	 * @param   colors several Colors to blur
 	 * @returns a blur of the given colors
 	 */
-	static blur(colors: Color[]): Color {
+	static blur(...colors: Color[]): Color {
 		/**
 		 * Return the unweighted combination of several channels, using a blurring algorithm.
 		 *
@@ -418,7 +418,7 @@ export default class Color {
 		 * @returns the compounded value
 		 */
 		function blurChannels(...comps: Percentage[]): Percentage {
-			return Color._linear_sRGB(new Percentage(xjs.Math.meanArithmetic(comps.map((c) => Color._sRGB_Linear(c).valueOf())))) // TODO: spread the arg to meanArithmetic
+			return Color._linear_sRGB(new Percentage(xjs.Math.meanArithmetic(...comps.map((c) => Color._sRGB_Linear(c).valueOf()))))
 		}
 		let red  : Percentage =           blurChannels(...colors.map((c) => c.red  ))
 		let green: Percentage =           blurChannels(...colors.map((c) => c.green))
@@ -940,7 +940,7 @@ export default class Color {
 			 * @returns the compounded value
 			 */
 			function mixChannelsWeighted(c1: Percentage, c2: Percentage, w: Percentage): Percentage {
-				return new Percentage(xjs.Math.average( // TODO use `xjs.Math.arithmeticMeanWeighted`
+				return new Percentage(xjs.Math.meanArithmeticWeighted(
 					c1.valueOf(),
 					c2.valueOf(),
 					w.valueOf()
@@ -982,7 +982,7 @@ export default class Color {
 			 * @returns the compounded value
 			 */
 			function blurChannelsWeighted(c1: Percentage, c2: Percentage, w: Percentage): Percentage {
-				return Color._linear_sRGB(new Percentage(xjs.Math.average( // TODO use `xjs.Math.arithmeticMeanWeighted`
+				return Color._linear_sRGB(new Percentage(xjs.Math.meanArithmeticWeighted(
 					Color._sRGB_Linear(c1).valueOf(),
 					Color._sRGB_Linear(c2).valueOf(),
 					w.valueOf()
