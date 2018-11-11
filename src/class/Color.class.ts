@@ -92,30 +92,28 @@ export default class Color {
 	/**
 	 * Return a new Color object, given hue, saturation, and value in HSV-space.
 	 *
-	 * The HSV-hue        must be between 0 and 360.
-	 * @param   hue the HSV-hue channel of this color (a number 0—360)
+	 * @param   hue the HSV-hue channel of this color
 	 * @param   sat the HSV-sat channel of this color
 	 * @param   val the HSV-val channel of this color
 	 * @param   alpha the alpha channel of this color
 	 * @returns a new Color object with hsva(hue, sat, val, alpha)
 	 */
-	static fromHSV(hue = 0, sat: Percentage|number = 0, val: Percentage|number = 0, alpha: Percentage|number = 1): Color {
-		return (sat instanceof Percentage && val instanceof Percentage && alpha instanceof Percentage) ? (() => {
-		hue = xjs.Math.mod(hue, 360)
+	static fromHSV(hue: Angle|number = 0, sat: Percentage|number = 0, val: Percentage|number = 0, alpha: Percentage|number = 1): Color {
+		return (hue instanceof Angle && sat instanceof Percentage && val instanceof Percentage && alpha instanceof Percentage) ? (() => {
 			const [s, v]: number[] = [sat, val].map((p) => p.valueOf())
 			let c: number = s * v
-			let x: number = c * (1 - Math.abs(hue/60 % 2 - 1))
+			let x: number = c * (1 - Math.abs(hue.convert(AngleUnit.DEG) / 60 % 2 - 1))
 			let m: number = v - c
-		let rgb: number[] = [c, x, 0]
-		;    if (  0 <= hue && hue <  60) { rgb = [c, x, 0] }
-		else if ( 60 <= hue && hue < 120) { rgb = [x, c, 0] }
-		else if (120 <= hue && hue < 180) { rgb = [0, c, x] }
-		else if (180 <= hue && hue < 240) { rgb = [0, x, c] }
-		else if (240 <= hue && hue < 300) { rgb = [x, 0, c] }
-		else if (300 <= hue && hue < 360) { rgb = [c, 0, x] }
-		return new Color(...rgb.map((c) => new Percentage(c + m)), alpha)
+			let rgb: number[] = [c, x, 0]
+			;    if (!hue.lessThan(0/6) && hue.lessThan(1/6)) { rgb = [c, x, 0] }
+			else if (!hue.lessThan(1/6) && hue.lessThan(2/6)) { rgb = [x, c, 0] }
+			else if (!hue.lessThan(2/6) && hue.lessThan(3/6)) { rgb = [0, c, x] }
+			else if (!hue.lessThan(3/6) && hue.lessThan(4/6)) { rgb = [0, x, c] }
+			else if (!hue.lessThan(4/6) && hue.lessThan(5/6)) { rgb = [x, 0, c] }
+			else if (!hue.lessThan(5/6) && hue.lessThan(6/6)) { rgb = [c, 0, x] }
+			return new Color(...rgb.map((c) => new Percentage(c + m)), alpha)
 		})() : Color.fromHSV(
-			hue,
+			new Angle(hue),
 			new Percentage(sat),
 			new Percentage(val),
 			new Percentage(alpha)
@@ -125,31 +123,29 @@ export default class Color {
 	/**
 	 * Return a new Color object, given hue, saturation, and luminosity in HSL-space.
 	 *
-	 * The HSL-hue        must be between 0 and 360.
 	 * @see https://www.w3.org/TR/css-color-4/#hsl-to-rgb
-	 * @param   hue the HSL-hue channel of this color (a number 0—360)
+	 * @param   hue the HSL-hue channel of this color
 	 * @param   sat the HSL-sat channel of this color
 	 * @param   lum the HSL-lum channel of this color
 	 * @param   alpha the alpha channel of this color
 	 * @returns a new Color object with hsla(hue, sat, lum, alpha)
 	 */
-	static fromHSL(hue = 0, sat: Percentage|number = 0, lum: Percentage|number = 0, alpha: Percentage|number = 1): Color {
-		return (sat instanceof Percentage && lum instanceof Percentage && alpha instanceof Percentage) ? (() => {
-		hue = xjs.Math.mod(hue, 360)
+	static fromHSL(hue: Angle|number = 0, sat: Percentage|number = 0, lum: Percentage|number = 0, alpha: Percentage|number = 1): Color {
+		return (hue instanceof Angle && sat instanceof Percentage && lum instanceof Percentage && alpha instanceof Percentage) ? (() => {
 			const [s, l]: number[] = [sat, lum].map((p) => p.valueOf())
 			let c: number = s * (1 - Math.abs(2*l - 1))
-			let x: number = c * (1 - Math.abs(hue/60 % 2 - 1))
+			let x: number = c * (1 - Math.abs(hue.convert(AngleUnit.DEG) / 60 % 2 - 1))
 			let m: number = l - c/2
-		let rgb: number[] = [c, x, 0]
-		;    if (  0 <= hue && hue <  60) { rgb = [c, x, 0] }
-		else if ( 60 <= hue && hue < 120) { rgb = [x, c, 0] }
-		else if (120 <= hue && hue < 180) { rgb = [0, c, x] }
-		else if (180 <= hue && hue < 240) { rgb = [0, x, c] }
-		else if (240 <= hue && hue < 300) { rgb = [x, 0, c] }
-		else if (300 <= hue && hue < 360) { rgb = [c, 0, x] }
-		return new Color(...rgb.map((c) => new Percentage(c + m)), alpha)
+			let rgb: number[] = [c, x, 0]
+			;    if (!hue.lessThan(0/6) && hue.lessThan(1/6)) { rgb = [c, x, 0] }
+			else if (!hue.lessThan(1/6) && hue.lessThan(2/6)) { rgb = [x, c, 0] }
+			else if (!hue.lessThan(2/6) && hue.lessThan(3/6)) { rgb = [0, c, x] }
+			else if (!hue.lessThan(3/6) && hue.lessThan(4/6)) { rgb = [0, x, c] }
+			else if (!hue.lessThan(4/6) && hue.lessThan(5/6)) { rgb = [x, 0, c] }
+			else if (!hue.lessThan(5/6) && hue.lessThan(6/6)) { rgb = [c, 0, x] }
+			return new Color(...rgb.map((c) => new Percentage(c + m)), alpha)
 		})() : Color.fromHSL(
-			hue,
+			new Angle(hue),
 			new Percentage(sat),
 			new Percentage(lum),
 			new Percentage(alpha)
@@ -159,19 +155,18 @@ export default class Color {
 	/**
 	 * Return a new Color object, given hue, white, and black in HWB-space.
 	 *
-	 * The HWB-hue   must be between 0 and 360.
 	 * @see https://www.w3.org/TR/css-color-4/#hwb-to-rgb
-	 * @param   hue   the HWB-hue   channel of this color (a number 0—360)
+	 * @param   hue   the HWB-hue   channel of this color
 	 * @param   white the HWB-white channel of this color
 	 * @param   black the HWB-black channel of this color
 	 * @param   alpha the alpha     channel of this color
 	 * @returns a new Color object with hwba(hue, white, black, alpha)
 	 */
-	static fromHWB(hue = 0, white: Percentage|number = 0, black: Percentage|number = 0, alpha: Percentage|number = 1): Color {
-		return (white instanceof Percentage && black instanceof Percentage && alpha instanceof Percentage) ? (() => {
+	static fromHWB(hue: Angle|number = 0, white: Percentage|number = 0, black: Percentage|number = 0, alpha: Percentage|number = 1): Color {
+		return (hue instanceof Angle && white instanceof Percentage && black instanceof Percentage && alpha instanceof Percentage) ? (() => {
 		return Color.fromHSV(hue, 1 - white.valueOf() / black.conjugate.valueOf(), black.conjugate, alpha)
 		})() : Color.fromHWB(
-			hue,
+			new Angle(hue),
 			new Percentage(white),
 			new Percentage(black),
 			new Percentage(alpha)
@@ -298,21 +293,21 @@ export default class Color {
 			return new Color(red, green, blue, (alpha) ? alpha.valueOf() : undefined)
 		}
 		function _hsvStrings(channels: string[]): Color {
-			let hue  : number = (!Number.isNaN(+channels[0])) ? +channels[0] : Angle.fromString(channels[0]).convert(AngleUnit.DEG)
+			let hue  : Angle      = Angle     .fromString((!Number.isNaN(+channels[0])) ? `${channels[0]}deg` : channels[0])
 			let sat  : Percentage = Percentage.fromString(channels[1])
 			let val  : Percentage = Percentage.fromString(channels[2])
 			let alpha: Percentage = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3]) : new Percentage(1)
 			return Color.fromHSV(hue, sat, val, alpha)
 		}
 		function _hslStrings(channels: string[]): Color {
-			let hue  : number = (!Number.isNaN(+channels[0])) ? +channels[0] : Angle.fromString(channels[0]).convert(AngleUnit.DEG)
+			let hue  : Angle      = Angle     .fromString((!Number.isNaN(+channels[0])) ? `${channels[0]}deg` : channels[0])
 			let sat  : Percentage = Percentage.fromString(channels[1])
 			let lum  : Percentage = Percentage.fromString(channels[2])
 			let alpha: Percentage = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3]) : new Percentage(1)
 			return Color.fromHSL(hue, sat, lum, alpha)
 		}
 		function _hwbStrings(channels: string[]): Color {
-			let hue  : number = (!Number.isNaN(+channels[0])) ? +channels[0] : Angle.fromString(channels[0]).convert(AngleUnit.DEG)
+			let hue  : Angle      = Angle     .fromString((!Number.isNaN(+channels[0])) ? `${channels[0]}deg` : channels[0])
 			let white: Percentage = Percentage.fromString(channels[1])
 			let black: Percentage = Percentage.fromString(channels[2])
 			let alpha: Percentage = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3]) : new Percentage(1)
@@ -475,17 +470,17 @@ export default class Color {
 		const returned: string[] = xjs.Object.switch<string[]>(`${space}`, {
 			[ColorSpace.RGB]: () => this.rgb.slice(0,3).map((c) => `${Math.round(c.of(255))}`),
 			[ColorSpace.HSV]: () => [
-				`${Math.round(this.hsvHue *  10) /  10}deg`,
+				`${Math.round(this.hsvHue.convert(AngleUnit.DEG) * 10) / 10}deg`,
 				`${Math.round(this.hsvSat.of(100))}%`,
 				`${Math.round(this.hsvVal.of(100))}%`,
 			],
 			[ColorSpace.HSL]: () => [
-				`${Math.round(this.hslHue *  10) /  10}deg`,
+				`${Math.round(this.hslHue.convert(AngleUnit.DEG) * 10) / 10}deg`,
 				`${Math.round(this.hslSat.of(100))}%`,
 				`${Math.round(this.hslLum.of(100))}%`,
 			],
 			[ColorSpace.HWB]: () => [
-				`${Math.round(this.hwbHue   *  10) /  10}deg`,
+				`${Math.round(this.hwbHue.convert(AngleUnit.DEG) * 10) / 10}deg`,
 				`${Math.round(this.hwbWhite.of(100))}%`,
 				`${Math.round(this.hwbBlack.of(100))}%`,
 			],
@@ -520,20 +515,19 @@ export default class Color {
 	 * Get the hsv-hue of this color.
 	 *
 	 * The HSV-space hue (in degrees) of this color, or what "color" this color is.
-	 * A number bound by [0, 360).
 	 */
-	get hsvHue(): number {
-		if (this._CHROMA === 0) return 0
-		let rgb_norm: [number, number, number] = [
+	get hsvHue(): Angle {
+		if (this._CHROMA === 0) return new Angle()
+		let [r, g, b]: [number, number, number] = [
 			this._RED.valueOf(),
 			this._GREEN.valueOf(),
 			this._BLUE.valueOf(),
 		]
-		return [
-			(r: number, g: number, b: number) => ((g - b) / this._CHROMA + 6) % 6 * 60,
-			(r: number, g: number, b: number) => ((b - r) / this._CHROMA + 2)     * 60,
-			(r: number, g: number, b: number) => ((r - g) / this._CHROMA + 4)     * 60,
-		][rgb_norm.indexOf(this._MAX)](...rgb_norm)
+		return xjs.Object.switch<Angle>(`${this._MAX}`, {
+			[r]: () => new Angle(((g - b) / this._CHROMA + 6) % 6 * 1/6),
+			[g]: () => new Angle(((b - r) / this._CHROMA + 2)     * 1/6),
+			[b]: () => new Angle(((r - g) / this._CHROMA + 4)     * 1/6),
+		})()
 		/*
 		 * Exercise: prove:
 		 * _HSV_HUE === Math.atan2(Math.sqrt(3) * (g - b), 2*r - g - b)
@@ -564,9 +558,8 @@ export default class Color {
 	 * Get the hsl-hue of this color.
 	 *
 	 * The Hue of this color. Identical to {@link Color.hsvHue}.
-	 * A number bound by [0, 360).
 	 */
-	get hslHue(): number {
+	get hslHue(): Angle {
 		return this.hsvHue
 	}
 
@@ -607,9 +600,8 @@ export default class Color {
 	 * Get the hwb-hue of this color.
 	 *
 	 * The Hue of this color. Identical to {@link Color.hsvHue}.
-	 * A number bound by [0, 360).
 	 */
-	get hwbHue(): number {
+	get hwbHue(): Angle {
 		return this.hsvHue
 	}
 
@@ -679,21 +671,21 @@ export default class Color {
 	/**
 	 * Get an array of HSVA channels.
 	 */
-	get hsv(): [number, Percentage, Percentage, Percentage] {
+	get hsv(): [Angle, Percentage, Percentage, Percentage] {
 		return [this.hsvHue, this.hsvSat, this.hsvVal, this.alpha]
 	}
 
 	/**
 	 * Get an array of HSLA channels.
 	 */
-	get hsl(): [number, Percentage, Percentage, Percentage] {
+	get hsl(): [Angle, Percentage, Percentage, Percentage] {
 		return [this.hslHue, this.hslSat, this.hslLum, this.alpha]
 	}
 
 	/**
 	 * Get an array of HWBA channels.
 	 */
-	get hwb(): [number, Percentage, Percentage, Percentage] {
+	get hwb(): [Angle, Percentage, Percentage, Percentage] {
 		return [this.hwbHue, this.hwbWhite, this.hwbBlack, this.alpha]
 	}
 
@@ -722,11 +714,16 @@ export default class Color {
 	/**
 	 * Return a hue-rotation of this color, preserving alpha.
 	 *
-	 * a the number of degrees to rotate
-	 * @returns a new Color object corresponding to this color rotated by `a` degrees
+	 * @param   theta the angle to rotate, or a number of degrees
+	 * @returns a new Color object corresponding to this color rotated by `theta` degrees
 	 */
-	rotate(a: number): Color {
-		return Color.fromHSV(((this.hsvHue + a) % 360), this.hsvSat, this.hsvVal, this.alpha)
+	rotate(theta: Angle|number): Color {
+		return (theta instanceof Angle) ? Color.fromHSV(
+			this.hsvHue.plus(theta),
+			this.hsvSat,
+			this.hsvVal,
+			this.alpha
+		) : this.rotate(new Angle(theta / Angle.CONVERSION[AngleUnit.DEG]))
 	}
 
 	/**
@@ -736,7 +733,7 @@ export default class Color {
 	 * @returns a new Color object that corresponds to this color’s complement
 	 */
 	complement(): Color {
-		return this.rotate(180)
+		return this.rotate(Angle.STRAIGHT)
 	}
 
 	/**
