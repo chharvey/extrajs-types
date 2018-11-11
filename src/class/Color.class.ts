@@ -27,8 +27,8 @@ export enum ColorSpace {
 
 
 /**
- * A 24/32-bit color ("True Color") that can be displayed in a pixel, given three primary color channels
- * and a possible transparency channel.
+ * An abstract representation of a color that can be displayed in a pixel,
+ * given three primary color channels and a possible transparency channel.
  */
 export default class Color {
 	/**
@@ -39,8 +39,10 @@ export default class Color {
 	 * (equivalent to `1  -  ((1-a)**0.5 * (1-b)**0.5)  **  2`).
 	 * For an uneven mix, a weight 0.75 favoring a2, it will be
 	 * `1  -  ((1-a)**0.25 * (1-b)**0.75)  **  2`.
-	 * @param  alphas the alphas to compound
-	 * @return the compounded alpha
+	 * @param   a1 the first alpha value
+	 * @param   a2 the second alpha value
+	 * @param   w the weight favoring the second alpha
+	 * @returns the compounded alpha
 	 */
 	private static _compoundOpacityWeighted(a1: Percentage, a2: Percentage, w: Percentage): Percentage {
 		// TODO: import from xjs.Math
@@ -57,12 +59,12 @@ export default class Color {
 	 *
 	 * For three overlapping colors with respective alphas `a`, `b` and `c`,
 	 * the compounded alpha will be `1  -  (1 - a)*(1 - b)*(1 - c)`.
-	 * @param  alphas the alphas to compound
-	 * @return the compounded alpha
+	 * @param   alphas the alphas to compound
+	 * @returns the compounded alpha
 	 */
 	private static _compoundOpacity(...alphas: Percentage[]): Percentage {
 		return alphas.map((a) => a.conjugate).reduce((a,b) => a.times(b)).conjugate
-		// return new Percentage(xjs.Math.meanGeometric(alphas.map((a) => a.conjugate.valueOf())) ** alphas.length).conjugate
+		// return new Percentage(xjs.Math.meanGeometric(...alphas.map((a) => a.conjugate.valueOf())) ** alphas.length).conjugate
 	}
 
 	/**
@@ -206,7 +208,7 @@ export default class Color {
 	 * @param   magenta the CMYK-magenta channel of this color
 	 * @param   yellow  the CMYK-yellow  channel of this color
 	 * @param   black   the CMYK-black   channel of this color
-	 * @param   alpha   the alpha channel of this color
+	 * @param   alpha   the alpha        channel of this color
 	 * @returns a new Color object with cmyka(cyan, magenta, yellow, black, alpha)
 	 */
 	static fromCMYK(cyan: Percentage|number = 0, magenta: Percentage|number = 0, yellow: Percentage|number = 0, black: Percentage|number = 0, alpha: Percentage|number = 1): Color {
@@ -358,7 +360,7 @@ export default class Color {
   }
 
 	/**
-	 * Mix (average) a set of 2 or more colors. The average will be weighted evenly.
+	 * Mix two or more colors. The average will be weighted evenly.
 	 *
 	 * If two colors `a` and `b` are given, calling this static method, `Color.mix([a, b])`,
 	 * is equivalent to calling `a.mix(b)` without a weight.
@@ -367,7 +369,7 @@ export default class Color {
 	 * Note that the order of the given colors does not change the result, that is,
 	 * `Color.mix([a, b, c])` returns the same result as `Color.mix([c, b, a])`.
 	 * @see Color.mix
-	 * @param   colors an array of Color objects, of length >=2
+	 * @param   colors several Colors to mix
 	 * @returns a mix of the given colors
 	 */
 	static mix(colors: Color[]): Color {
@@ -393,12 +395,12 @@ export default class Color {
 	}
 
 	/**
-	 * Blur a set of 2 or more colors. The average will be weighted evenly.
+	 * Blur two or more colors. The average will be weighted evenly.
 	 *
 	 * Behaves almost exactly the same as {@link Color.mix},
 	 * except that this method uses a more visually accurate, slightly brighter, mix.
 	 * @see Color.blur
-	 * @param   colors an array of Color objects, of length >=2
+	 * @param   colors several Colors to blur
 	 * @returns a blur of the given colors
 	 */
 	static blur(colors: Color[]): Color {
@@ -458,7 +460,6 @@ export default class Color {
 	private readonly _CHROMA: number
 
 	/**
-	 *
 	 * Construct a new Color object.
 	 *
 	 * Calling `new Color(r, g, b, a)` (4 arguments) specifies default behavior.
@@ -561,11 +562,11 @@ export default class Color {
 			this._GREEN.valueOf(),
 			this._BLUE.valueOf(),
 		]
-		return xjs.Object.switch<Angle>(`${this._MAX}`, {
-			[r]: () => new Angle(((g - b) / this._CHROMA + 6) % 6 * 1/6),
-			[g]: () => new Angle(((b - r) / this._CHROMA + 2)     * 1/6),
-			[b]: () => new Angle(((r - g) / this._CHROMA + 4)     * 1/6),
-		})()
+		return new Angle(xjs.Object.switch<number>(`${this._MAX}`, {
+			[r]: () => ((g - b) / this._CHROMA + 6) % 6 * 1/6,
+			[g]: () => ((b - r) / this._CHROMA + 2)     * 1/6,
+			[b]: () => ((r - g) / this._CHROMA + 4)     * 1/6,
+		})())
 		/*
 		 * Exercise: prove:
 		 * _HSV_HUE === Math.atan2(Math.sqrt(3) * (g - b), 2*r - g - b)
@@ -804,7 +805,7 @@ export default class Color {
 	 * @param   relative should the saturation added be relative?
 	 * @returns a new Color object that corresponds to this color saturated by `p`
 	 */
-	saturate(p: Percentage|number, relative = false): Color {
+	saturate(p: Percentage|number, relative: boolean = false): Color {
 		return (p instanceof Percentage) ? Color.fromHSL(
 			this.hslHue,
 			new Percentage(this.hslSat.valueOf() + ((relative) ? (p.times(this.hslSat)) : p).valueOf()),
@@ -821,7 +822,7 @@ export default class Color {
 	 * @param   relative should the saturation subtracted be relative?
 	 * @returns a new Color object that corresponds to this color desaturated by `p`
 	 */
-	desaturate(p: Percentage, relative = false): Color {
+	desaturate(p: Percentage, relative: boolean = false): Color {
 		return this.saturate(-p, relative)
 	}
 
@@ -842,7 +843,7 @@ export default class Color {
 	 * @param   relative should the luminosity added be relative?
 	 * @returns a new Color object that corresponds to this color lightened by `p`
 	 */
-	lighten(p: Percentage|number, relative = false): Color {
+	lighten(p: Percentage|number, relative: boolean = false): Color {
 		return (p instanceof Percentage) ? Color.fromHSL(
 			this.hslHue,
 			this.hslSat,
@@ -859,7 +860,7 @@ export default class Color {
 	 * @param   relative should the luminosity subtracted be relative?
 	 * @returns a new Color object that corresponds to this color darkened by `p`
 	 */
-	darken(p: Percentage|number, relative = false): Color {
+	darken(p: Percentage|number, relative: boolean = false): Color {
 		return this.lighten(-p, relative)
 	}
 
@@ -889,7 +890,7 @@ export default class Color {
 	 * @param   relative should the alpha added be relative?
 	 * @returns a new Color object that corresponds to this color faded in by `p`
 	 */
-	fadeIn(p: Percentage|number, relative = false): Color {
+	fadeIn(p: Percentage|number, relative: boolean = false): Color {
 		return (p instanceof Percentage) ? new Color(
 			this.red,
 			this.green,
@@ -907,7 +908,7 @@ export default class Color {
 	 * @param   relative should the alpha subtracted be relative?
 	 * @returns a new Color object that corresponds to this color faded out by `p`
 	 */
-	fadeOut(p: Percentage|number, relative = false): Color {
+	fadeOut(p: Percentage|number, relative: boolean = false): Color {
 		return this.fadeIn(-p, relative)
 	}
 
@@ -1005,13 +1006,15 @@ export default class Color {
 	 * @returns is the argument the “same” color as this color?
 	 */
 	equals(color: Color): boolean {
-		if (this === color) return true
-		if (this.alpha.equals(0) && color.alpha.equals(0)) return true
 		return (
-			this.red  .equals(color.red  ) &&
-			this.green.equals(color.green) &&
-			this.blue .equals(color.blue ) &&
-			this.alpha.equals(color.alpha)
+			(this === color) ||
+			(this.alpha.equals(0) && color.alpha.equals(0)) ||
+			(
+				this.red  .equals(color.red  ) &&
+				this.green.equals(color.green) &&
+				this.blue .equals(color.blue ) &&
+				this.alpha.equals(color.alpha)
+			)
 		)
 	}
 
@@ -1044,7 +1047,7 @@ export default class Color {
 	 * @returns the contrast ratio of this color with the argument, a number 1–21
 	 */
 	contrastRatio(color: Color): number {
-		let rl_this:  number =  this.relativeLuminance()
+		let rl_this : number =  this.relativeLuminance()
 		let rl_color: number = color.relativeLuminance()
 		return (Math.max(rl_this, rl_color) + 0.05) / (Math.min(rl_this, rl_color) + 0.05)
 	}
