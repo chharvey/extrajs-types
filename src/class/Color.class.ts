@@ -32,16 +32,37 @@ export enum ColorSpace {
  */
 export default class Color {
 	/**
-	 * Calculate the alpha of two or more overlapping translucent colors.
+	 * Calculate the weighed compound opacity of two or more overlapping translucent colors.
 	 *
-	 * For two overlapping colors with respective alphas `a` and `b`, the compounded alpha
-	 * of an even mix will be `1 - (1-a)*(1-b)`.
-	 * For three, it would be `1 - (1-a)*(1-b)*(1-c)`.
+	 * For two overlapping colors with respective alphas `a` and `b`,
+	 * the compounded alpha of an even mix will be `1  -  (1 - a)*(1 - b)`
+	 * (equivalent to `1  -  ((1-a)**0.5 * (1-b)**0.5)  **  2`).
+	 * For an uneven mix, a weight 0.75 favoring a2, it will be
+	 * `1  -  ((1-a)**0.25 * (1-b)**0.75)  **  2`.
+	 * @param  alphas the alphas to compound
+	 * @return the compounded alpha
+	 */
+	private static _compoundOpacityWeighted(a1: Percentage, a2: Percentage, w: Percentage): Percentage {
+		// TODO: import from xjs.Math
+		function xjs_Math_meanGeometricWeighted(x: number, y: number, w: number = 0.5): number {
+			xjs.Number.assertType(x, 'finite')
+			xjs.Number.assertType(y, 'finite')
+			xjs.Number.assertType(w, 'finite')
+			return (x ** (1 - w)) * (y ** w)
+		}
+		return new Percentage(xjs_Math_meanGeometricWeighted(a1.conjugate.valueOf(), a2.conjugate.valueOf(), w.valueOf()) ** 2).conjugate
+	}
+	/**
+	 * Calculate the alpha of several overlapping translucent colors.
+	 *
+	 * For three overlapping colors with respective alphas `a`, `b` and `c`,
+	 * the compounded alpha will be `1  -  (1 - a)*(1 - b)*(1 - c)`.
 	 * @param  alphas the alphas to compound
 	 * @return the compounded alpha
 	 */
 	private static _compoundOpacity(...alphas: Percentage[]): Percentage {
 		return alphas.map((a) => a.conjugate).reduce((a,b) => a.times(b)).conjugate
+		// return new Percentage(xjs.Math.meanGeometric(alphas.map((a) => a.conjugate.valueOf())) ** alphas.length).conjugate
 	}
 
 	/**
@@ -350,9 +371,23 @@ export default class Color {
 	 * @returns a mix of the given colors
 	 */
 	static mix(colors: Color[]): Color {
-		let red  : Percentage = new Percentage(xjs.Math.meanArithmetic(colors.map((c) => c.red  .valueOf())))
-		let green: Percentage = new Percentage(xjs.Math.meanArithmetic(colors.map((c) => c.green.valueOf())))
-		let blue : Percentage = new Percentage(xjs.Math.meanArithmetic(colors.map((c) => c.blue .valueOf())))
+		/**
+		 * Return the unweighted arithmetic mean of several channels.
+		 *
+		 * Algorithm:
+		 * 1. convert all channels to a numeric value
+		 * 2. take the unweighted arithmetic mean of the numbers
+		 * 3. convert the mean back to a Percentage
+		 * @private
+		 * @param   comps a set of channel value (red, green, or blue)
+		 * @returns the compounded value
+		 */
+		function mixChannels(...comps: Percentage[]): Percentage {
+			return new Percentage(xjs.Math.meanArithmetic(comps.map((c) => c.valueOf()))) // TODO: spread the arg to meanArithmetic
+		}
+		let red  : Percentage =            mixChannels(...colors.map((c) => c.red  ))
+		let green: Percentage =            mixChannels(...colors.map((c) => c.green))
+		let blue : Percentage =            mixChannels(...colors.map((c) => c.blue ))
 		let alpha: Percentage = Color._compoundOpacity(...colors.map((c) => c.alpha))
 		return new Color(red, green, blue, alpha)
 	}
@@ -368,17 +403,24 @@ export default class Color {
 	 */
 	static blur(colors: Color[]): Color {
 		/**
-		 * Calculate the compound value of two or more overlapping same-channel values.
+		 * Return the unweighted combination of several channels, using a blurring algorithm.
+		 *
+		 * Algorithm:
+		 * 1. {@link Color._sRGB_Linear|‘square’} all channels
+		 * 2. convert all squares to a numeric value
+		 * 3. take the unweighted arithmetic mean of the squares
+		 * 4. convert the mean back to a Percentage
+		 * 5. {@link Color._linear_sRGB|‘square root’} the result
 		 * @private
-		 * @param   arr an array of same-channel values (red, green, or blue)
+		 * @param   comps a set of channel value (red, green, or blue)
 		 * @returns the compounded value
 		 */
-		function compoundChannel(arr: Percentage[]): Percentage {
-			return Color._linear_sRGB(new Percentage(xjs.Math.meanArithmetic(arr.map((p) => Color._sRGB_Linear(p).valueOf()))))
+		function blurChannels(...comps: Percentage[]): Percentage {
+			return Color._linear_sRGB(new Percentage(xjs.Math.meanArithmetic(comps.map((c) => Color._sRGB_Linear(c).valueOf())))) // TODO: spread the arg to meanArithmetic
 		}
-		let red  : Percentage =        compoundChannel(   colors.map((c) => c.red  ))
-		let green: Percentage =        compoundChannel(   colors.map((c) => c.green))
-		let blue : Percentage =        compoundChannel(   colors.map((c) => c.blue ))
+		let red  : Percentage =           blurChannels(...colors.map((c) => c.red  ))
+		let green: Percentage =           blurChannels(...colors.map((c) => c.green))
+		let blue : Percentage =           blurChannels(...colors.map((c) => c.blue ))
 		let alpha: Percentage = Color._compoundOpacity(...colors.map((c) => c.alpha))
 		return new Color(red, green, blue, alpha)
 	}
@@ -878,15 +920,37 @@ export default class Color {
 	 * In other words, `weight` is "how much of the other color you want."
 	 * Note that `color1.mix(color2, weight)` returns the same result as `color2.mix(color1, 1-weight)`.
 	 * @param   color the second color
-	 * @param   weight between 0.0 and 1.0; the weight favoring the other color
+	 * @param   weight the weight favoring the other color
 	 * @returns a mix of the two given colors
 	 */
-	mix(color: Color, weight = 0.5): Color {
-		let red  : Percentage = new Percentage(xjs.Math.average(this.red  .valueOf(), color.red  .valueOf(), weight))
-		let green: Percentage = new Percentage(xjs.Math.average(this.green.valueOf(), color.green.valueOf(), weight))
-		let blue : Percentage = new Percentage(xjs.Math.average(this.blue .valueOf(), color.blue .valueOf(), weight))
-		let alpha: Percentage = Color._compoundOpacity(this.alpha, color.alpha)
-		return new Color(red, green, blue, alpha)
+	mix(color: Color, weight: Percentage|number = 0.5): Color {
+		if (weight instanceof Percentage) {
+			/**
+			 * Return the weighted arithmetic mean of two channels.
+			 *
+			 * Algorithm:
+			 * 1. convert both channels to a numeric value
+			 * 2. take the weighted arithmetic mean of the numbers
+			 * 3. convert the mean back to a Percentage
+			 * @private
+			 * @param   c1 the first channel value (red, green, or blue)
+			 * @param   c2 the second channel value (corresponding to `c1`)
+			 * @param   w the weight favoring the second channel
+			 * @returns the compounded value
+			 */
+			function mixChannelsWeighted(c1: Percentage, c2: Percentage, w: Percentage): Percentage {
+				return new Percentage(xjs.Math.average( // TODO use `xjs.Math.arithmeticMeanWeighted`
+					c1.valueOf(),
+					c2.valueOf(),
+					w.valueOf()
+				))
+			}
+			let red  : Percentage =            mixChannelsWeighted(this.red   , color.red  , weight)
+			let green: Percentage =            mixChannelsWeighted(this.green , color.green, weight)
+			let blue : Percentage =            mixChannelsWeighted(this.blue  , color.blue , weight)
+			let alpha: Percentage = Color._compoundOpacityWeighted(this.alpha , color.alpha, weight)
+			return new Color(red, green, blue, alpha)
+		} else return this.mix(color, new Percentage(weight))
 	}
 
 	/**
@@ -896,29 +960,39 @@ export default class Color {
 	 * except that this method uses a more visually accurate, slightly brighter, mix.
 	 * @see {@link https://www.youtube.com/watch?v=LKnqECcg6Gw|“Computer Color is Broken” by minutephysics}
 	 * @param   color the second color
-	 * @param   weight between 0.0 and 1.0; the weight favoring the other color
+	 * @param   weight the weight favoring the other color
 	 * @returns a blur of the two given colors
 	 */
-	blur(color: Color, weight = 0.5): Color {
-		/**
-		 * Calculate the compound value of two overlapping same-channel values.
-		 * @private
-		 * @param   c1 the first channel value (red, green, or blue)
-		 * @param   c2 the second channel value (corresponding to `c1`)
-		 * @returns the compounded value
-		 */
-		function compoundChannel(c1: Percentage, c2: Percentage): Percentage {
-			return Color._linear_sRGB(new Percentage(xjs.Math.average(
-				Color._sRGB_Linear(c1).valueOf(),
-				Color._sRGB_Linear(c2).valueOf(),
-				weight
-			)))
-		}
-		let red  : Percentage =        compoundChannel(this.red   , color.red  )
-		let green: Percentage =        compoundChannel(this.green , color.green)
-		let blue : Percentage =        compoundChannel(this.blue  , color.blue )
-		let alpha: Percentage = Color._compoundOpacity(this.alpha , color.alpha)
-		return new Color(red, green, blue, alpha)
+	blur(color: Color, weight: Percentage|number = 0.5): Color {
+		if (weight instanceof Percentage) {
+			/**
+			 * Return the weighted combination of two channels, using a blurring algorithm.
+			 *
+			 * Algorithm:
+			 * 1. {@link Color._sRGB_Linear|‘square’} both channels
+			 * 2. convert both squares to a numeric value
+			 * 3. take the weighted arithmetic mean of the squares
+			 * 4. convert the mean back to a Percentage
+			 * 5. {@link Color._linear_sRGB|‘square root’} the result
+			 * @private
+			 * @param   c1 the first channel value (red, green, or blue)
+			 * @param   c2 the second channel value (corresponding to `c1`)
+			 * @param   w the weight favoring the second channel
+			 * @returns the compounded value
+			 */
+			function blurChannelsWeighted(c1: Percentage, c2: Percentage, w: Percentage): Percentage {
+				return Color._linear_sRGB(new Percentage(xjs.Math.average( // TODO use `xjs.Math.arithmeticMeanWeighted`
+					Color._sRGB_Linear(c1).valueOf(),
+					Color._sRGB_Linear(c2).valueOf(),
+					w.valueOf()
+				)))
+			}
+			let red  : Percentage =           blurChannelsWeighted(this.red   , color.red  , weight)
+			let green: Percentage =           blurChannelsWeighted(this.green , color.green, weight)
+			let blue : Percentage =           blurChannelsWeighted(this.blue  , color.blue , weight)
+			let alpha: Percentage = Color._compoundOpacityWeighted(this.alpha , color.alpha, weight)
+			return new Color(red, green, blue, alpha)
+		} else return this.blur(color, new Percentage(weight))
 	}
 
 	/**
