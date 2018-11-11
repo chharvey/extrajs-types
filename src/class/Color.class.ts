@@ -126,21 +126,20 @@ export default class Color {
 	 * Return a new Color object, given hue, saturation, and luminosity in HSL-space.
 	 *
 	 * The HSL-hue        must be between 0 and 360.
-	 * The HSL-saturation must be between 0.0 and 1.0.
-	 * The HSL-luminosity must be between 0.0 and 1.0.
 	 * @see https://www.w3.org/TR/css-color-4/#hsl-to-rgb
 	 * @param   hue the HSL-hue channel of this color (a number 0—360)
-	 * @param   sat the HSL-sat channel of this color (a number 0—1)
-	 * @param   lum the HSL-lum channel of this color (a number 0—1)
+	 * @param   sat the HSL-sat channel of this color
+	 * @param   lum the HSL-lum channel of this color
 	 * @param   alpha the alpha channel of this color
 	 * @returns a new Color object with hsla(hue, sat, lum, alpha)
 	 */
-	static fromHSL(hue = 0, sat = 0, lum = 0, alpha: Percentage|number = 1): Color {
-		return (alpha instanceof Percentage) ? (() => {
+	static fromHSL(hue = 0, sat: Percentage|number = 0, lum: Percentage|number = 0, alpha: Percentage|number = 1): Color {
+		return (sat instanceof Percentage && lum instanceof Percentage && alpha instanceof Percentage) ? (() => {
 		hue = xjs.Math.mod(hue, 360)
-		let c: number = sat * (1 - Math.abs(2*lum - 1))
-		let x: number = c * (1 - Math.abs(hue/60 % 2 - 1))
-		let m: number = lum - c/2
+			const [s, l]: number[] = [sat, lum].map((p) => p.valueOf())
+			let c: number = s * (1 - Math.abs(2*l - 1))
+			let x: number = c * (1 - Math.abs(hue/60 % 2 - 1))
+			let m: number = l - c/2
 		let rgb: number[] = [c, x, 0]
 		;    if (  0 <= hue && hue <  60) { rgb = [c, x, 0] }
 		else if ( 60 <= hue && hue < 120) { rgb = [x, c, 0] }
@@ -149,7 +148,12 @@ export default class Color {
 		else if (240 <= hue && hue < 300) { rgb = [x, 0, c] }
 		else if (300 <= hue && hue < 360) { rgb = [c, 0, x] }
 		return new Color(...rgb.map((c) => new Percentage(c + m)), alpha)
-		})() : Color.fromHSL(hue, sat, lum, new Percentage(alpha))
+		})() : Color.fromHSL(
+			hue,
+			new Percentage(sat),
+			new Percentage(lum),
+			new Percentage(alpha)
+		)
 	}
 
 	/**
@@ -299,8 +303,8 @@ export default class Color {
 		}
 		function _hslStrings(channels: string[]): Color {
 			let hue  : number = (!Number.isNaN(+channels[0])) ? +channels[0] : Angle.fromString(channels[0]).convert(AngleUnit.DEG)
-			let sat  : number = Percentage.fromString(channels[1]).valueOf()
-			let lum  : number = Percentage.fromString(channels[2]).valueOf()
+			let sat  : Percentage = Percentage.fromString(channels[1])
+			let lum  : Percentage = Percentage.fromString(channels[2])
 			let alpha: Percentage = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3]) : new Percentage(1)
 			return Color.fromHSL(hue, sat, lum, alpha)
 		}
@@ -474,8 +478,8 @@ export default class Color {
 			],
 			[ColorSpace.HSL]: () => [
 				`${Math.round(this.hslHue *  10) /  10}deg`,
-				`${Math.round(this.hslSat * 100)}%`,
-				`${Math.round(this.hslLum * 100)}%`,
+				`${Math.round(this.hslSat.of(100))}%`,
+				`${Math.round(this.hslLum.of(100))}%`,
 			],
 			[ColorSpace.HWB]: () => [
 				`${Math.round(this.hwbHue   *  10) /  10}deg`,
@@ -573,10 +577,9 @@ export default class Color {
 	 *
 	 * The amount of "color" in the color. A lower saturation means the color is more grayer,
 	 * a higher saturation means the color is more colorful.
-	 * A number bound by [0, 1].
 	 */
-	get hslSat(): number {
-		return (this._CHROMA === 0) ? 0 : (this._CHROMA / ((this.hslLum <= 0.5) ? 2*this.hslLum : (2 - 2*this.hslLum)))
+	get hslSat(): Percentage {
+		return new Percentage((this._CHROMA === 0) ? 0 : (this._CHROMA / ((this.hslLum.valueOf() <= 0.5) ? 2*this.hslLum.valueOf() : (2 - 2*this.hslLum.valueOf()))))
 		/*
 		 * Exercise: prove:
 		 * _HSL_SAT === _CHROMA / (1 - Math.abs(2*this.hslLum - 1))
@@ -597,10 +600,9 @@ export default class Color {
 	 *
 	 * How "white" or "black" the color is. A lower luminosity means the color is closer to black,
 	 * a higher luminosity means the color is closer to white.
-	 * A number bound by [0, 1].
 	 */
-	get hslLum(): number {
-		return 0.5 * (this._MAX + this._MIN)
+	get hslLum(): Percentage {
+		return new Percentage(0.5 * (this._MAX + this._MIN))
 	}
 
 	/**
@@ -692,7 +694,7 @@ export default class Color {
 	/**
 	 * Get an array of HSLA channels.
 	 */
-	get hsl(): [number, number, number, Percentage] {
+	get hsl(): [number, Percentage, Percentage, Percentage] {
 		return [this.hslHue, this.hslSat, this.hslLum, this.alpha]
 	}
 
@@ -750,7 +752,6 @@ export default class Color {
 	 *
 	 * This method calculates saturation in the HSL space.
 	 * A parameter of 1.0 returns a color with full saturation, and 0.0 returns an identical color.
-	 * A negative number will {@link Color.desaturate|desaturate} this color.
 	 * Set `relative = true` to specify the amount as relative to the color’s current saturation.
 	 *
 	 * For example, if `$color` has an HSL-sat of 0.5, then calling `$color.saturate(0.5)` will return
@@ -759,26 +760,28 @@ export default class Color {
 	 * because the argument 0.5, relative to the color’s current saturation of 0.5, results in
 	 * an added saturation of 0.25.
 	 *
-	 * @param   p must be between -1.0 and 1.0; the value by which to saturate this color
+	 * @param   p the value by which to saturate this color
 	 * @param   relative should the saturation added be relative?
 	 * @returns a new Color object that corresponds to this color saturated by `p`
 	 */
-	saturate(p: number, relative = false): Color {
-		let newsat: number = this.hslSat + (relative ? (this.hslSat * p) : p)
-		newsat = xjs.Math.clamp(0, newsat, 1)
-		return Color.fromHSL(this.hslHue, newsat, this.hslLum, this.alpha)
+	saturate(p: Percentage|number, relative = false): Color {
+		return (p instanceof Percentage) ? Color.fromHSL(
+			this.hslHue,
+			new Percentage(this.hslSat.valueOf() + ((relative) ? (p.times(this.hslSat)) : p).valueOf()),
+			this.hslLum,
+			this.alpha
+		) : this.saturate(new Percentage(p), relative)
 	}
 
 	/**
 	 * Return a less saturated version of this color by a percentage.
 	 *
 	 * A parameter of 1.0 returns a grayscale color, and 0.0 returns an identical color.
-	 * @see Color.saturate
-	 * @param   p must be between -1.0 and 1.0; the value by which to desaturate this color
+	 * @param   p the value by which to desaturate this color
 	 * @param   relative should the saturation subtracted be relative?
 	 * @returns a new Color object that corresponds to this color desaturated by `p`
 	 */
-	desaturate(p: number, relative = false): Color {
+	desaturate(p: Percentage, relative = false): Color {
 		return this.saturate(-p, relative)
 	}
 
@@ -787,7 +790,6 @@ export default class Color {
 	 *
 	 * This method calculates with luminosity in the HSL space.
 	 * A parameter of 1.0 returns white, and 0.0 returns an identical color.
-	 * A negative parameter will {@link Color.darken|darken} this color.
 	 * Set `relative = true` to specify the amount as relative to the color’s current luminosity.
 	 *
 	 * For example, if `$color` has an HSL-lum of 0.5, then calling `$color.lighten(0.5)` will return
@@ -796,26 +798,28 @@ export default class Color {
 	 * because the argument 0.5, relative to the color’s current luminosity of 0.5, results in
 	 * an added luminosity of 0.25.
 	 *
-	 * @param   p must be between -1.0 and 1.0; the amount by which to lighten this color
+	 * @param   p the amount by which to lighten this color
 	 * @param   relative should the luminosity added be relative?
 	 * @returns a new Color object that corresponds to this color lightened by `p`
 	 */
-	lighten(p: number, relative = false): Color {
-		let newlum: number = this.hslLum + (relative ? (this.hslLum * p) : p)
-		newlum = xjs.Math.clamp(0, newlum, 1)
-		return Color.fromHSL(this.hslHue, this.hslSat, newlum, this.alpha)
+	lighten(p: Percentage|number, relative = false): Color {
+		return (p instanceof Percentage) ? Color.fromHSL(
+			this.hslHue,
+			this.hslSat,
+			new Percentage(this.hslLum.valueOf() + ((relative) ? (p.times(this.hslLum)) : p).valueOf()),
+			this.alpha
+		) : this.lighten(new Percentage(p), relative)
 	}
 
 	/**
 	 * Return a darker version of this color by a percentage.
 	 *
 	 * A parameter of 1.0 returns black, and 0.0 returns an identical color.
-	 * @see Color.lighten
-	 * @param   p must be between -1.0 and 1.0; the amount by which to darken this color
+	 * @param   p the amount by which to darken this color
 	 * @param   relative should the luminosity subtracted be relative?
 	 * @returns a new Color object that corresponds to this color darkened by `p`
 	 */
-	darken(p: number, relative = false): Color {
+	darken(p: Percentage|number, relative = false): Color {
 		return this.lighten(-p, relative)
 	}
 
