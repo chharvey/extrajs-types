@@ -160,19 +160,22 @@ export default class Color {
 	 * Return a new Color object, given hue, white, and black in HWB-space.
 	 *
 	 * The HWB-hue   must be between 0 and 360.
-	 * The HWB-white must be between 0.0 and 1.0.
-	 * The HWB-black must be between 0.0 and 1.0.
 	 * @see https://www.w3.org/TR/css-color-4/#hwb-to-rgb
 	 * @param   hue   the HWB-hue   channel of this color (a number 0—360)
-	 * @param   white the HWB-white channel of this color (a number 0—1)
-	 * @param   black the HWB-black channel of this color (a number 0—1)
+	 * @param   white the HWB-white channel of this color
+	 * @param   black the HWB-black channel of this color
 	 * @param   alpha the alpha     channel of this color
 	 * @returns a new Color object with hwba(hue, white, black, alpha)
 	 */
-	static fromHWB(hue = 0, white = 0, black = 0, alpha: Percentage|number = 1): Color {
-		return (alpha instanceof Percentage) ? (() => {
-		return Color.fromHSV(hue, 1 - white / (1 - black), 1 - black, alpha)
-		})() : Color.fromHWB(hue, white, black, new Percentage(alpha))
+	static fromHWB(hue = 0, white: Percentage|number = 0, black: Percentage|number = 0, alpha: Percentage|number = 1): Color {
+		return (white instanceof Percentage && black instanceof Percentage && alpha instanceof Percentage) ? (() => {
+		return Color.fromHSV(hue, 1 - white.valueOf() / black.conjugate.valueOf(), black.conjugate, alpha)
+		})() : Color.fromHWB(
+			hue,
+			new Percentage(white),
+			new Percentage(black),
+			new Percentage(alpha)
+		)
 		/*
 		 * HWB -> RGB:
 		 * var rgb = Color.fromHSL([hue, 1, 0.5]).rgb
@@ -310,8 +313,8 @@ export default class Color {
 		}
 		function _hwbStrings(channels: string[]): Color {
 			let hue  : number = (!Number.isNaN(+channels[0])) ? +channels[0] : Angle.fromString(channels[0]).convert(AngleUnit.DEG)
-			let white: number = Percentage.fromString(channels[1]).valueOf()
-			let black: number = Percentage.fromString(channels[2]).valueOf()
+			let white: Percentage = Percentage.fromString(channels[1])
+			let black: Percentage = Percentage.fromString(channels[2])
 			let alpha: Percentage = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3]) : new Percentage(1)
 			return Color.fromHWB(hue, white, black, alpha)
 		}
@@ -483,8 +486,8 @@ export default class Color {
 			],
 			[ColorSpace.HWB]: () => [
 				`${Math.round(this.hwbHue   *  10) /  10}deg`,
-				`${Math.round(this.hwbWhite * 100)}%`,
-				`${Math.round(this.hwbBlack * 100)}%`,
+				`${Math.round(this.hwbWhite.of(100))}%`,
+				`${Math.round(this.hwbBlack.of(100))}%`,
 			],
 			[ColorSpace.CMYK]: () => [
 				`${Math.round(this.cmykCyan    * 100) / 100}`,
@@ -620,10 +623,9 @@ export default class Color {
 	 *
 	 * The amount of White in this color. A higher white means the color is closer to #fff,
 	 * a lower white means the color has a true hue (more colorful).
-	 * A number bound by [0, 1].
 	 */
-	get hwbWhite(): number {
-		return this._MIN
+	get hwbWhite(): Percentage {
+		return new Percentage(this._MIN)
 	}
 
 	/**
@@ -631,10 +633,9 @@ export default class Color {
 	 *
 	 * The amount of Black in this color. A higher black means the color is closer to #000,
 	 * a lower black means the color has a true hue (more colorful).
-	 * A number bound by [0, 1].
 	 */
-	get hwbBlack(): number {
-		return 1 - this._MAX
+	get hwbBlack(): Percentage {
+		return new Percentage(1 - this._MAX)
 	}
 
 	/**
@@ -701,7 +702,7 @@ export default class Color {
 	/**
 	 * Get an array of HWBA channels.
 	 */
-	get hwb(): [number, number, number, Percentage] {
+	get hwb(): [number, Percentage, Percentage, Percentage] {
 		return [this.hwbHue, this.hwbWhite, this.hwbBlack, this.alpha]
 	}
 
