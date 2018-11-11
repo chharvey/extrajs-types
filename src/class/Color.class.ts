@@ -37,9 +37,6 @@ export default class Color {
 	 * For two overlapping colors with respective alphas `a` and `b`, the compounded alpha
 	 * of an even mix will be `1 - (1-a)*(1-b)`.
 	 * For three, it would be `1 - (1-a)*(1-b)*(1-c)`.
-	 * An alpha is a Percentage, and represents the opacity
-	 * of a translucent color. An alpha of 0 is completely transparent; an alpha
-	 * of 1 is completely opaque.
 	 * @param  alphas the alphas to compound
 	 * @return the compounded alpha
 	 */
@@ -57,7 +54,7 @@ export default class Color {
 	 * @returns the transformed linear value
 	 */
 	private static _sRGB_Linear(c_srgb: Percentage): Percentage {
-		const c = c_srgb.valueOf()
+		let c = c_srgb.valueOf()
 		return new Percentage((c <= 0.03928) ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4)
 	}
 	/**
@@ -70,7 +67,7 @@ export default class Color {
 	 * @returns the transformed sRGB value
 	 */
 	private static _linear_sRGB(c_lin: Percentage): Percentage {
-		const c = c_lin.valueOf()
+		let c = c_lin.valueOf()
 		return new Percentage((c <= 0.00304) ? c * 12.92 : 1.055 * c ** (1 / 2.4) - 0.055)
 	}
 
@@ -164,7 +161,10 @@ export default class Color {
 	 */
 	static fromHWB(hue: Angle|number = 0, white: Percentage|number = 0, black: Percentage|number = 0, alpha: Percentage|number = 1): Color {
 		return (hue instanceof Angle && white instanceof Percentage && black instanceof Percentage && alpha instanceof Percentage) ? (() => {
-		return Color.fromHSV(hue, 1 - white.valueOf() / black.conjugate.valueOf(), black.conjugate, alpha)
+			const [w, b]: number[] = [white, black].map((p) => p.valueOf())
+			let rgb: Percentage[] = Color.fromHSL(hue, new Percentage(1), new Percentage(0.5)).rgb.slice(0, 3)
+				.map((c) => new Percentage(c.valueOf() * (1 - w - b) + w))
+			return new Color(...rgb, alpha)
 		})() : Color.fromHWB(
 			new Angle(hue),
 			new Percentage(white),
@@ -172,13 +172,8 @@ export default class Color {
 			new Percentage(alpha)
 		)
 		/*
-		 * HWB -> RGB:
-		 * var rgb = Color.fromHSL([hue, 1, 0.5]).rgb
-		 * for (var i = 0; i < 3; i++) {
-		 *   rgb[i] *= (1 - white - black)
-		 *   rgb[i] += white
-		 * }
-		 * return new Color(...rgb)
+		 * Exercise: prove:
+		 * hwb = fromHSV(hue, 1 - w / (1 - b), 1 - b, a)
 		 */
 	}
 
@@ -275,9 +270,9 @@ export default class Color {
 		}
 
 		/* ---- else, the string is a CSS function ---- */
-		const space : string = str.split('(')[0]
-		const cssarg: string = str.split('(')[1].slice(0, -1)
-		const channelstrings: string[] = (cssarg.includes(',')) ?
+		let space : string = str.split('(')[0]
+		let cssarg: string = str.split('(')[1].slice(0, -1)
+		let channelstrings: string[] = (cssarg.includes(',')) ?
 			cssarg.split(',') : // legacy syntax — COMBAK{DEPRECATED}
 			cssarg.split('/')[0].split(' ').filter((s) => s !== '')
 		if (cssarg.includes('/')) {
@@ -515,6 +510,7 @@ export default class Color {
 	 * Get the hsv-hue of this color.
 	 *
 	 * The HSV-space hue (in degrees) of this color, or what "color" this color is.
+	 * @returns the hsv-hue of this color
 	 */
 	get hsvHue(): Angle {
 		if (this._CHROMA === 0) return new Angle()
@@ -539,6 +535,8 @@ export default class Color {
 	 *
 	 * The vividness of this color. A lower saturation means the color is closer to white,
 	 * a higher saturation means the color is more true to its hue.
+	 * @see https://en.wikipedia.org/wiki/HSL_and_HSV#Saturation
+	 * @returns the hsv-saturation of this color.
 	 */
 	get hsvSat(): Percentage {
 		return new Percentage((this._CHROMA === 0) ? 0 : this._CHROMA / this.hsvVal.valueOf())
@@ -549,6 +547,8 @@ export default class Color {
 	 *
 	 * The brightness of this color. A lower value means the color is closer to black, a higher
 	 * value means the color is more true to its hue.
+	 * @see https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness
+	 * @returns the hsv-value of this color.
 	 */
 	get hsvVal(): Percentage {
 		return new Percentage(this._MAX)
@@ -558,6 +558,7 @@ export default class Color {
 	 * Get the hsl-hue of this color.
 	 *
 	 * The Hue of this color. Identical to {@link Color.hsvHue}.
+	 * @returns the hsl-hue of this color
 	 */
 	get hslHue(): Angle {
 		return this.hsvHue
@@ -568,21 +569,19 @@ export default class Color {
 	 *
 	 * The amount of "color" in the color. A lower saturation means the color is more grayer,
 	 * a higher saturation means the color is more colorful.
+	 * @see https://en.wikipedia.org/wiki/HSL_and_HSV#Saturation
+	 * @returns the hsl-saturation of this color.
 	 */
 	get hslSat(): Percentage {
-		return new Percentage((this._CHROMA === 0) ? 0 : (this._CHROMA / ((this.hslLum.valueOf() <= 0.5) ? 2*this.hslLum.valueOf() : (2 - 2*this.hslLum.valueOf()))))
+		return new Percentage((this._CHROMA === 0) ? 0 : this._CHROMA / (1 - Math.abs(2 * this.hslLum.valueOf() - 1)))
 		/*
-		 * Exercise: prove:
-		 * _HSL_SAT === _CHROMA / (1 - Math.abs(2*this.hslLum - 1))
+		 * Prove:
+		 * 1 - |2x - 1| == { x <= 0.5 ? 2x : (2 - 2x) }
 		 * Proof:
-		 * denom == (function (x) {
-		 *   if (x <= 0.5) return 2x
-		 *   else          return 2 - 2x
-		 * })(_HSL_LUM)
-		 * Part A. Let x <= 0.5. Then 2x - 1 <= 0, and |2x - 1| == -(2x - 1).
-		 * Then 1 - |2x - 1| == 1 + (2x - 1) = 2x. //
-		 * Part B. Let 0.5 < x. Then 1 < 2x - 1, and |2x - 1| == 2x - 1.
-		 * Then 1 - |2x - 1| == 1 - (2x - 1) = 2 - 2x. //
+		 * Case A. Let x <= 0.5. Then 2x - 1 <= 0, and |2x - 1| == -(2x - 1).
+		 * Then 1 - |2x - 1| == 1 + (2x - 1) == 2x. //
+		 * Case B. Let 0.5 < x. Then 0 < 2x - 1, and |2x - 1| == 2x - 1.
+		 * Then 1 - |2x - 1| == 1 - (2x - 1) == 2 - 2x. //
 		 */
 	}
 
@@ -591,6 +590,8 @@ export default class Color {
 	 *
 	 * How "white" or "black" the color is. A lower luminosity means the color is closer to black,
 	 * a higher luminosity means the color is closer to white.
+	 * @see https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness
+	 * @returns the hsl-luminosity of this color.
 	 */
 	get hslLum(): Percentage {
 		return new Percentage(0.5 * (this._MAX + this._MIN))
@@ -600,6 +601,7 @@ export default class Color {
 	 * Get the hwb-hue of this color.
 	 *
 	 * The Hue of this color. Identical to {@link Color.hsvHue}.
+	 * @returns the hwb-hue of this color
 	 */
 	get hwbHue(): Angle {
 		return this.hsvHue
@@ -610,6 +612,7 @@ export default class Color {
 	 *
 	 * The amount of White in this color. A higher white means the color is closer to #fff,
 	 * a lower white means the color has a true hue (more colorful).
+	 * @returns the hwb-white of this color
 	 */
 	get hwbWhite(): Percentage {
 		return new Percentage(this._MIN)
@@ -620,15 +623,18 @@ export default class Color {
 	 *
 	 * The amount of Black in this color. A higher black means the color is closer to #000,
 	 * a lower black means the color has a true hue (more colorful).
+	 * Identical to {@link Color.cmykBlack}.
+	 * @returns the hwb-black of this color
 	 */
 	get hwbBlack(): Percentage {
-		return new Percentage(1 - this._MAX)
+		return this.cmykBlack
 	}
 
 	/**
 	 * Get the cmyk-cyan of this color.
 	 *
 	 * The amount of Cyan in this color, or a subtraction of the amount of Red in this color.
+	 * @returns the cmyk-cyan of this color
 	 */
 	get cmykCyan(): Percentage {
 		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._RED.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
@@ -638,6 +644,7 @@ export default class Color {
 	 * Get the cmyk-magenta of this color.
 	 *
 	 * The amount of Magenta in this color, or a subtraction of the amount of Green in this color.
+	 * @returns the cmyk-magenta of this color
 	 */
 	get cmykMagenta(): Percentage {
 		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._GREEN.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
@@ -647,6 +654,7 @@ export default class Color {
 	 * Get the cmyk-yellow of this color.
 	 *
 	 * The amount of Yellow in this color, or a subtraction of the amount of Blue in this color.
+	 * @returns the cmyk-yellow of this color
 	 */
 	get cmykYellow(): Percentage {
 		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._BLUE.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
@@ -656,6 +664,7 @@ export default class Color {
 	 * Get the cmyk-black of this color.
 	 *
 	 * The amount of Black in this color in the CMYK color space.
+	 * @returns the cmyk-black of this color
 	 */
 	get cmykBlack(): Percentage {
 		return new Percentage(1 - this._MAX)
