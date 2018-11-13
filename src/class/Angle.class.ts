@@ -297,7 +297,7 @@ export default class Angle extends Number {
 	 * @returns does this Angle equal the argument?
 	 */
 	equals(angle: Angle|number): boolean {
-		return (angle instanceof Angle) ? xjs.Math.approx(this.valueOf(), angle.valueOf()) : this.equals(new Angle(angle))
+		return (this === angle) || ((angle instanceof Angle) ? xjs.Math.approx(this.valueOf(), angle.valueOf()) : this.equals(new Angle(angle)))
 	}
 
 	/**
@@ -306,7 +306,8 @@ export default class Angle extends Number {
 	 * @returns is this Angle strictly less than the argument?
 	 */
 	lessThan(angle: Angle|number): boolean {
-		return (this.equals(angle)) ? false : (angle instanceof Angle) ? this.valueOf() < angle.valueOf() : this.lessThan(new Angle(angle))
+		if (this.equals(angle)) return false // accommodate for approximations
+		return (angle instanceof Angle) ? this.valueOf() < angle.valueOf() : this.lessThan(new Angle(angle))
 	}
 
 	/**

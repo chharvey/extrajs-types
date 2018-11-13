@@ -87,7 +87,7 @@ export default class Integer extends Number {
 	 * @returns does this Integer equal the argument?
 	 */
 	equals(int: Integer|number): boolean {
-		return (int instanceof Integer) ? this.valueOf() === int.valueOf() : this.equals(new Integer(int))
+		return (this === int) || ((int instanceof Integer) ? this.valueOf() === int.valueOf() : this.equals(new Integer(int)))
 	}
 
 	/**
@@ -160,7 +160,7 @@ export default class Integer extends Number {
 	 */
 	times(multiplier: Integer|number = 1): Integer {
 		return (multiplier instanceof Integer) ?
-			(multiplier.equals(Integer.MULT_IDEN)) ? this : new Integer(this.valueOf() * multiplier.valueOf()) :
+			(multiplier.equals(Integer.MULT_ABSORB)) ? Integer.MULT_ABSORB : (multiplier.equals(Integer.MULT_IDEN)) ? this : new Integer(this.valueOf() * multiplier.valueOf()) :
 			this.times(new Integer(multiplier))
 	}
 

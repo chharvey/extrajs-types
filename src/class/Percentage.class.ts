@@ -80,7 +80,7 @@ export default class Percentage extends Number {
 	 * @returns does this Percentage equal the argument?
 	 */
 	equals(percentage: Percentage|number): boolean {
-		return (percentage instanceof Percentage) ? this.valueOf() === percentage.valueOf() : this.equals(new Percentage(percentage))
+		return (this === percentage) || ((percentage instanceof Percentage) ? this.valueOf() === percentage.valueOf() : this.equals(new Percentage(percentage)))
 	}
 
 	/**
