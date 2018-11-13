@@ -1,10 +1,11 @@
 import * as xjs from 'extrajs'
+
 import Percentage from './Percentage.class'
 
 
 /**
- * A list of possible angle units.
- * @see https://drafts.csswg.org/css-values-3/#angles
+ * A list of possible Angle units.
+ * @see https://www.w3.org/TR/css-values/#angles
  */
 export enum AngleUnit {
 	/** Degrees. There are 360 degrees in a full circle. */
@@ -358,7 +359,7 @@ export default class Angle extends Number {
 	 * If the scale factor is <1, returns a new Angle "more acute"  than this Angle.
 	 * If the scale factor is >1, returns a new Angle "more obtuse" than this Angle.
 	 * If the scale factor is =1, returns a new Angle equal to           this Angle.
-	 * @param   scalar the non-negative scale factor
+	 * @param   scalar the scale factor
 	 * @returns a new Angle representing the product
 	 */
 	scale(scalar: Percentage|number = 1): Angle {

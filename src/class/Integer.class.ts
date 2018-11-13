@@ -167,6 +167,8 @@ export default class Integer extends Number {
 	/**
 	 * Divide this Integer (the dividend) by another (the divisor).
 	 *
+	 * Note that division is not commutative: `a / b` does not always equal `b / a`.
+	 *
 	 * Warning: the result will not be an instance of this `Integer` class,
 	 * even if the result happens to be an integer.
 	 *
@@ -214,6 +216,8 @@ export default class Integer extends Number {
 	 *
 	 * If there were a native JavaScript operator for tetration,
 	 * it might be a triple-asterisk: `5 *** 3`.
+	 *
+	 * Note that tetration is not commutative: `a *** b` does not always equal `b *** a`.
 	 *
 	 * Currently, there is only support for non-negative integer hyperexponents.
 	 * Negative numbers and non-integers are not yet allowed.
