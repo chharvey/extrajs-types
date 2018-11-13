@@ -45,14 +45,7 @@ export default class Color {
 	 * @returns the compounded alpha
 	 */
 	private static _compoundOpacityWeighted(a1: Percentage, a2: Percentage, w: Percentage): Percentage {
-		// TODO: import from xjs.Math
-		function xjs_Math_meanGeometricWeighted(x: number, y: number, w: number = 0.5): number {
-			xjs.Number.assertType(x, 'finite')
-			xjs.Number.assertType(y, 'finite')
-			xjs.Number.assertType(w, 'finite')
-			return (x ** (1 - w)) * (y ** w)
-		}
-		return new Percentage(xjs_Math_meanGeometricWeighted(a1.conjugate.valueOf(), a2.conjugate.valueOf(), w.valueOf()) ** 2).conjugate
+		return new Percentage(xjs.Math.interpolateGeometric(a1.conjugate.valueOf(), a2.conjugate.valueOf(), w.valueOf()) ** 2).conjugate
 	}
 	/**
 	 * Calculate the alpha of several overlapping translucent colors.
