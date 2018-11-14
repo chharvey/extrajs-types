@@ -74,6 +74,17 @@ export default class Integer extends Number {
 	}
 
 	/**
+	 * Get the negation of this Integer.
+	 *
+	 * The negation of an Ineteger is its additive inverse:
+	 * the Integer that when added to this, gives a sum of 0 (the additive identity).
+	 * @returns a new Integer representing the additive inverse
+	 */
+	get negation(): Integer {
+		return new Integer(-this.valueOf())
+	}
+
+	/**
 	 * Return the absolute value of this Integer; `Math.abs(this)`.
 	 * @returns `(this < 0) ? -this : this`
 	 */
@@ -118,11 +129,11 @@ export default class Integer extends Number {
 	}
 
 	/**
-	 * Negate this Integer.
-	 * @returns a new Integer representing the additive inverse
+	 * @deprecated Use {@link Integer.negation} instead.
+	 * @returns `this.negation`
 	 */
 	negate(): Integer {
-		return new Integer(-this.valueOf())
+		return this.negation
 	}
 
 	/**
@@ -149,7 +160,7 @@ export default class Integer extends Number {
 	 */
 	minus(subtrahend: Integer|number = 0): Integer {
 		return (subtrahend instanceof Integer) ?
-			this.plus(subtrahend.negate()) :
+			this.plus(subtrahend.negation) :
 			this.minus(new Integer(subtrahend))
 	}
 
