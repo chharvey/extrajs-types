@@ -85,14 +85,11 @@ export default class Percentage extends Number {
 	 *
 	 * This method may only be called on percentages less than or equal to 100%.
 	 * @returns the conjugate of this Percentage
-	 * @throws if this Percentage is more than 100%
+	 * @throws  {RangeError} if this Percentage is more than 1
 	 */
 	get conjugate(): Percentage {
-		try {
-			return new Percentage(1 - this.valueOf())
-		} catch (e) {
-			throw new RangeError(`No conjugate exists for ${this.toString()}`)
-		}
+		if (this.valueOf() > 1) throw new RangeError(`No conjugate exists for ${this.toString()}`)
+		return new Percentage(1 - this.valueOf())
 	}
 
 	/**
