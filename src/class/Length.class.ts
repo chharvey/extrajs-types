@@ -1,5 +1,8 @@
 import * as xjs from 'extrajs'
 
+// TODO: move to xjs.Number
+const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
+
 import Percentage from './Percentage.class'
 
 
@@ -39,6 +42,11 @@ export default class Length extends Number {
 	}
 
 	/**
+	 * An immutable RegExp instance, representing a string in Length format.
+	 */
+	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}(?:cm|mm|in|pt|px)$`)
+
+	/**
 	 * Return the maximum of two or more Lengths.
 	 * @param   lengths two or more Lengths to compare
 	 * @returns the greatest of all the arguments
@@ -65,12 +73,16 @@ export default class Length extends Number {
 	 * @throws  {RangeError} if the string given is not of the correct format
 	 */
 	static fromString(str: string): Length {
-		if (str.slice(-2) === 'cm') return new Length(+str.slice(0, -2) / Length.CONVERSION[LengthUnit.CM])
-		if (str.slice(-2) === 'mm') return new Length(+str.slice(0, -2) / Length.CONVERSION[LengthUnit.MM])
-		if (str.slice(-2) === 'in') return new Length(+str.slice(0, -2) / Length.CONVERSION[LengthUnit.IN])
-		if (str.slice(-2) === 'pt') return new Length(+str.slice(0, -2) / Length.CONVERSION[LengthUnit.PT])
-		if (str.slice(-2) === 'px') return new Length(+str.slice(0, -2) / Length.CONVERSION[LengthUnit.PX])
-		throw new RangeError(`Invalid string format: '${str}'.`)
+		if (!Length.REGEXP.test(str)) throw new RangeError(`Invalid string format: '${str}'.`)
+		let numeric_part: number = +str.match(xjs_Number_REGEXP.source.slice(1,-1)) ![0]
+		let unit_part   : string =  str.match(/cm|mm|in|pt|px/                    ) ![0]
+		return new Length(xjs.Object.switch<number>(unit_part, {
+			'cm': () => numeric_part / Length.CONVERSION[LengthUnit.CM],
+			'mm': () => numeric_part / Length.CONVERSION[LengthUnit.MM],
+			'in': () => numeric_part / Length.CONVERSION[LengthUnit.IN],
+			'pt': () => numeric_part / Length.CONVERSION[LengthUnit.PT],
+			'px': () => numeric_part / Length.CONVERSION[LengthUnit.PX],
+		})())
 	}
 
 
