@@ -87,7 +87,7 @@ export default class Integer extends Number {
 	 * @returns does this Integer equal the argument?
 	 */
 	equals(int: Integer|number): boolean {
-		return (int instanceof Integer) ? this.valueOf() === int.valueOf() : this.equals(new Integer(int))
+		return (this === int) || ((int instanceof Integer) ? this.valueOf() === int.valueOf() : this.equals(new Integer(int)))
 	}
 
 	/**
@@ -160,12 +160,14 @@ export default class Integer extends Number {
 	 */
 	times(multiplier: Integer|number = 1): Integer {
 		return (multiplier instanceof Integer) ?
-			(multiplier.equals(Integer.MULT_IDEN)) ? this : new Integer(this.valueOf() * multiplier.valueOf()) :
+			(multiplier.equals(Integer.MULT_ABSORB)) ? Integer.MULT_ABSORB : (multiplier.equals(Integer.MULT_IDEN)) ? this : new Integer(this.valueOf() * multiplier.valueOf()) :
 			this.times(new Integer(multiplier))
 	}
 
 	/**
 	 * Divide this Integer (the dividend) by another (the divisor).
+	 *
+	 * Note that division is not commutative: `a / b` does not always equal `b / a`.
 	 *
 	 * Warning: the result will not be an instance of this `Integer` class,
 	 * even if the result happens to be an integer.
@@ -214,6 +216,8 @@ export default class Integer extends Number {
 	 *
 	 * If there were a native JavaScript operator for tetration,
 	 * it might be a triple-asterisk: `5 *** 3`.
+	 *
+	 * Note that tetration is not commutative: `a *** b` does not always equal `b *** a`.
 	 *
 	 * Currently, there is only support for non-negative integer hyperexponents.
 	 * Negative numbers and non-integers are not yet allowed.
