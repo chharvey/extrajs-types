@@ -1,5 +1,8 @@
 import * as xjs from 'extrajs'
 
+// TODO: move to xjs.Number
+const xjs_Number_REGEXP: Readonly<RegExp> = /^-?\d+(?:\.\d+)?$/
+
 
 /**
  * A fraction of some other value.
@@ -7,6 +10,11 @@ import * as xjs from 'extrajs'
  * Represented by a unitless number within the interval `[0, ∞)`, where `1` is the whole of the value.
  */
 export default class Percentage extends Number {
+	/**
+	 * An immutable RegExp instance, representing a string in Percentage format.
+	 */
+	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}%$`)
+
 	/**
 	 * Return the maximum of two or more Percentages.
 	 * @param   pcts two or more Percentages to compare
@@ -28,14 +36,15 @@ export default class Percentage extends Number {
 	}
 
 	/**
-	 * Parse a string of the form `'‹n›%'`, where `‹n›` is a number.
+	 * Parse a string matching {@link Percentage.REGEXP}.
 	 * @param   str the string to parse
 	 * @returns a new Percentage emulating the string
-	 * @throws  {RangeError} if the string given is not of the correct format
+	 * @throws  {RangeError} if the given string does not match `Percentage.REGEXP`
 	 */
 	static fromString(str: string): Percentage {
-		if (str.slice(-1) !== '%') throw new RangeError(`Invalid string format: '${str}'.`)
-		return new Percentage(+str.slice(0, -1) / 100)
+		if (!Percentage.REGEXP.test(str)) throw new RangeError(`Invalid string format: '${str}'.`)
+		let numeric_part: number = +str.match(xjs_Number_REGEXP.source.slice(1,-1)) ![0]
+		return new Percentage(numeric_part / 100) // NOTE: implies base 10
 	}
 
 
