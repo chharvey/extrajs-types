@@ -1,5 +1,8 @@
 import * as xjs from 'extrajs'
 
+// TODO: move to xjs.Number
+const xjs_Number_REGEXP: Readonly<RegExp> = /^-?\d+(?:\.\d+)?$/
+
 import Integer from './Integer.class'
 import Percentage from './Percentage.class'
 import Angle, {AngleUnit} from './Angle.class'
@@ -31,10 +34,72 @@ export enum ColorSpace {
  * given three primary color channels and a possible transparency channel.
  */
 export default class Color {
+	private static readonly _NUMBER_OR_PERCENTAGE: string = `${xjs_Number_REGEXP.source.slice(1,-1)}%?`
+
 	/**
 	 * An immutable RegExp instance, representing a string in {@link ColorSpace.HEX} format.
 	 */
 	static readonly REGEXP_HEX: Readonly<RegExp> = /^#(?:(?:[\da-f]{3}){1,2}|(?:[\da-f]{4}){1,2})$/i
+	/**
+	 * An immutable RegExp instance, representing a string in {@link ColorSpace.RGB} format.
+	 *
+	 * @deprecated Support for legacy syntax `rgb(r, g, b [, a]?)`.
+	 */
+	static readonly REGEXP_RGB_LEGACY: Readonly<RegExp> = new RegExp(`^rgb\\(\\s*${
+		Color._NUMBER_OR_PERCENTAGE +
+		`(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}){2,3}`
+	}\\s*\\)$`)
+	/**
+	 * An immutable RegExp instance, representing a string in {@link ColorSpace.RGB} format.
+	 *
+	 * @deprecated Support for legacy syntax `rgba(r, g, b, a)`.
+	 */
+	static readonly REGEXP_RGBA_LEGACY: Readonly<RegExp> = new RegExp(`^rgba\\(\\s*${
+		Color._NUMBER_OR_PERCENTAGE +
+		`(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}){3}`
+	}\\s*\\)$`)
+	/**
+	 * An immutable RegExp instance, representing a string in {@link ColorSpace.RGB} format.
+	 *
+	 * Updated with CSS-Color-4 specs.
+	 */
+	static readonly REGEXP_RGB: Readonly<RegExp> = new RegExp(`^rgb\\(\\s*${
+		`(?:${
+			`(?:${xjs_Number_REGEXP.source.slice(1,-1)}\\s+){2}${xjs_Number_REGEXP.source.slice(1,-1)}` + `|` +
+			`(?:${Percentage.REGEXP.source.slice(1,-1)}\\s+){2}${Percentage.REGEXP.source.slice(1,-1)}`
+		})` +
+		`(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?`
+	}\\s*\\)$`)
+	/**
+	 * An immutable RegExp instance, representing a string in {@link ColorSpace.CMYK} format.
+	 *
+	 * @deprecated Support for legacy syntax `cmyk(c, m, y, k [, a]?)`.
+	 */
+	static readonly REGEXP_CMYK_LEGACY: Readonly<RegExp> = new RegExp(`^cmyk\\(\\s*${
+		Color._NUMBER_OR_PERCENTAGE +
+		`(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}){3,4}`
+	}\\s*\\)$`)
+	/**
+	 * An immutable RegExp instance, representing a string in {@link ColorSpace.CMYK} format.
+	 *
+	 * @deprecated Support for legacy syntax `cmyka(c, m, y, k, a)`.
+	 */
+	static readonly REGEXP_CMYKA_LEGACY: Readonly<RegExp> = new RegExp(`^cmyka\\(\\s*${
+		Color._NUMBER_OR_PERCENTAGE +
+		`(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}){4}`
+	}\\s*\\)$`)
+	/**
+	 * An immutable RegExp instance, representing a string in {@link ColorSpace.CMYK} format.
+	 *
+	 * Updated with CSS-Color-4 specs.
+	 */
+	static readonly REGEXP_CMYK: Readonly<RegExp> = new RegExp(`^cmyk\\(\\s*${
+		`(?:${
+			`(?:${xjs_Number_REGEXP.source.slice(1,-1)}\\s+){3}${xjs_Number_REGEXP.source.slice(1,-1)}` + `|` +
+			`(?:${Percentage.REGEXP.source.slice(1,-1)}\\s+){3}${Percentage.REGEXP.source.slice(1,-1)}`
+		})` +
+		`(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?`
+	}\\s*\\)$`)
 
 	/**
 	 * Calculate the weighed compound opacity of two or more overlapping translucent colors.
