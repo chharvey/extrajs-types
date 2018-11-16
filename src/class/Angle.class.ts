@@ -1,7 +1,7 @@
 import * as xjs from 'extrajs'
 
 // TODO: move to xjs.Number
-const xjs_Number_REGEXP: Readonly<RegExp> = /^-?\d+(?:\.\d+)?$/
+const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
 
 import Percentage from './Percentage.class'
 

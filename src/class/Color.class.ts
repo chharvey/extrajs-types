@@ -1,7 +1,7 @@
 import * as xjs from 'extrajs'
 
 // TODO: move to xjs.Number
-const xjs_Number_REGEXP: Readonly<RegExp> = /^-?\d+(?:\.\d+)?$/
+const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
 
 import Integer from './Integer.class'
 import Percentage from './Percentage.class'
@@ -389,14 +389,7 @@ export default class Color {
 			return new Color(red, green, blue, alpha || void 0)
 		}
 
-		/* ---- the string is a named color ---- */
-		if (!str.includes('(')) {
-			const returned: string|null = NAMES[str] || null
-			if (!returned) throw new ReferenceError(`No color found for the name given: '${str}'.`)
-			return Color.fromString(returned)
-		}
-
-		/* ---- else, the string is a CSS function ---- */
+		/* ---- the string is a CSS function ---- */
 		if (new RegExp(`^(?:${[
 			Color.REGEXP_RGB_LEGACY,
 			Color.REGEXP_RGBA_LEGACY,
@@ -419,15 +412,15 @@ export default class Color {
 			// ].map((r) => r.source.slice(1,-1)).join('|')})$`).test(str)) {
 			// 	console.warn(`Warning: Color notation '${str}' is deprecated. See https://www.w3.org/TR/css-color-4/.`)
 			// }
-		let space : string = str.split('(')[0]
-		let cssarg: string = str.split('(')[1].slice(0, -1)
-		let channels: string[] = (cssarg.includes(',')) ?
-			cssarg.split(',') : // legacy syntax — COMBAK{DEPRECATED}
-			cssarg.split('/')[0].split(' ').filter((s) => s !== '')
-		if (cssarg.includes('/')) {
-			channels.push(cssarg.split('/')[1])
-		}
-		channels.forEach((cs, i, arr) => {arr[i] = cs.trim()})
+			let space : string = str.split('(')[0]
+			let cssarg: string = str.split('(')[1].slice(0, -1)
+			let channels: string[] = (cssarg.includes(',')) ?
+				cssarg.split(',') : // legacy syntax — COMBAK{DEPRECATED}
+				cssarg.split('/')[0].split(' ').filter((s) => s !== '')
+			if (cssarg.includes('/')) {
+				channels.push(cssarg.split('/')[1])
+			}
+			channels = channels.map((cs) => cs.trim())
 			if (new RegExp(`^(?:${[
 				Color.REGEXP_RGB_LEGACY,
 				Color.REGEXP_RGBA_LEGACY,
@@ -470,6 +463,14 @@ export default class Color {
 				})(hue, p1, p2, alpha || void 0)
 			}
 		}
+
+		/* ---- the string is a named color ---- */
+		if (!str.includes('(')) {
+			const returned: string|null = NAMES[str] || null
+			if (!returned) throw new ReferenceError(`No color found for the name given: '${str}'.`)
+			return Color.fromString(returned)
+		}
+
 		throw new RangeError(`Invalid string format: '${str}'.`)
   }
 
