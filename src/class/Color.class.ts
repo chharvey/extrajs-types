@@ -32,6 +32,11 @@ export enum ColorSpace {
  */
 export default class Color {
 	/**
+	 * An immutable RegExp instance, representing a string in {@link ColorSpace.HEX} format.
+	 */
+	static readonly REGEXP_HEX: Readonly<RegExp> = /^#(?:(?:[\da-f]{3}){1,2}|(?:[\da-f]{4}){1,2})$/i
+
+	/**
 	 * Calculate the weighed compound opacity of two or more overlapping translucent colors.
 	 *
 	 * For two overlapping colors with respective alphas `a` and `b`,
@@ -274,9 +279,8 @@ export default class Color {
 	 */
 	static fromString(str = ''): Color {
 		if (str === '') return new Color()
-		if (str[0] === '#') {
-			if (![4,5,7,9].includes(str.length)) throw new RangeError(`Invalid string format: '${str}'. Hex color must have 3, 4, 6, or 8 digits.`)
-			if ([4,5].includes(str.length)) {
+		if (Color.REGEXP_HEX.test(str)) {
+			if (/^#[\da-f]{3,4}$/i.test(str)) {
 				let [r, g, b, a]: string[] = [str[1], str[2], str[3], str[4] || '']
 				return Color.fromString(`#${r}${r}${g}${g}${b}${b}${a}${a}`)
 			}
@@ -286,6 +290,7 @@ export default class Color {
 			let alpha: Percentage = new Percentage((str.length === 9) ? parseInt(str.slice(7,9), 16) / 255 : 1)
 			return new Color(red, green, blue, alpha)
 		}
+		// if (str[0] === '#') throw new RangeError(`Invalid string format: '${str}'. Hex color notation invalid.`)
 		if (!str.includes('(')) {
 			const returned: string|null = NAMES[str] || null
 			if (!returned) throw new ReferenceError(`No color found for the name given: '${str}'.`)
