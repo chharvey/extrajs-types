@@ -149,6 +149,20 @@ export default class Angle extends Number {
 		return Angle.atan(1 / x)
 	}
 
+	/**
+	 * Parse a string of the form `'‹n›‹u›'`, where `‹n›` is a number and `‹u›` is an angle unit.
+	 * @param   str the string to parse
+	 * @returns a new Angle emulating the string
+	 * @throws  {RangeError} if the string given is not of the correct format
+	 */
+	static fromString(str: string): Angle {
+		if (str.slice(-3) === 'deg' ) return new Angle(+str.slice(0, -3) / Angle.CONVERSION[AngleUnit.DEG ])
+		if (str.slice(-4) === 'grad') return new Angle(+str.slice(0, -4) / Angle.CONVERSION[AngleUnit.GRAD])
+		if (str.slice(-3) === 'rad' ) return new Angle(+str.slice(0, -3) / Angle.CONVERSION[AngleUnit.RAD ])
+		if (str.slice(-4) === 'turn') return new Angle(+str.slice(0, -4) / Angle.CONVERSION[AngleUnit.TURN])
+		throw new RangeError(`Invalid string format: '${str}'.`)
+	}
+
 
 	/**
 	 * Construct a new Angle object.
@@ -307,8 +321,10 @@ export default class Angle extends Number {
 	 * @param   max the upper bound
 	 * @returns `Angle.min(Angle.max(min, this), max)`
 	 */
-	clamp(min: Angle, max: Angle): Angle {
-		return (min.lessThan(max) || min.equals(max)) ? Angle.min(Angle.max(min, this), max) : this.clamp(max, min)
+	clamp(min: Angle|number = 0, max: Angle|number = 1): Angle {
+		return (min instanceof Angle && max instanceof Angle) ?
+			(min.lessThan(max) || min.equals(max)) ? Angle.min(Angle.max(min, this), max) : this.clamp(max, min) :
+			this.clamp(new Angle(min), new Angle(max))
 	}
 
 	/**
