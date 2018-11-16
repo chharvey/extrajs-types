@@ -1,5 +1,8 @@
 import * as xjs from 'extrajs'
 
+// TODO: move to xjs.Number
+const xjs_Number_REGEXP: Readonly<RegExp> = /^-?\d+(?:\.\d+)?$/
+
 import Percentage from './Percentage.class'
 
 
@@ -68,6 +71,11 @@ export default class Angle extends Number {
 		[AngleUnit.RAD ]: 2 * Math.PI,
 		[AngleUnit.TURN]: 1,
 	}
+
+	/**
+	 * An immutable RegExp instance, representing a string in Angle format.
+	 */
+	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}(?:deg|grad|rad|turn)$`)
 
 	/**
 	 * Return the maximum of two or more Angles.
@@ -157,11 +165,15 @@ export default class Angle extends Number {
 	 * @throws  {RangeError} if the string given is not of the correct format
 	 */
 	static fromString(str: string): Angle {
-		if (str.slice(-3) === 'deg' ) return new Angle(+str.slice(0, -3) / Angle.CONVERSION[AngleUnit.DEG ])
-		if (str.slice(-4) === 'grad') return new Angle(+str.slice(0, -4) / Angle.CONVERSION[AngleUnit.GRAD])
-		if (str.slice(-3) === 'rad' ) return new Angle(+str.slice(0, -3) / Angle.CONVERSION[AngleUnit.RAD ])
-		if (str.slice(-4) === 'turn') return new Angle(+str.slice(0, -4) / Angle.CONVERSION[AngleUnit.TURN])
-		throw new RangeError(`Invalid string format: '${str}'.`)
+		if (!Angle.REGEXP.test(str)) throw new RangeError(`Invalid string format: '${str}'.`)
+		let numeric_part: number = +str.match(xjs_Number_REGEXP.source.slice(1,-1)) ![0]
+		let unit_part   : string =  str.match(/deg|grad|rad|turn/                 ) ![0]
+		return new Angle(xjs.Object.switch<number>(unit_part, {
+			'deg'  : () => numeric_part / Angle.CONVERSION[AngleUnit.DEG ],
+			'grad' : () => numeric_part / Angle.CONVERSION[AngleUnit.GRAD],
+			'rad'  : () => numeric_part / Angle.CONVERSION[AngleUnit.RAD ],
+			'turn' : () => numeric_part / Angle.CONVERSION[AngleUnit.TURN],
+		})())
 	}
 
 
