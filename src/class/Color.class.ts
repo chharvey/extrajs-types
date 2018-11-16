@@ -35,6 +35,7 @@ export enum ColorSpace {
  */
 export default class Color {
 	private static readonly _NUMBER_OR_PERCENTAGE: string = `${xjs_Number_REGEXP.source.slice(1,-1)}%?`
+	private static readonly _NUMBER_OR_ANGLE     : string = `${xjs_Number_REGEXP.source.slice(1,-1)}(?:deg|grad|rad|turn)?`
 
 	/**
 	 * An immutable RegExp instance, representing a string in {@link ColorSpace.HEX} format.
@@ -98,6 +99,36 @@ export default class Color {
 			`(?:${xjs_Number_REGEXP.source.slice(1,-1)}\\s+){3}${xjs_Number_REGEXP.source.slice(1,-1)}` + `|` +
 			`(?:${Percentage.REGEXP.source.slice(1,-1)}\\s+){3}${Percentage.REGEXP.source.slice(1,-1)}`
 		})` +
+		`(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?`
+	}\\s*\\)$`)
+	/**
+	 * An immutable RegExp instance, representing a string in {@link ColorSpace.HSV}, {@link ColorSpace.HSL}, or {@link ColorSpace.HWB} formats.
+	 *
+	 * @deprecated Support for legacy syntax `hsv(h, s, v [, a]?)`, `hsl(h, s, v [, a]?)`, `hwb(h, s, v [, a]?)`.
+	 */
+	static readonly REGEXP_HUE_LEGACY: Readonly<RegExp> = new RegExp(`^(?:hsv|hsl|hwb)\\(\\s*${
+		Color._NUMBER_OR_ANGLE +
+		`(?:\\s*,\\s*${Percentage.REGEXP.source.slice(1,-1)}){2}` +
+		`(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE})?`
+	}\\s*\\)$`)
+	/**
+	 * An immutable RegExp instance, representing a string in {@link ColorSpace.HSV}, {@link ColorSpace.HSL}, or {@link ColorSpace.HWB} formats.
+	 *
+	 * @deprecated Support for legacy syntax `hsva(h, s, v , a)`, `hsla(h, s, v , a)`, `hwba(h, s, v , a)`.
+	 */
+	static readonly REGEXP_HUEA_LEGACY: Readonly<RegExp> = new RegExp(`^(?:hsv|hsl|hwb)a\\(\\s*${
+		Color._NUMBER_OR_ANGLE +
+		`(?:\\s*,\\s*${Percentage.REGEXP.source.slice(1,-1)}){2}` +
+		`\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}`
+	}\\s*\\)$`)
+	/**
+	 * An immutable RegExp instance, representing a string in {@link ColorSpace.HSV}, {@link ColorSpace.HSL}, or {@link ColorSpace.HWB} formats.
+	 *
+	 * Updated with CSS-Color-4 specs.
+	 */
+	static readonly REGEXP_HUE: Readonly<RegExp> = new RegExp(`^(?:hsv|hsl|hwb)\\(\\s*${
+		Color._NUMBER_OR_ANGLE +
+		`(?:\\s+${Percentage.REGEXP.source.slice(1,-1)}){2}` +
 		`(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?`
 	}\\s*\\)$`)
 
