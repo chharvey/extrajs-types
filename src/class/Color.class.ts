@@ -373,20 +373,23 @@ export default class Color {
 	 * @throws  {RangeError} if the string given is not a valid format
 	 * @throws  {ReferenceError} if the color name given was not found
 	 */
-	static fromString(str = ''): Color {
+	static fromString(str: string = ''): Color {
 		if (str === '') return new Color()
+
+		/* ---- the string is a hex color ---- */
 		if (Color.REGEXP_HEX.test(str)) {
 			if (/^#[\da-f]{3,4}$/i.test(str)) {
 				let [r, g, b, a]: string[] = [str[1], str[2], str[3], str[4] || '']
 				return Color.fromString(`#${r}${r}${g}${g}${b}${b}${a}${a}`)
 			}
-			let red  : Percentage = new Percentage(                     parseInt(str.slice(1,3), 16) / 255)
-			let green: Percentage = new Percentage(                     parseInt(str.slice(3,5), 16) / 255)
-			let blue : Percentage = new Percentage(                     parseInt(str.slice(5,7), 16) / 255)
-			let alpha: Percentage = new Percentage((str.length === 9) ? parseInt(str.slice(7,9), 16) / 255 : 1)
-			return new Color(red, green, blue, alpha)
+			let red  : Percentage      =                      new Percentage(parseInt(str.slice(1,3), 16) / 255)
+			let green: Percentage      =                      new Percentage(parseInt(str.slice(3,5), 16) / 255)
+			let blue : Percentage      =                      new Percentage(parseInt(str.slice(5,7), 16) / 255)
+			let alpha: Percentage|null = (str.length === 9) ? new Percentage(parseInt(str.slice(7,9), 16) / 255) : null
+			return new Color(red, green, blue, alpha || void 0)
 		}
-		// if (str[0] === '#') throw new RangeError(`Invalid string format: '${str}'. Hex color notation invalid.`)
+
+		/* ---- the string is a named color ---- */
 		if (!str.includes('(')) {
 			const returned: string|null = NAMES[str] || null
 			if (!returned) throw new ReferenceError(`No color found for the name given: '${str}'.`)
@@ -394,70 +397,80 @@ export default class Color {
 		}
 
 		/* ---- else, the string is a CSS function ---- */
+		if (new RegExp(`^(?:${[
+			Color.REGEXP_RGB_LEGACY,
+			Color.REGEXP_RGBA_LEGACY,
+			Color.REGEXP_RGB,
+			Color.REGEXP_CMYK_LEGACY,
+			Color.REGEXP_CMYKA_LEGACY,
+			Color.REGEXP_CMYK,
+			Color.REGEXP_HUE_LEGACY,
+			Color.REGEXP_HUEA_LEGACY,
+			Color.REGEXP_HUE,
+		].map((r) => r.source.slice(1,-1)).join('|')})$`).test(str)) {
+			// COMBAK: add a console warning for legacy syntax, once CSS-Colors-4 is released.
+			// if (new RegExp(`^(?:${[
+			// 	Color.REGEXP_RGB_LEGACY,
+			// 	Color.REGEXP_RGBA_LEGACY,
+			// 	Color.REGEXP_CMYK_LEGACY,
+			// 	Color.REGEXP_CMYKA_LEGACY,
+			// 	Color.REGEXP_HUE_LEGACY,
+			// 	Color.REGEXP_HUEA_LEGACY,
+			// ].map((r) => r.source.slice(1,-1)).join('|')})$`).test(str)) {
+			// 	console.warn(`Warning: Color notation '${str}' is deprecated. See https://www.w3.org/TR/css-color-4/.`)
+			// }
 		let space : string = str.split('(')[0]
 		let cssarg: string = str.split('(')[1].slice(0, -1)
-		let channelstrings: string[] = (cssarg.includes(',')) ?
+		let channels: string[] = (cssarg.includes(',')) ?
 			cssarg.split(',') : // legacy syntax — COMBAK{DEPRECATED}
 			cssarg.split('/')[0].split(' ').filter((s) => s !== '')
 		if (cssarg.includes('/')) {
-			channelstrings.push(cssarg.split('/')[1])
+			channels.push(cssarg.split('/')[1])
 		}
-		function _rgbStrings(channels: string[]): Color {
-			// NOTE: allows different components to mix and match numbers & percents.
-			// TODO: starting in CSS Colors 4, all components must be all numbers or all percents
-			let red  : Percentage      =                 (!Number.isNaN(+channels[0])) ? new Percentage(+channels[0] / 255) : Percentage.fromString(channels[0])
-			let green: Percentage      =                 (!Number.isNaN(+channels[1])) ? new Percentage(+channels[1] / 255) : Percentage.fromString(channels[1])
-			let blue : Percentage      =                 (!Number.isNaN(+channels[2])) ? new Percentage(+channels[2] / 255) : Percentage.fromString(channels[2])
-			let alpha: Percentage|null = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]      ) : Percentage.fromString(channels[3]) : null
-			return new Color(red, green, blue, (alpha) ? alpha.valueOf() : undefined)
+		channels.forEach((cs, i, arr) => {arr[i] = cs.trim()})
+			if (new RegExp(`^(?:${[
+				Color.REGEXP_RGB_LEGACY,
+				Color.REGEXP_RGBA_LEGACY,
+				Color.REGEXP_RGB,
+			].map((r) => r.source.slice(1,-1)).join('|')})$`).test(str)) {
+				let red   : Percentage      =                 (xjs_Number_REGEXP.test(channels[0])) ? new Percentage(+channels[0] / 255) : Percentage.fromString(channels[0])
+				let green : Percentage      =                 (xjs_Number_REGEXP.test(channels[1])) ? new Percentage(+channels[1] / 255) : Percentage.fromString(channels[1])
+				let blue  : Percentage      =                 (xjs_Number_REGEXP.test(channels[2])) ? new Percentage(+channels[2] / 255) : Percentage.fromString(channels[2])
+				let alpha : Percentage|null = (channels[3]) ? (xjs_Number_REGEXP.test(channels[3])) ? new Percentage(+channels[3]      ) : Percentage.fromString(channels[3]) : null
+				return new Color(red, green, blue, alpha || void 0)
+			}
+			if (new RegExp(`^(?:${[
+				Color.REGEXP_CMYK_LEGACY,
+				Color.REGEXP_CMYKA_LEGACY,
+				Color.REGEXP_CMYK,
+			].map((r) => r.source.slice(1,-1)).join('|')})$`).test(str)) {
+				let cyan    : Percentage      =                 (xjs_Number_REGEXP.test(channels[0])) ? new Percentage(+channels[0]) : Percentage.fromString(channels[0])
+				let magenta : Percentage      =                 (xjs_Number_REGEXP.test(channels[1])) ? new Percentage(+channels[1]) : Percentage.fromString(channels[1])
+				let yellow  : Percentage      =                 (xjs_Number_REGEXP.test(channels[2])) ? new Percentage(+channels[2]) : Percentage.fromString(channels[2])
+				let black   : Percentage      =                 (xjs_Number_REGEXP.test(channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3])
+				let alpha   : Percentage|null = (channels[4]) ? (xjs_Number_REGEXP.test(channels[4])) ? new Percentage(+channels[4]) : Percentage.fromString(channels[4]) : null
+				return Color.fromCMYK(cyan, magenta, yellow, black, alpha || void 0)
+			}
+			if (new RegExp(`^(?:${[
+				Color.REGEXP_HUE_LEGACY,
+				Color.REGEXP_HUEA_LEGACY,
+				Color.REGEXP_HUE,
+			].map((r) => r.source.slice(1,-1)).join('|')})$`).test(str)) {
+				let hue  : Angle           = Angle     .fromString((xjs_Number_REGEXP.test(channels[0])) ? `${channels[0]}deg` : channels[0])
+				let p1   : Percentage      = Percentage.fromString(channels[1])
+				let p2   : Percentage      = Percentage.fromString(channels[2])
+				let alpha: Percentage|null = (channels[3]) ? (xjs_Number_REGEXP.test(channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3]) : null
+				return xjs.Object.switch<Color>(space, {
+					hsv  : Color.fromHSV,
+					hsva : Color.fromHSV, // COMBAK{DEPRECATED}
+					hsl  : Color.fromHSL,
+					hsla : Color.fromHSL, // COMBAK{DEPRECATED}
+					hwb  : Color.fromHWB,
+					hwba : Color.fromHWB, // COMBAK{DEPRECATED}
+				})(hue, p1, p2, alpha || void 0)
+			}
 		}
-		function _hsvStrings(channels: string[]): Color {
-			let hue  : Angle      = Angle     .fromString((!Number.isNaN(+channels[0])) ? `${channels[0]}deg` : channels[0])
-			let sat  : Percentage = Percentage.fromString(channels[1])
-			let val  : Percentage = Percentage.fromString(channels[2])
-			let alpha: Percentage = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3]) : new Percentage(1)
-			return Color.fromHSV(hue, sat, val, alpha)
-		}
-		function _hslStrings(channels: string[]): Color {
-			let hue  : Angle      = Angle     .fromString((!Number.isNaN(+channels[0])) ? `${channels[0]}deg` : channels[0])
-			let sat  : Percentage = Percentage.fromString(channels[1])
-			let lum  : Percentage = Percentage.fromString(channels[2])
-			let alpha: Percentage = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3]) : new Percentage(1)
-			return Color.fromHSL(hue, sat, lum, alpha)
-		}
-		function _hwbStrings(channels: string[]): Color {
-			let hue  : Angle      = Angle     .fromString((!Number.isNaN(+channels[0])) ? `${channels[0]}deg` : channels[0])
-			let white: Percentage = Percentage.fromString(channels[1])
-			let black: Percentage = Percentage.fromString(channels[2])
-			let alpha: Percentage = (channels[3]) ? (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3]) : new Percentage(1)
-			return Color.fromHWB(hue, white, black, alpha)
-		}
-		function _cmykStrings(channels: string[]): Color {
-			let cyan   : Percentage =                 (!Number.isNaN(+channels[0])) ? new Percentage(+channels[0]) : Percentage.fromString(channels[0])
-			let magenta: Percentage =                 (!Number.isNaN(+channels[1])) ? new Percentage(+channels[1]) : Percentage.fromString(channels[1])
-			let yellow : Percentage =                 (!Number.isNaN(+channels[2])) ? new Percentage(+channels[2]) : Percentage.fromString(channels[2])
-			let black  : Percentage =                 (!Number.isNaN(+channels[3])) ? new Percentage(+channels[3]) : Percentage.fromString(channels[3])
-			let alpha  : Percentage = (channels[4]) ? (!Number.isNaN(+channels[4])) ? new Percentage(+channels[4]) : Percentage.fromString(channels[4]) : new Percentage(1)
-			return Color.fromCMYK(cyan, magenta, yellow, black, alpha)
-		}
-		let returned: (channels: string[]) => Color;
-		try {
-			returned = xjs.Object.switch<Color>(space, {
-				rgb   : _rgbStrings,
-				rgba  : _rgbStrings, // COMBAK{DEPRECATED}
-				hsv   : _hsvStrings,
-				hsva  : _hsvStrings, // COMBAK{DEPRECATED}
-				hsl   : _hslStrings,
-				hsla  : _hslStrings, // COMBAK{DEPRECATED}
-				hwb   : _hwbStrings,
-				hwba  : _hwbStrings, // COMBAK{DEPRECATED}
-				cmyk  : _cmykStrings,
-				cmyka : _cmykStrings, // COMBAK{DEPRECATED}
-			})
-		} catch (e) {
-			throw new RangeError(`Invalid string format: '${str}'. No CSS function found.`)
-		}
-		return returned(channelstrings.map((s) => s.trim()))
+		throw new RangeError(`Invalid string format: '${str}'.`)
   }
 
 	/**
