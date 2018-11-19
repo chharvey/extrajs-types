@@ -66,8 +66,8 @@ export default class Color {
 	 */
 	static readonly REGEXP_RGB: Readonly<RegExp> = new RegExp(`^rgb\\(\\s*${
 		`(?:${
-			`(?:${xjs_Number_REGEXP.source.slice(1,-1)}\\s+){2}${xjs_Number_REGEXP.source.slice(1,-1)}` + `|` +
-			`(?:${Percentage.REGEXP.source.slice(1,-1)}\\s+){2}${Percentage.REGEXP.source.slice(1,-1)}`
+			`${xjs_Number_REGEXP.source.slice(1,-1)}(?:\\s+${xjs_Number_REGEXP.source.slice(1,-1)}){2}` + `|` +
+			`${Percentage.REGEXP.source.slice(1,-1)}(?:\\s+${Percentage.REGEXP.source.slice(1,-1)}){2}`
 		})` +
 		`(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?`
 	}\\s*\\)$`)
@@ -96,8 +96,8 @@ export default class Color {
 	 */
 	static readonly REGEXP_CMYK: Readonly<RegExp> = new RegExp(`^cmyk\\(\\s*${
 		`(?:${
-			`(?:${xjs_Number_REGEXP.source.slice(1,-1)}\\s+){3}${xjs_Number_REGEXP.source.slice(1,-1)}` + `|` +
-			`(?:${Percentage.REGEXP.source.slice(1,-1)}\\s+){3}${Percentage.REGEXP.source.slice(1,-1)}`
+			`${xjs_Number_REGEXP.source.slice(1,-1)}(?:\\s+${xjs_Number_REGEXP.source.slice(1,-1)}){3}` + `|` +
+			`${Percentage.REGEXP.source.slice(1,-1)}(?:\\s+${Percentage.REGEXP.source.slice(1,-1)}){3}`
 		})` +
 		`(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?`
 	}\\s*\\)$`)
