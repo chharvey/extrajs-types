@@ -146,14 +146,7 @@ export default class Color {
 	 * @returns the compounded alpha
 	 */
 	private static _compoundOpacityWeighted(a1: Percentage, a2: Percentage, w: Percentage): Percentage {
-		// TODO: import from xjs.Math
-		function xjs_Math_meanGeometricWeighted(x: number, y: number, w: number = 0.5): number {
-			xjs.Number.assertType(x, 'finite')
-			xjs.Number.assertType(y, 'finite')
-			xjs.Number.assertType(w, 'finite')
-			return (x ** (1 - w)) * (y ** w)
-		}
-		return new Percentage(xjs_Math_meanGeometricWeighted(a1.conjugate.valueOf(), a2.conjugate.valueOf(), w.valueOf()) ** 2).conjugate
+		return new Percentage(xjs.Math.interpolateGeometric(a1.conjugate.valueOf(), a2.conjugate.valueOf(), w.valueOf()) ** 2).conjugate
 	}
 	/**
 	 * Calculate the alpha of several overlapping translucent colors.
@@ -477,6 +470,8 @@ export default class Color {
 	/**
 	 * Mix two or more colors. The average will be weighted evenly.
 	 *
+	 * This method performs the arithmetic mean of each channel of the colors.
+	 *
 	 * If two colors `a` and `b` are given, calling this static method, `Color.mix([a, b])`,
 	 * is equivalent to calling `a.mix(b)` without a weight.
 	 * However, calling `Color.mix([a, b, c])` with 3 or more colors yields an even mix,
@@ -487,20 +482,20 @@ export default class Color {
 	 * @param   colors several Colors to mix
 	 * @returns a mix of the given colors
 	 */
-	static mix(colors: Color[]): Color {
+	static mix(...colors: Color[]): Color {
 		/**
-		 * Return the unweighted arithmetic mean of several channels.
+		 * Return the arithmetic mean of several channels.
 		 *
 		 * Algorithm:
 		 * 1. convert all channels to a numeric value
-		 * 2. take the unweighted arithmetic mean of the numbers
+		 * 2. take the arithmetic mean of the numbers
 		 * 3. convert the mean back to a Percentage
 		 * @private
 		 * @param   comps a set of channel value (red, green, or blue)
 		 * @returns the compounded value
 		 */
 		function mixChannels(...comps: Percentage[]): Percentage {
-			return new Percentage(xjs.Math.meanArithmetic(comps.map((c) => c.valueOf()))) // TODO: spread the arg to meanArithmetic
+			return new Percentage(xjs.Math.meanArithmetic(...comps.map((c) => c.valueOf())))
 		}
 		let red  : Percentage =            mixChannels(...colors.map((c) => c.red  ))
 		let green: Percentage =            mixChannels(...colors.map((c) => c.green))
@@ -512,20 +507,22 @@ export default class Color {
 	/**
 	 * Blur two or more colors. The average will be weighted evenly.
 	 *
+	 * This method performs the arithmetic mean of each sRGB-adjusted channel of the colors.
+	 *
 	 * Behaves almost exactly the same as {@link Color.mix},
 	 * except that this method uses a more visually accurate, slightly brighter, mix.
 	 * @see Color.blur
 	 * @param   colors several Colors to blur
 	 * @returns a blur of the given colors
 	 */
-	static blur(colors: Color[]): Color {
+	static blur(...colors: Color[]): Color {
 		/**
-		 * Return the unweighted combination of several channels, using a blurring algorithm.
+		 * Return the arithmetic mean of several sRGB-adjusted channels.
 		 *
 		 * Algorithm:
 		 * 1. {@link Color._sRGB_Linear|‘square’} all channels
 		 * 2. convert all squares to a numeric value
-		 * 3. take the unweighted arithmetic mean of the squares
+		 * 3. take the arithmetic mean of the squares
 		 * 4. convert the mean back to a Percentage
 		 * 5. {@link Color._linear_sRGB|‘square root’} the result
 		 * @private
@@ -533,7 +530,7 @@ export default class Color {
 		 * @returns the compounded value
 		 */
 		function blurChannels(...comps: Percentage[]): Percentage {
-			return Color._linear_sRGB(new Percentage(xjs.Math.meanArithmetic(comps.map((c) => Color._sRGB_Linear(c).valueOf())))) // TODO: spread the arg to meanArithmetic
+			return Color._linear_sRGB(new Percentage(xjs.Math.meanArithmetic(...comps.map((c) => Color._sRGB_Linear(c).valueOf()))))
 		}
 		let red  : Percentage =           blurChannels(...colors.map((c) => c.red  ))
 		let green: Percentage =           blurChannels(...colors.map((c) => c.green))
@@ -1030,6 +1027,8 @@ export default class Color {
 	/**
 	 * Mix (average) another color with this color, with a given weight favoring that color.
 	 *
+	 * This method performs a linear interpolation of each channel of the colors.
+	 *
 	 * If `weight == 0.0`, return exactly this color.
 	 * `weight == 1.0` return exactly the other color.
 	 * `weight == 0.5` (default if omitted) return a perfectly even mix.
@@ -1042,23 +1041,23 @@ export default class Color {
 	mix(color: Color, weight: Percentage|number = 0.5): Color {
 		if (weight instanceof Percentage) {
 			/**
-			 * Return the weighted arithmetic mean of two channels.
+			 * Return a linear interpolation of two channels.
 			 *
 			 * Algorithm:
 			 * 1. convert both channels to a numeric value
-			 * 2. take the weighted arithmetic mean of the numbers
+			 * 2. linearly interpolate the numbers
 			 * 3. convert the mean back to a Percentage
 			 * @private
 			 * @param   c1 the first channel value (red, green, or blue)
 			 * @param   c2 the second channel value (corresponding to `c1`)
-			 * @param   w the weight favoring the second channel
+			 * @param   p the interpolation parameter
 			 * @returns the compounded value
 			 */
-			function mixChannelsWeighted(c1: Percentage, c2: Percentage, w: Percentage): Percentage {
-				return new Percentage(xjs.Math.average( // TODO use `xjs.Math.arithmeticMeanWeighted`
+			function mixChannelsWeighted(c1: Percentage, c2: Percentage, p: Percentage): Percentage {
+				return new Percentage(xjs.Math.interpolateArithmetic(
 					c1.valueOf(),
 					c2.valueOf(),
-					w.valueOf()
+					p.valueOf()
 				))
 			}
 			let red  : Percentage =            mixChannelsWeighted(this.red   , color.red  , weight)
@@ -1072,6 +1071,8 @@ export default class Color {
 	/**
 	 * Blur another color with this color, with a given weight favoring that color.
 	 *
+	 * This method performs a linear interpolation of each sRGB-adjusted channel of the colors.
+	 *
 	 * Behaves almost exactly the same as {@link Color.mix},
 	 * except that this method uses a more visually accurate, slightly brighter, mix.
 	 * @see {@link https://www.youtube.com/watch?v=LKnqECcg6Gw|“Computer Color is Broken” by minutephysics}
@@ -1082,25 +1083,25 @@ export default class Color {
 	blur(color: Color, weight: Percentage|number = 0.5): Color {
 		if (weight instanceof Percentage) {
 			/**
-			 * Return the weighted combination of two channels, using a blurring algorithm.
+			 * Return a linear interpolation of two sRGB-adjusted channels.
 			 *
 			 * Algorithm:
 			 * 1. {@link Color._sRGB_Linear|‘square’} both channels
 			 * 2. convert both squares to a numeric value
-			 * 3. take the weighted arithmetic mean of the squares
+			 * 3. linearly interpolate the squares
 			 * 4. convert the mean back to a Percentage
 			 * 5. {@link Color._linear_sRGB|‘square root’} the result
 			 * @private
 			 * @param   c1 the first channel value (red, green, or blue)
 			 * @param   c2 the second channel value (corresponding to `c1`)
-			 * @param   w the weight favoring the second channel
+			 * @param   p the interpolation parameter
 			 * @returns the compounded value
 			 */
-			function blurChannelsWeighted(c1: Percentage, c2: Percentage, w: Percentage): Percentage {
-				return Color._linear_sRGB(new Percentage(xjs.Math.average( // TODO use `xjs.Math.arithmeticMeanWeighted`
+			function blurChannelsWeighted(c1: Percentage, c2: Percentage, p: Percentage): Percentage {
+				return Color._linear_sRGB(new Percentage(xjs.Math.interpolateArithmetic(
 					Color._sRGB_Linear(c1).valueOf(),
 					Color._sRGB_Linear(c2).valueOf(),
-					w.valueOf()
+					p.valueOf()
 				)))
 			}
 			let red  : Percentage =           blurChannelsWeighted(this.red   , color.red  , weight)
