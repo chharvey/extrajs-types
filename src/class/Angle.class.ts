@@ -1,10 +1,14 @@
 import * as xjs from 'extrajs'
+
+// TODO: move to xjs.Number
+const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
+
 import Percentage from './Percentage.class'
 
 
 /**
- * A list of possible angle units.
- * @see https://drafts.csswg.org/css-values-3/#angles
+ * A list of possible Angle units.
+ * @see https://www.w3.org/TR/css-values/#angles
  */
 export enum AngleUnit {
 	/** Degrees. There are 360 degrees in a full circle. */
@@ -23,6 +27,7 @@ export enum AngleUnit {
  *
  * In geometry, an angle is a pair of rays that share a vertex.
  * This class encodes the measurement of such a figure.
+ *
  * An Angle is represented by a unitless number within the interval `[0, 1)`,
  * but can manifest in units such as *degrees*, *radians*, and *turns*.
  * Angles can also be added, subtracted, and scaled.
@@ -67,6 +72,11 @@ export default class Angle extends Number {
 		[AngleUnit.RAD ]: 2 * Math.PI,
 		[AngleUnit.TURN]: 1,
 	}
+
+	/**
+	 * An immutable RegExp instance, representing a string in Angle format.
+	 */
+	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}(?:deg|grad|rad|turn)$`)
 
 	/**
 	 * Return the maximum of two or more Angles.
@@ -147,6 +157,24 @@ export default class Angle extends Number {
 	 */
 	static acot(x: number): Angle {
 		return Angle.atan(1 / x)
+	}
+
+	/**
+	 * Parse a string of the form `'‹n›‹u›'`, where `‹n›` is a number and `‹u›` is an angle unit.
+	 * @param   str the string to parse
+	 * @returns a new Angle emulating the string
+	 * @throws  {RangeError} if the string given is not of the correct format
+	 */
+	static fromString(str: string): Angle {
+		if (!Angle.REGEXP.test(str)) throw new RangeError(`Invalid string format: '${str}'.`)
+		let numeric_part: number = +str.match(xjs_Number_REGEXP.source.slice(1,-1)) ![0]
+		let unit_part   : string =  str.match(/deg|grad|rad|turn/                 ) ![0]
+		return new Angle(xjs.Object.switch<number>(unit_part, {
+			'deg'  : () => numeric_part / Angle.CONVERSION[AngleUnit.DEG ],
+			'grad' : () => numeric_part / Angle.CONVERSION[AngleUnit.GRAD],
+			'rad'  : () => numeric_part / Angle.CONVERSION[AngleUnit.RAD ],
+			'turn' : () => numeric_part / Angle.CONVERSION[AngleUnit.TURN],
+		})())
 	}
 
 
@@ -283,7 +311,7 @@ export default class Angle extends Number {
 	 * @returns does this Angle equal the argument?
 	 */
 	equals(angle: Angle|number): boolean {
-		return (angle instanceof Angle) ? xjs.Math.approx(this.valueOf(), angle.valueOf()) : this.equals(new Angle(angle))
+		return (this === angle) || ((angle instanceof Angle) ? xjs.Math.approx(this.valueOf(), angle.valueOf()) : this.equals(new Angle(angle)))
 	}
 
 	/**
@@ -292,7 +320,8 @@ export default class Angle extends Number {
 	 * @returns is this Angle strictly less than the argument?
 	 */
 	lessThan(angle: Angle|number): boolean {
-		return (this.equals(angle)) ? false : (angle instanceof Angle) ? this.valueOf() < angle.valueOf() : this.lessThan(new Angle(angle))
+		if (this.equals(angle)) return false // accommodate for approximations
+		return (angle instanceof Angle) ? this.valueOf() < angle.valueOf() : this.lessThan(new Angle(angle))
 	}
 
 	/**
@@ -307,8 +336,10 @@ export default class Angle extends Number {
 	 * @param   max the upper bound
 	 * @returns `Angle.min(Angle.max(min, this), max)`
 	 */
-	clamp(min: Angle, max: Angle): Angle {
-		return (min.lessThan(max) || min.equals(max)) ? Angle.min(Angle.max(min, this), max) : this.clamp(max, min)
+	clamp(min: Angle|number = 0, max: Angle|number = 1): Angle {
+		return (min instanceof Angle && max instanceof Angle) ?
+			(min.lessThan(max) || min.equals(max)) ? Angle.min(Angle.max(min, this), max) : this.clamp(max, min) :
+			this.clamp(new Angle(min), new Angle(max))
 	}
 
 	/**
@@ -341,7 +372,7 @@ export default class Angle extends Number {
 	 * If the scale factor is <1, returns a new Angle "more acute"  than this Angle.
 	 * If the scale factor is >1, returns a new Angle "more obtuse" than this Angle.
 	 * If the scale factor is =1, returns a new Angle equal to           this Angle.
-	 * @param   scalar the non-negative scale factor
+	 * @param   scalar the scale factor
 	 * @returns a new Angle representing the product
 	 */
 	scale(scalar: Percentage|number = 1): Angle {
