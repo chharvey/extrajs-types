@@ -18,14 +18,14 @@ export enum ColorSpace {
 	HEX,
 	/** rgb(r g b [/ a]) */
 	RGB,
+	/** cmyk(c m y k [/ a]) */
+	CMYK,
 	/** hsv(h s v [/ a]) */
 	HSV,
 	/** hsl(h s l [/ a]) */
 	HSL,
 	/** hwb(h w b [/ a]) */
 	HWB,
-	/** cmyk(c m y k [/ a]) */
-	CMYK,
 }
 
 
@@ -204,6 +204,32 @@ export default class Color {
 	}
 
 	/**
+	 * Return a new Color object, given cyan, magenta, yellow, and black in CMYK-space.
+	 *
+	 * @see https://www.w3.org/TR/css-color-4/#cmyk-rgb
+	 * @param   cyan    the CMYK-cyan    channel of this color
+	 * @param   magenta the CMYK-magenta channel of this color
+	 * @param   yellow  the CMYK-yellow  channel of this color
+	 * @param   black   the CMYK-black   channel of this color
+	 * @param   alpha   the alpha        channel of this color
+	 * @returns a new Color object with cmyka(cyan, magenta, yellow, black, alpha)
+	 */
+	static fromCMYK(cyan: Percentage|number = 0, magenta: Percentage|number = 0, yellow: Percentage|number = 0, black: Percentage|number = 0, alpha: Percentage|number = 1): Color {
+		return (cyan instanceof Percentage && magenta instanceof Percentage && yellow instanceof Percentage && black instanceof Percentage && alpha instanceof Percentage) ? new Color(
+			new Percentage(cyan   .times(black.conjugate).valueOf() + black.valueOf()).clamp().conjugate,
+			new Percentage(magenta.times(black.conjugate).valueOf() + black.valueOf()).clamp().conjugate,
+			new Percentage(yellow .times(black.conjugate).valueOf() + black.valueOf()).clamp().conjugate,
+			alpha
+		) : Color.fromCMYK(
+			new Percentage(cyan),
+			new Percentage(magenta),
+			new Percentage(yellow),
+			new Percentage(black),
+			new Percentage(alpha)
+		)
+	}
+
+	/**
 	 * Return a new Color object, given hue, saturation, and value in HSV-space.
 	 *
 	 * @param   hue the HSV-hue channel of this color
@@ -292,32 +318,6 @@ export default class Color {
 		 * Exercise: prove:
 		 * hwb = fromHSV(hue, 1 - w / (1 - b), 1 - b, a)
 		 */
-	}
-
-	/**
-	 * Return a new Color object, given cyan, magenta, yellow, and black in CMYK-space.
-	 *
-	 * @see https://www.w3.org/TR/css-color-4/#cmyk-rgb
-	 * @param   cyan    the CMYK-cyan    channel of this color
-	 * @param   magenta the CMYK-magenta channel of this color
-	 * @param   yellow  the CMYK-yellow  channel of this color
-	 * @param   black   the CMYK-black   channel of this color
-	 * @param   alpha   the alpha        channel of this color
-	 * @returns a new Color object with cmyka(cyan, magenta, yellow, black, alpha)
-	 */
-	static fromCMYK(cyan: Percentage|number = 0, magenta: Percentage|number = 0, yellow: Percentage|number = 0, black: Percentage|number = 0, alpha: Percentage|number = 1): Color {
-		return (cyan instanceof Percentage && magenta instanceof Percentage && yellow instanceof Percentage && black instanceof Percentage && alpha instanceof Percentage) ? new Color(
-			new Percentage(cyan   .times(black.conjugate).valueOf() + black.valueOf()).clamp().conjugate,
-			new Percentage(magenta.times(black.conjugate).valueOf() + black.valueOf()).clamp().conjugate,
-			new Percentage(yellow .times(black.conjugate).valueOf() + black.valueOf()).clamp().conjugate,
-			alpha
-		) : Color.fromCMYK(
-			new Percentage(cyan),
-			new Percentage(magenta),
-			new Percentage(yellow),
-			new Percentage(black),
-			new Percentage(alpha)
-		)
 	}
 
 	/**
@@ -662,6 +662,46 @@ export default class Color {
 	get alpha(): Percentage { return this._ALPHA }
 
 	/**
+	 * Get the cmyk-cyan of this color.
+	 *
+	 * The amount of Cyan in this color, or a subtraction of the amount of Red in this color.
+	 * @returns the cmyk-cyan of this color
+	 */
+	get cmykCyan(): Percentage {
+		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._RED.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
+	}
+
+	/**
+	 * Get the cmyk-magenta of this color.
+	 *
+	 * The amount of Magenta in this color, or a subtraction of the amount of Green in this color.
+	 * @returns the cmyk-magenta of this color
+	 */
+	get cmykMagenta(): Percentage {
+		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._GREEN.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
+	}
+
+	/**
+	 * Get the cmyk-yellow of this color.
+	 *
+	 * The amount of Yellow in this color, or a subtraction of the amount of Blue in this color.
+	 * @returns the cmyk-yellow of this color
+	 */
+	get cmykYellow(): Percentage {
+		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._BLUE.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
+	}
+
+	/**
+	 * Get the cmyk-black of this color.
+	 *
+	 * The amount of Black in this color in the CMYK color space.
+	 * @returns the cmyk-black of this color
+	 */
+	get cmykBlack(): Percentage {
+		return new Percentage(1 - this._MAX)
+	}
+
+	/**
 	 * Get the hsv-hue of this color.
 	 *
 	 * The HSV-space hue (in degrees) of this color, or what "color" this color is.
@@ -786,50 +826,17 @@ export default class Color {
 	}
 
 	/**
-	 * Get the cmyk-cyan of this color.
-	 *
-	 * The amount of Cyan in this color, or a subtraction of the amount of Red in this color.
-	 * @returns the cmyk-cyan of this color
-	 */
-	get cmykCyan(): Percentage {
-		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._RED.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
-	}
-
-	/**
-	 * Get the cmyk-magenta of this color.
-	 *
-	 * The amount of Magenta in this color, or a subtraction of the amount of Green in this color.
-	 * @returns the cmyk-magenta of this color
-	 */
-	get cmykMagenta(): Percentage {
-		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._GREEN.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
-	}
-
-	/**
-	 * Get the cmyk-yellow of this color.
-	 *
-	 * The amount of Yellow in this color, or a subtraction of the amount of Blue in this color.
-	 * @returns the cmyk-yellow of this color
-	 */
-	get cmykYellow(): Percentage {
-		return new Percentage((this.cmykBlack.equals(1)) ? 0 : (1 - this._BLUE.valueOf() - this.cmykBlack.valueOf()) / this.cmykBlack.conjugate.valueOf())
-	}
-
-	/**
-	 * Get the cmyk-black of this color.
-	 *
-	 * The amount of Black in this color in the CMYK color space.
-	 * @returns the cmyk-black of this color
-	 */
-	get cmykBlack(): Percentage {
-		return new Percentage(1 - this._MAX)
-	}
-
-	/**
 	 * Get an array of RGBA channels.
 	 */
 	get rgb(): [Percentage, Percentage, Percentage, Percentage] {
 		return [this.red, this.green, this.blue, this.alpha]
+	}
+
+	/**
+	 * Get an array of CMYKA channels.
+	 */
+	get cmyk(): [Percentage, Percentage, Percentage, Percentage, Percentage] {
+		return [this.cmykCyan, this.cmykMagenta, this.cmykYellow, this.cmykBlack, this.alpha]
 	}
 
 	/**
@@ -851,13 +858,6 @@ export default class Color {
 	 */
 	get hwb(): [Angle, Percentage, Percentage, Percentage] {
 		return [this.hwbHue, this.hwbWhite, this.hwbBlack, this.alpha]
-	}
-
-	/**
-	 * Get an array of CMYKA channels.
-	 */
-	get cmyk(): [Percentage, Percentage, Percentage, Percentage, Percentage] {
-		return [this.cmykCyan, this.cmykMagenta, this.cmykYellow, this.cmykBlack, this.alpha]
 	}
 
 	/**
@@ -1039,7 +1039,6 @@ export default class Color {
 	 * @returns a mix of the two given colors
 	 */
 	mix(color: Color, weight: Percentage|number = 0.5): Color {
-		if (weight instanceof Percentage) {
 			/**
 			 * Return a linear interpolation of two channels.
 			 *
@@ -1060,12 +1059,12 @@ export default class Color {
 					p.valueOf()
 				))
 			}
-			let red  : Percentage =            mixChannelsWeighted(this.red   , color.red  , weight)
-			let green: Percentage =            mixChannelsWeighted(this.green , color.green, weight)
-			let blue : Percentage =            mixChannelsWeighted(this.blue  , color.blue , weight)
-			let alpha: Percentage = Color._compoundOpacityWeighted(this.alpha , color.alpha, weight)
-			return new Color(red, green, blue, alpha)
-		} else return this.mix(color, new Percentage(weight))
+		return (weight instanceof Percentage) ? new Color(
+			mixChannelsWeighted(this.red   , color.red  , weight),
+			mixChannelsWeighted(this.green , color.green, weight),
+			mixChannelsWeighted(this.blue  , color.blue , weight),
+			Color._compoundOpacityWeighted(this.alpha , color.alpha, weight)
+		) : this.mix(color, new Percentage(weight))
 	}
 
 	/**
@@ -1081,7 +1080,6 @@ export default class Color {
 	 * @returns a blur of the two given colors
 	 */
 	blur(color: Color, weight: Percentage|number = 0.5): Color {
-		if (weight instanceof Percentage) {
 			/**
 			 * Return a linear interpolation of two sRGB-adjusted channels.
 			 *
@@ -1104,12 +1102,12 @@ export default class Color {
 					p.valueOf()
 				)))
 			}
-			let red  : Percentage =           blurChannelsWeighted(this.red   , color.red  , weight)
-			let green: Percentage =           blurChannelsWeighted(this.green , color.green, weight)
-			let blue : Percentage =           blurChannelsWeighted(this.blue  , color.blue , weight)
-			let alpha: Percentage = Color._compoundOpacityWeighted(this.alpha , color.alpha, weight)
-			return new Color(red, green, blue, alpha)
-		} else return this.blur(color, new Percentage(weight))
+		return (weight instanceof Percentage) ? new Color(
+			blurChannelsWeighted(this.red   , color.red  , weight),
+			blurChannelsWeighted(this.green , color.green, weight),
+			blurChannelsWeighted(this.blue  , color.blue , weight),
+			Color._compoundOpacityWeighted(this.alpha , color.alpha, weight)
+		) : this.blur(color, new Percentage(weight))
 	}
 
 	/**
