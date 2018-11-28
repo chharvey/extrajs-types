@@ -12,6 +12,15 @@ import * as xjs from 'extrajs'
  * Fractions must not exceed beyond this interval.
  */
 export default class Fraction extends Number {
+	/**
+	 * A zero fraction (the number 0).
+	 */
+	static readonly ZERO: Fraction = new Fraction(0)
+	/**
+	 * A full fraction (the number 1).
+	 */
+	static readonly FULL: Fraction = new Fraction(1)
+
 	// /**
 	//  * An immutable RegExp instance, representing a string in Fraction format.
 	//  */
@@ -70,7 +79,7 @@ export default class Fraction extends Number {
 	 * @returns the conjugate of this Fraction
 	 */
 	get conjugate(): Fraction {
-		return new Fraction(1 - this.valueOf())
+		return Fraction.FULL.minus(this)
 	}
 
 	// /** @override */
@@ -115,12 +124,41 @@ export default class Fraction extends Number {
 	}
 
 	/**
+	 * Add this Fraction (the augend) to another (the addend).
+	 * @param   addend the Fraction to add to this one
+	 * @returns a new Fraction representing the sum, `augend + addend`
+	 * @throws  {RangeError} if the result is greater than 1
+	 */
+	plus(addend: Fraction|number = 0): Fraction {
+		return (addend instanceof Fraction) ?
+			(addend.equals(Fraction.ZERO)) ? this :
+			new Fraction(this.valueOf() + addend.valueOf()) :
+			this.plus(new Fraction(addend))
+	}
+
+	/**
+	 * Subtract another Fraction (the subtrahend) from this (the minuend).
+	 *
+	 * Note that subtraction is not commutative: `a - b` does not always equal `b - a`.
+	 * @param   subtrahend the Fraction to subtract from this one
+	 * @returns a new Fraction representing the difference, `minuend - subtrahend`
+	 * @throws  {RangeError} if the result is less than 0
+	 */
+	minus(subtrahend: Fraction|number = 0): Fraction {
+		return (subtrahend instanceof Fraction) ?
+			this.plus(-subtrahend) :
+			this.minus(new Fraction(subtrahend))
+	}
+
+	/**
 	 * Multiply this Fraction (the multiplicand) by another (the multiplier).
 	 * @param   multiplier the Fraction to multiply this one by
 	 * @returns a new Fraction representing the product, `multiplicand * multiplier`
 	 */
 	times(multiplier: Fraction|number = 1): Fraction {
 		return (multiplier instanceof Fraction) ?
+			(multiplier.equals(Fraction.ZERO)) ? Fraction.ZERO :
+			(multiplier.equals(Fraction.FULL)) ? this :
 			new Fraction(this.valueOf() * multiplier.valueOf()) :
 			this.times(new Fraction(multiplier))
 	}

@@ -82,20 +82,20 @@ export default class Percentage extends Number {
 
 	/**
 	 * Return whether this Percentage’s value equals the argument’s.
-	 * @param   percentage the Percentage to compare
+	 * @param   pct the Percentage to compare
 	 * @returns does this Percentage equal the argument?
 	 */
-	equals(percentage: Percentage|number): boolean {
-		return (this === percentage) || ((percentage instanceof Percentage) ? this.valueOf() === percentage.valueOf() : this.equals(new Percentage(percentage)))
+	equals(pct: Percentage|number): boolean {
+		return (this === pct) || ((pct instanceof Percentage) ? this.valueOf() === pct.valueOf() : this.equals(new Percentage(pct)))
 	}
 
 	/**
 	 * Return how this Percentage compares to (is less than) another.
-	 * @param   percentage  the Percentage to compare
+	 * @param   pct  the Percentage to compare
 	 * @returns is this Percentage strictly less than the argument?
 	 */
-	lessThan(percentage: Percentage|number): boolean {
-		return (percentage instanceof Percentage) ? this.valueOf() < percentage.valueOf() : this.lessThan(new Percentage(percentage))
+	lessThan(pct: Percentage|number): boolean {
+		return (pct instanceof Percentage) ? this.valueOf() < pct.valueOf() : this.lessThan(new Percentage(pct))
 	}
 
 	/**

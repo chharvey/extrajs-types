@@ -122,26 +122,23 @@ export default class Integer extends Number {
 	 * @returns a new Integer representing the additive inverse
 	 */
 	negate(): Integer {
-		return new Integer(-this.valueOf())
+		return new Integer(-this)
 	}
 
 	/**
 	 * Add this Integer (the augend) to another (the addend).
-	 *
-	 * If no argument is provided, this method returns the increment of this Integer (this + 1).
 	 * @param   addend the Integer to add to this one
 	 * @returns a new Integer representing the sum, `augend + addend`
 	 */
 	plus(addend: Integer|number = 0): Integer {
 		return (addend instanceof Integer) ?
-			(addend.equals(Integer.ADD_IDEN)) ? this : new Integer(this.valueOf() + addend.valueOf()) :
+			(addend.equals(Integer.ADD_IDEN)) ? this :
+			new Integer(this.valueOf() + addend.valueOf()) :
 			this.plus(new Integer(addend))
 	}
 
 	/**
 	 * Subtract another Integer (the subtrahend) from this (the minuend).
-	 *
-	 * If no argument is provided, this method returns the decrement of this Integer (this - 1).
 	 *
 	 * Note that subtraction is not commutative: `a - b` does not always equal `b - a`.
 	 * @param   subtrahend the Integer to subtract from this one
@@ -160,7 +157,9 @@ export default class Integer extends Number {
 	 */
 	times(multiplier: Integer|number = 1): Integer {
 		return (multiplier instanceof Integer) ?
-			(multiplier.equals(Integer.MULT_ABSORB)) ? Integer.MULT_ABSORB : (multiplier.equals(Integer.MULT_IDEN)) ? this : new Integer(this.valueOf() * multiplier.valueOf()) :
+			(multiplier.equals(Integer.MULT_ABSORB)) ? Integer.MULT_ABSORB :
+			(multiplier.equals(Integer.MULT_IDEN)) ? this :
+			new Integer(this.valueOf() * multiplier.valueOf()) :
 			this.times(new Integer(multiplier))
 	}
 

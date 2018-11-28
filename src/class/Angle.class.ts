@@ -349,7 +349,8 @@ export default class Angle extends Number {
 	 */
 	plus(addend: Angle|number): Angle {
 		return (addend instanceof Angle) ?
-			(addend.equals(Angle.ZERO)) ? this : new Angle(this.valueOf() + addend.valueOf()) :
+			(addend.equals(Angle.ZERO)) ? this :
+			new Angle(this.valueOf() + addend.valueOf()) :
 			this.plus(new Angle(addend))
 	}
 
@@ -362,7 +363,7 @@ export default class Angle extends Number {
 	 */
 	minus(subtrahend: Angle|number): Angle {
 		return (subtrahend instanceof Angle) ?
-			(subtrahend.equals(Angle.ZERO)) ? this : new Angle(this.valueOf() - subtrahend.valueOf()) :
+			this.plus(-subtrahend) :
 			this.minus(new Angle(subtrahend))
 	}
 
