@@ -1,6 +1,6 @@
 {
   "name": "extrajs-types",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Additional all-purpose JavaScript classes.",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   "homepage": "https://github.com/chharvey/number-types#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-typedoc": "^2.2.0",
+    "gulp-typedoc": "^2.2.1",
     "gulp-typescript": "^5.0.0-alpha.3",
     "typedoc": "^0.13.0",
     "typescript": "^3.1.3"
