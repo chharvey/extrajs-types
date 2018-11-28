@@ -27,6 +27,7 @@ export enum AngleUnit {
  *
  * In geometry, an angle is a pair of rays that share a vertex.
  * This class encodes the measurement of such a figure.
+ *
  * An Angle is represented by a unitless number within the interval `[0, 1)`,
  * but can manifest in units such as *degrees*, *radians*, and *turns*.
  * Angles can also be added, subtracted, and scaled.

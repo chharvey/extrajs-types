@@ -63,18 +63,15 @@ export default class Percentage extends Number {
 	 * Get the conjugate of this Percentage.
 	 *
 	 * The conjugate of a Percentage is the remaining Percentage required
-	 * to add to a one full percentage (1 or 100%).
+	 * to add to a one full percentage (1, or 100%).
 	 *
 	 * This method may only be called on percentages less than or equal to 100%.
 	 * @returns the conjugate of this Percentage
-	 * @throws if this Percentage is more than 100%
+	 * @throws  {RangeError} if this Percentage is less than 0% or more than 100%
 	 */
 	get conjugate(): Percentage {
-		try {
-			return new Percentage(1 - this.valueOf())
-		} catch (e) {
-			throw new RangeError(`No conjugate exists for ${this.toString()}`)
-		}
+		if (this.valueOf() < 0 || 1 < this.valueOf()) throw new RangeError(`No conjugate exists for ${this.toString()}`)
+		return new Percentage(1 - this.valueOf())
 	}
 
 
