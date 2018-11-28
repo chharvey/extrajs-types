@@ -1,0 +1,2710 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Color | number-types</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">number-types</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="color.html">Color</a>
+				</li>
+			</ul>
+			<h1>Class Color</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>An abstract representation of a color that can be displayed in a pixel,
+						given three primary color channels and a possible transparency channel.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">Color</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="color.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="color.html#_alpha" class="tsd-kind-icon">_ALPHA</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="color.html#_blue" class="tsd-kind-icon">_BLUE</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="color.html#_chroma" class="tsd-kind-icon">_CHROMA</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="color.html#_green" class="tsd-kind-icon">_GREEN</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="color.html#_max" class="tsd-kind-icon">_MAX</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="color.html#_min" class="tsd-kind-icon">_MIN</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="color.html#_red" class="tsd-kind-icon">_RED</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="color.html#regexp_cmyk" class="tsd-kind-icon">REGEXP_<wbr>CMYK</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="color.html#regexp_cmyka_legacy" class="tsd-kind-icon">REGEXP_<wbr>CMYKA_<wbr>LEGACY</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="color.html#regexp_cmyk_legacy" class="tsd-kind-icon">REGEXP_<wbr>CMYK_<wbr>LEGACY</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="color.html#regexp_hex" class="tsd-kind-icon">REGEXP_<wbr>HEX</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="color.html#regexp_hue" class="tsd-kind-icon">REGEXP_<wbr>HUE</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="color.html#regexp_huea_legacy" class="tsd-kind-icon">REGEXP_<wbr>HUEA_<wbr>LEGACY</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="color.html#regexp_hue_legacy" class="tsd-kind-icon">REGEXP_<wbr>HUE_<wbr>LEGACY</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="color.html#regexp_rgb" class="tsd-kind-icon">REGEXP_<wbr>RGB</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="color.html#regexp_rgba_legacy" class="tsd-kind-icon">REGEXP_<wbr>RGBA_<wbr>LEGACY</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="color.html#regexp_rgb_legacy" class="tsd-kind-icon">REGEXP_<wbr>RGB_<wbr>LEGACY</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="color.html#_number_or_angle" class="tsd-kind-icon">_NUMBER_<wbr>OR_<wbr>ANGLE</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="color.html#_number_or_percentage" class="tsd-kind-icon">_NUMBER_<wbr>OR_<wbr>PERCENTAGE</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#alpha" class="tsd-kind-icon">alpha</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#blue" class="tsd-kind-icon">blue</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#cmyk" class="tsd-kind-icon">cmyk</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#cmykblack" class="tsd-kind-icon">cmyk<wbr>Black</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#cmykcyan" class="tsd-kind-icon">cmyk<wbr>Cyan</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#cmykmagenta" class="tsd-kind-icon">cmyk<wbr>Magenta</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#cmykyellow" class="tsd-kind-icon">cmyk<wbr>Yellow</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#green" class="tsd-kind-icon">green</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#hsl" class="tsd-kind-icon">hsl</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#hslhue" class="tsd-kind-icon">hsl<wbr>Hue</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#hsllum" class="tsd-kind-icon">hsl<wbr>Lum</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#hslsat" class="tsd-kind-icon">hsl<wbr>Sat</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#hsv" class="tsd-kind-icon">hsv</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#hsvhue" class="tsd-kind-icon">hsv<wbr>Hue</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#hsvsat" class="tsd-kind-icon">hsv<wbr>Sat</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#hsvval" class="tsd-kind-icon">hsv<wbr>Val</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#hwb" class="tsd-kind-icon">hwb</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#hwbblack" class="tsd-kind-icon">hwb<wbr>Black</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#hwbhue" class="tsd-kind-icon">hwb<wbr>Hue</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#hwbwhite" class="tsd-kind-icon">hwb<wbr>White</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#red" class="tsd-kind-icon">red</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="color.html#rgb" class="tsd-kind-icon">rgb</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#blur" class="tsd-kind-icon">blur</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#complement" class="tsd-kind-icon">complement</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#contrastratio" class="tsd-kind-icon">contrast<wbr>Ratio</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#darken" class="tsd-kind-icon">darken</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#desaturate" class="tsd-kind-icon">desaturate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#equals" class="tsd-kind-icon">equals</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#fadein" class="tsd-kind-icon">fade<wbr>In</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#fadeout" class="tsd-kind-icon">fade<wbr>Out</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#invert" class="tsd-kind-icon">invert</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#lighten" class="tsd-kind-icon">lighten</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#mix" class="tsd-kind-icon">mix</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#negate" class="tsd-kind-icon">negate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#relativeluminance" class="tsd-kind-icon">relative<wbr>Luminance</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#rotate" class="tsd-kind-icon">rotate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#saturate" class="tsd-kind-icon">saturate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="color.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="color.html#_compoundopacity" class="tsd-kind-icon">_compound<wbr>Opacity</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="color.html#_compoundopacityweighted" class="tsd-kind-icon">_compound<wbr>Opacity<wbr>Weighted</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="color.html#_linear_srgb" class="tsd-kind-icon">_linear_<wbr>sRGB</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="color.html#_srgb_linear" class="tsd-kind-icon">_sRGB_<wbr><wbr>Linear</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="color.html#blur-1" class="tsd-kind-icon">blur</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="color.html#fromcmyk" class="tsd-kind-icon">fromCMYK</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="color.html#fromhsl" class="tsd-kind-icon">fromHSL</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="color.html#fromhsv" class="tsd-kind-icon">fromHSV</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="color.html#fromhwb" class="tsd-kind-icon">fromHWB</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="color.html#fromrgb" class="tsd-kind-icon">fromRGB</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="color.html#fromstring" class="tsd-kind-icon">from<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="color.html#mix-1" class="tsd-kind-icon">mix</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="color.html#random" class="tsd-kind-icon">random</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="color.html#randomname" class="tsd-kind-icon">random<wbr>Name</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Color<span class="tsd-signature-symbol">(</span>red<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, green<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, blue<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, alpha<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L572">Color.class.ts:572</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Construct a new Color object.</p>
+								</div>
+								<p>Calling <code>new Color(r, g, b, a)</code> (4 arguments) specifies default behavior.
+									Calling <code>new Color(r, g, b)</code> (3 arguments) will result in an opaque color (<code>#rrggbbFF</code>),
+									where the alpha is 1 by default.
+								Calling <code>new Color()</code> (no arguments) will result in transparent (<code>#00000000</code>).</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> red: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>the red   channel of this color</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> green: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>the green channel of this color</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> blue: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>the blue  channel of this color</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> alpha: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>the alpha channel of this color</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_alpha" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _ALPHA</h3>
+					<div class="tsd-signature tsd-kind-icon">_ALPHA<span class="tsd-signature-symbol">:</span> <a href="percentage.html" class="tsd-signature-type">Percentage</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L568">Color.class.ts:568</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The alpha channel of this color.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_blue" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _BLUE</h3>
+					<div class="tsd-signature tsd-kind-icon">_BLUE<span class="tsd-signature-symbol">:</span> <a href="percentage.html" class="tsd-signature-type">Percentage</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L566">Color.class.ts:566</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The blue channel of this color.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_chroma" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _CHROMA</h3>
+					<div class="tsd-signature tsd-kind-icon">_CHROMA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L572">Color.class.ts:572</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_green" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _GREEN</h3>
+					<div class="tsd-signature tsd-kind-icon">_GREEN<span class="tsd-signature-symbol">:</span> <a href="percentage.html" class="tsd-signature-type">Percentage</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L564">Color.class.ts:564</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The green channel of this color.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_max" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _MAX</h3>
+					<div class="tsd-signature tsd-kind-icon">_MAX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L570">Color.class.ts:570</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_min" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _MIN</h3>
+					<div class="tsd-signature tsd-kind-icon">_MIN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L571">Color.class.ts:571</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_red" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _RED</h3>
+					<div class="tsd-signature tsd-kind-icon">_RED<span class="tsd-signature-symbol">:</span> <a href="percentage.html" class="tsd-signature-type">Percentage</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L562">Color.class.ts:562</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The red channel of this color.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="regexp_cmyk" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP_<wbr>CMYK</h3>
+					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>CMYK<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^cmyk\\(\\s*${&#x60;(?:${&#x60;${xjs_Number_REGEXP.source.slice(1,-1)}(?:\\s+${xjs_Number_REGEXP.source.slice(1,-1)}){3}&#x60; + &#x60;|&#x60; +&#x60;${Percentage.REGEXP.source.slice(1,-1)}(?:\\s+${Percentage.REGEXP.source.slice(1,-1)}){3}&#x60;})&#x60; +&#x60;(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?&#x60;}\\s*\\)$&#x60;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L97">Color.class.ts:97</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An immutable RegExp instance, representing a string in <a href="../enums/colorspace.html#cmyk">ColorSpace.CMYK</a> format.</p>
+						</div>
+						<p>Updated with CSS-Color-4 specs.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="regexp_cmyka_legacy" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP_<wbr>CMYKA_<wbr>LEGACY</h3>
+					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>CMYKA_<wbr>LEGACY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^cmyka\\(\\s*${Color._NUMBER_OR_PERCENTAGE +&#x60;(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}){4}&#x60;}\\s*\\)$&#x60;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L88">Color.class.ts:88</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An immutable RegExp instance, representing a string in <a href="../enums/colorspace.html#cmyk">ColorSpace.CMYK</a> format.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>deprecated</dt>
+							<dd><p>Support for legacy syntax <code>cmyka(c, m, y, k, a)</code>.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="regexp_cmyk_legacy" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP_<wbr>CMYK_<wbr>LEGACY</h3>
+					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>CMYK_<wbr>LEGACY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^cmyk\\(\\s*${Color._NUMBER_OR_PERCENTAGE +&#x60;(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}){3,4}&#x60;}\\s*\\)$&#x60;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L79">Color.class.ts:79</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An immutable RegExp instance, representing a string in <a href="../enums/colorspace.html#cmyk">ColorSpace.CMYK</a> format.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>deprecated</dt>
+							<dd><p>Support for legacy syntax <code>cmyk(c, m, y, k [, a]?)</code>.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="regexp_hex" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP_<wbr>HEX</h3>
+					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>HEX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;/^#(?:(?:[\da-f]{3}){1,2}|(?:[\da-f]{4}){1,2})$/i</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L43">Color.class.ts:43</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An immutable RegExp instance, representing a string in <a href="../enums/colorspace.html#hex">ColorSpace.HEX</a> format.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="regexp_hue" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP_<wbr>HUE</h3>
+					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>HUE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^(?:hsv|hsl|hwb)\\(\\s*${Color._NUMBER_OR_ANGLE +&#x60;(?:\\s+${Percentage.REGEXP.source.slice(1,-1)}){2}&#x60; +&#x60;(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?&#x60;}\\s*\\)$&#x60;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L129">Color.class.ts:129</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An immutable RegExp instance, representing a string in <a href="../enums/colorspace.html#hsv">ColorSpace.HSV</a>, <a href="../enums/colorspace.html#hsl">ColorSpace.HSL</a>, or <a href="../enums/colorspace.html#hwb">ColorSpace.HWB</a> formats.</p>
+						</div>
+						<p>Updated with CSS-Color-4 specs.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="regexp_huea_legacy" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP_<wbr>HUEA_<wbr>LEGACY</h3>
+					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>HUEA_<wbr>LEGACY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^(?:hsv|hsl|hwb)a\\(\\s*${Color._NUMBER_OR_ANGLE +&#x60;(?:\\s*,\\s*${Percentage.REGEXP.source.slice(1,-1)}){2}&#x60; +&#x60;\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}&#x60;}\\s*\\)$&#x60;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L119">Color.class.ts:119</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An immutable RegExp instance, representing a string in <a href="../enums/colorspace.html#hsv">ColorSpace.HSV</a>, <a href="../enums/colorspace.html#hsl">ColorSpace.HSL</a>, or <a href="../enums/colorspace.html#hwb">ColorSpace.HWB</a> formats.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>deprecated</dt>
+							<dd><p>Support for legacy syntax <code>hsva(h, s, v , a)</code>, <code>hsla(h, s, v , a)</code>, <code>hwba(h, s, v , a)</code>.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="regexp_hue_legacy" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP_<wbr>HUE_<wbr>LEGACY</h3>
+					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>HUE_<wbr>LEGACY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^(?:hsv|hsl|hwb)\\(\\s*${Color._NUMBER_OR_ANGLE +&#x60;(?:\\s*,\\s*${Percentage.REGEXP.source.slice(1,-1)}){2}&#x60; +&#x60;(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE})?&#x60;}\\s*\\)$&#x60;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L109">Color.class.ts:109</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An immutable RegExp instance, representing a string in <a href="../enums/colorspace.html#hsv">ColorSpace.HSV</a>, <a href="../enums/colorspace.html#hsl">ColorSpace.HSL</a>, or <a href="../enums/colorspace.html#hwb">ColorSpace.HWB</a> formats.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>deprecated</dt>
+							<dd><p>Support for legacy syntax <code>hsv(h, s, v [, a]?)</code>, <code>hsl(h, s, v [, a]?)</code>, <code>hwb(h, s, v [, a]?)</code>.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="regexp_rgb" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP_<wbr>RGB</h3>
+					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>RGB<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^rgb\\(\\s*${&#x60;(?:${&#x60;${xjs_Number_REGEXP.source.slice(1,-1)}(?:\\s+${xjs_Number_REGEXP.source.slice(1,-1)}){2}&#x60; + &#x60;|&#x60; +&#x60;${Percentage.REGEXP.source.slice(1,-1)}(?:\\s+${Percentage.REGEXP.source.slice(1,-1)}){2}&#x60;})&#x60; +&#x60;(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?&#x60;}\\s*\\)$&#x60;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L67">Color.class.ts:67</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An immutable RegExp instance, representing a string in <a href="../enums/colorspace.html#rgb">ColorSpace.RGB</a> format.</p>
+						</div>
+						<p>Updated with CSS-Color-4 specs.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="regexp_rgba_legacy" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP_<wbr>RGBA_<wbr>LEGACY</h3>
+					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>RGBA_<wbr>LEGACY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^rgba\\(\\s*${Color._NUMBER_OR_PERCENTAGE +&#x60;(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}){3}&#x60;}\\s*\\)$&#x60;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L58">Color.class.ts:58</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An immutable RegExp instance, representing a string in <a href="../enums/colorspace.html#rgb">ColorSpace.RGB</a> format.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>deprecated</dt>
+							<dd><p>Support for legacy syntax <code>rgba(r, g, b, a)</code>.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="regexp_rgb_legacy" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP_<wbr>RGB_<wbr>LEGACY</h3>
+					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>RGB_<wbr>LEGACY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^rgb\\(\\s*${Color._NUMBER_OR_PERCENTAGE +&#x60;(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}){2,3}&#x60;}\\s*\\)$&#x60;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L49">Color.class.ts:49</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An immutable RegExp instance, representing a string in <a href="../enums/colorspace.html#rgb">ColorSpace.RGB</a> format.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>deprecated</dt>
+							<dd><p>Support for legacy syntax <code>rgb(r, g, b [, a]?)</code>.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
+					<a name="_number_or_angle" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> _NUMBER_<wbr>OR_<wbr>ANGLE</h3>
+					<div class="tsd-signature tsd-kind-icon">_NUMBER_<wbr>OR_<wbr>ANGLE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;${xjs_Number_REGEXP.source.slice(1,-1)}(?:deg|grad|rad|turn)?&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L38">Color.class.ts:38</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
+					<a name="_number_or_percentage" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> _NUMBER_<wbr>OR_<wbr>PERCENTAGE</h3>
+					<div class="tsd-signature tsd-kind-icon">_NUMBER_<wbr>OR_<wbr>PERCENTAGE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;${xjs_Number_REGEXP.source.slice(1,-1)}%?&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L37">Color.class.ts:37</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="alpha" class="tsd-anchor"></a>
+					<h3>alpha</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> alpha<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L662">Color.class.ts:662</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the alpha (opacity) of this color.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="blue" class="tsd-anchor"></a>
+					<h3>blue</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> blue<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L657">Color.class.ts:657</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the blue channel of this color.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="cmyk" class="tsd-anchor"></a>
+					<h3>cmyk</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> cmyk<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L859">Color.class.ts:859</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get an array of CMYKA channels.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="cmykblack" class="tsd-anchor"></a>
+					<h3>cmyk<wbr>Black</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> cmykBlack<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L824">Color.class.ts:824</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the cmyk-black of this color.</p>
+								</div>
+								<p>The amount of Black in this color in the CMYK color space.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+							<p>the cmyk-black of this color</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="cmykcyan" class="tsd-anchor"></a>
+					<h3>cmyk<wbr>Cyan</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> cmykCyan<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L794">Color.class.ts:794</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the cmyk-cyan of this color.</p>
+								</div>
+								<p>The amount of Cyan in this color, or a subtraction of the amount of Red in this color.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+							<p>the cmyk-cyan of this color</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="cmykmagenta" class="tsd-anchor"></a>
+					<h3>cmyk<wbr>Magenta</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> cmykMagenta<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L804">Color.class.ts:804</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the cmyk-magenta of this color.</p>
+								</div>
+								<p>The amount of Magenta in this color, or a subtraction of the amount of Green in this color.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+							<p>the cmyk-magenta of this color</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="cmykyellow" class="tsd-anchor"></a>
+					<h3>cmyk<wbr>Yellow</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> cmykYellow<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L814">Color.class.ts:814</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the cmyk-yellow of this color.</p>
+								</div>
+								<p>The amount of Yellow in this color, or a subtraction of the amount of Blue in this color.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+							<p>the cmyk-yellow of this color</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="green" class="tsd-anchor"></a>
+					<h3>green</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> green<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L652">Color.class.ts:652</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the green channel of this color.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hsl" class="tsd-anchor"></a>
+					<h3>hsl</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hsl<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L845">Color.class.ts:845</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get an array of HSLA channels.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hslhue" class="tsd-anchor"></a>
+					<h3>hsl<wbr>Hue</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hslHue<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L718">Color.class.ts:718</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the hsl-hue of this color.</p>
+								</div>
+								<p>The Hue of this color. Identical to <a href="color.html#hsvhue">Color.hsvHue</a>.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
+							<p>the hsl-hue of this color</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hsllum" class="tsd-anchor"></a>
+					<h3>hsl<wbr>Lum</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hslLum<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L751">Color.class.ts:751</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the hsl-luminosity of this color.</p>
+								</div>
+								<p>How &quot;white&quot; or &quot;black&quot; the color is. A lower luminosity means the color is closer to black,
+								a higher luminosity means the color is closer to white.</p>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness">https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+							<p>the hsl-luminosity of this color.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hslsat" class="tsd-anchor"></a>
+					<h3>hsl<wbr>Sat</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hslSat<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L730">Color.class.ts:730</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the hsl-saturation of this color.</p>
+								</div>
+								<p>The amount of &quot;color&quot; in the color. A lower saturation means the color is more grayer,
+								a higher saturation means the color is more colorful.</p>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://en.wikipedia.org/wiki/HSL_and_HSV#Saturation">https://en.wikipedia.org/wiki/HSL_and_HSV#Saturation</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+							<p>the hsl-saturation of this color.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hsv" class="tsd-anchor"></a>
+					<h3>hsv</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hsv<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L838">Color.class.ts:838</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get an array of HSVA channels.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hsvhue" class="tsd-anchor"></a>
+					<h3>hsv<wbr>Hue</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hsvHue<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L670">Color.class.ts:670</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the hsv-hue of this color.</p>
+								</div>
+								<p>The HSV-space hue (in degrees) of this color, or what &quot;color&quot; this color is.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
+							<p>the hsv-hue of this color</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hsvsat" class="tsd-anchor"></a>
+					<h3>hsv<wbr>Sat</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hsvSat<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L696">Color.class.ts:696</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the hsv-saturation of this color.</p>
+								</div>
+								<p>The vividness of this color. A lower saturation means the color is closer to white,
+								a higher saturation means the color is more true to its hue.</p>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://en.wikipedia.org/wiki/HSL_and_HSV#Saturation">https://en.wikipedia.org/wiki/HSL_and_HSV#Saturation</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+							<p>the hsv-saturation of this color.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hsvval" class="tsd-anchor"></a>
+					<h3>hsv<wbr>Val</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hsvVal<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L708">Color.class.ts:708</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the hsv-value of this color.</p>
+								</div>
+								<p>The brightness of this color. A lower value means the color is closer to black, a higher
+								value means the color is more true to its hue.</p>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness">https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+							<p>the hsv-value of this color.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hwb" class="tsd-anchor"></a>
+					<h3>hwb</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hwb<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L852">Color.class.ts:852</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get an array of HWBA channels.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hwbblack" class="tsd-anchor"></a>
+					<h3>hwb<wbr>Black</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hwbBlack<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L784">Color.class.ts:784</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the hwb-black of this color.</p>
+								</div>
+								<p>The amount of Black in this color. A higher black means the color is closer to #000,
+									a lower black means the color has a true hue (more colorful).
+								Identical to <a href="color.html#cmykblack">Color.cmykBlack</a>.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+							<p>the hwb-black of this color</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hwbhue" class="tsd-anchor"></a>
+					<h3>hwb<wbr>Hue</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hwbHue<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L761">Color.class.ts:761</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the hwb-hue of this color.</p>
+								</div>
+								<p>The Hue of this color. Identical to <a href="color.html#hsvhue">Color.hsvHue</a>.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
+							<p>the hwb-hue of this color</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="hwbwhite" class="tsd-anchor"></a>
+					<h3>hwb<wbr>White</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> hwbWhite<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L772">Color.class.ts:772</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the hwb-white of this color.</p>
+								</div>
+								<p>The amount of White in this color. A higher white means the color is closer to #fff,
+								a lower white means the color has a true hue (more colorful).</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+							<p>the hwb-white of this color</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="red" class="tsd-anchor"></a>
+					<h3>red</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> red<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L647">Color.class.ts:647</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the red channel of this color.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="rgb" class="tsd-anchor"></a>
+					<h3>rgb</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> rgb<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L831">Color.class.ts:831</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get an array of RGBA channels.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">, </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">]</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="blur" class="tsd-anchor"></a>
+					<h3>blur</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">blur<span class="tsd-signature-symbol">(</span>color<span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a>, weight<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L1083">Color.class.ts:1083</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Blur another color with this color, with a given weight favoring that color.</p>
+								</div>
+								<p>This method performs a linear interpolation of each sRGB-adjusted channel of the colors.</p>
+								<p>Behaves almost exactly the same as <a href="color.html#mix-1">Color.mix</a>,
+								except that this method uses a more visually accurate, slightly brighter, mix.</p>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://www.youtube.com/watch?v=LKnqECcg6Gw" class="external">“Computer Color is Broken” by minutephysics</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>color: <a href="color.html" class="tsd-signature-type">Color</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the second color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> weight: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.5</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the weight favoring the other color</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a blur of the two given colors</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="complement" class="tsd-anchor"></a>
+					<h3>complement</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">complement<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L899">Color.class.ts:899</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the complement of this color.</p>
+								</div>
+								<p>The complement of a color amounts to a hue rotation of 180 degrees.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object that corresponds to this color’s complement</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="contrastratio" class="tsd-anchor"></a>
+					<h3>contrast<wbr>Ratio</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">contrast<wbr>Ratio<span class="tsd-signature-symbol">(</span>color<span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L1165">Color.class.ts:1165</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the <em>contrast ratio</em> between two colors.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://www.w3.org/TR/WCAG/#dfn-contrast-ratio">https://www.w3.org/TR/WCAG/#dfn-contrast-ratio</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>color: <a href="color.html" class="tsd-signature-type">Color</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the second color to check</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>the contrast ratio of this color with the argument, a number 1–21</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="darken" class="tsd-anchor"></a>
+					<h3>darken</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">darken<span class="tsd-signature-symbol">(</span>p<span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, relative<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L975">Color.class.ts:975</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a darker version of this color by a percentage.</p>
+								</div>
+								<p>A parameter of 1.0 returns black, and 0.0 returns an identical color.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>p: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the amount by which to darken this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> relative: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>should the luminosity subtracted be relative?</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object that corresponds to this color darkened by <code>p</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="desaturate" class="tsd-anchor"></a>
+					<h3>desaturate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">desaturate<span class="tsd-signature-symbol">(</span>p<span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a>, relative<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L937">Color.class.ts:937</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a less saturated version of this color by a percentage.</p>
+								</div>
+								<p>A parameter of 1.0 returns a grayscale color, and 0.0 returns an identical color.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>p: <a href="percentage.html" class="tsd-signature-type">Percentage</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the value by which to desaturate this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> relative: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>should the saturation subtracted be relative?</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object that corresponds to this color desaturated by <code>p</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="equals" class="tsd-anchor"></a>
+					<h3>equals</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>color<span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L1124">Color.class.ts:1124</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Compare this color with another color.</p>
+								</div>
+								<p>Return <code>true</code> if they are the same color.
+									Colors are the “same” iff they have exactly the same RGBA channels.
+								Thus, “same” colors are “replaceable”.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>color: <a href="color.html" class="tsd-signature-type">Color</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a Color object</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>is the argument the “same” color as this color?</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="fadein" class="tsd-anchor"></a>
+					<h3>fade<wbr>In</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">fade<wbr>In<span class="tsd-signature-symbol">(</span>p<span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, relative<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L1005">Color.class.ts:1005</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a less faded (larger alpha) version of this color.</p>
+								</div>
+								<p>A parameter of 1.0 returns full opaqueness, and 0.0 returns an identical color.
+								Set <code>relative = true</code> to specify the amount as relative to the color’s current opacity.</p>
+								<p>For example, if <code>$color</code> has an alpha of 0.5, then calling <code>$color.fadeIn(0.5)</code> will return
+									a new color with an alpha of 1.0, because the argument 0.5 is simply added to the color’s alpha.
+									However, calling <code>$color.fadeIn(0.5, true)</code> will return a new color with an alpha of 0.75,
+									because the argument 0.5, relative to the color’s current alpha of 0.5, results in
+								an added alpha of 0.25.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>p: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the amount by which to fade in this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> relative: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>should the alpha added be relative?</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object that corresponds to this color faded in by <code>p</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="fadeout" class="tsd-anchor"></a>
+					<h3>fade<wbr>Out</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">fade<wbr>Out<span class="tsd-signature-symbol">(</span>p<span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, relative<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L1023">Color.class.ts:1023</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a more faded (smaller alpha) version of this color.</p>
+								</div>
+								<p>A parameter of 1.0 returns transparent, and 0.0 returns an identical color.
+								Set <code>relative = true</code> to specify the amount as relative to the color’s current opacity.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>p: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the amount by which to fade out this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> relative: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>should the alpha subtracted be relative?</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object that corresponds to this color faded out by <code>p</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="invert" class="tsd-anchor"></a>
+					<h3>invert</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">invert<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L869">Color.class.ts:869</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the inversion of this color, preserving alpha.</p>
+								</div>
+								<p>The inversion of a color is the difference between that color and white.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object that corresponds to this color’s inversion</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="lighten" class="tsd-anchor"></a>
+					<h3>lighten</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">lighten<span class="tsd-signature-symbol">(</span>p<span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, relative<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L958">Color.class.ts:958</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a lighter version of this color by a percentage.</p>
+								</div>
+								<p>This method calculates with luminosity in the HSL space.
+									A parameter of 1.0 returns white, and 0.0 returns an identical color.
+								Set <code>relative = true</code> to specify the amount as relative to the color’s current luminosity.</p>
+								<p>For example, if <code>$color</code> has an HSL-lum of 0.5, then calling <code>$color.lighten(0.5)</code> will return
+									a new color with an HSL-lum of 1.0, because the argument 0.5 is simply added to the color’s luminosity.
+									However, calling <code>$color.lighten(0.5, true)</code> will return a new color with an HSL-lum of 0.75,
+									because the argument 0.5, relative to the color’s current luminosity of 0.5, results in
+								an added luminosity of 0.25.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>p: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the amount by which to lighten this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> relative: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>should the luminosity added be relative?</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object that corresponds to this color lightened by <code>p</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="mix" class="tsd-anchor"></a>
+					<h3>mix</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">mix<span class="tsd-signature-symbol">(</span>color<span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a>, weight<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L1041">Color.class.ts:1041</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Mix (average) another color with this color, with a given weight favoring that color.</p>
+								</div>
+								<p>This method performs a linear interpolation of each channel of the colors.</p>
+								<p>If <code>weight == 0.0</code>, return exactly this color.
+									<code>weight == 1.0</code> return exactly the other color.
+									<code>weight == 0.5</code> (default if omitted) return a perfectly even mix.
+									In other words, <code>weight</code> is &quot;how much of the other color you want.&quot;
+								Note that <code>color1.mix(color2, weight)</code> returns the same result as <code>color2.mix(color1, 1-weight)</code>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>color: <a href="color.html" class="tsd-signature-type">Color</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the second color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> weight: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.5</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the weight favoring the other color</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a mix of the two given colors</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L1176">Color.class.ts:1176</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a string name of this color, if one exists.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://www.w3.org/TR/css-color-4/#named-colors" class="external">Named Colors | CSS Color Module Level 4</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+							<p>the name of this color, else <code>null</code> if it does not have one</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="negate" class="tsd-anchor"></a>
+					<h3>negate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">negate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L985">Color.class.ts:985</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a new color with the complemented alpha of this color.</p>
+								</div>
+								<p>E.g. an alpha of 0.7, complemented, is 0.3 (the complement with 1.0).</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object with the same color but complemented alpha</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="relativeluminance" class="tsd-anchor"></a>
+					<h3>relative<wbr>Luminance</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">relative<wbr>Luminance<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L1151">Color.class.ts:1151</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the <em>relative luminance</em> of this color.</p>
+								</div>
+								<p>The relative luminance of a color is the perceived brightness of that color.
+									Note that this is different from the actual luminosity of the color.
+									For examle, lime (<code>#00ff00</code>) and blue (<code>#0000ff</code>) both have a luminosity of 0.5,
+									even though lime is perceived to be much brighter than blue.
+								In fact, the relative luminance of lime is 0.72 — about ten times that of blue’s, which is only 0.07.</p>
+								<p>In this method, alpha is ignored, that is, the color is assumed to be opaque.</p>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://www.w3.org/TR/WCAG21/#dfn-relative-luminance">https://www.w3.org/TR/WCAG21/#dfn-relative-luminance</a></p>
+									</dd>
+									<dt>see</dt>
+									<dd><p><a href="https://en.wikipedia.org/wiki/Relative_luminance#Relative_luminance_in_colorimetric_spaces">https://en.wikipedia.org/wiki/Relative_luminance#Relative_luminance_in_colorimetric_spaces</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>the relative luminance of this color, a number 0–1</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="rotate" class="tsd-anchor"></a>
+					<h3>rotate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">rotate<span class="tsd-signature-symbol">(</span>theta<span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L884">Color.class.ts:884</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a hue-rotation of this color, preserving alpha.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>theta: <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the angle to rotate, or a number of degrees</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object corresponding to this color rotated by <code>theta</code> degrees</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="saturate" class="tsd-anchor"></a>
+					<h3>saturate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">saturate<span class="tsd-signature-symbol">(</span>p<span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, relative<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L920">Color.class.ts:920</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a more saturated (more colorful) version of this color by a percentage.</p>
+								</div>
+								<p>This method calculates saturation in the HSL space.
+									A parameter of 1.0 returns a color with full saturation, and 0.0 returns an identical color.
+								Set <code>relative = true</code> to specify the amount as relative to the color’s current saturation.</p>
+								<p>For example, if <code>$color</code> has an HSL-sat of 0.5, then calling <code>$color.saturate(0.5)</code> will return
+									a new color with an HSL-sat of 1.0, because the argument 0.5 is simply added to the color’s saturation.
+									However, calling <code>$color.saturate(0.5, true)</code> will return a new color with an HSL-sat of 0.75,
+									because the argument 0.5, relative to the color’s current saturation of 0.5, results in
+								an added saturation of 0.25.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>p: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the value by which to saturate this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> relative: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>should the saturation added be relative?</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object that corresponds to this color saturated by <code>p</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="tostring" class="tsd-anchor"></a>
+					<h3>to<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span>space<span class="tsd-signature-symbol">?: </span><a href="../enums/colorspace.html" class="tsd-signature-type">ColorSpace</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L614">Color.class.ts:614</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a string representation of this color.</p>
+								</div>
+								<p>If the alpha of this color is 1, then the string returned will represent an opaque color,
+									<code>hsv(h s v)</code>, <code>hsl(h s l)</code>, etc.
+									Otherwise, the string returned will represent a translucent color,
+								<code>hsv(h s v / a)</code>, <code>hsl(h s l / a)</code>, etc.</p>
+								<p>The format of the numbers returned will be as follows. The default format is <a href="../enums/colorspace.html#hex">ColorSpace.HEX</a>.</p>
+								<ul>
+									<li>all HEX values will be base 16 integers in [00,FF], two digits</li>
+									<li>HSV/HSL/HWB-hue values will be base 10 decimals in [0,360) rounded to the nearest 0.1</li>
+									<li>HSV/HSL-sat/val/lum, HWB-white/black, and CMYK-cyan/magenta/yellow/black values will be base 10 decimals in [0,1] rounded to the nearest 0.01</li>
+									<li>all RGB values will be base 10 integers in [0,255], one to three digits</li>
+									<li>all alpha values will be base 10 decimals in [0,1], rounded to the nearest 0.001</li>
+								</ul>
+								<dl class="tsd-comment-tags">
+									<dt>override</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> space: <a href="../enums/colorspace.html" class="tsd-signature-type">ColorSpace</a><span class="tsd-signature-symbol"> =&nbsp;ColorSpace.HEX</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>represents the space in which this color exists</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>a string representing this color</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+					<a name="_compoundopacity" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> _compound<wbr>Opacity</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">_compound<wbr>Opacity<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>alphas<span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L159">Color.class.ts:159</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calculate the alpha of several overlapping translucent colors.</p>
+								</div>
+								<p>For three overlapping colors with respective alphas <code>a</code>, <code>b</code> and <code>c</code>,
+								the compounded alpha will be <code>1  -  (1 - a)*(1 - b)*(1 - c)</code>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>alphas: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the alphas to compound</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+							<p>the compounded alpha</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+					<a name="_compoundopacityweighted" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> _compound<wbr>Opacity<wbr>Weighted</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">_compound<wbr>Opacity<wbr>Weighted<span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a>, a2<span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a>, w<span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L148">Color.class.ts:148</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calculate the weighed compound opacity of two or more overlapping translucent colors.</p>
+								</div>
+								<p>For two overlapping colors with respective alphas <code>a</code> and <code>b</code>,
+									the compounded alpha of an even mix will be <code>1  -  (1 - a)*(1 - b)</code>
+									(equivalent to <code>1  -  ((1-a)**0.5 * (1-b)**0.5)  **  2</code>).
+									For an uneven mix, a weight 0.75 favoring a2, it will be
+								<code>1  -  ((1-a)**0.25 * (1-b)**0.75)  **  2</code>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>a1: <a href="percentage.html" class="tsd-signature-type">Percentage</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the first alpha value</p>
+									</div>
+								</li>
+								<li>
+									<h5>a2: <a href="percentage.html" class="tsd-signature-type">Percentage</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the second alpha value</p>
+									</div>
+								</li>
+								<li>
+									<h5>w: <a href="percentage.html" class="tsd-signature-type">Percentage</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the weight favoring the second alpha</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+							<p>the compounded alpha</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+					<a name="_linear_srgb" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> _linear_<wbr>sRGB</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">_linear_<wbr>sRGB<span class="tsd-signature-symbol">(</span>c_lin<span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L186">Color.class.ts:186</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the inverse of <a href="color.html#_srgb_linear">Color.<em>sRGB</em>Linear</a>.</p>
+								</div>
+								<p>Approximately, the square root of the value: <code>(x) =&gt; Math.sqrt(x)</code>.</p>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://www.w3.org/Graphics/Color/sRGB.html">https://www.w3.org/Graphics/Color/sRGB.html</a></p>
+									</dd>
+									<dt>see</dt>
+									<dd><p><a href="https://en.wikipedia.org/wiki/SRGB#The_forward_transformation_(CIE_XYZ_to_sRGB)">https://en.wikipedia.org/wiki/SRGB#The_forward_transformation_(CIE_XYZ_to_sRGB)</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>c_lin: <a href="percentage.html" class="tsd-signature-type">Percentage</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a perceived luminance (linear) of a color’s rgb component</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+							<p>the transformed sRGB value</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+					<a name="_srgb_linear" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> _sRGB_<wbr><wbr>Linear</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">_sRGB_<wbr><wbr>Linear<span class="tsd-signature-symbol">(</span>c_srgb<span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L173">Color.class.ts:173</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Transform an sRGB channel value (gamma-corrected) to a linear value.</p>
+								</div>
+								<p>Approximately, the square of the value: <code>(x) =&gt; x * x</code>.</p>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://www.w3.org/Graphics/Color/sRGB.html">https://www.w3.org/Graphics/Color/sRGB.html</a></p>
+									</dd>
+									<dt>see</dt>
+									<dd><p><a href="https://en.wikipedia.org/wiki/SRGB#The_reverse_transformation">https://en.wikipedia.org/wiki/SRGB#The_reverse_transformation</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>c_srgb: <a href="percentage.html" class="tsd-signature-type">Percentage</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an rgb component of a color</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="percentage.html" class="tsd-signature-type">Percentage</a></h4>
+							<p>the transformed linear value</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="blur-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> blur</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">blur<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>colors<span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L518">Color.class.ts:518</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Blur two or more colors. The average will be weighted evenly.</p>
+								</div>
+								<p>This method performs the arithmetic mean of each sRGB-adjusted channel of the colors.</p>
+								<p>Behaves almost exactly the same as <a href="color.html#mix-1">Color.mix</a>,
+								except that this method uses a more visually accurate, slightly brighter, mix.</p>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p>Color.blur</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>colors: <a href="color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>several Colors to blur</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a blur of the given colors</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="fromcmyk" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> fromCMYK</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">fromCMYK<span class="tsd-signature-symbol">(</span>cyan<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, magenta<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, yellow<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, black<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, alpha<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L308">Color.class.ts:308</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a new Color object, given cyan, magenta, yellow, and black in CMYK-space.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://www.w3.org/TR/css-color-4/#cmyk-rgb">https://www.w3.org/TR/css-color-4/#cmyk-rgb</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> cyan: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the CMYK-cyan    channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> magenta: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the CMYK-magenta channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> yellow: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the CMYK-yellow  channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> black: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the CMYK-black   channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> alpha: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the alpha        channel of this color</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object with cmyka(cyan, magenta, yellow, black, alpha)</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="fromhsl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> fromHSL</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">fromHSL<span class="tsd-signature-symbol">(</span>hue<span class="tsd-signature-symbol">?: </span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, sat<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, lum<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, alpha<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L247">Color.class.ts:247</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a new Color object, given hue, saturation, and luminosity in HSL-space.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://www.w3.org/TR/css-color-4/#hsl-to-rgb">https://www.w3.org/TR/css-color-4/#hsl-to-rgb</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> hue: <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the HSL-hue channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> sat: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the HSL-sat channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> lum: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the HSL-lum channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> alpha: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the alpha channel of this color</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object with hsla(hue, sat, lum, alpha)</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="fromhsv" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> fromHSV</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">fromHSV<span class="tsd-signature-symbol">(</span>hue<span class="tsd-signature-symbol">?: </span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, sat<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, val<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, alpha<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L215">Color.class.ts:215</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a new Color object, given hue, saturation, and value in HSV-space.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> hue: <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the HSV-hue channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> sat: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the HSV-sat channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> val: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the HSV-val channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> alpha: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the alpha channel of this color</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object with hsva(hue, sat, val, alpha)</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="fromhwb" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> fromHWB</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">fromHWB<span class="tsd-signature-symbol">(</span>hue<span class="tsd-signature-symbol">?: </span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, white<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, black<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, alpha<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L279">Color.class.ts:279</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a new Color object, given hue, white, and black in HWB-space.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://www.w3.org/TR/css-color-4/#hwb-to-rgb">https://www.w3.org/TR/css-color-4/#hwb-to-rgb</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> hue: <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the HWB-hue   channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> white: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the HWB-white channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> black: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the HWB-black channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> alpha: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the alpha     channel of this color</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object with hwba(hue, white, black, alpha)</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="fromrgb" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> fromRGB</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">fromRGB<span class="tsd-signature-symbol">(</span>red<span class="tsd-signature-symbol">?: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, green<span class="tsd-signature-symbol">?: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, blue<span class="tsd-signature-symbol">?: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, alpha<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L200">Color.class.ts:200</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a new Color object, given red, green, and blue, in RGB-space, where
+									each color channel is an integer 0–255.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> red: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the RGB-red   channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> green: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the RGB-green channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> blue: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the RGB-blue  channel of this color</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> alpha: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the alpha channel of this color</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object with rgba(red, green, blue, alpha)</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="fromstring" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> from<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">from<wbr>String<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L369">Color.class.ts:369</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a new Color object, given a string.</p>
+								</div>
+								<p>The string must have one of the following formats (spaces optional):</p>
+								<ul>
+									<li><code>#rrggbb</code></li>
+									<li><code>#rrggbbaa</code></li>
+									<li><code>#rgb</code></li>
+									<li><code>#rgba</code></li>
+									<li><code>rgb(r, g, b)</code>         — DEPRECATED</li>
+									<li><code>rgb(r, g, b, a)</code>      — DEPRECATED</li>
+									<li><code>rgba(r, g, b, a)</code>     — DEPRECATED</li>
+									<li><code>rgb(r g b)</code></li>
+									<li><code>rgb(r g b / a)</code></li>
+									<li><code>hsv(h, s, v)</code>         — DEPRECATED</li>
+									<li><code>hsv(h, s, v, a)</code>      — DEPRECATED</li>
+									<li><code>hsva(h, s, v, a)</code>     — DEPRECATED</li>
+									<li><code>hsv(h s v)</code></li>
+									<li><code>hsv(h s v / a)</code></li>
+									<li><code>hsl(h, s, l)</code>         — DEPRECATED</li>
+									<li><code>hsl(h, s, l, a)</code>      — DEPRECATED</li>
+									<li><code>hsla(h, s, l, a)</code>     — DEPRECATED</li>
+									<li><code>hsl(h s l)</code></li>
+									<li><code>hsl(h s l / a)</code></li>
+									<li><code>hwb(h, w, b)</code>         — DEPRECATED</li>
+									<li><code>hwb(h, w, b, a)</code>      — DEPRECATED</li>
+									<li><code>hwba(h, w, b, a)</code>     — DEPRECATED</li>
+									<li><code>hwb(h w b)</code></li>
+									<li><code>hwb(h w b / a)</code></li>
+									<li><code>cmyk(c, m, y, k)</code>     — DEPRECATED</li>
+									<li><code>cmyk(c, m, y, k, a)</code>  — DEPRECATED</li>
+									<li><code>cmyka(c, m, y, k, a)</code> — DEPRECATED</li>
+									<li><code>cmyk(c m y k)</code></li>
+									<li><code>cmyk(c m y k / a)</code></li>
+									<li><em>any exact string match of a named color</em></li>
+								</ul>
+								<p>Note that the comma-separated value syntax, while still supported, is deprecated.
+									Authors should convert to the new space-separated value syntax, as specified in
+									<a href="https://drafts.csswg.org/css-color/" class="external">CSS Color Module Level 4, Editor’s Draft</a>.
+								Deprecated syntax will become obsolete in an upcoming major version.</p>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://www.w3.org/TR/css-color-4/#named-colors" class="external">Named Colors | CSS Color Module Level 4</a></p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p>{RangeError} if the string given is not a valid format</p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p>{ReferenceError} if the color name given was not found</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> str: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a string of one of the forms described</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a new Color object constructed from the given string</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="mix-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> mix</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">mix<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>colors<span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L485">Color.class.ts:485</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Mix two or more colors. The average will be weighted evenly.</p>
+								</div>
+								<p>This method performs the arithmetic mean of each channel of the colors.</p>
+								<p>If two colors <code>a</code> and <code>b</code> are given, calling this static method, <code>Color.mix([a, b])</code>,
+									is equivalent to calling <code>a.mix(b)</code> without a weight.
+									However, calling <code>Color.mix([a, b, c])</code> with 3 or more colors yields an even mix,
+									and will <em>not</em> yield the same results as calling <code>a.mix(b).mix(c)</code>, which yields an uneven mix.
+									Note that the order of the given colors does not change the result, that is,
+								<code>Color.mix([a, b, c])</code> returns the same result as <code>Color.mix([c, b, a])</code>.</p>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p>Color.mix</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>colors: <a href="color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>several Colors to mix</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a mix of the given colors</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="random" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> random</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">random<span class="tsd-signature-symbol">(</span>alpha<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L547">Color.class.ts:547</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generate a random color.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> alpha: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>should the alpha channel also be randomized? (if false, default alpha value is 1)</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>a Color object with random values</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="randomname" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> random<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">random<wbr>Name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Color.class.ts#L555">Color.class.ts:555</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Randomly select a Named Color.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+							<p>one of the Named Colors, randomly chosen</p>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="../enums/angleunit.html" class="tsd-kind-icon">Angle<wbr>Unit</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/colorspace.html" class="tsd-kind-icon">Color<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="angle.html" class="tsd-kind-icon">Angle</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="color.html" class="tsd-kind-icon">Color</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="color.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="color.html#_alpha" class="tsd-kind-icon">_ALPHA</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="color.html#_blue" class="tsd-kind-icon">_BLUE</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="color.html#_chroma" class="tsd-kind-icon">_CHROMA</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="color.html#_green" class="tsd-kind-icon">_GREEN</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="color.html#_max" class="tsd-kind-icon">_MAX</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="color.html#_min" class="tsd-kind-icon">_MIN</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="color.html#_red" class="tsd-kind-icon">_RED</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#regexp_cmyk" class="tsd-kind-icon">REGEXP_<wbr>CMYK</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#regexp_cmyka_legacy" class="tsd-kind-icon">REGEXP_<wbr>CMYKA_<wbr>LEGACY</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#regexp_cmyk_legacy" class="tsd-kind-icon">REGEXP_<wbr>CMYK_<wbr>LEGACY</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#regexp_hex" class="tsd-kind-icon">REGEXP_<wbr>HEX</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#regexp_hue" class="tsd-kind-icon">REGEXP_<wbr>HUE</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#regexp_huea_legacy" class="tsd-kind-icon">REGEXP_<wbr>HUEA_<wbr>LEGACY</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#regexp_hue_legacy" class="tsd-kind-icon">REGEXP_<wbr>HUE_<wbr>LEGACY</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#regexp_rgb" class="tsd-kind-icon">REGEXP_<wbr>RGB</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#regexp_rgba_legacy" class="tsd-kind-icon">REGEXP_<wbr>RGBA_<wbr>LEGACY</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#regexp_rgb_legacy" class="tsd-kind-icon">REGEXP_<wbr>RGB_<wbr>LEGACY</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
+								<a href="color.html#_number_or_angle" class="tsd-kind-icon">_NUMBER_<wbr>OR_<wbr>ANGLE</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
+								<a href="color.html#_number_or_percentage" class="tsd-kind-icon">_NUMBER_<wbr>OR_<wbr>PERCENTAGE</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#alpha" class="tsd-kind-icon">alpha</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#blue" class="tsd-kind-icon">blue</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#cmyk" class="tsd-kind-icon">cmyk</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#cmykblack" class="tsd-kind-icon">cmyk<wbr>Black</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#cmykcyan" class="tsd-kind-icon">cmyk<wbr>Cyan</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#cmykmagenta" class="tsd-kind-icon">cmyk<wbr>Magenta</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#cmykyellow" class="tsd-kind-icon">cmyk<wbr>Yellow</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#green" class="tsd-kind-icon">green</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#hsl" class="tsd-kind-icon">hsl</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#hslhue" class="tsd-kind-icon">hsl<wbr>Hue</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#hsllum" class="tsd-kind-icon">hsl<wbr>Lum</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#hslsat" class="tsd-kind-icon">hsl<wbr>Sat</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#hsv" class="tsd-kind-icon">hsv</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#hsvhue" class="tsd-kind-icon">hsv<wbr>Hue</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#hsvsat" class="tsd-kind-icon">hsv<wbr>Sat</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#hsvval" class="tsd-kind-icon">hsv<wbr>Val</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#hwb" class="tsd-kind-icon">hwb</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#hwbblack" class="tsd-kind-icon">hwb<wbr>Black</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#hwbhue" class="tsd-kind-icon">hwb<wbr>Hue</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#hwbwhite" class="tsd-kind-icon">hwb<wbr>White</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#red" class="tsd-kind-icon">red</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="color.html#rgb" class="tsd-kind-icon">rgb</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#blur" class="tsd-kind-icon">blur</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#complement" class="tsd-kind-icon">complement</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#contrastratio" class="tsd-kind-icon">contrast<wbr>Ratio</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#darken" class="tsd-kind-icon">darken</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#desaturate" class="tsd-kind-icon">desaturate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#equals" class="tsd-kind-icon">equals</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#fadein" class="tsd-kind-icon">fade<wbr>In</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#fadeout" class="tsd-kind-icon">fade<wbr>Out</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#invert" class="tsd-kind-icon">invert</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#lighten" class="tsd-kind-icon">lighten</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#mix" class="tsd-kind-icon">mix</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#negate" class="tsd-kind-icon">negate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#relativeluminance" class="tsd-kind-icon">relative<wbr>Luminance</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#rotate" class="tsd-kind-icon">rotate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#saturate" class="tsd-kind-icon">saturate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="color.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+								<a href="color.html#_compoundopacity" class="tsd-kind-icon">_compound<wbr>Opacity</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+								<a href="color.html#_compoundopacityweighted" class="tsd-kind-icon">_compound<wbr>Opacity<wbr>Weighted</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+								<a href="color.html#_linear_srgb" class="tsd-kind-icon">_linear_<wbr>sRGB</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+								<a href="color.html#_srgb_linear" class="tsd-kind-icon">_sRGB_<wbr><wbr>Linear</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#blur-1" class="tsd-kind-icon">blur</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#fromcmyk" class="tsd-kind-icon">fromCMYK</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#fromhsl" class="tsd-kind-icon">fromHSL</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#fromhsv" class="tsd-kind-icon">fromHSV</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#fromhwb" class="tsd-kind-icon">fromHWB</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#fromrgb" class="tsd-kind-icon">fromRGB</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#fromstring" class="tsd-kind-icon">from<wbr>String</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#mix-1" class="tsd-kind-icon">mix</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#random" class="tsd-kind-icon">random</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="color.html#randomname" class="tsd-kind-icon">random<wbr>Name</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-class">
+						<a href="integer.html" class="tsd-kind-icon">Integer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="percentage.html" class="tsd-kind-icon">Percentage</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#names" class="tsd-kind-icon">NAMES</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#xjs_number_regexp" class="tsd-kind-icon">xjs_<wbr><wbr>Number_<wbr>REGEXP</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

@@ -1,17 +1,16 @@
 import * as xjs from 'extrajs'
-import Percentage from './Percentage.class'
 
-// TODO update extrajs@0.15.0+
-function xjs_Number_approx(x: number, y: number, epsilon: number = Number.EPSILON): boolean {
-	return Math.abs(x - y) < epsilon
-}
+// TODO: move to xjs.Number
+const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
+
+import Percentage from './Percentage.class'
 
 
 /**
- * A list of possible angle units.
- * @see https://drafts.csswg.org/css-values-3/#angles
+ * A list of possible Angle units.
+ * @see https://www.w3.org/TR/css-values/#angles
  */
-enum Unit {
+export enum AngleUnit {
 	/** Degrees. There are 360 degrees in a full circle. */
 	DEG,
 	/** Gradians, also known as "gons" or "grades". There are 400 gradians in a full circle. */
@@ -28,6 +27,7 @@ enum Unit {
  *
  * In geometry, an angle is a pair of rays that share a vertex.
  * This class encodes the measurement of such a figure.
+ *
  * An Angle is represented by a unitless number within the interval `[0, 1)`,
  * but can manifest in units such as *degrees*, *radians*, and *turns*.
  * Angles can also be added, subtracted, and scaled.
@@ -66,12 +66,17 @@ export default class Angle extends Number {
 	 *
 	 * The value assigned to each unit is the number of units in one full circle.
 	 */
-	static readonly CONVERSION: { readonly [index in Unit]: number } = {
-		[Unit.DEG ]: 360,
-		[Unit.GRAD]: 400,
-		[Unit.RAD ]: 2 * Math.PI,
-		[Unit.TURN]: 1,
+	static readonly CONVERSION: { readonly [index in AngleUnit]: number } = {
+		[AngleUnit.DEG ]: 360,
+		[AngleUnit.GRAD]: 400,
+		[AngleUnit.RAD ]: 2 * Math.PI,
+		[AngleUnit.TURN]: 1,
 	}
+
+	/**
+	 * An immutable RegExp instance, representing a string in Angle format.
+	 */
+	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}(?:deg|grad|rad|turn)$`)
 
 	/**
 	 * Return the maximum of two or more Angles.
@@ -102,7 +107,7 @@ export default class Angle extends Number {
 	static asin(x: number): Angle {
 		xjs.Number.assertType(x)
 		if (x < -1 || 1 < x) throw new RangeError(`Argument ${x} is outside of \`asin\` domain \`[-1,1]\`.`)
-		return new Angle(Math.asin(x) / Angle.CONVERSION[Unit.RAD])
+		return new Angle(Math.asin(x) / Angle.CONVERSION[AngleUnit.RAD])
 	}
 
 	/**
@@ -114,7 +119,7 @@ export default class Angle extends Number {
 	static acos(x: number): Angle {
 		xjs.Number.assertType(x)
 		if (x < -1 || 1 < x) throw new RangeError(`Argument ${x} is outside of \`acos\` domain \`[-1,1]\`.`)
-		return new Angle(Math.acos(x) / Angle.CONVERSION[Unit.RAD])
+		return new Angle(Math.acos(x) / Angle.CONVERSION[AngleUnit.RAD])
 	}
 
 	/**
@@ -124,7 +129,7 @@ export default class Angle extends Number {
 	 */
 	static atan(x: number): Angle {
 		xjs.Number.assertType(x)
-		return new Angle(Math.atan(x) / Angle.CONVERSION[Unit.RAD])
+		return new Angle(Math.atan(x) / Angle.CONVERSION[AngleUnit.RAD])
 	}
 
 	/**
@@ -152,6 +157,24 @@ export default class Angle extends Number {
 	 */
 	static acot(x: number): Angle {
 		return Angle.atan(1 / x)
+	}
+
+	/**
+	 * Parse a string of the form `'‹n›‹u›'`, where `‹n›` is a number and `‹u›` is an angle unit.
+	 * @param   str the string to parse
+	 * @returns a new Angle emulating the string
+	 * @throws  {RangeError} if the string given is not of the correct format
+	 */
+	static fromString(str: string): Angle {
+		if (!Angle.REGEXP.test(str)) throw new RangeError(`Invalid string format: '${str}'.`)
+		let numeric_part: number = +str.match(xjs_Number_REGEXP.source.slice(1,-1)) ![0]
+		let unit_part   : string =  str.match(/deg|grad|rad|turn/                 ) ![0]
+		return new Angle(xjs.Object.switch<number>(unit_part, {
+			'deg'  : () => numeric_part / Angle.CONVERSION[AngleUnit.DEG ],
+			'grad' : () => numeric_part / Angle.CONVERSION[AngleUnit.GRAD],
+			'rad'  : () => numeric_part / Angle.CONVERSION[AngleUnit.RAD ],
+			'turn' : () => numeric_part / Angle.CONVERSION[AngleUnit.TURN],
+		})())
 	}
 
 
@@ -232,7 +255,7 @@ export default class Angle extends Number {
 	 * @returns `sin(this)`
 	 */
 	get sin(): number {
-		return Math.sin(this.convert(Unit.RAD))
+		return Math.sin(this.convert(AngleUnit.RAD))
 	}
 
 	/**
@@ -240,7 +263,7 @@ export default class Angle extends Number {
 	 * @returns `cos(this)`
 	 */
 	get cos(): number {
-		return Math.cos(this.convert(Unit.RAD))
+		return Math.cos(this.convert(AngleUnit.RAD))
 	}
 
 	/**
@@ -248,7 +271,7 @@ export default class Angle extends Number {
 	 * @returns `tan(this)`
 	 */
 	get tan(): number {
-		return Math.tan(this.convert(Unit.RAD))
+		return Math.tan(this.convert(AngleUnit.RAD))
 	}
 
 	/**
@@ -276,9 +299,9 @@ export default class Angle extends Number {
 	}
 
 	/** @override */
-	toString(radix?: number, unit?: Unit): string {
+	toString(radix?: number, unit?: AngleUnit): string {
 		return (unit) ?
-			`${this.convert(unit).toString(radix)}${Unit[unit].toLowerCase()}` :
+			`${this.convert(unit).toString(radix)}${AngleUnit[unit].toLowerCase()}` :
 			super.toString(radix)
 	}
 
@@ -288,7 +311,7 @@ export default class Angle extends Number {
 	 * @returns does this Angle equal the argument?
 	 */
 	equals(angle: Angle|number): boolean {
-		return (angle instanceof Angle) ? xjs_Number_approx(this.valueOf(), angle.valueOf()) : this.equals(new Angle(angle))
+		return (this === angle) || ((angle instanceof Angle) ? xjs.Math.approx(this.valueOf(), angle.valueOf()) : this.equals(new Angle(angle)))
 	}
 
 	/**
@@ -297,7 +320,8 @@ export default class Angle extends Number {
 	 * @returns is this Angle strictly less than the argument?
 	 */
 	lessThan(angle: Angle|number): boolean {
-		return (this.equals(angle)) ? false : (angle instanceof Angle) ? this.valueOf() < angle.valueOf() : this.lessThan(new Angle(angle))
+		if (this.equals(angle)) return false // accommodate for approximations
+		return (angle instanceof Angle) ? this.valueOf() < angle.valueOf() : this.lessThan(new Angle(angle))
 	}
 
 	/**
@@ -312,8 +336,10 @@ export default class Angle extends Number {
 	 * @param   max the upper bound
 	 * @returns `Angle.min(Angle.max(min, this), max)`
 	 */
-	clamp(min: Angle, max: Angle): Angle {
-		return (min.lessThan(max) || min.equals(max)) ? Angle.min(Angle.max(min, this), max) : this.clamp(max, min)
+	clamp(min: Angle|number = 0, max: Angle|number = 1): Angle {
+		return (min instanceof Angle && max instanceof Angle) ?
+			(min.lessThan(max) || min.equals(max)) ? Angle.min(Angle.max(min, this), max) : this.clamp(max, min) :
+			this.clamp(new Angle(min), new Angle(max))
 	}
 
 	/**
@@ -346,7 +372,7 @@ export default class Angle extends Number {
 	 * If the scale factor is <1, returns a new Angle "more acute"  than this Angle.
 	 * If the scale factor is >1, returns a new Angle "more obtuse" than this Angle.
 	 * If the scale factor is =1, returns a new Angle equal to           this Angle.
-	 * @param   scalar the non-negative scale factor
+	 * @param   scalar the scale factor
 	 * @returns a new Angle representing the product
 	 */
 	scale(scalar: Percentage|number = 1): Angle {
@@ -360,7 +386,7 @@ export default class Angle extends Number {
 	 * @param   unit the unit to convert to
 	 * @returns the numeric value of the measure of this Angle
 	 */
-	convert(unit: Unit): number {
+	convert(unit: AngleUnit): number {
 		return this.valueOf() * Angle.CONVERSION[unit]
 	}
 }
