@@ -4,8 +4,6 @@ import test from './test'
 
 export default Promise.all([
 	test(Color.fromString(            ).toString(), '#00000000'),
-	test(Color.fromString('#e4f0f6'   ).toString(ColorSpace.HWB), 'hwb(200deg 89% 4%)'),
-	test(Color.fromString('#e4f0f680' ).toString(ColorSpace.HSL), 'hsl(200deg 50% 93% / 0.502)'),
 	test(Color.fromString('#e4f'      ).toString(), '#ee44ff'),
 	test(Color.fromString('#6a43'     ).toString(), '#66aa4433'),
 	test(Color.fromString('rgb(0,0,0)').toString(), '#000000'),

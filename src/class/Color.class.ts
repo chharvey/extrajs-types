@@ -252,7 +252,7 @@ export default class Color {
 			else if (!hue.lessThan(3/6) && hue.lessThan(4/6)) { rgb = [0, x, c] }
 			else if (!hue.lessThan(4/6) && hue.lessThan(5/6)) { rgb = [x, 0, c] }
 			else if (!hue.lessThan(5/6) && hue.lessThan(6/6)) { rgb = [c, 0, x] }
-			return new Color(...rgb.map((c) => new Fraction(Math.max(c + m, 1))), alpha)
+			return new Color(...rgb.map((c) => new Fraction(Math.min(c + m, 1))), alpha)
 		})() : Color.fromHSV(
 			new Angle(hue),
 			new Fraction(sat),
@@ -284,7 +284,7 @@ export default class Color {
 			else if (!hue.lessThan(3/6) && hue.lessThan(4/6)) { rgb = [0, x, c] }
 			else if (!hue.lessThan(4/6) && hue.lessThan(5/6)) { rgb = [x, 0, c] }
 			else if (!hue.lessThan(5/6) && hue.lessThan(6/6)) { rgb = [c, 0, x] }
-			return new Color(...rgb.map((c) => new Fraction(Math.max(c + m, 1))), alpha)
+			return new Color(...rgb.map((c) => new Fraction(Math.min(c + m, 1))), alpha)
 		})() : Color.fromHSL(
 			new Angle(hue),
 			new Fraction(sat),
@@ -307,7 +307,7 @@ export default class Color {
 		return (hue instanceof Angle && white instanceof Fraction && black instanceof Fraction && alpha instanceof Fraction) ? (() => {
 			const [w, b]: number[] = [white, black].map((p) => p.valueOf())
 			let rgb: Fraction[] = Color.fromHSL(hue, new Fraction(1), new Fraction(0.5)).rgb.slice(0, 3)
-				.map((c) => new Fraction(Math.max(c.valueOf() * (1 - w - b) + w, 1)))
+				.map((c) => new Fraction(Math.min(c.valueOf() * (1 - w - b) + w, 1)))
 			return new Color(...rgb, alpha)
 		})() : Color.fromHWB(
 			new Angle(hue),
