@@ -56,7 +56,7 @@ export default abstract class Percentage {
 	 * @param   radix the base of the numerical value
 	 * @returns roughly, `(value * 100).toString() + '%'`
 	 */
-	static toString(value: number, radix: number = 10): string {
+	static stringify(value: number, radix: number = 10): string {
 		return `${(radix**2 * value).toString(radix)}%`
 	}
 }

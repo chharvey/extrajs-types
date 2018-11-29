@@ -583,54 +583,6 @@ export default class Color {
 	}
 
 	/**
-	 * Return a string representation of this color.
-	 *
-	 * If the alpha of this color is 1, then the string returned will represent an opaque color,
-	 * `hsv(h s v)`, `hsl(h s l)`, etc.
-	 * Otherwise, the string returned will represent a translucent color,
-	 * `hsv(h s v / a)`, `hsl(h s l / a)`, etc.
-	 *
-	 * The format of the numbers returned will be as follows. The default format is {@link ColorSpace.HEX}.
-	 * - all HEX values will be base 16 integers in [00,FF], two digits
-	 * - HSV/HSL/HWB-hue values will be base 10 decimals in [0,360) rounded to the nearest 0.1
-	 * - HSV/HSL-sat/val/lum, HWB-white/black, and CMYK-cyan/magenta/yellow/black values will be base 10 decimals in [0,1] rounded to the nearest 0.01
-	 * - all RGB values will be base 10 integers in [0,255], one to three digits
-	 * - all alpha values will be base 10 decimals in [0,1], rounded to the nearest 0.001
-	 * @override
-	 * @param   space represents the space in which this color exists
-	 * @returns a string representing this color
-	 */
-	toString(space = ColorSpace.HEX): string {
-		const leadingZero = (n: number, r: number = 10) => `0${n.toString(r)}`.slice(-2)
-		if (space === ColorSpace.HEX) {
-			return `#${this.rgb.slice(0,3).map((c) => leadingZero(Math.round(c.of(255)), 16)).join('')}${(this.alpha.lessThan(1)) ? leadingZero(Math.round(this.alpha.of(255)), 16) : ''}`
-		}
-		/* ---- else, the string is a CSS function ---- */
-		const returned: string[] = xjs.Object.switch<string[]>(`${space}`, {
-			[ColorSpace.RGB]: () => this.rgb.slice(0,3).map((c) => `${Math.round(c.of(255))}`),
-			[ColorSpace.HSV]: () => [
-				`${Math.round(this.hsvHue.convert(AngleUnit.DEG) * 10) / 10}deg`,
-				`${Math.round(this.hsvSat.of(100))}%`,
-				`${Math.round(this.hsvVal.of(100))}%`,
-			],
-			[ColorSpace.HSL]: () => [
-				`${Math.round(this.hslHue.convert(AngleUnit.DEG) * 10) / 10}deg`,
-				`${Math.round(this.hslSat.of(100))}%`,
-				`${Math.round(this.hslLum.of(100))}%`,
-			],
-			[ColorSpace.HWB]: () => [
-				`${Math.round(this.hwbHue.convert(AngleUnit.DEG) * 10) / 10}deg`,
-				`${Math.round(this.hwbWhite.of(100))}%`,
-				`${Math.round(this.hwbBlack.of(100))}%`,
-			],
-			[ColorSpace.CMYK]: () => this.cmyk.slice(0,4).map((c) => `${Math.round(c.of(100)) / 100}`),
-		})()
-		return `${ColorSpace[space].toLowerCase()}(${returned.join(' ')}${
-			(this.alpha.lessThan(1)) ? ` / ${Math.round(this.alpha.of(1000)) / 1000}` : ''
-		})`
-	}
-
-	/**
 	 * Get the red channel of this color.
 	 */
 	get red(): Fraction { return this._RED }
@@ -847,6 +799,42 @@ export default class Color {
 	 */
 	get hwb(): [Angle, Fraction, Fraction, Fraction] {
 		return [this.hwbHue, this.hwbWhite, this.hwbBlack, this.alpha]
+	}
+
+	/**
+	 * Return a string representation of this color, as a valid CSS color string.
+	 *
+	 * If the alpha of this color is 1, then the string returned represents an opaque color,
+	 * `hsv(h s v)`, `hsl(h s l)`, etc.
+	 * Otherwise, the string returned represents a translucent color,
+	 * `hsv(h s v / a)`, `hsl(h s l / a)`, etc.
+	 *
+	 * Numerical values are as follows:
+	 * - HEX   values are unitless base 16 integers in [00,ff], two digits
+	 * - RGB   values are unitless base 10 integers in [0,255], one to three digits
+	 * - CMYK  values are unitless base 10 decimals in [0,1]
+	 * - alpha values are unitless base 10 decimals in [0,1]
+	 * - HSV/HSL/HWB-hue values are base 10 decimals in [0,1), expressed in turns (a unit of angle)
+	 * - HSV/HSL-sat/val/lum and HWB-white/black values are base 10 decimals in [0,1], expressed in percentages
+	 * @override
+	 * @param   space represents the space in which this color exists
+	 * @returns a string representing this color
+	 */
+	toString(space = ColorSpace.HEX): string {
+		const leadingZero = (n: number, radix: number = 10) => `0${n.toString(radix)}`.slice(-2)
+		if (space === ColorSpace.HEX) {
+			return `#${this.rgb.slice(0,3).map((c) => leadingZero(Math.round(c.of(255)), 16)).join('')}${(this.alpha.lessThan(1)) ? leadingZero(Math.round(this.alpha.of(255)), 16) : ''}`
+		}
+		const returned: string[] = xjs.Object.switch<string[]>(`${space}`, {
+			[ColorSpace.RGB ]: () => this.rgb .slice(0,3).map((c) => `${Math.round(c.of(255))}`),
+			[ColorSpace.CMYK]: () => this.cmyk.slice(0,4).map((c) => `${c}`),
+			[ColorSpace.HSV ]: () => [this.hsvHue.toString(10, AngleUnit.TURN), Percentage.stringify(this.hsvSat  .valueOf()), Percentage.stringify(this.hsvVal  .valueOf())],
+			[ColorSpace.HSL ]: () => [this.hslHue.toString(10, AngleUnit.TURN), Percentage.stringify(this.hslSat  .valueOf()), Percentage.stringify(this.hslLum  .valueOf())],
+			[ColorSpace.HWB ]: () => [this.hwbHue.toString(10, AngleUnit.TURN), Percentage.stringify(this.hwbWhite.valueOf()), Percentage.stringify(this.hwbBlack.valueOf())],
+		})()
+		return `${ColorSpace[space].toLowerCase()}(${returned.join(' ')}${
+			(this.alpha.lessThan(1)) ? ` / ${this.alpha}` : ''
+		})`
 	}
 
 	/**

@@ -297,7 +297,7 @@ export default class Angle extends Number {
 	}
 
 	/** @override */
-	toString(radix?: number, unit?: AngleUnit): string {
+	toString(radix: number = 10, unit?: AngleUnit): string {
 		return (unit) ?
 			`${this.convert(unit).toString(radix)}${AngleUnit[unit].toLowerCase()}` :
 			super.toString(radix)
