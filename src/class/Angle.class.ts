@@ -3,8 +3,6 @@ import * as xjs from 'extrajs'
 // TODO: move to xjs.Number
 const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
 
-import Percentage from './Percentage.class'
-
 
 /**
  * A list of possible Angle units.
@@ -299,7 +297,7 @@ export default class Angle extends Number {
 	}
 
 	/** @override */
-	toString(radix?: number, unit?: AngleUnit): string {
+	toString(radix: number = 10, unit?: AngleUnit): string {
 		return (unit) ?
 			`${this.convert(unit).toString(radix)}${AngleUnit[unit].toLowerCase()}` :
 			super.toString(radix)
@@ -349,7 +347,8 @@ export default class Angle extends Number {
 	 */
 	plus(addend: Angle|number): Angle {
 		return (addend instanceof Angle) ?
-			(addend.equals(Angle.ZERO)) ? this : new Angle(this.valueOf() + addend.valueOf()) :
+			(addend.equals(Angle.ZERO)) ? this :
+			new Angle(this.valueOf() + addend.valueOf()) :
 			this.plus(new Angle(addend))
 	}
 
@@ -362,23 +361,23 @@ export default class Angle extends Number {
 	 */
 	minus(subtrahend: Angle|number): Angle {
 		return (subtrahend instanceof Angle) ?
-			(subtrahend.equals(Angle.ZERO)) ? this : new Angle(this.valueOf() - subtrahend.valueOf()) :
+			this.plus(-subtrahend) :
 			this.minus(new Angle(subtrahend))
 	}
 
 	/**
 	 * Scale this Angle by a scalar factor.
 	 *
-	 * If the scale factor is <1, returns a new Angle "more acute"  than this Angle.
-	 * If the scale factor is >1, returns a new Angle "more obtuse" than this Angle.
+	 * If the scale factor is <1, returns a new Angle ‘more acute’  than this Angle.
+	 * If the scale factor is >1, returns a new Angle ‘more obtuse’ than this Angle.
 	 * If the scale factor is =1, returns a new Angle equal to           this Angle.
+	 * If the scale factor is negative, returns a ‘negative’ Angle:
+	 * for example, (60˚).scale(-2) would return 240˚ (equivalent to -120˚).
 	 * @param   scalar the scale factor
 	 * @returns a new Angle representing the product
 	 */
-	scale(scalar: Percentage|number = 1): Angle {
-		return (scalar instanceof Percentage) ?
-			new Angle(this.valueOf() * scalar.valueOf()) :
-			this.scale(new Percentage(scalar).of(this.valueOf()))
+	scale(scalar: number = 1): Angle {
+		return new Angle(this.valueOf() * scalar)
 	}
 
 	/**
