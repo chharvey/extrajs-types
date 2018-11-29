@@ -906,13 +906,14 @@ export default class Color {
 	 * @param   relative should the saturation added be relative?
 	 * @returns a new Color object that corresponds to this color saturated by `p`
 	 */
-	saturate(p: Percentage|number, relative: boolean = false): Color {
-		return (p instanceof Percentage) ? Color.fromHSL(
+	saturate(p: Fraction|number, relative: boolean = false): Color {
+		p = p.valueOf()
+		return Color.fromHSL(
 			this.hslHue,
-			new Fraction(this.hslSat.valueOf() + ((relative) ? (p.times(this.hslSat)) : p).valueOf()),
+			this.hslSat.plusClamp((relative) ? p * this.hslSat.valueOf() : p),
 			this.hslLum,
 			this.alpha
-		) : this.saturate(new Percentage(p), relative)
+		)
 	}
 
 	/**
@@ -923,7 +924,7 @@ export default class Color {
 	 * @param   relative should the saturation subtracted be relative?
 	 * @returns a new Color object that corresponds to this color desaturated by `p`
 	 */
-	desaturate(p: Percentage, relative: boolean = false): Color {
+	desaturate(p: Fraction|number, relative: boolean = false): Color {
 		return this.saturate(-p, relative)
 	}
 
@@ -944,13 +945,14 @@ export default class Color {
 	 * @param   relative should the luminosity added be relative?
 	 * @returns a new Color object that corresponds to this color lightened by `p`
 	 */
-	lighten(p: Percentage|number, relative: boolean = false): Color {
-		return (p instanceof Percentage) ? Color.fromHSL(
+	lighten(p: Fraction|number, relative: boolean = false): Color {
+		p = p.valueOf()
+		return Color.fromHSL(
 			this.hslHue,
 			this.hslSat,
-			new Fraction(this.hslLum.valueOf() + ((relative) ? (p.times(this.hslLum)) : p).valueOf()),
+			this.hslLum.plusClamp((relative) ? p * this.hslLum.valueOf() : p),
 			this.alpha
-		) : this.lighten(new Percentage(p), relative)
+		)
 	}
 
 	/**
@@ -961,7 +963,7 @@ export default class Color {
 	 * @param   relative should the luminosity subtracted be relative?
 	 * @returns a new Color object that corresponds to this color darkened by `p`
 	 */
-	darken(p: Percentage|number, relative: boolean = false): Color {
+	darken(p: Fraction|number, relative: boolean = false): Color {
 		return this.lighten(-p, relative)
 	}
 
@@ -991,13 +993,14 @@ export default class Color {
 	 * @param   relative should the alpha added be relative?
 	 * @returns a new Color object that corresponds to this color faded in by `p`
 	 */
-	fadeIn(p: Percentage|number, relative: boolean = false): Color {
-		return (p instanceof Percentage) ? new Color(
+	fadeIn(p: Fraction|number, relative: boolean = false): Color {
+		p = p.valueOf()
+		return new Color(
 			this.red,
 			this.green,
 			this.blue,
-			new Fraction(this.alpha.valueOf() + ((relative) ? p.times(this.alpha) : p).valueOf())
-		) : this.fadeIn(new Percentage(p), relative)
+			this.alpha.plusClamp((relative) ? p * this.alpha.valueOf() : p)
+		)
 	}
 
 	/**
@@ -1009,7 +1012,7 @@ export default class Color {
 	 * @param   relative should the alpha subtracted be relative?
 	 * @returns a new Color object that corresponds to this color faded out by `p`
 	 */
-	fadeOut(p: Percentage|number, relative: boolean = false): Color {
+	fadeOut(p: Fraction|number, relative: boolean = false): Color {
 		return this.fadeIn(-p, relative)
 	}
 
