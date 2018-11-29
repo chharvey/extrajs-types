@@ -134,6 +134,18 @@ export default class Color {
 	}\\s*\\)$`)
 
 	/**
+	 * Calculate the alpha of several overlapping translucent colors.
+	 *
+	 * For three overlapping colors with respective alphas `a`, `b` and `c`,
+	 * the compounded alpha will be `1  -  (1 - a)*(1 - b)*(1 - c)`.
+	 * @param   alphas the alphas to compound
+	 * @returns the compounded alpha
+	 */
+	private static _compoundOpacity(...alphas: Fraction[]): Fraction {
+		return alphas.map((a) => a.conjugate).reduce((a,b) => a.times(b)).conjugate
+		// return new Fraction(xjs.Math.meanGeometric(...alphas.map((a) => a.conjugate.valueOf())) ** alphas.length).conjugate
+	}
+	/**
 	 * Calculate the weighed compound opacity of two or more overlapping translucent colors.
 	 *
 	 * For two overlapping colors with respective alphas `a` and `b`,
@@ -146,20 +158,8 @@ export default class Color {
 	 * @param   w the weight favoring the second alpha
 	 * @returns the compounded alpha
 	 */
-	private static _compoundOpacityWeighted(a1: Fraction, a2: Fraction, w: Fraction): Fraction {
-		return new Fraction(xjs.Math.interpolateGeometric(a1.conjugate.valueOf(), a2.conjugate.valueOf(), w.valueOf()) ** 2).conjugate
-	}
-	/**
-	 * Calculate the alpha of several overlapping translucent colors.
-	 *
-	 * For three overlapping colors with respective alphas `a`, `b` and `c`,
-	 * the compounded alpha will be `1  -  (1 - a)*(1 - b)*(1 - c)`.
-	 * @param   alphas the alphas to compound
-	 * @returns the compounded alpha
-	 */
-	private static _compoundOpacity(...alphas: Fraction[]): Fraction {
-		return alphas.map((a) => a.conjugate).reduce((a,b) => a.times(b)).conjugate
-		// return new Fraction(xjs.Math.meanGeometric(...alphas.map((a) => a.conjugate.valueOf())) ** alphas.length).conjugate
+	private static _compoundOpacityWeighted(a1: Fraction, a2: Fraction, w: number): Fraction {
+		return new Fraction(xjs.Math.interpolateGeometric(a1.conjugate.valueOf(), a2.conjugate.valueOf(), w) ** 2).conjugate
 	}
 
 	/**
@@ -484,25 +484,12 @@ export default class Color {
 	 * @returns a mix of the given colors
 	 */
 	static mix(...colors: Color[]): Color {
-		/**
-		 * Return the arithmetic mean of several channels.
-		 *
-		 * Algorithm:
-		 * 1. convert all channels to a numeric value
-		 * 2. take the arithmetic mean of the numbers
-		 * 3. convert the mean back to a Fraction
-		 * @private
-		 * @param   comps a set of channel value (red, green, or blue)
-		 * @returns the compounded value
-		 */
-		function mixChannels(...comps: Fraction[]): Fraction {
-			return new Fraction(xjs.Math.meanArithmetic(...comps.map((c) => c.valueOf())))
-		}
-		let red  : Fraction =            mixChannels(...colors.map((c) => c.red  ))
-		let green: Fraction =            mixChannels(...colors.map((c) => c.green))
-		let blue : Fraction =            mixChannels(...colors.map((c) => c.blue ))
-		let alpha: Fraction = Color._compoundOpacity(...colors.map((c) => c.alpha))
-		return new Color(red, green, blue, alpha)
+		return new Color(
+			new Fraction(xjs.Math.meanArithmetic(...colors.map((c) => c.red  .valueOf()))),
+			new Fraction(xjs.Math.meanArithmetic(...colors.map((c) => c.green.valueOf()))),
+			new Fraction(xjs.Math.meanArithmetic(...colors.map((c) => c.blue .valueOf()))),
+			Color._compoundOpacity(...colors.map((c) => c.alpha))
+		)
 	}
 
 	/**
@@ -533,11 +520,12 @@ export default class Color {
 		function blurChannels(...comps: Fraction[]): Fraction {
 			return Color._linear_sRGB(new Fraction(xjs.Math.meanArithmetic(...comps.map((c) => Color._sRGB_Linear(c).valueOf()))))
 		}
-		let red  : Fraction =           blurChannels(...colors.map((c) => c.red  ))
-		let green: Fraction =           blurChannels(...colors.map((c) => c.green))
-		let blue : Fraction =           blurChannels(...colors.map((c) => c.blue ))
-		let alpha: Fraction = Color._compoundOpacity(...colors.map((c) => c.alpha))
-		return new Color(red, green, blue, alpha)
+		return new Color(
+			blurChannels(...colors.map((c) => c.red  )),
+			blurChannels(...colors.map((c) => c.green)),
+			blurChannels(...colors.map((c) => c.blue )),
+			Color._compoundOpacity(...colors.map((c) => c.alpha))
+		)
 	}
 
 	/**
@@ -1039,33 +1027,13 @@ export default class Color {
 	 * @param   weight the weight favoring the other color
 	 * @returns a mix of the two given colors
 	 */
-	mix(color: Color, weight: Percentage|number = 0.5): Color {
-			/**
-			 * Return a linear interpolation of two channels.
-			 *
-			 * Algorithm:
-			 * 1. convert both channels to a numeric value
-			 * 2. linearly interpolate the numbers
-			 * 3. convert the mean back to a Fraction
-			 * @private
-			 * @param   c1 the first channel value (red, green, or blue)
-			 * @param   c2 the second channel value (corresponding to `c1`)
-			 * @param   p the interpolation parameter
-			 * @returns the compounded value
-			 */
-			function mixChannelsWeighted(c1: Fraction, c2: Fraction, p: Fraction): Fraction {
-				return new Fraction(xjs.Math.interpolateArithmetic(
-					c1.valueOf(),
-					c2.valueOf(),
-					p.valueOf()
-				))
-			}
-		return (weight instanceof Percentage) ? new Color(
-			mixChannelsWeighted(this.red   , color.red  , weight),
-			mixChannelsWeighted(this.green , color.green, weight),
-			mixChannelsWeighted(this.blue  , color.blue , weight),
+	mix(color: Color, weight: number = 0.5): Color {
+		return new Color(
+			new Fraction(xjs.Math.interpolateArithmetic(this.red  .valueOf(), color.red  .valueOf(), weight)),
+			new Fraction(xjs.Math.interpolateArithmetic(this.green.valueOf(), color.green.valueOf(), weight)),
+			new Fraction(xjs.Math.interpolateArithmetic(this.blue .valueOf(), color.blue .valueOf(), weight)),
 			Color._compoundOpacityWeighted(this.alpha , color.alpha, weight)
-		) : this.mix(color, new Percentage(weight))
+		)
 	}
 
 	/**
@@ -1080,35 +1048,35 @@ export default class Color {
 	 * @param   weight the weight favoring the other color
 	 * @returns a blur of the two given colors
 	 */
-	blur(color: Color, weight: Percentage|number = 0.5): Color {
-			/**
-			 * Return a linear interpolation of two sRGB-adjusted channels.
-			 *
-			 * Algorithm:
-			 * 1. {@link Color._sRGB_Linear|‘square’} both channels
-			 * 2. convert both squares to a numeric value
-			 * 3. linearly interpolate the squares
-			 * 4. convert the mean back to a Fraction
-			 * 5. {@link Color._linear_sRGB|‘square root’} the result
-			 * @private
-			 * @param   c1 the first channel value (red, green, or blue)
-			 * @param   c2 the second channel value (corresponding to `c1`)
-			 * @param   p the interpolation parameter
-			 * @returns the compounded value
-			 */
-			function blurChannelsWeighted(c1: Fraction, c2: Fraction, p: Fraction): Fraction {
-				return Color._linear_sRGB(new Fraction(xjs.Math.interpolateArithmetic(
-					Color._sRGB_Linear(c1).valueOf(),
-					Color._sRGB_Linear(c2).valueOf(),
-					p.valueOf()
-				)))
-			}
-		return (weight instanceof Percentage) ? new Color(
+	blur(color: Color, weight: number = 0.5): Color {
+		/**
+		 * Return a linear interpolation of two sRGB-adjusted channels.
+		 *
+		 * Algorithm:
+		 * 1. {@link Color._sRGB_Linear|‘square’} both channels
+		 * 2. convert both squares to a numeric value
+		 * 3. linearly interpolate the squares
+		 * 4. convert the mean back to a Fraction
+		 * 5. {@link Color._linear_sRGB|‘square root’} the result
+		 * @private
+		 * @param   c1 the first channel value (red, green, or blue)
+		 * @param   c2 the second channel value (corresponding to `c1`)
+		 * @param   w the interpolation parameter
+		 * @returns the compounded value
+		 */
+		function blurChannelsWeighted(c1: Fraction, c2: Fraction, w: number): Fraction {
+			return Color._linear_sRGB(new Fraction(xjs.Math.interpolateArithmetic(
+				Color._sRGB_Linear(c1).valueOf(),
+				Color._sRGB_Linear(c2).valueOf(),
+				w
+			)))
+		}
+		return new Color(
 			blurChannelsWeighted(this.red   , color.red  , weight),
 			blurChannelsWeighted(this.green , color.green, weight),
 			blurChannelsWeighted(this.blue  , color.blue , weight),
 			Color._compoundOpacityWeighted(this.alpha , color.alpha, weight)
-		) : this.blur(color, new Percentage(weight))
+		)
 	}
 
 	/**
