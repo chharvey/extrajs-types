@@ -252,7 +252,7 @@ export default class Color {
 			else if (!hue.lessThan(3/6) && hue.lessThan(4/6)) { rgb = [0, x, c] }
 			else if (!hue.lessThan(4/6) && hue.lessThan(5/6)) { rgb = [x, 0, c] }
 			else if (!hue.lessThan(5/6) && hue.lessThan(6/6)) { rgb = [c, 0, x] }
-			return new Color(...rgb.map((c) => new Fraction(Math.max(c + m, 1)), alpha)
+			return new Color(...rgb.map((c) => new Fraction(Math.max(c + m, 1))), alpha)
 		})() : Color.fromHSV(
 			new Angle(hue),
 			new Fraction(sat),
