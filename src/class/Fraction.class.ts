@@ -32,7 +32,7 @@ export default class Fraction extends Number {
 	 * @returns the greatest of all the arguments
 	 */
 	static max(...fracs: Fraction[]): Fraction {
-		return new Fraction(Math.max(...fracs.map((p) => p.valueOf())))
+		return new Fraction(Math.max(...fracs.map((f) => f.valueOf())))
 		// return fracs.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).slice(-1)[0]
 	}
 
@@ -42,7 +42,7 @@ export default class Fraction extends Number {
 	 * @returns the least of all the arguments
 	 */
 	static min(...fracs: Fraction[]): Fraction {
-		return new Fraction(Math.min(...fracs.map((p) => p.valueOf())))
+		return new Fraction(Math.min(...fracs.map((f) => f.valueOf())))
 		// return fracs.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
 	}
 
@@ -80,6 +80,17 @@ export default class Fraction extends Number {
 	 */
 	get conjugate(): Fraction {
 		return Fraction.FULL.minus(this)
+	}
+
+	/**
+	 * Get the reciprocal of this Fraction.
+	 *
+	 * The reciprocal of a Fraction is its multiplicative inverse:
+	 * the Fraction that when multiplied by this, gives a product of 1 (a full fraction).
+	 * @returns a new Fraction representing the multiplicative inverse
+	 */
+	get reciprocal(): Fraction {
+		return new Fraction(Fraction.FULL.valueOf() / this.valueOf())
 	}
 
 	// /** @override */
@@ -127,13 +138,24 @@ export default class Fraction extends Number {
 	 * Add this Fraction (the augend) to another (the addend).
 	 * @param   addend the Fraction to add to this one
 	 * @returns a new Fraction representing the sum, `augend + addend`
+	 * @throws  {RangeError} if the result is less than 0
 	 * @throws  {RangeError} if the result is greater than 1
 	 */
 	plus(addend: Fraction|number = 0): Fraction {
-		return (addend instanceof Fraction) ?
-			(addend.equals(Fraction.ZERO)) ? this :
-			new Fraction(this.valueOf() + addend.valueOf()) :
-			this.plus(new Fraction(addend))
+		addend = addend.valueOf()
+		if (addend === 0) return this
+		const returned: number = this.valueOf() + addend
+		if (returned < 0) throw new RangeError(`Cannot add ${addend} to ${this.valueOf()}: result is less than 0.`)
+		if (1 < returned) throw new RangeError(`Cannot add ${addend} to ${this.valueOf()}: result is greater than 1.`)
+		return new Fraction(returned)
+	}
+	/**
+	 * Try {@link Fraction.plus|Fraction#plus}, but return {@link Fraction.FULL} if erring.
+	 * @param   addend the Fraction to add to this one
+	 * @returns a new Fraction representing the sum, `augend + addend`, clamped at maximum 1
+	 */
+	plusClamp(addend: Fraction|number = 0): Fraction {
+		try { return this.plus(addend) } catch (e) { return Fraction.FULL }
 	}
 
 	/**
@@ -142,12 +164,17 @@ export default class Fraction extends Number {
 	 * Note that subtraction is not commutative: `a - b` does not always equal `b - a`.
 	 * @param   subtrahend the Fraction to subtract from this one
 	 * @returns a new Fraction representing the difference, `minuend - subtrahend`
-	 * @throws  {RangeError} if the result is less than 0
 	 */
 	minus(subtrahend: Fraction|number = 0): Fraction {
-		return (subtrahend instanceof Fraction) ?
-			this.plus(-subtrahend) :
-			this.minus(new Fraction(subtrahend))
+		return this.plus(-subtrahend)
+	}
+	/**
+	 * Try {@link Fraction.minus|Fraction#minus}, but return {@link Fraction.ZERO} if erring.
+	 * @param   subtrahend the Fraction to subtract from this one
+	 * @returns a new Fraction representing the difference, `minuend - subtrahend`, clamped at minimum 0
+	 */
+	minusClamp(subtrahend: Fraction|number = 0): Fraction {
+		try { return this.minus(subtrahend) } catch (e) { return Fraction.ZERO }
 	}
 
 	/**
