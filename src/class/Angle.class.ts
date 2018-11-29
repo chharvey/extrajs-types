@@ -3,8 +3,6 @@ import * as xjs from 'extrajs'
 // TODO: move to xjs.Number
 const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
 
-import Percentage from './Percentage.class'
-
 
 /**
  * A list of possible Angle units.
@@ -370,16 +368,16 @@ export default class Angle extends Number {
 	/**
 	 * Scale this Angle by a scalar factor.
 	 *
-	 * If the scale factor is <1, returns a new Angle "more acute"  than this Angle.
-	 * If the scale factor is >1, returns a new Angle "more obtuse" than this Angle.
+	 * If the scale factor is <1, returns a new Angle ‘more acute’  than this Angle.
+	 * If the scale factor is >1, returns a new Angle ‘more obtuse’ than this Angle.
 	 * If the scale factor is =1, returns a new Angle equal to           this Angle.
+	 * If the scale factor is negative, returns a ‘negative’ Angle:
+	 * for example, (60˚).scale(-2) would return 240˚ (equivalent to -120˚).
 	 * @param   scalar the scale factor
 	 * @returns a new Angle representing the product
 	 */
-	scale(scalar: Percentage|number = 1): Angle {
-		return (scalar instanceof Percentage) ?
-			new Angle(this.valueOf() * scalar.valueOf()) :
-			this.scale(new Percentage(scalar).of(this.valueOf()))
+	scale(scalar: number = 1): Angle {
+		return new Angle(this.valueOf() * scalar)
 	}
 
 	/**
