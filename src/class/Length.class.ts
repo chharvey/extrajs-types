@@ -96,10 +96,8 @@ export default class Length extends Number {
 	}
 
 	/** @override */
-	toString(radix: number = 10, unit?: LengthUnit): string {
-		return (unit) ?
-			`${this.convert(unit).toString(radix)}${LengthUnit[unit         ].toLowerCase()}` :
-			`${super             .toString(radix)}${LengthUnit[LengthUnit.CM].toLowerCase()}`
+	toString(radix: number = 10, unit: LengthUnit = LengthUnit.CM): string {
+		return `${this.convert(unit).toString(radix)}${LengthUnit[unit].toLowerCase()}`
 	}
 
 	/**
