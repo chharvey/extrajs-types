@@ -87,7 +87,7 @@ export default class Length extends Number {
 
 
 	/**
-	 * @summary Construct a new Length object.
+	 * Construct a new Length object.
 	 * @param   x the numeric value of this Length
 	 */
 	constructor(x: Length|number = 0) {
@@ -98,7 +98,7 @@ export default class Length extends Number {
 	}
 
 	/** @override */
-	toString(unit?: LengthUnit, radix: number = 10): string {
+	toString(radix: number = 10, unit?: LengthUnit): string {
 		return (unit) ?
 			`${this.convert(unit).toString(radix)}${LengthUnit[unit         ].toLowerCase()}` :
 			`${super             .toString(radix)}${LengthUnit[LengthUnit.CM].toLowerCase()}`
@@ -110,7 +110,8 @@ export default class Length extends Number {
 	 * @returns does this Length equal the argument?
 	 */
 	equals(length: Length|number): boolean {
-		return (this === length) || ((length instanceof Length) ? this.valueOf() === length.valueOf() : this.equals(new Length(length)))
+		if (this === length) return true
+		return (length instanceof Length) ? this.valueOf() === length.valueOf() : this.equals(new Length(length))
 	}
 
 	/**
@@ -144,11 +145,14 @@ export default class Length extends Number {
 	 * Add this Length (the augend) to another (the addend).
 	 * @param   addend the Length to add to this one
 	 * @returns a new Length representing the sum, `augend + addend`
+	 * @throws  {RangeError} if the result is less than 0
 	 */
 	plus(addend: Length|number): Length {
-		return (addend instanceof Length) ?
-			(addend.equals(0)) ? this : new Length(this.valueOf() + addend.valueOf()) :
-			this.plus(new Length(addend))
+		addend = addend.valueOf()
+		if (addend === 0) return this
+		const returned: number = this.valueOf() + addend
+		if (returned < 0) throw new RangeError(`Cannot add ${addend} to ${this.valueOf()}: result is less than 0.`)
+		return new Length(returned)
 	}
 
 	/**
@@ -164,24 +168,23 @@ export default class Length extends Number {
 	 */
 	minus(subtrahend: Length|number): Length {
 		if (this.lessThan(subtrahend)) throw new RangeError('Cannot subtract a larger length from a smaller length.')
-		return (subtrahend instanceof Length) ?
-			(subtrahend.equals(0)) ? this : new Length(this.valueOf() - subtrahend.valueOf()) :
-			this.minus(new Length(subtrahend))
+		return this.plus(-subtrahend)
 	}
 
 	/**
 	 * Scale this Length by a scalar factor.
 	 *
-	 * If the scale factor is <1, returns a new Length "shorter" than this Length.
-	 * If the scale factor is >1, returns a new Length "longer"  than this Length.
+	 * If the scale factor is <1, returns a new Length ‘shorter’ than this Length.
+	 * If the scale factor is >1, returns a new Length ‘longer’  than this Length.
 	 * If the scale factor is =1, returns a new Length equal to       this Length.
+	 * The scale factor cannot be negative.
 	 * @param   scalar the scale factor
 	 * @returns a new Length representing the product
+	 * @throws  {AssertionError} if `scalar` is negative
 	 */
-	scale(scalar: Percentage|number = 1): Length {
-		return (scalar instanceof Percentage) ?
-			new Length(this.valueOf() * scalar.valueOf()) :
-			this.scale(new Percentage(scalar).of(this.valueOf()))
+	scale(scalar: number = 1): Length {
+		xjs.Number.assertType(scalar, 'non-negative')
+		return new Length(this.valueOf() * scalar)
 	}
 
 	// /**
@@ -219,11 +222,11 @@ export default class Length extends Number {
 	 *
 	 * Note: to “divide” this Length into even pieces, call {@link Length.scale}.
 	 * @param   divisior the Length to divide this one by
-	 * @returns a Percentage equal to the quotient, `dividend / divisor`
+	 * @returns a number equal to the quotient, `dividend / divisor`
 	 */
-	ratio(divisor: Length|number = 1): Percentage {
+	ratio(divisor: Length|number = 1): number {
 		return (divisor instanceof Length) ?
-			new Percentage(this.valueOf() / divisor.valueOf()) :
+			this.valueOf() / divisor.valueOf() :
 			this.ratio(new Length(divisor))
 	}
 

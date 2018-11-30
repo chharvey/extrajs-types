@@ -53,9 +53,6 @@ export default class Angle extends Number {
 	 * A full angle (a full circle).
 	 *
 	 * A full angle measures 1turn (360deg, 400grad, (2π)rad).
-	 *
-	 * Note: A full angle is equivalent to a {@link Angle.ZERO|zero angle},
-	 * and thus will be considered {@link Angle.lessThan|less than} any other non-zero angle.
 	 */
 	static readonly FULL: Angle = new Angle(1)
 
@@ -402,13 +399,26 @@ export default class Angle extends Number {
 	 * If the scale factor is <1, returns a new Angle ‘more acute’  than this Angle.
 	 * If the scale factor is >1, returns a new Angle ‘more obtuse’ than this Angle.
 	 * If the scale factor is =1, returns a new Angle equal to           this Angle.
-	 * If the scale factor is negative, returns a ‘negative’ Angle:
-	 * for example, (60˚).scale(-2) would return 240˚ (equivalent to -120˚).
+	 * If the scale factor is negative, returns a negative Angle:
+	 * for example, `(60˚).scale(-2)` would return `-120˚`.
 	 * @param   scalar the scale factor
 	 * @returns a new Angle representing the product
 	 */
 	scale(scalar: number = 1): Angle {
 		return new Angle(this.valueOf() * scalar)
+	}
+
+	/**
+	 * Return the ratio of this Angle (the dividend) to the argument (the divisor).
+	 *
+	 * Note: to “divide” this Angle into even pieces, call {@link Angle.scale}.
+	 * @param   divisior the Angle to divide this one by
+	 * @returns a number equal to the quotient, `dividend / divisor`
+	 */
+	ratio(divisor: Angle|number = 1): number {
+		return (divisor instanceof Angle) ?
+			this.valueOf() / divisor.valueOf() :
+			this.ratio(new Angle(divisor))
 	}
 
 	/**
