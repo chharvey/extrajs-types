@@ -1080,8 +1080,8 @@ export default class Color {
 	 * @returns is the argument the “same” color as this color?
 	 */
 	equals(color: Color): boolean {
+		if (this === color) return true
 		return (
-			(this === color) ||
 			(this.alpha.equals(0) && color.alpha.equals(0)) ||
 			(
 				this.red  .equals(color.red  ) &&
