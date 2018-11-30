@@ -98,7 +98,8 @@ export default class Integer extends Number {
 	 * @returns does this Integer equal the argument?
 	 */
 	equals(int: Integer|number): boolean {
-		return (this === int) || ((int instanceof Integer) ? this.valueOf() === int.valueOf() : this.equals(new Integer(int)))
+		if (this === int) return true
+		return (int instanceof Integer) ? this.valueOf() === int.valueOf() : this.equals(new Integer(int))
 	}
 
 	/**

@@ -104,7 +104,8 @@ export default class Fraction extends Number {
 	 * @returns does this Fraction equal the argument?
 	 */
 	equals(frac: Fraction|number): boolean {
-		return (this === frac) || ((frac instanceof Fraction) ? this.valueOf() === frac.valueOf() : this.equals(new Fraction(frac)))
+		if (this === frac) return true
+		return (frac instanceof Fraction) ? this.valueOf() === frac.valueOf() : this.equals(new Fraction(frac))
 	}
 
 	/**

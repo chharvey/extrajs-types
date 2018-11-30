@@ -182,70 +182,83 @@ export default class Angle extends Number {
 	 */
 	constructor(theta: Angle|number = 0) {
 		theta = theta.valueOf()
-		super(xjs.Math.mod(theta, 1))
+		xjs.Number.assertType(theta, 'finite')
+		super(theta)
 	}
 
 	/**
-	 * Get the complement of this Angle.
+	 * Return the canonical representation this Angle.
+	 *
+	 * An Angle’s canon is the least non-negative Angle that is {@link Angle.congruent|congruent} to that Angle.
+	 * If an Angle’s measure is at least 0 turn and less than 1 turn, then its canon is itself.
+	 * The canon of {@link Angle.FULL} is {@link Angle.ZERO}.
+	 * @returns the smallest Angle congruent to this
+	 */
+	get canon(): Angle {
+		return new Angle(xjs.Math.mod(this.valueOf(), 1))
+	}
+
+	/**
+	 * Get the complement of this Angle’s canon.
 	 *
 	 * Complementary angles add to form a right angle (0.25turn).
-	 * @returns the complement of this Angle
+	 * @returns the complement of this Angle’s canon
 	 */
 	get complement(): Angle {
-		return Angle.RIGHT.minus(this)
+		return Angle.RIGHT.minus(this.canon).canon
 	}
 
 	/**
-	 * Get the supplement of this Angle.
+	 * Get the supplement of this Angle’s canon.
 	 *
 	 * Supplementary angles add to form a straight angle (0.5turn).
-	 * @returns the supplement of this Angle
+	 * @returns the supplement of this Angle’s canon
 	 */
 	get supplement(): Angle {
-		return Angle.STRAIGHT.minus(this)
+		return Angle.STRAIGHT.minus(this.canon).canon
 	}
 
 	/**
-	 * Get the conjugate of this Angle.
+	 * Get the conjugate of this Angle’s canon.
 	 *
 	 * Conjugate angles add to form a full angle (1turn).
 	 * The conjugate of an angle is equivalent to its “negation”.
-	 * @returns the conjugate of this Angle
+	 * @returns the conjugate of this Angle’s canon
 	 */
 	get conjugate(): Angle {
-		return Angle.FULL.minus(this)
+		return Angle.FULL.minus(this.canon).canon
 	}
 
 	/**
-	 * Get the inversion of this Angle.
-	 * @returns this angle rotated by 0.5turn
+	 * Get the inversion of this Angle’s canon.
+	 * @returns this Angle’s canon rotated by 0.5turn
 	 */
 	get invert(): Angle {
-		return this.plus(Angle.STRAIGHT)
+		return Angle.STRAIGHT.plus(this.canon).canon
 	}
 
 	/**
-	 * Return whether this Angle is acute.
-	 * @returns is the measure of this Angle less than 0.25turn?
+	 * Return whether this Angle’s canon is acute.
+	 * @returns is the measure of this Angle’s canon less than 0.25turn?
 	 */
 	get isAcute(): boolean {
-		return this.lessThan(Angle.RIGHT)
+		return this.canon.lessThan(Angle.RIGHT)
 	}
 
 	/**
-	 * Return whether this Angle is obtuse.
-	 * @returns is the measure of this Angle between 0.25turn and 0.5turn?
+	 * Return whether this Angle’s canon is obtuse.
+	 * @returns is the measure of this Angle’s canon between 0.25turn and 0.5turn?
 	 */
 	get isObtuse(): boolean {
-		return Angle.RIGHT.lessThan(this) && this.lessThan(Angle.STRAIGHT)
+		return Angle.RIGHT.lessThan(this.canon) && this.canon.lessThan(Angle.STRAIGHT)
 	}
 
 	/**
-	 * Return whether this Angle is reflex.
-	 * @returns is the measure of this Angle greater than 0.5turn?
+	 * Return whether this Angle’s canon is reflex.
+	 * @returns is the measure of this Angle’s canon greater than 0.5turn?
 	 */
 	get isReflex(): boolean {
-		return Angle.STRAIGHT.lessThan(this)
+		return Angle.STRAIGHT.lessThan(this.canon)
 	}
 
 	/**
@@ -309,7 +322,25 @@ export default class Angle extends Number {
 	 * @returns does this Angle equal the argument?
 	 */
 	equals(angle: Angle|number): boolean {
-		return (this === angle) || ((angle instanceof Angle) ? xjs.Math.approx(this.valueOf(), angle.valueOf()) : this.equals(new Angle(angle)))
+		if (this === angle) return true
+		return (angle instanceof Angle) ? xjs.Math.approx(this.valueOf(), angle.valueOf()) : this.equals(new Angle(angle))
+	}
+
+	/**
+	 * Return whether this Angle is congruent to the argument.
+	 *
+	 * Angles are congruent iff they have {@link Angle.equals|equal} canons.
+	 * Angles that are equal are also congruent.
+	 *
+	 * Equivalently, Angles are congruent iff their measures differ by a whole number of turns.
+	 * For example, 225˚ and 945˚ are congruent, because their canons are both 225˚, and
+	 * because they differ by 2 whole turns.
+	 * @param   angle the Angle to compare
+	 * @returns is this Angle congruent to the argument?
+	 */
+	congruent(angle: Angle|number): boolean {
+		if (this.equals(angle)) return true
+		return (angle instanceof Angle) ? this.canon.equals(angle.canon) : this.congruent(new Angle(angle))
 	}
 
 	/**
