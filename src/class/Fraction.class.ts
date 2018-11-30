@@ -10,6 +10,28 @@ import * as xjs from 'extrajs'
  * Represented by a unitless number within the interval `[0, 1]`,
  * where `0` is none of the value and `1` is the whole of the value.
  * Fractions must not exceed beyond this interval.
+ *
+ * The set of Fractions has the following properties:
+ *
+ * - Fractions are weakly totally ordered. (There exists a weak total order `<=` on the fractions.)
+ * 	- (Reflexivity) For a fraction `a`, `a <= a`.
+ * 	- (Antisymmetry) For fractions `a` and `b`, if `a <= b` and `b <= a`, then `a === b`.
+ * 	- (Transitivity) For fractions `a`, `b`, and `c`, if `a <= b` and `b <= c`, then `a <= c`.
+ * 	- (Comparability) For distinct fraction `a !== b`, at least one of the following statements is guaranteed true:
+ * 		- `a <= b`
+ * 		- `b <= a`
+ * - Fractions are closed under multiplication.
+ * 	For fractions `a` and `b`, the expression `a * b` is guaranteed to also be a fraction.
+ * - Fractions have a (unique) multiplicative idenity.
+ * 	There exists a fraction `1` such that for every fraction `a`,
+ * 	`a * 1`, and `1 * a` are guaranteed to equal `a`, and
+ * 	`1` is the only fraction with this property.
+ * - Fractions have a (unique) multiplicative absorber:
+ * 	a unique fraction `0` is guaranteed such that for every fraction `a`, `a * 0 === 0 * a === 0`.
+ * - Multiplication is commutative and associative.
+ * 	For fractions `a`, `b`, and `c`, the following statments are guaranteed true:
+ * 	- `a * b === b * a`
+ * 	- `a * (b * c) === (a * b) * c`
  */
 export default class Fraction extends Number {
 	/**
@@ -80,17 +102,6 @@ export default class Fraction extends Number {
 	 */
 	get conjugate(): Fraction {
 		return Fraction.FULL.minus(this)
-	}
-
-	/**
-	 * Get the reciprocal of this Fraction.
-	 *
-	 * The reciprocal of a Fraction is its multiplicative inverse:
-	 * the Fraction that when multiplied by this, gives a product of 1 (a full fraction).
-	 * @returns a new Fraction representing the multiplicative inverse
-	 */
-	get reciprocal(): Fraction {
-		return new Fraction(Fraction.FULL.valueOf() / this.valueOf())
 	}
 
 	// /** @override */
