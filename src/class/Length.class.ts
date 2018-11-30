@@ -88,11 +88,11 @@ export default class Length extends Number {
 	 * Construct a new Length object.
 	 * @param   x the numeric value of this Length
 	 */
-	constructor(x: Length|number = 0) {
+	constructor(x: Length|number = 0, unit: LengthUnit = LengthUnit.CM) {
 		x = x.valueOf()
 		xjs.Number.assertType(x, 'non-negative')
 		xjs.Number.assertType(x, 'finite')
-		super(x)
+		super(x / Length.CONVERSION[unit])
 	}
 
 	/** @override */

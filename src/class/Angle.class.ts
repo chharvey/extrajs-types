@@ -32,31 +32,6 @@ export enum AngleUnit {
  */
 export default class Angle extends Number {
 	/**
-	 * A zero angle.
-	 *
-	 * A zero angle measures 0turn (0deg, 0grad, 0rad).
-	 */
-	static readonly ZERO: Angle = new Angle(0)
-	/**
-	 * A right angle.
-	 *
-	 * A right angle measures 0.25turn (90deg, 100grad, (π/2)rad).
-	 */
-	static readonly RIGHT: Angle = new Angle(0.25)
-	/**
-	 * A straight angle.
-	 *
-	 * A straight angle measures 0.5turn (180deg, 200grad, (π)rad).
-	 */
-	static readonly STRAIGHT: Angle = new Angle(0.5)
-	/**
-	 * A full angle (a full circle).
-	 *
-	 * A full angle measures 1turn (360deg, 400grad, (2π)rad).
-	 */
-	static readonly FULL: Angle = new Angle(1)
-
-	/**
 	 * A dictionary of conversion rates.
 	 *
 	 * The value assigned to each unit is the number of units in one full circle.
@@ -67,6 +42,15 @@ export default class Angle extends Number {
 		[AngleUnit.RAD ]: 2 * Math.PI,
 		[AngleUnit.TURN]: 1,
 	}
+
+	/** A zero angle, measuring 0turn (0deg, 0grad, 0rad). */
+	static readonly ZERO: Angle = new Angle(0)
+	/** A right angle, measuring 0.25turn (90deg, 100grad, (π/2)rad). */
+	static readonly RIGHT: Angle = new Angle(0.25)
+	/** A straight angle, measuring 0.5turn (180deg, 200grad, (π)rad). */
+	static readonly STRAIGHT: Angle = new Angle(0.5)
+	/** A full angle (a full circle), measuring 1turn (360deg, 400grad, (2π)rad). */
+	static readonly FULL: Angle = new Angle(1)
 
 	/**
 	 * An immutable RegExp instance, representing a string in Angle format.
@@ -177,10 +161,10 @@ export default class Angle extends Number {
 	 * Construct a new Angle object.
 	 * @param   theta the numeric value of this Angle
 	 */
-	constructor(theta: Angle|number = 0) {
+	constructor(theta: Angle|number = 0, unit: AngleUnit = AngleUnit.TURN) {
 		theta = theta.valueOf()
 		xjs.Number.assertType(theta, 'finite')
-		super(theta)
+		super(theta / Angle.CONVERSION[unit])
 	}
 
 	/**
