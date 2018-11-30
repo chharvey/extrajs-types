@@ -74,6 +74,17 @@ export default class Integer extends Number {
 	}
 
 	/**
+	 * Get the negation of this Integer.
+	 *
+	 * The negation of an Ineteger is its additive inverse:
+	 * the Integer that when added to this, gives a sum of 0 (the additive identity).
+	 * @returns a new Integer representing the additive inverse
+	 */
+	get negation(): Integer {
+		return new Integer(-this)
+	}
+
+	/**
 	 * Return the absolute value of this Integer; `Math.abs(this)`.
 	 * @returns `(this < 0) ? -this : this`
 	 */
@@ -87,7 +98,8 @@ export default class Integer extends Number {
 	 * @returns does this Integer equal the argument?
 	 */
 	equals(int: Integer|number): boolean {
-		return (this === int) || ((int instanceof Integer) ? this.valueOf() === int.valueOf() : this.equals(new Integer(int)))
+		if (this === int) return true
+		return (int instanceof Integer) ? this.valueOf() === int.valueOf() : this.equals(new Integer(int))
 	}
 
 	/**
@@ -118,30 +130,27 @@ export default class Integer extends Number {
 	}
 
 	/**
-	 * Negate this Integer.
-	 * @returns a new Integer representing the additive inverse
+	 * @deprecated Use {@link Integer.negation} instead.
+	 * @returns `this.negation`
 	 */
 	negate(): Integer {
-		return new Integer(-this.valueOf())
+		return this.negation
 	}
 
 	/**
 	 * Add this Integer (the augend) to another (the addend).
-	 *
-	 * If no argument is provided, this method returns the increment of this Integer (this + 1).
 	 * @param   addend the Integer to add to this one
 	 * @returns a new Integer representing the sum, `augend + addend`
 	 */
 	plus(addend: Integer|number = 0): Integer {
 		return (addend instanceof Integer) ?
-			(addend.equals(Integer.ADD_IDEN)) ? this : new Integer(this.valueOf() + addend.valueOf()) :
+			(addend.equals(Integer.ADD_IDEN)) ? this :
+			new Integer(this.valueOf() + addend.valueOf()) :
 			this.plus(new Integer(addend))
 	}
 
 	/**
 	 * Subtract another Integer (the subtrahend) from this (the minuend).
-	 *
-	 * If no argument is provided, this method returns the decrement of this Integer (this - 1).
 	 *
 	 * Note that subtraction is not commutative: `a - b` does not always equal `b - a`.
 	 * @param   subtrahend the Integer to subtract from this one
@@ -149,7 +158,7 @@ export default class Integer extends Number {
 	 */
 	minus(subtrahend: Integer|number = 0): Integer {
 		return (subtrahend instanceof Integer) ?
-			this.plus(subtrahend.negate()) :
+			this.plus(subtrahend.negation) :
 			this.minus(new Integer(subtrahend))
 	}
 
@@ -160,7 +169,9 @@ export default class Integer extends Number {
 	 */
 	times(multiplier: Integer|number = 1): Integer {
 		return (multiplier instanceof Integer) ?
-			(multiplier.equals(Integer.MULT_ABSORB)) ? Integer.MULT_ABSORB : (multiplier.equals(Integer.MULT_IDEN)) ? this : new Integer(this.valueOf() * multiplier.valueOf()) :
+			(multiplier.equals(Integer.MULT_ABSORB)) ? Integer.MULT_ABSORB :
+			(multiplier.equals(Integer.MULT_IDEN)) ? this :
+			new Integer(this.valueOf() * multiplier.valueOf()) :
 			this.times(new Integer(multiplier))
 	}
 
