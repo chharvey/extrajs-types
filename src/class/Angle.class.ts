@@ -9,14 +9,14 @@ const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
  * @see https://www.w3.org/TR/css-values/#angles
  */
 export enum AngleUnit {
+	/** Turns. There is 1 turn in a full circle. */
+	TURN,
 	/** Degrees. There are 360 degrees in a full circle. */
 	DEG,
 	/** Gradians, also known as "gons" or "grades". There are 400 gradians in a full circle. */
 	GRAD,
 	/** Radians. There are 2π radians in a full circle. */
 	RAD,
-	/** Turns. There is 1 turn in a full circle. */
-	TURN,
 }
 
 
@@ -37,10 +37,10 @@ export default class Angle extends Number {
 	 * The value assigned to each unit is the number of units in one full circle.
 	 */
 	static readonly CONVERSION: { readonly [index in AngleUnit]: number } = {
+		[AngleUnit.TURN]: 1,
 		[AngleUnit.DEG ]: 360,
 		[AngleUnit.GRAD]: 400,
 		[AngleUnit.RAD ]: 2 * Math.PI,
-		[AngleUnit.TURN]: 1,
 	}
 
 	/** A zero angle, measuring 0turn (0deg, 0grad, 0rad). */
@@ -55,7 +55,7 @@ export default class Angle extends Number {
 	/**
 	 * An immutable RegExp instance, representing a string in Angle format.
 	 */
-	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}(?:deg|grad|rad|turn)$`)
+	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}(?:turn|deg|grad|rad)$`)
 
 	/**
 	 * Return the maximum of two or more Angles.
@@ -147,12 +147,12 @@ export default class Angle extends Number {
 	static fromString(str: string): Angle {
 		if (!Angle.REGEXP.test(str)) throw new RangeError(`Invalid string format: '${str}'.`)
 		let numeric_part: number = +str.match(xjs_Number_REGEXP.source.slice(1,-1)) ![0]
-		let unit_part   : string =  str.match(/deg|grad|rad|turn/                 ) ![0]
+		let unit_part   : string =  str.match(/turn|deg|grad|rad/                 ) ![0]
 		return new Angle(xjs.Object.switch<number>(unit_part, {
+			'turn' : () => numeric_part / Angle.CONVERSION[AngleUnit.TURN],
 			'deg'  : () => numeric_part / Angle.CONVERSION[AngleUnit.DEG ],
 			'grad' : () => numeric_part / Angle.CONVERSION[AngleUnit.GRAD],
 			'rad'  : () => numeric_part / Angle.CONVERSION[AngleUnit.RAD ],
-			'turn' : () => numeric_part / Angle.CONVERSION[AngleUnit.TURN],
 		})())
 	}
 
