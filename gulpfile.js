@@ -49,10 +49,18 @@ gulp.task('test-run-color', async function () {
 	console.info('All _Color_ tests ran successfully!')
 })
 
+gulp.task('test-run-vector', async function () {
+	await Promise.all([
+		require('./test/out/Vector-constructor.test.js').default,
+	])
+	console.info('All _Vector_ tests ran successfully!')
+})
+
 gulp.task('test-run', [
 	'test-run-length',
 	'test-run-angle',
 	'test-run-color',
+	'test-run-vector',
 ], async function () {
 	console.info('All tests ran successfully!')
 })

@@ -6,6 +6,7 @@ module.exports = {
 	Integer    : require('./dist/class/Integer.class.js').default,
 	Fraction   : require('./dist/class/Fraction.class.js').default,
 	Percentage : require('./dist/class/Percentage.class.js').default,
+	Vector     : require('./dist/class/Vector.class.js').default,
 	Length     : Length_module.default,
 	LengthUnit : Length_module.LengthUnit,
 	Angle      : Angle_module.default,
