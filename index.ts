@@ -5,5 +5,6 @@
 export { default as Integer    } from './src/class/Integer.class'
 export { default as Fraction   } from './src/class/Fraction.class'
 export { default as Percentage } from './src/class/Percentage.class'
+export { default as Length, LengthUnit } from './src/class/Length.class'
 export { default as Angle, AngleUnit } from './src/class/Angle.class'
 export { default as Color, ColorSpace } from './src/class/Color.class'

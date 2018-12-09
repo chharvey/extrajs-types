@@ -34,13 +34,9 @@ import * as xjs from 'extrajs'
  * 	- `a * (b * c) === (a * b) * c`
  */
 export default class Fraction extends Number {
-	/**
-	 * A zero fraction (the number 0).
-	 */
+	/** A zero fraction (the number 0). */
 	static readonly ZERO: Fraction = new Fraction(0)
-	/**
-	 * A full fraction (the number 1).
-	 */
+	/** A full fraction (the number 1). */
 	static readonly FULL: Fraction = new Fraction(1)
 
 	// /**

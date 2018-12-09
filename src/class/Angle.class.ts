@@ -9,14 +9,14 @@ const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
  * @see https://www.w3.org/TR/css-values/#angles
  */
 export enum AngleUnit {
+	/** Turns. There is 1 turn in a full circle. */
+	TURN,
 	/** Degrees. There are 360 degrees in a full circle. */
 	DEG,
 	/** Gradians, also known as "gons" or "grades". There are 400 gradians in a full circle. */
 	GRAD,
 	/** Radians. There are 2π radians in a full circle. */
 	RAD,
-	/** Turns. There is 1 turn in a full circle. */
-	TURN,
 }
 
 
@@ -32,49 +32,30 @@ export enum AngleUnit {
  */
 export default class Angle extends Number {
 	/**
-	 * A zero angle.
-	 *
-	 * A zero angle measures 0turn (0deg, 0grad, 0rad).
-	 */
-	static readonly ZERO: Angle = new Angle(0)
-	/**
-	 * A right angle.
-	 *
-	 * A right angle measures 0.25turn (90deg, 100grad, (π/2)rad).
-	 */
-	static readonly RIGHT: Angle = new Angle(0.25)
-	/**
-	 * A straight angle.
-	 *
-	 * A straight angle measures 0.5turn (180deg, 200grad, (π)rad).
-	 */
-	static readonly STRAIGHT: Angle = new Angle(0.5)
-	/**
-	 * A full angle (a full circle).
-	 *
-	 * A full angle measures 1turn (360deg, 400grad, (2π)rad).
-	 *
-	 * Note: A full angle is equivalent to a {@link Angle.ZERO|zero angle},
-	 * and thus will be considered {@link Angle.lessThan|less than} any other non-zero angle.
-	 */
-	static readonly FULL: Angle = new Angle(1)
-
-	/**
 	 * A dictionary of conversion rates.
 	 *
 	 * The value assigned to each unit is the number of units in one full circle.
 	 */
 	static readonly CONVERSION: { readonly [index in AngleUnit]: number } = {
+		[AngleUnit.TURN]: 1,
 		[AngleUnit.DEG ]: 360,
 		[AngleUnit.GRAD]: 400,
 		[AngleUnit.RAD ]: 2 * Math.PI,
-		[AngleUnit.TURN]: 1,
 	}
+
+	/** A zero angle, measuring 0turn (0deg, 0grad, 0rad). */
+	static readonly ZERO: Angle = new Angle(0)
+	/** A right angle, measuring 0.25turn (90deg, 100grad, (π/2)rad). */
+	static readonly RIGHT: Angle = new Angle(0.25)
+	/** A straight angle, measuring 0.5turn (180deg, 200grad, (π)rad). */
+	static readonly STRAIGHT: Angle = new Angle(0.5)
+	/** A full angle (a full circle), measuring 1turn (360deg, 400grad, (2π)rad). */
+	static readonly FULL: Angle = new Angle(1)
 
 	/**
 	 * An immutable RegExp instance, representing a string in Angle format.
 	 */
-	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}(?:deg|grad|rad|turn)$`)
+	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}(?:turn|deg|grad|rad)$`)
 
 	/**
 	 * Return the maximum of two or more Angles.
@@ -166,12 +147,12 @@ export default class Angle extends Number {
 	static fromString(str: string): Angle {
 		if (!Angle.REGEXP.test(str)) throw new RangeError(`Invalid string format: '${str}'.`)
 		let numeric_part: number = +str.match(xjs_Number_REGEXP.source.slice(1,-1)) ![0]
-		let unit_part   : string =  str.match(/deg|grad|rad|turn/                 ) ![0]
+		let unit_part   : string =  str.match(/turn|deg|grad|rad/                 ) ![0]
 		return new Angle(xjs.Object.switch<number>(unit_part, {
+			'turn' : () => numeric_part / Angle.CONVERSION[AngleUnit.TURN],
 			'deg'  : () => numeric_part / Angle.CONVERSION[AngleUnit.DEG ],
 			'grad' : () => numeric_part / Angle.CONVERSION[AngleUnit.GRAD],
 			'rad'  : () => numeric_part / Angle.CONVERSION[AngleUnit.RAD ],
-			'turn' : () => numeric_part / Angle.CONVERSION[AngleUnit.TURN],
 		})())
 	}
 
@@ -180,10 +161,10 @@ export default class Angle extends Number {
 	 * Construct a new Angle object.
 	 * @param   theta the numeric value of this Angle
 	 */
-	constructor(theta: Angle|number = 0) {
+	constructor(theta: Angle|number = 0, unit: AngleUnit = AngleUnit.TURN) {
 		theta = theta.valueOf()
 		xjs.Number.assertType(theta, 'finite')
-		super(theta)
+		super(theta / Angle.CONVERSION[unit])
 	}
 
 	/**
@@ -310,10 +291,8 @@ export default class Angle extends Number {
 	}
 
 	/** @override */
-	toString(radix: number = 10, unit?: AngleUnit): string {
-		return (unit) ?
-			`${this.convert(unit).toString(radix)}${AngleUnit[unit].toLowerCase()}` :
-			super.toString(radix)
+	toString(radix: number = 10, unit: AngleUnit = AngleUnit.TURN): string {
+		return `${this.convert(unit).toString(radix)}${AngleUnit[unit].toLowerCase()}`
 	}
 
 	/**
@@ -402,13 +381,26 @@ export default class Angle extends Number {
 	 * If the scale factor is <1, returns a new Angle ‘more acute’  than this Angle.
 	 * If the scale factor is >1, returns a new Angle ‘more obtuse’ than this Angle.
 	 * If the scale factor is =1, returns a new Angle equal to           this Angle.
-	 * If the scale factor is negative, returns a ‘negative’ Angle:
-	 * for example, (60˚).scale(-2) would return 240˚ (equivalent to -120˚).
+	 * If the scale factor is negative, returns a negative Angle:
+	 * for example, `(60˚).scale(-2)` would return `-120˚`.
 	 * @param   scalar the scale factor
 	 * @returns a new Angle representing the product
 	 */
 	scale(scalar: number = 1): Angle {
 		return new Angle(this.valueOf() * scalar)
+	}
+
+	/**
+	 * Return the ratio of this Angle (the dividend) to the argument (the divisor).
+	 *
+	 * Note: to “divide” this Angle into even pieces, call {@link Angle.scale}.
+	 * @param   divisior the Angle to divide this one by
+	 * @returns a number equal to the quotient, `dividend / divisor`
+	 */
+	ratio(divisor: Angle|number = 1): number {
+		return (divisor instanceof Angle) ?
+			this.valueOf() / divisor.valueOf() :
+			this.ratio(new Angle(divisor))
 	}
 
 	/**
