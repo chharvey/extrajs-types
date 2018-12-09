@@ -822,6 +822,7 @@ export default class Color {
 	 * @returns a string representing this color
 	 */
 	toString(space = ColorSpace.HEX): string {
+		const PERCENT_FORMAT = Intl.NumberFormat('en', { style: 'percent' })
 		const leadingZero = (n: number, radix: number = 10) => `0${n.toString(radix)}`.slice(-2)
 		if (space === ColorSpace.HEX) {
 			return `#${this.rgb.slice(0,3).map((c) => leadingZero(Math.round(c.of(255)), 16)).join('')}${(this.alpha.lessThan(1)) ? leadingZero(Math.round(this.alpha.of(255)), 16) : ''}`
@@ -829,9 +830,9 @@ export default class Color {
 		const returned: string[] = xjs.Object.switch<string[]>(`${space}`, {
 			[ColorSpace.RGB ]: () => this.rgb .slice(0,3).map((c) => `${Math.round(c.of(255))}`),
 			[ColorSpace.CMYK]: () => this.cmyk.slice(0,4).map((c) => `${c}`),
-			[ColorSpace.HSV ]: () => [this.hsvHue.toString(10, AngleUnit.TURN), Percentage.stringify(this.hsvSat  .valueOf()), Percentage.stringify(this.hsvVal  .valueOf())],
-			[ColorSpace.HSL ]: () => [this.hslHue.toString(10, AngleUnit.TURN), Percentage.stringify(this.hslSat  .valueOf()), Percentage.stringify(this.hslLum  .valueOf())],
-			[ColorSpace.HWB ]: () => [this.hwbHue.toString(10, AngleUnit.TURN), Percentage.stringify(this.hwbWhite.valueOf()), Percentage.stringify(this.hwbBlack.valueOf())],
+			[ColorSpace.HSV ]: () => [this.hsvHue.toString(10, AngleUnit.TURN), PERCENT_FORMAT.format(this.hsvSat  .valueOf()), PERCENT_FORMAT.format(this.hsvVal  .valueOf())],
+			[ColorSpace.HSL ]: () => [this.hslHue.toString(10, AngleUnit.TURN), PERCENT_FORMAT.format(this.hslSat  .valueOf()), PERCENT_FORMAT.format(this.hslLum  .valueOf())],
+			[ColorSpace.HWB ]: () => [this.hwbHue.toString(10, AngleUnit.TURN), PERCENT_FORMAT.format(this.hwbWhite.valueOf()), PERCENT_FORMAT.format(this.hwbBlack.valueOf())],
 		})()
 		return `${ColorSpace[space].toLowerCase()}(${returned.join(' ')}${
 			(this.alpha.lessThan(1)) ? ` / ${this.alpha}` : ''
