@@ -15,12 +15,13 @@ import * as xjs from 'extrajs'
  * 		- `b <= a`
  * - Integers are closed under addition, subtraction, and multiplication.
  * 	For integers `a` and `b`, the expressions `a + b`, `a - b`, and `a * b` are guaranteed to also be integers.
- * - Integers have (unique) additive and multiplicative idenities.
+ * - The set of Integers has a (unique) additive and multiplicative idenity.
  * 	There exist integers `0` and `1` such that for every integer `a`,
  * 	`a + 0`, `0 + a`, `a * 1`, and `1 * a` are guaranteed to equal `a`, and
  * 	`0` and `1`, respectively, are the only integers with this property.
  * - Integers have (unique) additive inverses:
- * 	for every integer `a`, a unique integer `-a` is guaranteed such that `a + -a === -a + a === 0`.
+ * 	for every integer `a`, a unique integer `-a` is guaranteed such that `a + -a === -a + a === 0`
+ * 	(where `0` is the additive identity).
  * - Integers have a (unique) multiplicative absorber:
  * 	a unique integer `0` is guaranteed such that for every integer `a`, `a * 0 === 0 * a === 0`.
  * 	(In general, the multiplicative absorber need not necessarily be the additive identity,

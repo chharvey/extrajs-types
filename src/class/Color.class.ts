@@ -474,12 +474,11 @@ export default class Color {
 	 * This method performs the arithmetic mean of each channel of the colors.
 	 *
 	 * If two colors `a` and `b` are given, calling this static method, `Color.mix([a, b])`,
-	 * is equivalent to calling `a.mix(b)` without a weight.
+	 * is equivalent to calling `a.mix(b)` ({@link Color#mix}) without a weight.
 	 * However, calling `Color.mix([a, b, c])` with 3 or more colors yields an even mix,
 	 * and will *not* yield the same results as calling `a.mix(b).mix(c)`, which yields an uneven mix.
 	 * Note that the order of the given colors does not change the result, that is,
 	 * `Color.mix([a, b, c])` returns the same result as `Color.mix([c, b, a])`.
-	 * @see Color.mix
 	 * @param   colors several Colors to mix
 	 * @returns a mix of the given colors
 	 */
@@ -496,10 +495,12 @@ export default class Color {
 	 * Blur two or more colors. The average will be weighted evenly.
 	 *
 	 * This method performs the arithmetic mean of each sRGB-adjusted channel of the colors.
+	 * Similar to the [root mean square](https://en.wikipedia.org/wiki/Root_mean_square),
+	 * or “quadratic mean”.
 	 *
 	 * Behaves almost exactly the same as {@link Color.mix},
 	 * except that this method uses a more visually accurate, slightly brighter, mix.
-	 * @see Color.blur
+	 * @see {@link https://www.youtube.com/watch?v=LKnqECcg6Gw|“Computer Color is Broken” by minutephysics}
 	 * @param   colors several Colors to blur
 	 * @returns a blur of the given colors
 	 */
@@ -1009,9 +1010,10 @@ export default class Color {
 	 *
 	 * This method performs a linear interpolation of each channel of the colors.
 	 *
-	 * If `weight == 0.0`, return exactly this color.
-	 * `weight == 1.0` return exactly the other color.
-	 * `weight == 0.5` (default if omitted) return a perfectly even mix.
+	 * - If `weight === 0.0`, returns exactly this color.
+	 * - If `weight === 1.0`, return exactly the other color.
+	 * - If `weight === 0.5`, (default if omitted) returns a perfectly even mix.
+	 *
 	 * In other words, `weight` is "how much of the other color you want."
 	 * Note that `color1.mix(color2, weight)` returns the same result as `color2.mix(color1, 1-weight)`.
 	 * @param   color the second color
@@ -1031,8 +1033,10 @@ export default class Color {
 	 * Blur another color with this color, with a given weight favoring that color.
 	 *
 	 * This method performs a linear interpolation of each sRGB-adjusted channel of the colors.
+	 * Similar to the [root mean square](https://en.wikipedia.org/wiki/Root_mean_square),
+	 * or “quadratic mean”.
 	 *
-	 * Behaves almost exactly the same as {@link Color.mix},
+	 * Behaves almost exactly the same as {@link Color#mix},
 	 * except that this method uses a more visually accurate, slightly brighter, mix.
 	 * @see {@link https://www.youtube.com/watch?v=LKnqECcg6Gw|“Computer Color is Broken” by minutephysics}
 	 * @param   color the second color
