@@ -22,7 +22,7 @@ import * as xjs from 'extrajs'
  * 		- `b <= a`
  * - Fractions are closed under multiplication.
  * 	For fractions `a` and `b`, the expression `a * b` is guaranteed to also be a fraction.
- * - Fractions have a (unique) multiplicative idenity.
+ * - The set of Fractions has a (unique) multiplicative idenity.
  * 	There exists a fraction `1` such that for every fraction `a`,
  * 	`a * 1`, and `1 * a` are guaranteed to equal `a`, and
  * 	`1` is the only fraction with this property.

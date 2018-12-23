@@ -382,7 +382,7 @@ export default class Angle extends Number {
 	 * If the scale factor is >1, returns a new Angle ‘more obtuse’ than this Angle.
 	 * If the scale factor is =1, returns a new Angle equal to           this Angle.
 	 * If the scale factor is negative, returns a negative Angle:
-	 * for example, `(60˚).scale(-2)` would return `-120˚`.
+	 * for example, `(60˚).scale(-2)` returns `-120˚`.
 	 * @param   scalar the scale factor
 	 * @returns a new Angle representing the product
 	 */

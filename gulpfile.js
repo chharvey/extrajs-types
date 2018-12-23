@@ -8,33 +8,33 @@ const tsconfig      = require('./tsconfig.json')
 const typedocconfig = require('./config/typedoc.json')
 
 
-gulp.task('dist', async function () {
+function dist() {
 	return gulp.src('./src/**/*.ts')
 		.pipe(typescript(tsconfig.compilerOptions))
 		.pipe(gulp.dest('./dist/'))
-})
+}
 
-gulp.task('test-out', async function () {
+function test_out() {
 	return gulp.src(['./test/src/{,*.}test.ts'])
 		.pipe(typescript(tsconfig.compilerOptions))
 		.pipe(gulp.dest('./test/out/'))
-})
+}
 
-gulp.task('test-run-length', async function () {
+async function test_run_length() {
 	await Promise.all([
 		require('./test/out/Length-constructor.test.js').default,
 	])
 	console.info('All _Length_ tests ran successfully!')
-})
+}
 
-gulp.task('test-run-angle', async function () {
+async function test_run_angle() {
 	await Promise.all([
 		require('./test/out/Angle-constructor.test.js').default,
 	])
 	console.info('All _Angle_ tests ran successfully!')
-})
+}
 
-gulp.task('test-run-color', async function () {
+async function test_run_color() {
 	await Promise.all([
 		require('./test/out/Color--fromString.test.js').default,
 		require('./test/out/Color--random.test.js').default,
@@ -47,30 +47,50 @@ gulp.task('test-run-color', async function () {
 		require('./test/out/Color-name.test.js').default,
 	])
 	console.info('All _Color_ tests ran successfully!')
-})
+}
 
-gulp.task('test-run-vector', async function () {
+async function test_run_vector() {
 	await Promise.all([
 		require('./test/out/Vector-constructor.test.js').default,
 		require('./test/out/Vector-cross.test.js').default,
 	])
 	console.info('All _Vector_ tests ran successfully!')
-})
+}
 
-gulp.task('test-run', [
-	'test-run-length',
-	'test-run-angle',
-	'test-run-color',
-	'test-run-vector',
-], async function () {
-	console.info('All tests ran successfully!')
-})
+const test_run = gulp.series(
+	gulp.parallel(
+		test_run_length,
+		test_run_angle,
+		test_run_color,
+		test_run_vector,
+	), async () => {
+		console.info('All tests ran successfully!')
+	}
+)
 
-gulp.task('test', ['test-out', 'test-run'])
+const test = gulp.series(test_out, test_run)
 
-gulp.task('docs', async function () {
+function docs() {
 	return gulp.src('./src/**/*.ts')
 		.pipe(typedoc(typedocconfig))
-})
+}
 
-gulp.task('build', ['dist', 'test', 'docs'])
+const build = gulp.parallel(
+	gulp.series(
+		gulp.parallel(
+			dist,
+			test_out
+		),
+		test_run
+	),
+	docs
+)
+
+module.exports = {
+	dist,
+	test_out,
+	test_run,
+	test,
+	docs,
+	build,
+}

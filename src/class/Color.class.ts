@@ -474,12 +474,11 @@ export default class Color {
 	 * This method performs the arithmetic mean of each channel of the colors.
 	 *
 	 * If two colors `a` and `b` are given, calling this static method, `Color.mix([a, b])`,
-	 * is equivalent to calling `a.mix(b)` without a weight.
+	 * is equivalent to calling `a.mix(b)` ({@link Color#mix}) without a weight.
 	 * However, calling `Color.mix([a, b, c])` with 3 or more colors yields an even mix,
 	 * and will *not* yield the same results as calling `a.mix(b).mix(c)`, which yields an uneven mix.
 	 * Note that the order of the given colors does not change the result, that is,
 	 * `Color.mix([a, b, c])` returns the same result as `Color.mix([c, b, a])`.
-	 * @see Color.mix
 	 * @param   colors several Colors to mix
 	 * @returns a mix of the given colors
 	 */
@@ -496,10 +495,12 @@ export default class Color {
 	 * Blur two or more colors. The average will be weighted evenly.
 	 *
 	 * This method performs the arithmetic mean of each sRGB-adjusted channel of the colors.
+	 * Similar to the [root mean square](https://en.wikipedia.org/wiki/Root_mean_square),
+	 * or “quadratic mean”.
 	 *
 	 * Behaves almost exactly the same as {@link Color.mix},
 	 * except that this method uses a more visually accurate, slightly brighter, mix.
-	 * @see Color.blur
+	 * @see {@link https://www.youtube.com/watch?v=LKnqECcg6Gw|“Computer Color is Broken” by minutephysics}
 	 * @param   colors several Colors to blur
 	 * @returns a blur of the given colors
 	 */
@@ -821,6 +822,7 @@ export default class Color {
 	 * @returns a string representing this color
 	 */
 	toString(space = ColorSpace.HEX): string {
+		const PERCENT_FORMAT = Intl.NumberFormat('en', { style: 'percent', maximumFractionDigits: 20 })
 		const leadingZero = (n: number, radix: number = 10) => `0${n.toString(radix)}`.slice(-2)
 		if (space === ColorSpace.HEX) {
 			return `#${this.rgb.slice(0,3).map((c) => leadingZero(Math.round(c.of(255)), 16)).join('')}${(this.alpha.lessThan(1)) ? leadingZero(Math.round(this.alpha.of(255)), 16) : ''}`
@@ -828,9 +830,9 @@ export default class Color {
 		const returned: string[] = xjs.Object.switch<string[]>(`${space}`, {
 			[ColorSpace.RGB ]: () => this.rgb .slice(0,3).map((c) => `${Math.round(c.of(255))}`),
 			[ColorSpace.CMYK]: () => this.cmyk.slice(0,4).map((c) => `${c}`),
-			[ColorSpace.HSV ]: () => [this.hsvHue.toString(10, AngleUnit.TURN), Percentage.stringify(this.hsvSat  .valueOf()), Percentage.stringify(this.hsvVal  .valueOf())],
-			[ColorSpace.HSL ]: () => [this.hslHue.toString(10, AngleUnit.TURN), Percentage.stringify(this.hslSat  .valueOf()), Percentage.stringify(this.hslLum  .valueOf())],
-			[ColorSpace.HWB ]: () => [this.hwbHue.toString(10, AngleUnit.TURN), Percentage.stringify(this.hwbWhite.valueOf()), Percentage.stringify(this.hwbBlack.valueOf())],
+			[ColorSpace.HSV ]: () => [this.hsvHue.toString(10, AngleUnit.TURN), PERCENT_FORMAT.format(this.hsvSat  .valueOf()), PERCENT_FORMAT.format(this.hsvVal  .valueOf())],
+			[ColorSpace.HSL ]: () => [this.hslHue.toString(10, AngleUnit.TURN), PERCENT_FORMAT.format(this.hslSat  .valueOf()), PERCENT_FORMAT.format(this.hslLum  .valueOf())],
+			[ColorSpace.HWB ]: () => [this.hwbHue.toString(10, AngleUnit.TURN), PERCENT_FORMAT.format(this.hwbWhite.valueOf()), PERCENT_FORMAT.format(this.hwbBlack.valueOf())],
 		})()
 		return `${ColorSpace[space].toLowerCase()}(${returned.join(' ')}${
 			(this.alpha.lessThan(1)) ? ` / ${this.alpha}` : ''
@@ -1009,9 +1011,10 @@ export default class Color {
 	 *
 	 * This method performs a linear interpolation of each channel of the colors.
 	 *
-	 * If `weight == 0.0`, return exactly this color.
-	 * `weight == 1.0` return exactly the other color.
-	 * `weight == 0.5` (default if omitted) return a perfectly even mix.
+	 * - If `weight === 0.0`, returns exactly this color.
+	 * - If `weight === 1.0`, return exactly the other color.
+	 * - If `weight === 0.5`, (default if omitted) returns a perfectly even mix.
+	 *
 	 * In other words, `weight` is "how much of the other color you want."
 	 * Note that `color1.mix(color2, weight)` returns the same result as `color2.mix(color1, 1-weight)`.
 	 * @param   color the second color
@@ -1031,8 +1034,10 @@ export default class Color {
 	 * Blur another color with this color, with a given weight favoring that color.
 	 *
 	 * This method performs a linear interpolation of each sRGB-adjusted channel of the colors.
+	 * Similar to the [root mean square](https://en.wikipedia.org/wiki/Root_mean_square),
+	 * or “quadratic mean”.
 	 *
-	 * Behaves almost exactly the same as {@link Color.mix},
+	 * Behaves almost exactly the same as {@link Color#mix},
 	 * except that this method uses a more visually accurate, slightly brighter, mix.
 	 * @see {@link https://www.youtube.com/watch?v=LKnqECcg6Gw|“Computer Color is Broken” by minutephysics}
 	 * @param   color the second color
