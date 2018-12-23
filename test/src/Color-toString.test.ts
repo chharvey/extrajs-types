@@ -9,5 +9,5 @@ export default Promise.all([
 	test(new Color(                   ).toString(ColorSpace.HWB), 'hwb(0turn 0% 100% / 0)'),
 	test(new Color(0.5 , 0.1, 0.9     ).toString(ColorSpace.HSL), 'hsl(0.75turn 80% 50%)'),
 	test(Color.fromString('#e4f0f6'   ).toString(ColorSpace.HWB), 'hwb(0.5555555555555557turn 89.41176470588236% 3.529411764705881%)'),
-	test(Color.fromString('#e4f0f680' ).toString(ColorSpace.HSL), 'hsl(0.5555555555555557turn 50% 92.94117647058823% / 0.5019607843137255)'),
+	test(Color.fromString('#e4f0f680' ).toString(ColorSpace.HSL), 'hsl(0.5555555555555557turn 50% 92.94117647058824% / 0.5019607843137255)'),
 ])

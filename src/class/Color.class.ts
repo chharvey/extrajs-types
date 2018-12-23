@@ -822,7 +822,7 @@ export default class Color {
 	 * @returns a string representing this color
 	 */
 	toString(space = ColorSpace.HEX): string {
-		const PERCENT_FORMAT = Intl.NumberFormat('en', { style: 'percent' })
+		const PERCENT_FORMAT = Intl.NumberFormat('en', { style: 'percent', maximumFractionDigits: 20 })
 		const leadingZero = (n: number, radix: number = 10) => `0${n.toString(radix)}`.slice(-2)
 		if (space === ColorSpace.HEX) {
 			return `#${this.rgb.slice(0,3).map((c) => leadingZero(Math.round(c.of(255)), 16)).join('')}${(this.alpha.lessThan(1)) ? leadingZero(Math.round(this.alpha.of(255)), 16) : ''}`
