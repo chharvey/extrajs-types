@@ -2,6 +2,8 @@ import * as assert from 'assert'
 
 import * as xjs from 'extrajs'
 
+import Integer from './Integer.class'
+
 
 /**
  * A Vector is a one-dimensional array of numbers.
@@ -42,13 +44,13 @@ export default class Vector {
 	 * @param message a message for the error
 	 */
 	static assertSameDimensions(vector1: Vector, vector2: Vector, message: string = 'Vector dimensions are not equal.'): void {
-		assert.strictEqual(vector1.dimension, vector2.dimension, new TypeError(message))
+		assert(vector1.dimension.equals(vector2.dimension), new TypeError(message))
 	}
 
 	/**
 	 * The coordinates of this Vector.
 	 */
-	public readonly _DATA: ReadonlyArray<number>;
+	private readonly _DATA: ReadonlyArray<number>;
 
 	/**
 	 * Construct a new Vector object.
@@ -63,8 +65,8 @@ export default class Vector {
 	 * Get the dimension of this Vector: how many coordinates this Vector has.
 	 * @returns this Vector’s dimension
 	 */
-	get dimension(): number {
-		return this._DATA.length
+	get dimension(): Integer {
+		return new Integer(this._DATA.length)
 	}
 
 	/**
@@ -96,9 +98,11 @@ export default class Vector {
 	 * @returns the value at the `i`th entry
 	 * @throws  {RangeError} if `i` is out of bounds
 	 */
-	at(i: number): number {
-		if (i < 0 || i >= this.dimension) throw new RangeError(`Index ${i} out of bounds.`)
-		return this._DATA[i]
+	at(i: Integer|number): number {
+		if (i instanceof Integer) {
+			if (i.lessThan(0) || !i.lessThan(this.dimension)) throw new RangeError(`Index ${i} out of bounds.`)
+			return this._DATA[i.valueOf()]
+		} else return this.at(new Integer(i))
 	}
 
 	/**
@@ -179,7 +183,7 @@ export default class Vector {
 	 */
 	dot(multiplier: Vector): number {
 		Vector.assertSameDimensions(this, multiplier, 'Vector dimensions are incompatible for dot product.')
-		return this._DATA.map((coord, i) => coord * multiplier.at(i)).reduce((a, b) => a + b)
+		return this._DATA.map((coord, i) => coord * multiplier.at(new Integer(i))).reduce((a, b) => a + b)
 	}
 
 	/**
@@ -193,7 +197,7 @@ export default class Vector {
 	 * @throws  {TypeError} if `this` or the argument are not of the correct dimension
 	 */
 	cross(multiplier: Vector): Vector {
-		if (this.dimension !== 3 || multiplier.dimension !== 3) throw new TypeError('Vector dimensions are incompatible for cross product.')
+		if (!this.dimension.equals(3) || !multiplier.dimension.equals(3)) throw new TypeError('Vector dimensions are incompatible for cross product.')
 		/**
 		 * A two-dimensional square matrix.
 		 *
