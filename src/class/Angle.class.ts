@@ -3,22 +3,20 @@ import * as xjs from 'extrajs'
 // TODO: move to xjs.Number
 const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
 
-import Percentage from './Percentage.class'
-
 
 /**
  * A list of possible Angle units.
  * @see https://www.w3.org/TR/css-values/#angles
  */
 export enum AngleUnit {
+	/** Turns. There is 1 turn in a full circle. */
+	TURN,
 	/** Degrees. There are 360 degrees in a full circle. */
 	DEG,
 	/** Gradians, also known as "gons" or "grades". There are 400 gradians in a full circle. */
 	GRAD,
 	/** Radians. There are 2π radians in a full circle. */
 	RAD,
-	/** Turns. There is 1 turn in a full circle. */
-	TURN,
 }
 
 
@@ -34,49 +32,30 @@ export enum AngleUnit {
  */
 export default class Angle extends Number {
 	/**
-	 * A zero angle.
-	 *
-	 * A zero angle measures 0turn (0deg, 0grad, 0rad).
-	 */
-	static readonly ZERO: Angle = new Angle(0)
-	/**
-	 * A right angle.
-	 *
-	 * A right angle measures 0.25turn (90deg, 100grad, (π/2)rad).
-	 */
-	static readonly RIGHT: Angle = new Angle(0.25)
-	/**
-	 * A straight angle.
-	 *
-	 * A straight angle measures 0.5turn (180deg, 200grad, (π)rad).
-	 */
-	static readonly STRAIGHT: Angle = new Angle(0.5)
-	/**
-	 * A full angle (a full circle).
-	 *
-	 * A full angle measures 1turn (360deg, 400grad, (2π)rad).
-	 *
-	 * Note: A full angle is equivalent to a {@link Angle.ZERO|zero angle},
-	 * and thus will be considered {@link Angle.lessThan|less than} any other non-zero angle.
-	 */
-	static readonly FULL: Angle = new Angle(1)
-
-	/**
 	 * A dictionary of conversion rates.
 	 *
 	 * The value assigned to each unit is the number of units in one full circle.
 	 */
 	static readonly CONVERSION: { readonly [index in AngleUnit]: number } = {
+		[AngleUnit.TURN]: 1,
 		[AngleUnit.DEG ]: 360,
 		[AngleUnit.GRAD]: 400,
 		[AngleUnit.RAD ]: 2 * Math.PI,
-		[AngleUnit.TURN]: 1,
 	}
+
+	/** A zero angle, measuring 0turn (0deg, 0grad, 0rad). */
+	static readonly ZERO: Angle = new Angle(0)
+	/** A right angle, measuring 0.25turn (90deg, 100grad, (π/2)rad). */
+	static readonly RIGHT: Angle = new Angle(0.25)
+	/** A straight angle, measuring 0.5turn (180deg, 200grad, (π)rad). */
+	static readonly STRAIGHT: Angle = new Angle(0.5)
+	/** A full angle (a full circle), measuring 1turn (360deg, 400grad, (2π)rad). */
+	static readonly FULL: Angle = new Angle(1)
 
 	/**
 	 * An immutable RegExp instance, representing a string in Angle format.
 	 */
-	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}(?:deg|grad|rad|turn)$`)
+	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}(?:turn|deg|grad|rad)$`)
 
 	/**
 	 * Return the maximum of two or more Angles.
@@ -168,12 +147,12 @@ export default class Angle extends Number {
 	static fromString(str: string): Angle {
 		if (!Angle.REGEXP.test(str)) throw new RangeError(`Invalid string format: '${str}'.`)
 		let numeric_part: number = +str.match(xjs_Number_REGEXP.source.slice(1,-1)) ![0]
-		let unit_part   : string =  str.match(/deg|grad|rad|turn/                 ) ![0]
+		let unit_part   : string =  str.match(/turn|deg|grad|rad/                 ) ![0]
 		return new Angle(xjs.Object.switch<number>(unit_part, {
+			'turn' : () => numeric_part / Angle.CONVERSION[AngleUnit.TURN],
 			'deg'  : () => numeric_part / Angle.CONVERSION[AngleUnit.DEG ],
 			'grad' : () => numeric_part / Angle.CONVERSION[AngleUnit.GRAD],
 			'rad'  : () => numeric_part / Angle.CONVERSION[AngleUnit.RAD ],
-			'turn' : () => numeric_part / Angle.CONVERSION[AngleUnit.TURN],
 		})())
 	}
 
@@ -182,72 +161,85 @@ export default class Angle extends Number {
 	 * Construct a new Angle object.
 	 * @param   theta the numeric value of this Angle
 	 */
-	constructor(theta: Angle|number = 0) {
+	constructor(theta: Angle|number = 0, unit: AngleUnit = AngleUnit.TURN) {
 		theta = theta.valueOf()
-		super(xjs.Math.mod(theta, 1))
+		xjs.Number.assertType(theta, 'finite')
+		super(theta / Angle.CONVERSION[unit])
 	}
 
 	/**
-	 * Get the complement of this Angle.
+	 * Return the canonical representation this Angle.
+	 *
+	 * An Angle’s canon is the least non-negative Angle that is {@link Angle.congruent|congruent} to that Angle.
+	 * If an Angle’s measure is at least 0 turn and less than 1 turn, then its canon is itself.
+	 * The canon of {@link Angle.FULL} is {@link Angle.ZERO}.
+	 * @returns the smallest Angle congruent to this
+	 */
+	get canon(): Angle {
+		return new Angle(xjs.Math.mod(this.valueOf(), 1))
+	}
+
+	/**
+	 * Get the complement of this Angle’s canon.
 	 *
 	 * Complementary angles add to form a right angle (0.25turn).
-	 * @returns the complement of this Angle
+	 * @returns the complement of this Angle’s canon
 	 */
 	get complement(): Angle {
-		return Angle.RIGHT.minus(this)
+		return Angle.RIGHT.minus(this.canon).canon
 	}
 
 	/**
-	 * Get the supplement of this Angle.
+	 * Get the supplement of this Angle’s canon.
 	 *
 	 * Supplementary angles add to form a straight angle (0.5turn).
-	 * @returns the supplement of this Angle
+	 * @returns the supplement of this Angle’s canon
 	 */
 	get supplement(): Angle {
-		return Angle.STRAIGHT.minus(this)
+		return Angle.STRAIGHT.minus(this.canon).canon
 	}
 
 	/**
-	 * Get the conjugate of this Angle.
+	 * Get the conjugate of this Angle’s canon.
 	 *
 	 * Conjugate angles add to form a full angle (1turn).
 	 * The conjugate of an angle is equivalent to its “negation”.
-	 * @returns the conjugate of this Angle
+	 * @returns the conjugate of this Angle’s canon
 	 */
 	get conjugate(): Angle {
-		return Angle.FULL.minus(this)
+		return Angle.FULL.minus(this.canon).canon
 	}
 
 	/**
-	 * Get the inversion of this Angle.
-	 * @returns this angle rotated by 0.5turn
+	 * Get the inversion of this Angle’s canon.
+	 * @returns this Angle’s canon rotated by 0.5turn
 	 */
 	get invert(): Angle {
-		return this.plus(Angle.STRAIGHT)
+		return Angle.STRAIGHT.plus(this.canon).canon
 	}
 
 	/**
-	 * Return whether this Angle is acute.
-	 * @returns is the measure of this Angle less than 0.25turn?
+	 * Return whether this Angle’s canon is acute.
+	 * @returns is the measure of this Angle’s canon less than 0.25turn?
 	 */
 	get isAcute(): boolean {
-		return this.lessThan(Angle.RIGHT)
+		return this.canon.lessThan(Angle.RIGHT)
 	}
 
 	/**
-	 * Return whether this Angle is obtuse.
-	 * @returns is the measure of this Angle between 0.25turn and 0.5turn?
+	 * Return whether this Angle’s canon is obtuse.
+	 * @returns is the measure of this Angle’s canon between 0.25turn and 0.5turn?
 	 */
 	get isObtuse(): boolean {
-		return Angle.RIGHT.lessThan(this) && this.lessThan(Angle.STRAIGHT)
+		return Angle.RIGHT.lessThan(this.canon) && this.canon.lessThan(Angle.STRAIGHT)
 	}
 
 	/**
-	 * Return whether this Angle is reflex.
-	 * @returns is the measure of this Angle greater than 0.5turn?
+	 * Return whether this Angle’s canon is reflex.
+	 * @returns is the measure of this Angle’s canon greater than 0.5turn?
 	 */
 	get isReflex(): boolean {
-		return Angle.STRAIGHT.lessThan(this)
+		return Angle.STRAIGHT.lessThan(this.canon)
 	}
 
 	/**
@@ -299,10 +291,8 @@ export default class Angle extends Number {
 	}
 
 	/** @override */
-	toString(radix?: number, unit?: AngleUnit): string {
-		return (unit) ?
-			`${this.convert(unit).toString(radix)}${AngleUnit[unit].toLowerCase()}` :
-			super.toString(radix)
+	toString(radix: number = 10, unit: AngleUnit = AngleUnit.TURN): string {
+		return `${this.convert(unit).toString(radix)}${AngleUnit[unit].toLowerCase()}`
 	}
 
 	/**
@@ -311,7 +301,25 @@ export default class Angle extends Number {
 	 * @returns does this Angle equal the argument?
 	 */
 	equals(angle: Angle|number): boolean {
-		return (this === angle) || ((angle instanceof Angle) ? xjs.Math.approx(this.valueOf(), angle.valueOf()) : this.equals(new Angle(angle)))
+		if (this === angle) return true
+		return (angle instanceof Angle) ? xjs.Math.approx(this.valueOf(), angle.valueOf()) : this.equals(new Angle(angle))
+	}
+
+	/**
+	 * Return whether this Angle is congruent to the argument.
+	 *
+	 * Angles are congruent iff they have {@link Angle.equals|equal} canons.
+	 * Angles that are equal are also congruent.
+	 *
+	 * Equivalently, Angles are congruent iff their measures differ by a whole number of turns.
+	 * For example, 225˚ and 945˚ are congruent, because their canons are both 225˚, and
+	 * because they differ by 2 whole turns.
+	 * @param   angle the Angle to compare
+	 * @returns is this Angle congruent to the argument?
+	 */
+	congruent(angle: Angle|number): boolean {
+		if (this.equals(angle)) return true
+		return (angle instanceof Angle) ? this.canon.equals(angle.canon) : this.congruent(new Angle(angle))
 	}
 
 	/**
@@ -349,7 +357,8 @@ export default class Angle extends Number {
 	 */
 	plus(addend: Angle|number): Angle {
 		return (addend instanceof Angle) ?
-			(addend.equals(Angle.ZERO)) ? this : new Angle(this.valueOf() + addend.valueOf()) :
+			(addend.equals(Angle.ZERO)) ? this :
+			new Angle(this.valueOf() + addend.valueOf()) :
 			this.plus(new Angle(addend))
 	}
 
@@ -362,23 +371,36 @@ export default class Angle extends Number {
 	 */
 	minus(subtrahend: Angle|number): Angle {
 		return (subtrahend instanceof Angle) ?
-			(subtrahend.equals(Angle.ZERO)) ? this : new Angle(this.valueOf() - subtrahend.valueOf()) :
+			this.plus(-subtrahend) :
 			this.minus(new Angle(subtrahend))
 	}
 
 	/**
 	 * Scale this Angle by a scalar factor.
 	 *
-	 * If the scale factor is <1, returns a new Angle "more acute"  than this Angle.
-	 * If the scale factor is >1, returns a new Angle "more obtuse" than this Angle.
+	 * If the scale factor is <1, returns a new Angle ‘more acute’  than this Angle.
+	 * If the scale factor is >1, returns a new Angle ‘more obtuse’ than this Angle.
 	 * If the scale factor is =1, returns a new Angle equal to           this Angle.
+	 * If the scale factor is negative, returns a negative Angle:
+	 * for example, `(60˚).scale(-2)` returns `-120˚`.
 	 * @param   scalar the scale factor
 	 * @returns a new Angle representing the product
 	 */
-	scale(scalar: Percentage|number = 1): Angle {
-		return (scalar instanceof Percentage) ?
-			new Angle(this.valueOf() * scalar.valueOf()) :
-			this.scale(new Percentage(scalar).of(this.valueOf()))
+	scale(scalar: number = 1): Angle {
+		return new Angle(this.valueOf() * scalar)
+	}
+
+	/**
+	 * Return the ratio of this Angle (the dividend) to the argument (the divisor).
+	 *
+	 * Note: to “divide” this Angle into even pieces, call {@link Angle.scale}.
+	 * @param   divisior the Angle to divide this one by
+	 * @returns a number equal to the quotient, `dividend / divisor`
+	 */
+	ratio(divisor: Angle|number = 1): number {
+		return (divisor instanceof Angle) ?
+			this.valueOf() / divisor.valueOf() :
+			this.ratio(new Angle(divisor))
 	}
 
 	/**

@@ -113,6 +113,7 @@
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="angle.html#canon" class="tsd-kind-icon">canon</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="angle.html#complement" class="tsd-kind-icon">complement</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="angle.html#conjugate" class="tsd-kind-icon">conjugate</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="angle.html#cos" class="tsd-kind-icon">cos</a></li>
@@ -132,11 +133,13 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="angle.html#clamp" class="tsd-kind-icon">clamp</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="angle.html#congruent" class="tsd-kind-icon">congruent</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="angle.html#convert" class="tsd-kind-icon">convert</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="angle.html#equals" class="tsd-kind-icon">equals</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="angle.html#lessthan" class="tsd-kind-icon">less<wbr>Than</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="angle.html#minus" class="tsd-kind-icon">minus</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="angle.html#plus" class="tsd-kind-icon">plus</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="angle.html#ratio" class="tsd-kind-icon">ratio</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="angle.html#scale" class="tsd-kind-icon">scale</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="angle.html#toexponential" class="tsd-kind-icon">to<wbr>Exponential</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="angle.html#tofixed" class="tsd-kind-icon">to<wbr>Fixed</a></li>
@@ -170,13 +173,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Angle<span class="tsd-signature-symbol">(</span>theta<span class="tsd-signature-symbol">?: </span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Angle<span class="tsd-signature-symbol">(</span>theta<span class="tsd-signature-symbol">?: </span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, unit<span class="tsd-signature-symbol">?: </span><a href="../enums/angleunit.html" class="tsd-signature-type">AngleUnit</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L178">Angle.class.ts:178</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L157">Angle.class.ts:157</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -194,6 +197,9 @@
 										</div>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> unit: <a href="../enums/angleunit.html" class="tsd-signature-type">AngleUnit</a><span class="tsd-signature-symbol"> =&nbsp;AngleUnit.TURN</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
 						</li>
@@ -208,16 +214,13 @@
 					<div class="tsd-signature tsd-kind-icon">FULL<span class="tsd-signature-symbol">:</span> <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> =&nbsp;new Angle(1)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L62">Angle.class.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L53">Angle.class.ts:53</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>A full angle (a full circle).</p>
+							<p>A full angle (a full circle), measuring 1turn (360deg, 400grad, (2π)rad).</p>
 						</div>
-						<p>A full angle measures 1turn (360deg, 400grad, (2π)rad).</p>
-						<p>Note: A full angle is equivalent to a <a href="angle.html#zero">zero angle</a>,
-						and thus will be considered <a href="angle.html#lessthan">less than</a> any other non-zero angle.</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
@@ -238,10 +241,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
 					<a name="regexp" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP</h3>
-					<div class="tsd-signature tsd-kind-icon">REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^${xjs_Number_REGEXP.source.slice(1,-1)}(?:deg|grad|rad|turn)$&#x60;)</span></div>
+					<div class="tsd-signature tsd-kind-icon">REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^${xjs_Number_REGEXP.source.slice(1,-1)}(?:turn|deg|grad|rad)$&#x60;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L79">Angle.class.ts:79</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L58">Angle.class.ts:58</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -256,14 +259,13 @@
 					<div class="tsd-signature tsd-kind-icon">RIGHT<span class="tsd-signature-symbol">:</span> <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> =&nbsp;new Angle(0.25)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L47">Angle.class.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L49">Angle.class.ts:49</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>A right angle.</p>
+							<p>A right angle, measuring 0.25turn (90deg, 100grad, (π/2)rad).</p>
 						</div>
-						<p>A right angle measures 0.25turn (90deg, 100grad, (π/2)rad).</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
@@ -272,14 +274,13 @@
 					<div class="tsd-signature tsd-kind-icon">STRAIGHT<span class="tsd-signature-symbol">:</span> <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> =&nbsp;new Angle(0.5)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L53">Angle.class.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L51">Angle.class.ts:51</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>A straight angle.</p>
+							<p>A straight angle, measuring 0.5turn (180deg, 200grad, (π)rad).</p>
 						</div>
-						<p>A straight angle measures 0.5turn (180deg, 200grad, (π)rad).</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
@@ -288,19 +289,44 @@
 					<div class="tsd-signature tsd-kind-icon">ZERO<span class="tsd-signature-symbol">:</span> <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> =&nbsp;new Angle(0)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L41">Angle.class.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L47">Angle.class.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>A zero angle.</p>
+							<p>A zero angle, measuring 0turn (0deg, 0grad, 0rad).</p>
 						</div>
-						<p>A zero angle measures 0turn (0deg, 0grad, 0rad).</p>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="canon" class="tsd-anchor"></a>
+					<h3>canon</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> canon<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L178">Angle.class.ts:178</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the canonical representation this Angle.</p>
+								</div>
+								<p>An Angle’s canon is the least non-negative Angle that is <a href="angle.html#congruent">congruent</a> to that Angle.
+									If an Angle’s measure is at least 0 turn and less than 1 turn, then its canon is itself.
+								The canon of <a href="angle.html#full">Angle.FULL</a> is <a href="angle.html#zero">Angle.ZERO</a>.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
+							<p>the smallest Angle congruent to this</p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="complement" class="tsd-anchor"></a>
 					<h3>complement</h3>
@@ -311,17 +337,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L196">Angle.class.ts:196</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L188">Angle.class.ts:188</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get the complement of this Angle.</p>
+									<p>Get the complement of this Angle’s canon.</p>
 								</div>
 								<p>Complementary angles add to form a right angle (0.25turn).</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
-							<p>the complement of this Angle</p>
+							<p>the complement of this Angle’s canon</p>
 						</li>
 					</ul>
 				</section>
@@ -335,18 +361,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L217">Angle.class.ts:217</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L209">Angle.class.ts:209</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get the conjugate of this Angle.</p>
+									<p>Get the conjugate of this Angle’s canon.</p>
 								</div>
 								<p>Conjugate angles add to form a full angle (1turn).
 								The conjugate of an angle is equivalent to its “negation”.</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
-							<p>the conjugate of this Angle</p>
+							<p>the conjugate of this Angle’s canon</p>
 						</li>
 					</ul>
 				</section>
@@ -360,7 +386,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L265">Angle.class.ts:265</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L257">Angle.class.ts:257</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -383,7 +409,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L297">Angle.class.ts:297</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L289">Angle.class.ts:289</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -406,7 +432,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L281">Angle.class.ts:281</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L273">Angle.class.ts:273</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -429,16 +455,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L225">Angle.class.ts:225</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L217">Angle.class.ts:217</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get the inversion of this Angle.</p>
+									<p>Get the inversion of this Angle’s canon.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
-							<p>this angle rotated by 0.5turn</p>
+							<p>this Angle’s canon rotated by 0.5turn</p>
 						</li>
 					</ul>
 				</section>
@@ -452,16 +478,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L233">Angle.class.ts:233</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L225">Angle.class.ts:225</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return whether this Angle is acute.</p>
+									<p>Return whether this Angle’s canon is acute.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>is the measure of this Angle less than 0.25turn?</p>
+							<p>is the measure of this Angle’s canon less than 0.25turn?</p>
 						</li>
 					</ul>
 				</section>
@@ -475,16 +501,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L241">Angle.class.ts:241</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L233">Angle.class.ts:233</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return whether this Angle is obtuse.</p>
+									<p>Return whether this Angle’s canon is obtuse.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>is the measure of this Angle between 0.25turn and 0.5turn?</p>
+							<p>is the measure of this Angle’s canon between 0.25turn and 0.5turn?</p>
 						</li>
 					</ul>
 				</section>
@@ -498,16 +524,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L249">Angle.class.ts:249</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L241">Angle.class.ts:241</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return whether this Angle is reflex.</p>
+									<p>Return whether this Angle’s canon is reflex.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>is the measure of this Angle greater than 0.5turn?</p>
+							<p>is the measure of this Angle’s canon greater than 0.5turn?</p>
 						</li>
 					</ul>
 				</section>
@@ -521,7 +547,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L289">Angle.class.ts:289</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L281">Angle.class.ts:281</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -544,7 +570,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L257">Angle.class.ts:257</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L249">Angle.class.ts:249</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -567,17 +593,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L206">Angle.class.ts:206</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L198">Angle.class.ts:198</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get the supplement of this Angle.</p>
+									<p>Get the supplement of this Angle’s canon.</p>
 								</div>
 								<p>Supplementary angles add to form a straight angle (0.5turn).</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="angle.html" class="tsd-signature-type">Angle</a></h4>
-							<p>the supplement of this Angle</p>
+							<p>the supplement of this Angle’s canon</p>
 						</li>
 					</ul>
 				</section>
@@ -591,7 +617,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L273">Angle.class.ts:273</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L265">Angle.class.ts:265</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -617,7 +643,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L339">Angle.class.ts:339</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L347">Angle.class.ts:347</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -651,6 +677,43 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="congruent" class="tsd-anchor"></a>
+					<h3>congruent</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">congruent<span class="tsd-signature-symbol">(</span>angle<span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L320">Angle.class.ts:320</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return whether this Angle is congruent to the argument.</p>
+								</div>
+								<p>Angles are congruent iff they have <a href="angle.html#equals">equal</a> canons.
+								Angles that are equal are also congruent.</p>
+								<p>Equivalently, Angles are congruent iff their measures differ by a whole number of turns.
+									For example, 225˚ and 945˚ are congruent, because their canons are both 225˚, and
+								because they differ by 2 whole turns.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>angle: <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Angle to compare</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>is this Angle congruent to the argument?</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="convert" class="tsd-anchor"></a>
 					<h3>convert</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -660,7 +723,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L389">Angle.class.ts:389</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L411">Angle.class.ts:411</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -692,7 +755,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L313">Angle.class.ts:313</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L303">Angle.class.ts:303</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -724,7 +787,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L322">Angle.class.ts:322</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L330">Angle.class.ts:330</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -756,7 +819,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L363">Angle.class.ts:363</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L372">Angle.class.ts:372</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -789,7 +852,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L350">Angle.class.ts:350</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L358">Angle.class.ts:358</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -812,30 +875,62 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="scale" class="tsd-anchor"></a>
-					<h3>scale</h3>
+					<a name="ratio" class="tsd-anchor"></a>
+					<h3>ratio</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">scale<span class="tsd-signature-symbol">(</span>scalar<span class="tsd-signature-symbol">?: </span><a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+						<li class="tsd-signature tsd-kind-icon">ratio<span class="tsd-signature-symbol">(</span>divisor<span class="tsd-signature-symbol">?: </span><a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L378">Angle.class.ts:378</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L400">Angle.class.ts:400</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the ratio of this Angle (the dividend) to the argument (the divisor).</p>
+								</div>
+								<p>Note: to “divide” this Angle into even pieces, call <a href="angle.html#scale">Angle.scale</a>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> divisor: <a href="angle.html" class="tsd-signature-type">Angle</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>a number equal to the quotient, <code>dividend / divisor</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="scale" class="tsd-anchor"></a>
+					<h3>scale</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">scale<span class="tsd-signature-symbol">(</span>scalar<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="angle.html" class="tsd-signature-type">Angle</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L389">Angle.class.ts:389</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Scale this Angle by a scalar factor.</p>
 								</div>
-								<p>If the scale factor is &lt;1, returns a new Angle &quot;more acute&quot;  than this Angle.
-									If the scale factor is &gt;1, returns a new Angle &quot;more obtuse&quot; than this Angle.
-								If the scale factor is =1, returns a new Angle equal to           this Angle.</p>
+								<p>If the scale factor is &lt;1, returns a new Angle ‘more acute’  than this Angle.
+									If the scale factor is &gt;1, returns a new Angle ‘more obtuse’ than this Angle.
+									If the scale factor is =1, returns a new Angle equal to           this Angle.
+									If the scale factor is negative, returns a negative Angle:
+								for example, <code>(60˚).scale(-2)</code> returns <code>-120˚</code>.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> scalar: <a href="percentage.html" class="tsd-signature-type">Percentage</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> scalar: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the scale factor</p>
 									</div>
@@ -991,7 +1086,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Number.toString</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L302">Angle.class.ts:302</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L294">Angle.class.ts:294</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1003,10 +1098,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> radix: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> radix: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> unit: <a href="../enums/angleunit.html" class="tsd-signature-type">AngleUnit</a></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> unit: <a href="../enums/angleunit.html" class="tsd-signature-type">AngleUnit</a><span class="tsd-signature-symbol"> =&nbsp;AngleUnit.TURN</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -1046,7 +1141,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L119">Angle.class.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L98">Angle.class.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1083,7 +1178,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L158">Angle.class.ts:158</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L137">Angle.class.ts:137</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1115,7 +1210,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L140">Angle.class.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L119">Angle.class.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1147,7 +1242,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L149">Angle.class.ts:149</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L128">Angle.class.ts:128</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1179,7 +1274,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L107">Angle.class.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L86">Angle.class.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1216,7 +1311,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L130">Angle.class.ts:130</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L109">Angle.class.ts:109</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1248,7 +1343,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L168">Angle.class.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L147">Angle.class.ts:147</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1285,7 +1380,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L86">Angle.class.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L65">Angle.class.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1317,7 +1412,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L96">Angle.class.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L75">Angle.class.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1348,7 +1443,7 @@
 					<div class="tsd-signature tsd-kind-icon">CONVERSION<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L69">Angle.class.ts:69</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L39">Angle.class.ts:39</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1360,13 +1455,13 @@
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="conversion.__computed" class="tsd-anchor"></a>
 						<h3>__computed</h3>
-						<div class="tsd-signature tsd-kind-icon">__computed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></div>
+						<div class="tsd-signature tsd-kind-icon">__computed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;2 * Math.PI</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L70">Angle.class.ts:70</a></li>
-								<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L71">Angle.class.ts:71</a></li>
-								<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L72">Angle.class.ts:72</a></li>
-								<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/850aa47/src/class/Angle.class.ts#L73">Angle.class.ts:73</a></li>
+								<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L40">Angle.class.ts:40</a></li>
+								<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L41">Angle.class.ts:41</a></li>
+								<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L42">Angle.class.ts:42</a></li>
+								<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Angle.class.ts#L43">Angle.class.ts:43</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1388,6 +1483,9 @@
 					</li>
 					<li class=" tsd-kind-enum">
 						<a href="../enums/colorspace.html" class="tsd-kind-icon">Color<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/lengthunit.html" class="tsd-kind-icon">Length<wbr>Unit</a>
 					</li>
 				</ul>
 				<ul class="current">
@@ -1414,6 +1512,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
 								<a href="angle.html#zero" class="tsd-kind-icon">ZERO</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="angle.html#canon" class="tsd-kind-icon">canon</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="angle.html#complement" class="tsd-kind-icon">complement</a>
@@ -1458,6 +1559,9 @@
 								<a href="angle.html#clamp" class="tsd-kind-icon">clamp</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="angle.html#congruent" class="tsd-kind-icon">congruent</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="angle.html#convert" class="tsd-kind-icon">convert</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -1471,6 +1575,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="angle.html#plus" class="tsd-kind-icon">plus</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="angle.html#ratio" class="tsd-kind-icon">ratio</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="angle.html#scale" class="tsd-kind-icon">scale</a>
@@ -1531,7 +1638,13 @@
 						<a href="color.html" class="tsd-kind-icon">Color</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="fraction.html" class="tsd-kind-icon">Fraction</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="integer.html" class="tsd-kind-icon">Integer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="length.html" class="tsd-kind-icon">Length</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="percentage.html" class="tsd-kind-icon">Percentage</a>

@@ -20,7 +20,21 @@ gulp.task('test-out', async function () {
 		.pipe(gulp.dest('./test/out/'))
 })
 
-gulp.task('test-run', async function () {
+gulp.task('test-run-length', async function () {
+	await Promise.all([
+		require('./test/out/Length-constructor.test.js').default,
+	])
+	console.info('All _Length_ tests ran successfully!')
+})
+
+gulp.task('test-run-angle', async function () {
+	await Promise.all([
+		require('./test/out/Angle-constructor.test.js').default,
+	])
+	console.info('All _Angle_ tests ran successfully!')
+})
+
+gulp.task('test-run-color', async function () {
 	await Promise.all([
 		require('./test/out/Color--fromString.test.js').default,
 		require('./test/out/Color--random.test.js').default,
@@ -32,6 +46,14 @@ gulp.task('test-run', async function () {
 		require('./test/out/Color-complement.test.js').default,
 		require('./test/out/Color-name.test.js').default,
 	])
+	console.info('All _Color_ tests ran successfully!')
+})
+
+gulp.task('test-run', [
+	'test-run-length',
+	'test-run-angle',
+	'test-run-color',
+], async function () {
 	console.info('All tests ran successfully!')
 })
 
