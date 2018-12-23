@@ -52,6 +52,7 @@ gulp.task('test-run-color', async function () {
 gulp.task('test-run-vector', async function () {
 	await Promise.all([
 		require('./test/out/Vector-constructor.test.js').default,
+		require('./test/out/Vector-cross.test.js').default,
 	])
 	console.info('All _Vector_ tests ran successfully!')
 })

@@ -194,6 +194,51 @@ export default class Vector {
 	 */
 	cross(multiplier: Vector): Vector {
 		if (this.dimension !== 3 || multiplier.dimension !== 3) throw new TypeError('Vector dimensions are incompatible for cross product.')
-		throw new Error('feature not supported yet')
+		/**
+		 * A two-dimensional square matrix.
+		 *
+		 * A temporary class for computing the cross product of two 3D vectors.
+		 */
+		class Matrix2D {
+			/** Row 1, Column 1 */
+			private readonly _A: number;
+			/** Row 1, Column 2 */
+			private readonly _B: number;
+			/** Row 2, Column 1 */
+			private readonly _C: number;
+			/** Row 2, Column 2 */
+			private readonly _D: number;
+			/**
+			 * Construct a new Matrix2D Object.
+			 * @param   arr the entries, sorted by row and then by column
+			 */
+			constructor(arr: [number, number, number, number]) {
+				this._A = arr[0]
+				this._B = arr[1]
+				this._C = arr[2]
+				this._D = arr[3]
+			}
+			/**
+			 * Get the determinant of this matrix.
+			 * @returns the determinant of this matrix
+			 */
+			get determinant(): number {
+				return this._A * this._D - this._B * this._C
+			}
+		}
+		return new Vector([
+			new Matrix2D([
+				this      .at(1), this      .at(2),
+				multiplier.at(1), multiplier.at(2),
+			]).determinant,
+			-1 * new Matrix2D([
+				this      .at(0), this      .at(2),
+				multiplier.at(0), multiplier.at(2),
+			]).determinant,
+			new Matrix2D([
+				this      .at(0), this      .at(1),
+				multiplier.at(0), multiplier.at(1),
+			]).determinant,
+		])
 	}
 }
