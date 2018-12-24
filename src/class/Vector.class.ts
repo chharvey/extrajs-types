@@ -1,5 +1,3 @@
-import * as assert from 'assert'
-
 import * as xjs from 'extrajs'
 
 import Integer from './Integer.class'
@@ -12,6 +10,7 @@ import Integer from './Integer.class'
  * An empty vector is a vector with 0 coordinates.
  * Each vector entry is a finite number (any primitive JavaScript number that is not `Infinity`, `-Infinity`, or `NaN`).
  * The ‘length’ of a vector is called its **dimension**.
+ * For example, a vector with 3 coordinates is three-dimensional.
  *
  * A **Vector Space** is a set of Vectors within a constant dimension. It has the following properties:
  *
@@ -37,28 +36,32 @@ import Integer from './Integer.class'
 export default class Vector {
 	/**
 	 * Assert two vectors have the same dimension.
-	 *
-	 * Throws a `TypeError` if the assertion fails.
-	 * @param vector1 vector1
-	 * @param vector2 vector2
-	 * @param message a message for the error
+	 * @param   vector1 vector1
+	 * @param   vector2 vector2
+	 * @param   message a message for the error
+	 * @throws  {TypeError} if the assertion fails
 	 */
 	static assertSameDimensions(vector1: Vector, vector2: Vector, message: string = 'Vector dimensions are not equal.'): void {
-		assert(vector1.dimension.equals(vector2.dimension), new TypeError(message))
+		if (!vector1.dimension.equals(vector2.dimension)) throw new TypeError(message)
 	}
 
 	/**
 	 * The coordinates of this Vector.
 	 */
 	private readonly _DATA: ReadonlyArray<number>;
+	/**
+	 * The dimension of this Vector.
+	 */
+	private readonly _DIMENSION: Integer;
 
 	/**
 	 * Construct a new Vector object.
 	 * @param   arr an array of finite numbers
 	 */
-	constructor(arr: number[] = []) {
-		arr.forEach((n) => { xjs.Number.assertType(n, 'finite') })
+	constructor(arr: ReadonlyArray<number> = []) {
+		arr.forEach((c) => xjs.Number.assertType(c, 'finite'))
 		this._DATA = arr
+		this._DIMENSION = new Integer(arr.length)
 	}
 
 	/**
@@ -66,7 +69,7 @@ export default class Vector {
 	 * @returns this Vector’s dimension
 	 */
 	get dimension(): Integer {
-		return new Integer(this._DATA.length)
+		return this._DIMENSION
 	}
 
 	/**
@@ -75,6 +78,17 @@ export default class Vector {
 	 */
 	get magnitude(): number {
 		return Math.sqrt(this.dot(this))
+	}
+
+	/**
+	 * Get the negation of this Vector.
+	 *
+	 * The negation of a Vector is its additive inverse:
+	 * the Vector that when added to this, gives a sum of 0 (the additive identity).
+	 * @returns a new Vector representing the additive inverse
+	 */
+	get negation(): Vector {
+		return this.scale(-1)
 	}
 
 	/**
@@ -93,8 +107,8 @@ export default class Vector {
 	}
 
 	/**
-	 * Return the `i`th entry of this Vector, if it exists.
-	 * @param   i the entry to get
+	 * Return the `i`th coordinate of this Vector, if it exists.
+	 * @param   i the index of the coordinate to get
 	 * @returns the value at the `i`th entry
 	 * @throws  {RangeError} if `i` is out of bounds
 	 */
@@ -107,7 +121,7 @@ export default class Vector {
 
 	/**
 	 * Return whether this Vector equals the argument.
-	 * Vectors are equal if and only if their components are equal.
+	 * Vectors are equal if and only if their corresponding coordinates are equal.
 	 * @param   vector the Vector to compare
 	 * @returns does this Vector equal the argument?
 	 * @throws  {TypeError} if the argument is not of the correct dimension
