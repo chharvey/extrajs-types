@@ -94,4 +94,12 @@ export default class MatrixSquare extends Matrix {
 	scale(scalar: number = 1): MatrixSquare {
 		return super.scale(scalar) as MatrixSquare
 	}
+
+	/**
+	 * Multiplying two square matrices always yields a square matrix.
+	 * @override
+	 */
+	times(multiplier: Matrix|number[][]): MatrixSquare {
+		return super.times(multiplier) as MatrixSquare
+	}
 }

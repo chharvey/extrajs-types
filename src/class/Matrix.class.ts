@@ -33,8 +33,18 @@ import Vector from './Vector.class'
  * - Scalar-Multiplication distributes over addition.
  * 	For matrices `a`, `b`, and scalar `K`, we are guaranteed `K * (a + b) === K * a + K * b`.
  *
- * Some Matrices can be multiplied. If matrix `a` has dimension *N×M*, and matrix `b` has dimension *M×L*,
- * then the **product** matrix, `ab`, exists and will have dimension *N×L*.
+ * ## Matrix Multiplication
+ *
+ * Some Matrices can be multiplied. If matrix `a` has dimension *M×N*, and matrix `b` has dimension *N×P*,
+ * then the **product** matrix, `ab`, exists and will have dimension *M×P*.
+ *
+ * Matrix Multiplication is associative.
+ * 	For matrices `a` (*M×N*), `b` (*N×P*), and `c` (*P×Q*), compatible for multiplication,
+ * 	we are guaranteed `a(bc) === (ab)c`.
+ * 	Note, however, that although both sides of the equation are equal,
+ * 	the time it takes to compute each product is not necessarily the same. For details, read
+ * 	[“Efficiency is not associative for matrix multiplication”](https://www.johndcook.com/blog/2017/12/12/efficiency-is-not-associative-for-matrix-multiplication/)
+ * 	by John D Cook.
  */
 export default class Matrix {
 	/**
