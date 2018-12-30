@@ -60,6 +60,21 @@ export default class Matrix {
 	}
 
 	/**
+	 * Construct a new Matrix object by specifying its size.
+	 *
+	 * The returned matrix’s entries will all be 0, thus it serves as an additive identity.
+	 * @param   rows the number of rows in the Matrix (its height)
+	 * @param   cols the number of columns in the Matrix (its width)
+	 */
+	static fromSize(rows: Integer|number = 0, cols: Integer|number = rows): Matrix {
+		if (rows instanceof Integer && cols instanceof Integer) {
+			return new Matrix(new Array(rows.valueOf()).fill(null).map((_) =>
+				new Array(cols.valueOf()).fill(0)
+			))
+		} else return Matrix.fromSize(new Integer(rows), new Integer(cols))
+	}
+
+	/**
 	 * Construct a new Matrix object given an array of row Vectors.
 	 * @param   rows the Vectors as rows
 	 * @returns a new Matrix object
