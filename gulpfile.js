@@ -89,6 +89,10 @@ const build = gulp.parallel(
 module.exports = {
 	dist,
 	test_out,
+	test_run_length,
+	test_run_angle,
+	test_run_color,
+	test_run_vector,
 	test_run,
 	test,
 	docs,
