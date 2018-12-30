@@ -27,7 +27,7 @@ export default class MatrixSquare extends Matrix {
 	 * @param   arr an array of arrays of finite numbers
 	 * @throws  {TypeError} if the given array is not square
 	 */
-	constructor(arr: ReadonlyArray<number[]> = [[]]) {
+	constructor(arr: ReadonlyArray<number[]> = []) {
 		super(arr)
 		if (!this.height.equals(this.width)) throw new TypeError('The argument to `MatrixSquare.constructor` must be a square array.')
 	}

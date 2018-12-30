@@ -95,7 +95,7 @@ export default class Matrix {
 	 * Construct a new Matrix object.
 	 * @param   arr an array of arrays of finite numbers
 	 */
-	constructor(arr: ReadonlyArray<number[]> = [[]]) {
+	constructor(arr: ReadonlyArray<number[]> = []) {
 		/** @TODO extrajs/xjs.Array.fillHoles */
 		function _fillHoles<T, U>(arr: T[], value: U): (T|U)[] {
 			const newarr: (T|U)[] = arr
@@ -104,7 +104,7 @@ export default class Matrix {
 			}
 			return newarr
 		}
-		const maxwidth: number = Math.max(...arr.map((row) => row.length))
+		const maxwidth: number = Math.max(...arr.map((row) => row.length), 0)
 		arr.forEach((row) => {
 			row.length = maxwidth // add extra `undefined`s (if less) or removes extra entries (if more)
 			row = _fillHoles(row, 0)
@@ -272,8 +272,8 @@ export default class Matrix {
 	 * @returns a new Matrix containing all rows and columns except those specified
 	 */
 	minor(row: Integer|number, col: Integer|number): Matrix {
-		let rowindices = Array.from(Array(this.height.minus(1)), (_, i) => i) // [0, 1, 2, ..., this.height - 1]
-		let colindices = Array.from(Array(this.width .minus(1)), (_, j) => j) // [0, 1, 2, ..., this.width  - 1]
+		let rowindices: number[] = Array.from(new Array(this.height.valueOf()), (_, i) => i) // [0, 1, 2, ..., this.height - 1]
+		let colindices: number[] = Array.from(new Array(this.width .valueOf()), (_, j) => j) // [0, 1, 2, ..., this.width  - 1]
 		if (row instanceof Integer && col instanceof Integer) {
 			let rows: number[] = rowindices.slice(0, row.valueOf()).concat(rowindices.slice(row.plus(1).valueOf()))
 			let cols: number[] = colindices.slice(0, col.valueOf()).concat(colindices.slice(col.plus(1).valueOf()))
