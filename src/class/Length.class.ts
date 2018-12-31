@@ -1,8 +1,5 @@
 import * as xjs from 'extrajs'
 
-// TODO: move to xjs.Number
-const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
-
 
 /**
  * A list of possible absolute Length units.
@@ -42,7 +39,7 @@ export default class Length extends Number {
 	/**
 	 * An immutable RegExp instance, representing a string in Length format.
 	 */
-	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}(?:cm|mm|in|pt|px)$`)
+	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs.Number.REGEXP.source.slice(1,-1)}(?:cm|mm|in|pt|px)$`)
 
 	/**
 	 * Return the maximum of two or more Lengths.
@@ -87,7 +84,7 @@ export default class Length extends Number {
 	constructor(x: Length|number|string = 0, unit: LengthUnit = LengthUnit.CM) {
 		if (typeof x === 'string') {
 			if (!Length.REGEXP.test(x)) throw new RangeError(`Invalid string format: '${x}'.`)
-			let numeric_part: number = +x.match(xjs_Number_REGEXP.source.slice(1,-1)) ![0]
+			let numeric_part: number = +x.match(xjs.Number.REGEXP.source.slice(1,-1)) ![0]
 			let unit_part   : string =  x.match(/cm|mm|in|pt|px/                    ) ![0]
 			x = xjs.Object.switch<number>(unit_part, {
 				'cm': () => numeric_part / Length.CONVERSION[LengthUnit.CM],

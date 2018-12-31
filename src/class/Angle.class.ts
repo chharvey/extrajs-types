@@ -1,8 +1,5 @@
 import * as xjs from 'extrajs'
 
-// TODO: move to xjs.Number
-const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
-
 
 /**
  * A list of possible Angle units.
@@ -55,7 +52,7 @@ export default class Angle extends Number {
 	/**
 	 * An immutable RegExp instance, representing a string in Angle format.
 	 */
-	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}(?:turn|deg|grad|rad)$`)
+	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs.Number.REGEXP.source.slice(1,-1)}(?:turn|deg|grad|rad)$`)
 
 	/**
 	 * Return the maximum of two or more Angles.
@@ -161,7 +158,7 @@ export default class Angle extends Number {
 	constructor(theta: Angle|number|string = 0, unit: AngleUnit = AngleUnit.TURN) {
 		if (typeof theta === 'string') {
 			if (!Angle.REGEXP.test(theta)) throw new RangeError(`Invalid string format: '${theta}'.`)
-			let numeric_part: number = +theta.match(xjs_Number_REGEXP.source.slice(1,-1)) ![0]
+			let numeric_part: number = +theta.match(xjs.Number.REGEXP.source.slice(1,-1)) ![0]
 			let unit_part   : string =  theta.match(/turn|deg|grad|rad/                 ) ![0]
 			theta = xjs.Object.switch<number>(unit_part, {
 				'turn' : () => numeric_part / Angle.CONVERSION[AngleUnit.TURN],

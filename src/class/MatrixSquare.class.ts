@@ -1,3 +1,5 @@
+import * as xjs from 'extrajs'
+
 import Integer from './Integer.class'
 import Vector from './Vector.class'
 import Matrix from './Matrix.class'
@@ -45,20 +47,12 @@ export default class MatrixSquare extends Matrix {
 	 * @param   data a Matrix, an array of Vectors, or array of arrays of finite numbers
 	 */
 	constructor(data: Matrix|ReadonlyArray<Vector|number[]> = []) {
-		/** @TODO extrajs/xjs.Array.fillHoles */
-		function _fillHoles<T, U>(arr: T[], value: U): (T|U)[] {
-			const newarr: (T|U)[] = arr
-			for (let i = 0; i < newarr.length; i++) { // `Array#forEach` does not iterate over holes in sparse arrays
-				if (newarr[i] === void 0) newarr[i] = value
-			}
-			return newarr
-		}
 		let rawdata: ReadonlyArray<number[]> = (data instanceof Matrix) ?
 			data.raw.map((row) => [...row]) : // each row must be a full Array
 			data.map((row) => (row instanceof Vector) ? [...row.raw] : row) // each row must be a full Array
 		rawdata.forEach((row) => {
 			row.length = rawdata.length // add extra `undefined`s (if less) or removes extra entries (if more)
-			row = _fillHoles(row, 0)
+			row = xjs.Array.fillHoles(row, 0)
 		})
 		super(rawdata)
 	}
