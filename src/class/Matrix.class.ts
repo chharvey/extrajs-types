@@ -74,15 +74,6 @@ export default class Matrix {
 		} else return Matrix.fromSize(new Integer(rows), new Integer(cols))
 	}
 
-	/**
-	 * Construct a new Matrix object given an array of row Vectors.
-	 * @param   rows the Vectors as rows
-	 * @returns a new Matrix object
-	 */
-	static fromVectors(rows: Vector[]): Matrix {
-		return new Matrix(rows.map((row) => [...row.raw]))
-	}
-
 
 	/**
 	 * The cells of this Matrix.
@@ -99,9 +90,9 @@ export default class Matrix {
 
 	/**
 	 * Construct a new Matrix object.
-	 * @param   arr an array of arrays of finite numbers
+	 * @param   data a Matrix, an array of Vectors, or array of arrays of finite numbers
 	 */
-	constructor(arr: ReadonlyArray<number[]> = []) {
+	constructor(data: Matrix|ReadonlyArray<Vector|number[]> = []) {
 		/** @TODO extrajs/xjs.Array.fillHoles */
 		function _fillHoles<T, U>(arr: T[], value: U): (T|U)[] {
 			const newarr: (T|U)[] = arr
@@ -110,13 +101,16 @@ export default class Matrix {
 			}
 			return newarr
 		}
-		const maxwidth: number = Math.max(...arr.map((row) => row.length), 0)
-		arr.forEach((row) => {
+		let rawdata: ReadonlyArray<number[]> = (data instanceof Matrix) ?
+			data.raw.map((row) => [...row]) : // each row must be a full Array
+			data.map((row) => (row instanceof Vector) ? [...row.raw] : row) // each row must be a full Array
+		const maxwidth: number = Math.max(...rawdata.map((row) => row.length), 0)
+		rawdata.forEach((row) => {
 			row.length = maxwidth // add extra `undefined`s (if less) or removes extra entries (if more)
 			row = _fillHoles(row, 0)
 		})
-		this._DATA = arr
-		this._HEIGHT = new Integer(arr.length)
+		this._DATA = rawdata
+		this._HEIGHT = new Integer(rawdata.length)
 		this._WIDTH  = new Integer(maxwidth)
 	}
 
@@ -152,7 +146,7 @@ export default class Matrix {
 	 * @returns a new Matrix representing the additive inverse
 	 */
 	get negation(): Matrix {
-		return Matrix.fromVectors(this._DATA.map((row) => new Vector(row).negation))
+		return new Matrix(this._DATA.map((row) => new Vector(row).negation))
 	}
 
 	/**
@@ -319,7 +313,7 @@ export default class Matrix {
 	plus(addend: Matrix|number[][]): Matrix {
 		return (addend instanceof Matrix) ? (
 			Matrix.assertSameDimensions(this, addend, 'Matrix dimensions are incompatible for addition.'),
-			Matrix.fromVectors(this._DATA.map((row, i) => new Vector(row).plus(new Vector(addend._DATA[i]))))
+			new Matrix(this._DATA.map((row, i) => new Vector(row).plus(new Vector(addend._DATA[i]))))
 		) : this.plus(new Matrix(addend))
 	}
 
@@ -344,7 +338,7 @@ export default class Matrix {
 	 * @returns a new Matrix representing the product
 	 */
 	scale(scalar: number = 1): Matrix {
-		return Matrix.fromVectors(this._DATA.map((row) => new Vector(row).scale(scalar)))
+		return new Matrix(this._DATA.map((row) => new Vector(row).scale(scalar)))
 	}
 
 	/**

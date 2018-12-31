@@ -1,4 +1,5 @@
 import Integer from './Integer.class'
+import Vector from './Vector.class'
 import Matrix from './Matrix.class'
 
 
@@ -23,24 +24,26 @@ import Matrix from './Matrix.class'
  */
 export default class MatrixSquare extends Matrix {
 	/**
-	 * Construct a new MatrixSquare object from a square Matrix.
-	 * @param   matrix a Matrix that is square — the number of rows must be equal to the number of columns
-	 * @throws  {TypeError} if the given matrix is not square
-	 */
-	static fromMatrix(matrix: Matrix): MatrixSquare {
-		if (!matrix.height.equals(matrix.width)) throw new TypeError('Cannot construct a new MatrixSquare from a non-square Matrix.')
-		return new MatrixSquare(matrix.raw.map((row) => [...row])) // each row must be a full Array
-	}
-
-
-	/**
 	 * Construct a new MatrixSquare object.
-	 * @param   arr an array of arrays of finite numbers
-	 * @throws  {TypeError} if the given array is not square
+	 * @param   data a Matrix, an array of Vectors, or array of arrays of finite numbers
 	 */
-	constructor(arr: ReadonlyArray<number[]> = []) {
-		super(arr)
-		if (!this.height.equals(this.width)) throw new TypeError('The argument to `MatrixSquare.constructor` must be a square array.')
+	constructor(data: Matrix|ReadonlyArray<Vector|number[]> = []) {
+		/** @TODO extrajs/xjs.Array.fillHoles */
+		function _fillHoles<T, U>(arr: T[], value: U): (T|U)[] {
+			const newarr: (T|U)[] = arr
+			for (let i = 0; i < newarr.length; i++) { // `Array#forEach` does not iterate over holes in sparse arrays
+				if (newarr[i] === void 0) newarr[i] = value
+			}
+			return newarr
+		}
+		let rawdata: ReadonlyArray<number[]> = (data instanceof Matrix) ?
+			data.raw.map((row) => [...row]) : // each row must be a full Array
+			data.map((row) => (row instanceof Vector) ? [...row.raw] : row) // each row must be a full Array
+		rawdata.forEach((row) => {
+			row.length = rawdata.length // add extra `undefined`s (if less) or removes extra entries (if more)
+			row = _fillHoles(row, 0)
+		})
+		super(rawdata)
 	}
 
 	/**
@@ -95,7 +98,7 @@ export default class MatrixSquare extends Matrix {
 	 * @override
 	 */
 	minor(row: Integer|number, col: Integer|number): MatrixSquare {
-		return MatrixSquare.fromMatrix(super.minor(row, col))
+		return new MatrixSquare(super.minor(row, col))
 	}
 
 	/**
@@ -103,7 +106,7 @@ export default class MatrixSquare extends Matrix {
 	 * @override
 	 */
 	scale(scalar: number = 1): MatrixSquare {
-		return MatrixSquare.fromMatrix(super.scale(scalar))
+		return new MatrixSquare(super.scale(scalar))
 	}
 
 	/**
@@ -111,6 +114,6 @@ export default class MatrixSquare extends Matrix {
 	 * @override
 	 */
 	times(multiplier: Matrix|number[][]): MatrixSquare {
-		return MatrixSquare.fromMatrix(super.times(multiplier))
+		return new MatrixSquare(super.times(multiplier))
 	}
 }

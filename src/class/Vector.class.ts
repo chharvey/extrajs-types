@@ -57,12 +57,13 @@ export default class Vector {
 
 	/**
 	 * Construct a new Vector object.
-	 * @param   arr an array of finite numbers
+	 * @param   data a Vector or array of finite numbers
 	 */
-	constructor(arr: ReadonlyArray<number> = []) {
-		arr.forEach((c) => xjs.Number.assertType(c, 'finite'))
-		this._DATA = arr
-		this._DIMENSION = new Integer(arr.length)
+	constructor(data: Vector|ReadonlyArray<number> = []) {
+		if (data instanceof Vector) data = data.raw
+		data.forEach((c) => xjs.Number.assertType(c, 'finite'))
+		this._DATA = data
+		this._DIMENSION = new Integer(data.length)
 	}
 
 	/**
