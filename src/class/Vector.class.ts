@@ -66,6 +66,14 @@ export default class Vector {
 	}
 
 	/**
+	 * Get this Vector’s raw data: the list of coordinates.
+	 * @returns this Vector’s raw data
+	 */
+	get raw(): ReadonlyArray<number> {
+		return this._DATA.slice()
+	}
+
+	/**
 	 * Get the dimension of this Vector: how many coordinates this Vector has.
 	 * @returns this Vector’s dimension
 	 */

@@ -28,20 +28,8 @@ export default class MatrixSquare extends Matrix {
 	 * @throws  {TypeError} if the given matrix is not square
 	 */
 	static fromMatrix(matrix: Matrix): MatrixSquare {
-		function Vector_raw(vectorstring: string): number[] {
-			return vectorstring.slice(1,-1).split(', ').map((s) => +s)
-		}
-		/**
-		 * Return a Matrix’s raw data.
-		 * @private
-		 * @param   mx the Matrix to get
-		 * @returns an array of arrays of numbers
-		 */
-		function _raw(mx: Matrix): number[][] {
-			return mx.toString().slice(1,-1).split(',\n').map((r) => Vector_raw(r))
-		}
 		if (!matrix.height.equals(matrix.width)) throw new TypeError('Cannot construct a new MatrixSquare from a non-square Matrix.')
-		return new MatrixSquare(_raw(matrix))
+		return new MatrixSquare(matrix.raw.map((row) => [...row])) // each row must be a full Array
 	}
 
 

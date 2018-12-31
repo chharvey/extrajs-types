@@ -80,16 +80,7 @@ export default class Matrix {
 	 * @returns a new Matrix object
 	 */
 	static fromVectors(rows: Vector[]): Matrix {
-		/**
-		 * Return a Vector’s raw data.
-		 * @private
-		 * @param   vector the Vector to get
-		 * @returns an array of numbers
-		 */
-		function _raw(vector: Vector): number[] {
-			return vector.toString().slice(1,-1).split(', ').map((s) => +s)
-		}
-		return new Matrix(rows.map((row) => _raw(row)))
+		return new Matrix(rows.map((row) => [...row.raw]))
 	}
 
 
@@ -127,6 +118,14 @@ export default class Matrix {
 		this._DATA = arr
 		this._HEIGHT = new Integer(arr.length)
 		this._WIDTH  = new Integer(maxwidth)
+	}
+
+	/**
+	 * Get this Matrix’s raw data: the cells.
+	 * @returns this Matrix’s raw data
+	 */
+	get raw(): ReadonlyArray<ReadonlyArray<number>> {
+		return this._DATA.slice()
 	}
 
 	/**
