@@ -30,6 +30,6 @@
     "typescript": "~3.2.2"
   },
   "dependencies": {
-    "extrajs": "^0.16.0"
+    "extrajs": "^0.17.0"
   }
 }
