@@ -573,8 +573,21 @@ export default class Color {
 	 * @param blue  the blue  channel of this color
 	 * @param alpha the alpha channel of this color
 	 */
-	constructor(red: Fraction|number = 0, green: Fraction|number = 0, blue: Fraction|number = 0, alpha: Fraction|number = 1) {
+	constructor(red?: Fraction|number, green?: Fraction|number, blue?: Fraction|number, alpha?: Fraction|number);
+	/**
+	 * Alias of {@link Color.fromString}
+	 * @param   str same parameter passed to `Color.fromString`
+	 */
+	constructor(str: string);
+	constructor(red: Fraction|number|string = 0, green: Fraction|number = 0, blue: Fraction|number = 0, alpha: Fraction|number = 1) {
 		if (arguments.length === 0) alpha = 0
+		if (typeof red === 'string') {
+			const color = Color.fromString(red)
+			red   = color.red
+			green = color.green
+			blue  = color.blue
+			alpha = color.alpha
+		}
 		;[this._RED, this._GREEN, this._BLUE] = [red, green, blue].map((c) => new Fraction(c))
 		this._ALPHA = new Fraction(alpha)
 
