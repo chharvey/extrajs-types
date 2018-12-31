@@ -65,22 +65,10 @@ export default class Length extends Number {
 	}
 
 	/**
-	 * Parse a string of the form `'‹n›‹u›'`, where `‹n›` is a number and `‹u›` is a length unit.
-	 * @param   str the string to parse
-	 * @returns a new String emulating the string
-	 * @throws  {RangeError} if the string given is not of the correct format
+	 * @deprecated use constructor `new Length()` instead.
 	 */
 	static fromString(str: string): Length {
-		if (!Length.REGEXP.test(str)) throw new RangeError(`Invalid string format: '${str}'.`)
-		let numeric_part: number = +str.match(xjs_Number_REGEXP.source.slice(1,-1)) ![0]
-		let unit_part   : string =  str.match(/cm|mm|in|pt|px/                    ) ![0]
-		return new Length(xjs.Object.switch<number>(unit_part, {
-			'cm': () => numeric_part / Length.CONVERSION[LengthUnit.CM],
-			'mm': () => numeric_part / Length.CONVERSION[LengthUnit.MM],
-			'in': () => numeric_part / Length.CONVERSION[LengthUnit.IN],
-			'pt': () => numeric_part / Length.CONVERSION[LengthUnit.PT],
-			'px': () => numeric_part / Length.CONVERSION[LengthUnit.PX],
-		})())
+		return new Length(str)
 	}
 
 
@@ -88,7 +76,27 @@ export default class Length extends Number {
 	 * Construct a new Length object.
 	 * @param   x the numeric value of this Length
 	 */
-	constructor(x: Length|number = 0, unit: LengthUnit = LengthUnit.CM) {
+	constructor(x?: Length|number, unit?: LengthUnit);
+	/**
+	 * Parse a string of the form `'‹n›‹u›'`, where `‹n›` is a number and `‹u›` is a length unit.
+	 * @param   str the string to parse
+	 * @returns a new Length emulating the string
+	 * @throws  {RangeError} if the string given is not of the correct format
+	 */
+	constructor(str: string);
+	constructor(x: Length|number|string = 0, unit: LengthUnit = LengthUnit.CM) {
+		if (typeof x === 'string') {
+			if (!Length.REGEXP.test(x)) throw new RangeError(`Invalid string format: '${x}'.`)
+			let numeric_part: number = +x.match(xjs_Number_REGEXP.source.slice(1,-1)) ![0]
+			let unit_part   : string =  x.match(/cm|mm|in|pt|px/                    ) ![0]
+			x = xjs.Object.switch<number>(unit_part, {
+				'cm': () => numeric_part / Length.CONVERSION[LengthUnit.CM],
+				'mm': () => numeric_part / Length.CONVERSION[LengthUnit.MM],
+				'in': () => numeric_part / Length.CONVERSION[LengthUnit.IN],
+				'pt': () => numeric_part / Length.CONVERSION[LengthUnit.PT],
+				'px': () => numeric_part / Length.CONVERSION[LengthUnit.PX],
+			})()
+		}
 		x = x.valueOf()
 		xjs.Number.assertType(x, 'non-negative')
 		xjs.Number.assertType(x, 'finite')
