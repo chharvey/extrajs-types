@@ -24,6 +24,23 @@ import Matrix from './Matrix.class'
  */
 export default class MatrixSquare extends Matrix {
 	/**
+	 * Return a new multiplicative identity Matrix object by specifying its size.
+	 *
+	 * The returned matrix’s cells will all be 0,
+	 * except for the cells in the main diagonal, which will all be 1.
+	 * @param   size the number of rows and columns in the Matrix (its size)
+	 */
+	static multIden(size: Integer|number = 0): MatrixSquare {
+		return (size instanceof Integer) ?
+			new MatrixSquare(new Array(size.valueOf()).fill([]).map((_row: number[], i) =>
+				new Array(size.valueOf()).fill(0).map((cell: number, j) =>
+					(i === j) ? 1 : cell
+				)
+			)) : MatrixSquare.multIden(new Integer(size))
+	}
+
+
+	/**
 	 * Construct a new MatrixSquare object.
 	 * @param   data a Matrix, an array of Vectors, or array of arrays of finite numbers
 	 */
