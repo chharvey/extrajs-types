@@ -49,11 +49,20 @@ async function test_run_color() {
 	console.info('All _Color_ tests ran successfully!')
 }
 
+async function test_run_vector() {
+	await Promise.all([
+		require('./test/out/Vector-constructor.test.js').default,
+		require('./test/out/Vector-cross.test.js').default,
+	])
+	console.info('All _Vector_ tests ran successfully!')
+}
+
 const test_run = gulp.series(
 	gulp.parallel(
 		test_run_length,
 		test_run_angle,
 		test_run_color,
+		test_run_vector,
 	), async () => {
 		console.info('All tests ran successfully!')
 	}
@@ -80,6 +89,10 @@ const build = gulp.parallel(
 module.exports = {
 	dist,
 	test_out,
+	test_run_length,
+	test_run_angle,
+	test_run_color,
+	test_run_vector,
 	test_run,
 	test,
 	docs,
