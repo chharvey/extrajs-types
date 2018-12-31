@@ -60,18 +60,17 @@ export default class Matrix {
 	}
 
 	/**
-	 * Construct a new Matrix object by specifying its size.
+	 * Return a new additive identity Matrix object by specifying its size.
 	 *
-	 * The returned matrix’s entries will all be 0, thus it serves as an additive identity.
+	 * The returned matrix’s cells will all be 0.
 	 * @param   rows the number of rows in the Matrix (its height)
 	 * @param   cols the number of columns in the Matrix (its width)
 	 */
-	static fromSize(rows: Integer|number = 0, cols: Integer|number = rows): Matrix {
-		if (rows instanceof Integer && cols instanceof Integer) {
-			return new Matrix(new Array(rows.valueOf()).fill(null).map((_) =>
+	static addIden(rows: Integer|number = 0, cols: Integer|number = rows): Matrix {
+		return (rows instanceof Integer && cols instanceof Integer) ?
+			new Matrix(new Array(rows.valueOf()).fill([]).map((_row: number[]) =>
 				new Array(cols.valueOf()).fill(0)
-			))
-		} else return Matrix.fromSize(new Integer(rows), new Integer(cols))
+			)) : Matrix.addIden(new Integer(rows), new Integer(cols))
 	}
 
 
