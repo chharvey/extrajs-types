@@ -15,4 +15,6 @@ module.exports = {
 	AngleUnit  : Angle_module.AngleUnit,
 	Color      : Color_module.default,
 	ColorSpace : Color_module.ColorSpace,
+	Meter      : require('./dist/class/Meter.class.js').default,
+	MeterInt   : require('./dist/class/MeterInt.class.js').default,
 }
