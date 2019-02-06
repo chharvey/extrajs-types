@@ -63,7 +63,7 @@ const test_run = gulp.series(
 		test_run_angle,
 		test_run_color,
 		test_run_vector,
-	), async () => {
+	), function test_run0() {
 		console.info('All tests ran successfully!')
 	}
 )
