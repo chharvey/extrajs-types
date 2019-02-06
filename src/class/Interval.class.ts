@@ -51,6 +51,7 @@ export abstract class Interval {
 	 * @returns does this Interval have exactly the same members as the argument?
 	 */
 	equals(iv: Interval): boolean {
+		if (this === iv) return true
 		return xjs.Array.is([this.LOWER, this.UPPER], [iv.LOWER, iv.UPPER])
 			&& (this.has(this.LOWER) === iv.has(iv.LOWER))
 			&& (this.has(this.UPPER) === iv.has(iv.UPPER))

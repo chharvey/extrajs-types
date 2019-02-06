@@ -48,7 +48,7 @@ export default class Length extends Number {
 	 */
 	static max(...lengths: Length[]): Length {
 		return new Length(Math.max(...lengths.map((x) => x.valueOf())))
-		// return lengths.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).slice(-1)[0]
+		// return lengths.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).lastItem
 	}
 
 	/**
