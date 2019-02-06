@@ -217,10 +217,10 @@ export default class Meter {
 		}
 		let b: OpenInterval = new OpenInterval((a.UPPER < c.LOWER) ? [a.UPPER, c.LOWER] : [0, 0])
 		let preferences: ReadonlyMap<Interval, number>|null =
-			(a.equals(c)          ) ? new Map([[a, 1                         ], [b, 1], [c, 1                         ]]) :
-			(a.contains(this._opt)) ? new Map([[a, 1                         ], [b, 2], [c, b.LENGTH.equals(0) ? 2 : 3]]) :
-			(c.contains(this._opt)) ? new Map([[a, b.LENGTH.equals(0) ? 2 : 3], [b, 2], [c, 1                         ]]) :
-			(b.contains(this._opt)) ? new Map([[a, 2                         ], [b, 1], [c, 2                         ]]) :
+			(a.equals(c)     ) ? new Map<Interval, number>([[a, 1                         ], [b, 1], [c, 1                         ]]) :
+			(a.has(this._opt)) ? new Map<Interval, number>([[a, 1                         ], [b, 2], [c, b.LENGTH.equals(0) ? 2 : 3]]) :
+			(c.has(this._opt)) ? new Map<Interval, number>([[a, b.LENGTH.equals(0) ? 2 : 3], [b, 2], [c, 1                         ]]) :
+			(b.has(this._opt)) ? new Map<Interval, number>([[a, 2                         ], [b, 1], [c, 2                         ]]) :
 			null
 		return (preferences !== null) ? [a, b, c].map((iv) => ({
 			interval: [iv.LOWER, iv.UPPER] as [number, number],
