@@ -180,7 +180,7 @@ export default class Integer extends Number {
 	}
 
 	/**
-	 * Divide this Integer (the dividend) by another (the divisor).
+	 * Divide this Integer (the dividend) by another number (the divisor).
 	 *
 	 * Note that division is not commutative: `a / b` does not always equal `b / a`.
 	 *
@@ -188,16 +188,17 @@ export default class Integer extends Number {
 	 * even if the result happens to be an integer.
 	 *
 	 * ```
-	 * new Integer(6).dividedBy(new Integer(2)) // return the number `3`
-	 * new Integer(6).dividedBy(new Integer(4)) // return the number `1.5`
+	 * new Integer(6).dividedBy(new Integer(2)) // return the number `3` (an integer)
+	 * new Integer(6).dividedBy(new Integer(4)) // return the number `1.5` (not an integer)
+	 * new Integer(6).dividedBy(0.5) // return the number `12` (an integer)
 	 * ```
-	 * @param   divisor the Integer to divide this one by
+	 * @param   divisor the number to divide this one by
 	 * @returns a number equal to the quotient, `dividend / divisor`
 	 */
 	dividedBy(divisor: Integer|number = 1): number {
-		return (divisor instanceof Integer) ?
-			this.valueOf() / divisor.valueOf() :
-			this.dividedBy(new Integer(divisor))
+		const returned = this.valueOf() / divisor.valueOf()
+		xjs.Number.assertType(returned)
+		return returned
 	}
 
 	/**
