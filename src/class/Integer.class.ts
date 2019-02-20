@@ -201,7 +201,7 @@ export default class Integer extends Number {
 	}
 
 	/**
-	 * Exponentiate this Integer (the base) by another (the exponent).
+	 * Exponentiate this Integer (the base) by another number (the exponent).
 	 *
 	 * Note that exponentiation is not commutative: `a ** b` does not always equal `b ** a`.
 	 *
@@ -209,16 +209,17 @@ export default class Integer extends Number {
 	 * even if the result happens to be an integer.
 	 *
 	 * ```
-	 * new Integer(2).exp(new Integer(3))  // return the number `8`
-	 * new Integer(2).exp(new Integer(-3)) // return the number `0.125`
+	 * new Integer(2).exp(new Integer(3 )) // return the number `8` (an integer)
+	 * new Integer(2).exp(new Integer(-3)) // return the number `0.125` (not an integer)
+	 * new Integer(2).exp(0.5) // return `1.4142135623730951` (not an integer)
 	 * ```
-	 * @param   exponent the other Integer to exponentiate this one by
+	 * @param   exponent the number to raise this Integer by
 	 * @returns a number equal to the power, `base ** exponent`
 	 */
 	exp(exponent: Integer|number = 1): number {
-		return (exponent instanceof Integer) ?
-			this.valueOf() ** exponent.valueOf() :
-			this.exp(new Integer(exponent))
+		const returned = this.valueOf() ** exponent.valueOf()
+		xjs.Number.assertType(returned)
+		return returned
 	}
 
 	/**
