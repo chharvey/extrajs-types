@@ -22,7 +22,7 @@ import * as xjs from 'extrajs'
  * - Integers have (unique) additive inverses:
  * 	for every integer `a`, a unique integer `-a` is guaranteed such that `a + -a === -a + a === 0`
  * 	(where `0` is the additive identity).
- * - Integers have a (unique) multiplicative absorber:
+ * - The set of Integers has a (unique) multiplicative absorber:
  * 	a unique integer `0` is guaranteed such that for every integer `a`, `a * 0 === 0 * a === 0`.
  * 	(In general, the multiplicative absorber need not necessarily be the additive identity,
  * 	but in the standard integers we work with daily, they are one in the same.)
@@ -145,7 +145,8 @@ export default class Integer extends Number {
 	 */
 	plus(addend: Integer|number = 0): Integer {
 		return (addend instanceof Integer) ?
-			(addend.equals(Integer.ADD_IDEN)) ? this :
+			(this  .equals(0)) ? addend :
+			(addend.equals(0)) ? this :
 			new Integer(this.valueOf() + addend.valueOf()) :
 			this.plus(new Integer(addend))
 	}
@@ -170,8 +171,10 @@ export default class Integer extends Number {
 	 */
 	times(multiplier: Integer|number = 1): Integer {
 		return (multiplier instanceof Integer) ?
-			(multiplier.equals(Integer.MULT_ABSORB)) ? Integer.MULT_ABSORB :
-			(multiplier.equals(Integer.MULT_IDEN)) ? this :
+			(this      .equals(0)) ? this :
+			(this      .equals(1)) ? multiplier :
+			(multiplier.equals(0)) ? Integer.MULT_ABSORB :
+			(multiplier.equals(1)) ? this :
 			new Integer(this.valueOf() * multiplier.valueOf()) :
 			this.times(new Integer(multiplier))
 	}
@@ -240,14 +243,13 @@ export default class Integer extends Number {
 	 * new Integer(5).tetrate(0) // returns 1
 	 * ```
 	 *
-	 * @param   x the root, any number
-	 * @param   n the hyper-exponent to which the root is raised, a non-negative integer
+	 * @param   hyperexponent the hyper-exponent to which the root is raised, a non-negative integer
 	 * @returns `this *** hyperexponent`
 	 */
 	tetrate(hyperexponent: Integer|number = 1): Integer {
 		return (hyperexponent instanceof Integer) ? (
 			xjs.Number.assertType(hyperexponent.valueOf(), 'natural'),
-			(hyperexponent.equals(Integer.MULT_ABSORB)) ? Integer.MULT_IDEN :
+			(hyperexponent.equals(0)) ? Integer.MULT_IDEN :
 				new Integer(this.exp(this.tetrate(hyperexponent.minus(1))))
 		) : this.tetrate(new Integer(hyperexponent))
 	}
