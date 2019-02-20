@@ -94,6 +94,22 @@ export default class Integer extends Number {
 	}
 
 	/**
+	 * Get the previous Integer, in standard order.
+	 * @returns the greatest Integer less than this one
+	 */
+	get prev(): Integer {
+		return this.minus(1)
+	}
+
+	/**
+	 * Get the next Integer, in standard order.
+	 * @returns the least Integer greater than this one
+	 */
+	get next(): Integer {
+		return this.plus(1)
+	}
+
+	/**
 	 * Return whether this Integer’s value equals the argument’s.
 	 * @param   int the Integer to compare
 	 * @returns does this Integer equal the argument?
@@ -224,6 +240,8 @@ export default class Integer extends Number {
 	}
 
 	/**
+	 * @deprecated WARNING{DEPRECATED} no further development will be made on this method.
+	 *
 	 * Return the `n`th tetration of this Integer.
 	 *
 	 * Tetration is considered the next hyperoperation after exponentiation
@@ -249,6 +267,7 @@ export default class Integer extends Number {
 	 * @returns `this *** hyperexponent`
 	 */
 	tetrate(hyperexponent: Integer|number = 1): Integer {
+		console.warn('Warning: `Integer#tetrate` is deprecated.')
 		return (hyperexponent instanceof Integer) ? (
 			xjs.Number.assertType(hyperexponent.valueOf(), 'natural'),
 			(hyperexponent.equals(0)) ? Integer.MULT_IDEN :
