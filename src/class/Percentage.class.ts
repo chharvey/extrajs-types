@@ -1,12 +1,11 @@
-// TODO: move to xjs.Number
-const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
+import * as xjs from 'extrajs'
 
 
 export default abstract class Percentage {
 	/**
 	 * An immutable RegExp instance, representing a string in Percentage format.
 	 */
-	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}%$`)
+	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs.Number.REGEXP.source.slice(1,-1)}%$`)
 
 	/**
 	 * Parse a string matching {@link Percentage.REGEXP}.
@@ -16,7 +15,7 @@ export default abstract class Percentage {
 	 */
 	static fromString(str: string): number {
 		if (!Percentage.REGEXP.test(str)) throw new RangeError(`Invalid string format: '${str}'.`)
-		let numeric_part: number = +str.match(xjs_Number_REGEXP.source.slice(1,-1)) ![0]
+		let numeric_part: number = +str.match(xjs.Number.REGEXP.source.slice(1,-1)) ![0]
 		return numeric_part / 100
 	}
 

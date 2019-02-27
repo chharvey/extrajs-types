@@ -75,22 +75,22 @@ export default class Integer extends Number {
 	}
 
 	/**
-	 * Get the negation of this Integer.
-	 *
-	 * The negation of an Ineteger is its additive inverse:
-	 * the Integer that when added to this, gives a sum of 0 (the additive identity).
-	 * @returns a new Integer representing the additive inverse
-	 */
-	get negation(): Integer {
-		return new Integer(-this)
-	}
-
-	/**
 	 * Return the absolute value of this Integer; `Math.abs(this)`.
 	 * @returns `(this < 0) ? -this : this`
 	 */
 	get abs(): Integer {
 		return new Integer(Math.abs(this.valueOf()))
+	}
+
+	/**
+	 * Get the negation of this Integer.
+	 *
+	 * The negation of an Integer is its additive inverse:
+	 * the Integer that when added to this, gives a sum of 0 (the additive identity).
+	 * @returns a new Integer representing the additive inverse
+	 */
+	get negation(): Integer {
+		return new Integer(-this)
 	}
 
 	/**

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Percentage | number-types</title>
+	<title>Traversal | number-types</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,143 +54,92 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="percentage.html">Percentage</a>
+					<a href="traversal.html">Traversal</a>
 				</li>
 			</ul>
-			<h1>Class Percentage</h1>
+			<h1>Enumeration Traversal</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">Percentage</span>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="percentage.html#regexp" class="tsd-kind-icon">REGEXP</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="percentage.html#fromstring" class="tsd-kind-icon">from<wbr>String</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="percentage.html#stringify" class="tsd-kind-icon">stringify</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported"><a href="traversal.html#breadth" class="tsd-kind-icon">BREADTH</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported"><a href="traversal.html#postorder" class="tsd-kind-icon">POSTORDER</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported"><a href="traversal.html#preorder" class="tsd-kind-icon">PREORDER</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="regexp" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP</h3>
-					<div class="tsd-signature tsd-kind-icon">REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^${xjs.Number.REGEXP.source.slice(1,-1)}%$&#x60;)</span></div>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported">
+					<a name="breadth" class="tsd-anchor"></a>
+					<h3>BREADTH</h3>
+					<div class="tsd-signature tsd-kind-icon">BREADTH<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Percentage.class.ts#L8">Percentage.class.ts:8</a></li>
+							<li>Defined in TreeNode.class.ts:48</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>An immutable RegExp instance, representing a string in Percentage format.</p>
+							<p>Breadth-first order.</p>
 						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://en.wikipedia.org/wiki/Tree_traversal#Breadth-first_search">https://en.wikipedia.org/wiki/Tree_traversal#Breadth-first_search</a></p>
+							</dd>
+						</dl>
 					</div>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="fromstring" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> from<wbr>String</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">from<wbr>String<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Percentage.class.ts#L16">Percentage.class.ts:16</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Parse a string matching <a href="percentage.html#regexp">Percentage.REGEXP</a>.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>throws</dt>
-									<dd><p>{RangeError} if the given string does not match <code>Percentage.REGEXP</code></p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>str: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the string to parse</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>a new Percentage emulating the string</p>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported">
+					<a name="postorder" class="tsd-anchor"></a>
+					<h3>POSTORDER</h3>
+					<div class="tsd-signature tsd-kind-icon">POSTORDER<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in TreeNode.class.ts:43</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Depth-first postorder.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://en.wikipedia.org/wiki/Tree_traversal#Post-order_(LRN)">https://en.wikipedia.org/wiki/Tree_traversal#Post-order_(LRN)</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="stringify" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> stringify</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">stringify<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, radix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Percentage.class.ts#L32">Percentage.class.ts:32</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
-									<dd><p>Use {@link Intl.NumberFormat} instead.
-										Convert a number to a percentage string.</p>
-										<p>The number will be multiplied by the square of the radix,
-										for example, <code>toString(0.42)</code> returns <code>42%</code>.</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the value to stringify</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> radix: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the base of the numerical value</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							<p>roughly, <code>(value * 100).toString() + &#39;%&#39;</code></p>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported">
+					<a name="preorder" class="tsd-anchor"></a>
+					<h3>PREORDER</h3>
+					<div class="tsd-signature tsd-kind-icon">PREORDER<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in TreeNode.class.ts:38</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Depth-first preorder.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://en.wikipedia.org/wiki/Tree_traversal#Pre-order_(NLR)">https://en.wikipedia.org/wiki/Tree_traversal#Pre-order_(NLR)</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -205,94 +154,94 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-enum">
-						<a href="../enums/angleunit.html" class="tsd-kind-icon">Angle<wbr>Unit</a>
+						<a href="angleunit.html" class="tsd-kind-icon">Angle<wbr>Unit</a>
 					</li>
 					<li class=" tsd-kind-enum">
-						<a href="../enums/colorspace.html" class="tsd-kind-icon">Color<wbr>Space</a>
+						<a href="colorspace.html" class="tsd-kind-icon">Color<wbr>Space</a>
 					</li>
 					<li class=" tsd-kind-enum">
-						<a href="../enums/durationunit.html" class="tsd-kind-icon">Duration<wbr>Unit</a>
+						<a href="durationunit.html" class="tsd-kind-icon">Duration<wbr>Unit</a>
 					</li>
 					<li class=" tsd-kind-enum">
-						<a href="../enums/lengthunit.html" class="tsd-kind-icon">Length<wbr>Unit</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-not-exported">
-						<a href="../enums/traversal.html" class="tsd-kind-icon">Traversal</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="angle.html" class="tsd-kind-icon">Angle</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="closedinterval.html" class="tsd-kind-icon">Closed<wbr>Interval</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="color.html" class="tsd-kind-icon">Color</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="duration.html" class="tsd-kind-icon">Duration</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="fraction.html" class="tsd-kind-icon">Fraction</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="halfopenleftinterval.html" class="tsd-kind-icon">Half<wbr>Open<wbr>Left<wbr>Interval</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="halfopenrightinterval.html" class="tsd-kind-icon">Half<wbr>Open<wbr>Right<wbr>Interval</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="integer.html" class="tsd-kind-icon">Integer</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="interval.html" class="tsd-kind-icon">Interval</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="length.html" class="tsd-kind-icon">Length</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="matrix.html" class="tsd-kind-icon">Matrix</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="matrixsquare.html" class="tsd-kind-icon">Matrix<wbr>Square</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="meter.html" class="tsd-kind-icon">Meter</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="meterint.html" class="tsd-kind-icon">Meter<wbr>Int</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="openinterval.html" class="tsd-kind-icon">Open<wbr>Interval</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-not-exported">
-						<a href="orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a>
+						<a href="lengthunit.html" class="tsd-kind-icon">Length<wbr>Unit</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="percentage.html" class="tsd-kind-icon">Percentage</a>
+					<li class="current tsd-kind-enum tsd-is-not-exported">
+						<a href="traversal.html" class="tsd-kind-icon">Traversal</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="percentage.html#regexp" class="tsd-kind-icon">REGEXP</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported">
+								<a href="traversal.html#breadth" class="tsd-kind-icon">BREADTH</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="percentage.html#fromstring" class="tsd-kind-icon">from<wbr>String</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported">
+								<a href="traversal.html#postorder" class="tsd-kind-icon">POSTORDER</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="percentage.html#stringify" class="tsd-kind-icon">stringify</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported">
+								<a href="traversal.html#preorder" class="tsd-kind-icon">PREORDER</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class">
-						<a href="rational.html" class="tsd-kind-icon">Rational</a>
+						<a href="../classes/angle.html" class="tsd-kind-icon">Angle</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="treenode.html" class="tsd-kind-icon">Tree<wbr>Node</a>
+						<a href="../classes/closedinterval.html" class="tsd-kind-icon">Closed<wbr>Interval</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="vector.html" class="tsd-kind-icon">Vector</a>
+						<a href="../classes/color.html" class="tsd-kind-icon">Color</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/duration.html" class="tsd-kind-icon">Duration</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/fraction.html" class="tsd-kind-icon">Fraction</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/halfopenleftinterval.html" class="tsd-kind-icon">Half<wbr>Open<wbr>Left<wbr>Interval</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/halfopenrightinterval.html" class="tsd-kind-icon">Half<wbr>Open<wbr>Right<wbr>Interval</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/integer.html" class="tsd-kind-icon">Integer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/interval.html" class="tsd-kind-icon">Interval</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/length.html" class="tsd-kind-icon">Length</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/matrix.html" class="tsd-kind-icon">Matrix</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/matrixsquare.html" class="tsd-kind-icon">Matrix<wbr>Square</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/meter.html" class="tsd-kind-icon">Meter</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/meterint.html" class="tsd-kind-icon">Meter<wbr>Int</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/openinterval.html" class="tsd-kind-icon">Open<wbr>Interval</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-not-exported">
+						<a href="../classes/orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/percentage.html" class="tsd-kind-icon">Percentage</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/rational.html" class="tsd-kind-icon">Rational</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/treenode.html" class="tsd-kind-icon">Tree<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/vector.html" class="tsd-kind-icon">Vector</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
 						<a href="../globals.html#filterfn" class="tsd-kind-icon">Filter<wbr>Fn</a>

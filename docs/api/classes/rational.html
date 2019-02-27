@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Fraction | number-types</title>
+	<title>Rational | number-types</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="fraction.html">Fraction</a>
+					<a href="rational.html">Rational</a>
 				</li>
 			</ul>
-			<h1>Class Fraction</h1>
+			<h1>Class Rational</h1>
 		</div>
 	</div>
 </header>
@@ -67,38 +67,23 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A fraction of some other value.</p>
+						<p>A rational number is a real number that can be expressed as a ratio of <a href="integer.html">Integer</a>s.</p>
 					</div>
-					<p>Represented by a unitless number within the interval <code>[0, 1]</code>,
-						where <code>0</code> is none of the value and <code>1</code> is the whole of the value.
-					Fractions must not exceed beyond this interval.</p>
-					<p>The set of Fractions has the following properties:</p>
+					<p>The set of Rationals has the following properties:</p>
 					<ul>
-						<li>Fractions are weakly totally ordered. (There exists a weak total order <code>&lt;=</code> on the fractions.)<ul>
-								<li>(Reflexivity) For a fraction <code>a</code>, <code>a &lt;= a</code>.</li>
-								<li>(Antisymmetry) For fractions <code>a</code> and <code>b</code>, if <code>a &lt;= b</code> and <code>b &lt;= a</code>, then <code>a === b</code>.</li>
-								<li>(Transitivity) For fractions <code>a</code>, <code>b</code>, and <code>c</code>, if <code>a &lt;= b</code> and <code>b &lt;= c</code>, then <code>a &lt;= c</code>.</li>
-								<li>(Comparability) For distinct fraction <code>a !== b</code>, at least one of the following statements is guaranteed true:<ul>
-										<li><code>a &lt;= b</code></li>
-										<li><code>b &lt;= a</code></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li>Fractions are closed under multiplication.
-						For fractions <code>a</code> and <code>b</code>, the expression <code>a * b</code> is guaranteed to also be a fraction.</li>
-						<li>The set of Fractions has a (unique) multiplicative idenity.
-							There exists a fraction <code>1</code> such that for every fraction <code>a</code>,
-							<code>a * 1</code>, and <code>1 * a</code> are guaranteed to equal <code>a</code>, and
-						<code>1</code> is the only fraction with this property.</li>
-						<li>Fractions have a (unique) multiplicative absorber:
-						a unique fraction <code>0</code> is guaranteed such that for every fraction <code>a</code>, <code>a * 0 === 0 * a === 0</code>.</li>
-						<li>Multiplication is commutative and associative.
-							For fractions <code>a</code>, <code>b</code>, and <code>c</code>, the following statments are guaranteed true:<ul>
-								<li><code>a * b === b * a</code></li>
-								<li><code>a * (b * c) === (a * b) * c</code></li>
-							</ul>
-						</li>
+						<li>Like Integers, Rationals are weakly totally ordered.</li>
+						<li>Like Integers, Rationals are closed under addition, subtraction, and multiplication.</li>
+						<li>Rationals are closed under division.
+						For rationals <code>a</code> and <code>b</code>, the expression <code>a / b</code> is guaranteed to also be rational.</li>
+						<li>Like Integers, the set of Rationals has a (unique) additive and multiplicative identity.</li>
+						<li>Like Integers, Rationals have (unique) additive inverses.</li>
+						<li>Like the set of Integers, the set of Rationals has a (unique) multiplicative absorber.</li>
+						<li>Rationals, except the multipliative absorber <code>0</code>, have (unique) multipliative inverses:
+							for every rational <code>a !== 0</code> (<code>0</code> the multiplicative absorber),
+							a unique rational <code>a^</code> is guaranteed such that <code>a * a^ === ^a * a === 1</code>
+						(where <code>1</code> is the multiplicative identity).</li>
+						<li>Like with Integers, addition and multiplication are commutative and associative.</li>
+						<li>Like with Integers, multiplication distributes over addition.</li>
 					</ul>
 				</div>
 			</section>
@@ -109,7 +94,7 @@
 						<span class="tsd-signature-type">Number</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">Fraction</span>
+								<span class="target">Rational</span>
 							</li>
 						</ul>
 					</li>
@@ -122,43 +107,47 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="fraction.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="rational.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="fraction.html#full" class="tsd-kind-icon">FULL</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="fraction.html#number" class="tsd-kind-icon">Number</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="fraction.html#zero" class="tsd-kind-icon">ZERO</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="rational.html#_denominator" class="tsd-kind-icon">_DENOMINATOR</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="rational.html#_numerator" class="tsd-kind-icon">_NUMERATOR</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="rational.html#add_iden" class="tsd-kind-icon">ADD_<wbr>IDEN</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="rational.html#mult_absorb" class="tsd-kind-icon">MULT_<wbr>ABSORB</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="rational.html#mult_iden" class="tsd-kind-icon">MULT_<wbr>IDEN</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="rational.html#number" class="tsd-kind-icon">Number</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="fraction.html#conjugate" class="tsd-kind-icon">conjugate</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="rational.html#abs" class="tsd-kind-icon">abs</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="rational.html#negation" class="tsd-kind-icon">negation</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="rational.html#reciprocal" class="tsd-kind-icon">reciprocal</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="fraction.html#clamp" class="tsd-kind-icon">clamp</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="fraction.html#equals" class="tsd-kind-icon">equals</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="fraction.html#lessthan" class="tsd-kind-icon">less<wbr>Than</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="fraction.html#minus" class="tsd-kind-icon">minus</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="fraction.html#minusclamp" class="tsd-kind-icon">minus<wbr>Clamp</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="fraction.html#of" class="tsd-kind-icon">of</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="fraction.html#plus" class="tsd-kind-icon">plus</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="fraction.html#plusclamp" class="tsd-kind-icon">plus<wbr>Clamp</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="fraction.html#times" class="tsd-kind-icon">times</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="fraction.html#toexponential" class="tsd-kind-icon">to<wbr>Exponential</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="fraction.html#tofixed" class="tsd-kind-icon">to<wbr>Fixed</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="fraction.html#tolocalestring" class="tsd-kind-icon">to<wbr>Locale<wbr>String</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="fraction.html#toprecision" class="tsd-kind-icon">to<wbr>Precision</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="fraction.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="fraction.html#valueof" class="tsd-kind-icon">value<wbr>Of</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="fraction.html#max" class="tsd-kind-icon">max</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="fraction.html#min" class="tsd-kind-icon">min</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rational.html#clamp" class="tsd-kind-icon">clamp</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rational.html#dividedby" class="tsd-kind-icon">divided<wbr>By</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rational.html#equals" class="tsd-kind-icon">equals</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rational.html#exp" class="tsd-kind-icon">exp</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rational.html#lessthan" class="tsd-kind-icon">less<wbr>Than</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rational.html#minus" class="tsd-kind-icon">minus</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rational.html#plus" class="tsd-kind-icon">plus</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rational.html#times" class="tsd-kind-icon">times</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="rational.html#toexponential" class="tsd-kind-icon">to<wbr>Exponential</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="rational.html#tofixed" class="tsd-kind-icon">to<wbr>Fixed</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="rational.html#tolocalestring" class="tsd-kind-icon">to<wbr>Locale<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="rational.html#toprecision" class="tsd-kind-icon">to<wbr>Precision</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="rational.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="rational.html#valueof" class="tsd-kind-icon">value<wbr>Of</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="rational.html#max" class="tsd-kind-icon">max</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="rational.html#min" class="tsd-kind-icon">min</a></li>
 							</ul>
 						</section>
 					</div>
@@ -170,55 +159,148 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Fraction<span class="tsd-signature-symbol">(</span>f<span class="tsd-signature-symbol">?: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Rational<span class="tsd-signature-symbol">(</span>q<span class="tsd-signature-symbol">?: </span><a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Rational<span class="tsd-signature-symbol">(</span>q<span class="tsd-signature-symbol">?: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, r<span class="tsd-signature-symbol">?: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L62">Fraction.class.ts:62</a></li>
+									<li>Defined in Rational.class.ts:56</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Construct a new Fraction object.</p>
+									<p>Construct a new Rational object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> q: <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>a Rational object or rational number</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="rational.html" class="tsd-signature-type">Rational</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in Rational.class.ts:62</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Construct a new Rational object.</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>throws</dt>
-									<dd><p>{RangeError} if this Fraction is less than 0 or greater than 1</p>
+									<dd><p>{RangeError} if <code>r</code> is equivalent to <code>0</code></p>
 									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> f: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> q: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>the numeric value of this Fraction</p>
+											<p>a Rational object or rational number</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> r: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>the denominator of the Rational</p>
 										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="fraction.html" class="tsd-signature-type">Fraction</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="rational.html" class="tsd-signature-type">Rational</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="full" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> FULL</h3>
-					<div class="tsd-signature tsd-kind-icon">FULL<span class="tsd-signature-symbol">:</span> <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> =&nbsp;new Fraction(1)</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_denominator" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _DENOMINATOR</h3>
+					<div class="tsd-signature tsd-kind-icon">_DENOMINATOR<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L37">Fraction.class.ts:37</a></li>
+							<li>Defined in Rational.class.ts:56</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>A full fraction (the number 1).</p>
+							<p>The denominator of this Rational.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_numerator" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _NUMERATOR</h3>
+					<div class="tsd-signature tsd-kind-icon">_NUMERATOR<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Rational.class.ts:54</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The numerator of this Rational.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="add_iden" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> ADD_<wbr>IDEN</h3>
+					<div class="tsd-signature tsd-kind-icon">ADD_<wbr>IDEN<span class="tsd-signature-symbol">:</span> <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> =&nbsp;new Rational()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Rational.class.ts:26</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The additive identity of the group of Rationals.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="mult_absorb" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> MULT_<wbr>ABSORB</h3>
+					<div class="tsd-signature tsd-kind-icon">MULT_<wbr>ABSORB<span class="tsd-signature-symbol">:</span> <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> =&nbsp;new Rational()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Rational.class.ts:30</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The multiplicative absorber of the group of Rationals.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="mult_iden" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> MULT_<wbr>IDEN</h3>
+					<div class="tsd-signature tsd-kind-icon">MULT_<wbr>IDEN<span class="tsd-signature-symbol">:</span> <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> =&nbsp;new Rational(1)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Rational.class.ts:28</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The multiplicative identity of the group of Rationals.</p>
 						</div>
 					</div>
 				</section>
@@ -237,46 +319,79 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="zero" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> ZERO</h3>
-					<div class="tsd-signature tsd-kind-icon">ZERO<span class="tsd-signature-symbol">:</span> <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> =&nbsp;new Fraction(0)</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L35">Fraction.class.ts:35</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>A zero fraction (the number 0).</p>
-						</div>
-					</div>
-				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Accessors</h2>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="conjugate" class="tsd-anchor"></a>
-					<h3>conjugate</h3>
+					<a name="abs" class="tsd-anchor"></a>
+					<h3>abs</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> conjugate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> abs<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L96">Fraction.class.ts:96</a></li>
+									<li>Defined in Rational.class.ts:92</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get the conjugate of this Fraction.</p>
+									<p>Return the absolute value of this Rational; <code>Math.abs(this)</code>.</p>
 								</div>
-								<p>The conjugate of a Fraction is the remaining Fraction required
-								to add to a one full unit (1).</p>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="fraction.html" class="tsd-signature-type">Fraction</a></h4>
-							<p>the conjugate of this Fraction</p>
+							<h4 class="tsd-returns-title">Returns <a href="rational.html" class="tsd-signature-type">Rational</a></h4>
+							<p><code>(this &lt; 0) ? -this : this</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="negation" class="tsd-anchor"></a>
+					<h3>negation</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> negation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in Rational.class.ts:103</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the negation of this Rational.</p>
+								</div>
+								<p>The negation of an Rational is its additive inverse:
+								the Rational that when added to this, gives a sum of 0 (the additive identity).</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="rational.html" class="tsd-signature-type">Rational</a></h4>
+							<p>a new Rational representing the additive inverse</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="reciprocal" class="tsd-anchor"></a>
+					<h3>reciprocal</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> reciprocal<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in Rational.class.ts:114</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the reciprocal of this Rational.</p>
+								</div>
+								<p>The reciprocal of an Rational is its multiplicative inverse:
+								the Rational that when multiplied by this, gives a product of 1 (the multiplicative identity).</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="rational.html" class="tsd-signature-type">Rational</a></h4>
+							<p>a new Rational representing the additive inverse</p>
 						</li>
 					</ul>
 				</section>
@@ -287,18 +402,18 @@
 					<a name="clamp" class="tsd-anchor"></a>
 					<h3>clamp</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">clamp<span class="tsd-signature-symbol">(</span>min<span class="tsd-signature-symbol">?: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, max<span class="tsd-signature-symbol">?: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a></li>
+						<li class="tsd-signature tsd-kind-icon">clamp<span class="tsd-signature-symbol">(</span>min<span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, max<span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L136">Fraction.class.ts:136</a></li>
+									<li>Defined in Rational.class.ts:150</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return this Fraction, clamped between two bounds.</p>
+									<p>Return this Rational, clamped between two bounds.</p>
 								</div>
 								<p>This method returns this unchanged iff it is weakly between <code>min</code> and <code>max</code>;
 									it returns <code>min</code> iff this is strictly less than <code>min</code>;
@@ -309,20 +424,53 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> min: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<h5>min: <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the lower bound</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> max: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<h5>max: <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the upper bound</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="fraction.html" class="tsd-signature-type">Fraction</a></h4>
-							<p><code>Fraction.min(Fraction.max(min, this), max)</code></p>
+							<h4 class="tsd-returns-title">Returns <a href="rational.html" class="tsd-signature-type">Rational</a></h4>
+							<p><code>Rational.min(Rational.max(min, this), max)</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="dividedby" class="tsd-anchor"></a>
+					<h3>divided<wbr>By</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">divided<wbr>By<span class="tsd-signature-symbol">(</span>divisor<span class="tsd-signature-symbol">?: </span><a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in Rational.class.ts:219</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Divide this Rational (the dividend) by another (the divisor).</p>
+								</div>
+								<p>Note that division is not commutative: <code>a / b</code> does not always equal <code>b / a</code>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> divisor: <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Rational to divide this one by</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="rational.html" class="tsd-signature-type">Rational</a></h4>
+							<p>a new Rational representing the quotient, <code>dividend / divisor</code></p>
 						</li>
 					</ul>
 				</section>
@@ -330,31 +478,69 @@
 					<a name="equals" class="tsd-anchor"></a>
 					<h3>equals</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>frac<span class="tsd-signature-symbol">: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>rat<span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L110">Fraction.class.ts:110</a></li>
+									<li>Defined in Rational.class.ts:124</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return whether this Fraction’s value equals the argument’s.</p>
+									<p>Return whether this Rational’s value equals the argument’s.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>frac: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>rat: <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the Fraction to compare</p>
+										<p>the Rational to compare</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>does this Fraction equal the argument?</p>
+							<p>does this Rational equal the argument?</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="exp" class="tsd-anchor"></a>
+					<h3>exp</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">exp<span class="tsd-signature-symbol">(</span>exponent<span class="tsd-signature-symbol">?: </span><a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in Rational.class.ts:241</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Exponentiate this Rational (the base) by another number (the exponent).</p>
+								</div>
+								<p>Note that exponentiation is not commutative: <code>a ** b</code> does not always equal <code>b ** a</code>.</p>
+								<p>Warning: the result will not be an instance of this <code>Rational</code> class,
+								even if the result happens to be a rational number.</p>
+								<pre><code><span class="hljs-keyword">new</span> <span class="hljs-type">Rational</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>).exp(<span class="hljs-keyword">new</span> <span class="hljs-type">Rational</span>(<span class="hljs-number">3</span>  )) <span class="hljs-comment">// return the number `0.125` (a rational number)</span>
+<span class="hljs-keyword">new</span> <span class="hljs-type">Rational</span>(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>).exp(<span class="hljs-keyword">new</span> <span class="hljs-type">Rational</span>(<span class="hljs-number">1</span>/<span class="hljs-number">3</span>)) <span class="hljs-comment">// return the number `0.7937005259840998` (not a rational number)</span>
+<span class="hljs-keyword">new</span> <span class="hljs-type">Rational</span>(<span class="hljs-number">2</span>).exp(<span class="hljs-number">3</span>) <span class="hljs-comment">// return the number `8` (a rational number)</span></code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> exponent: <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the other Rational to exponentiate this one by</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>a number equal to the power, <code>base ** exponent</code></p>
 						</li>
 					</ul>
 				</section>
@@ -362,31 +548,31 @@
 					<a name="lessthan" class="tsd-anchor"></a>
 					<h3>less<wbr>Than</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">less<wbr>Than<span class="tsd-signature-symbol">(</span>pct<span class="tsd-signature-symbol">: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">less<wbr>Than<span class="tsd-signature-symbol">(</span>rat<span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L120">Fraction.class.ts:120</a></li>
+									<li>Defined in Rational.class.ts:134</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return how this Fraction compares to (is less than) another.</p>
+									<p>Return how this Rational compares to (is less than) another.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>pct: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>rat: <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the Fraction to compare</p>
+										<p>the Rational to compare</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>is this Fraction strictly less than the argument?</p>
+							<p>is this Rational strictly less than the argument?</p>
 						</li>
 					</ul>
 				</section>
@@ -394,96 +580,32 @@
 					<a name="minus" class="tsd-anchor"></a>
 					<h3>minus</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">minus<span class="tsd-signature-symbol">(</span>subtrahend<span class="tsd-signature-symbol">?: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a></li>
+						<li class="tsd-signature tsd-kind-icon">minus<span class="tsd-signature-symbol">(</span>subtrahend<span class="tsd-signature-symbol">?: </span><a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L173">Fraction.class.ts:173</a></li>
+									<li>Defined in Rational.class.ts:184</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Subtract another Fraction (the subtrahend) from this (the minuend).</p>
+									<p>Subtract another Rational (the subtrahend) from this (the minuend).</p>
 								</div>
 								<p>Note that subtraction is not commutative: <code>a - b</code> does not always equal <code>b - a</code>.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> subtrahend: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> subtrahend: <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the Fraction to subtract from this one</p>
+										<p>the Rational to subtract from this one</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="fraction.html" class="tsd-signature-type">Fraction</a></h4>
-							<p>a new Fraction representing the difference, <code>minuend - subtrahend</code></p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="minusclamp" class="tsd-anchor"></a>
-					<h3>minus<wbr>Clamp</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">minus<wbr>Clamp<span class="tsd-signature-symbol">(</span>subtrahend<span class="tsd-signature-symbol">?: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L181">Fraction.class.ts:181</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Try <a href="fraction.html#minus">Fraction#minus</a>, but return <a href="fraction.html#zero">Fraction.ZERO</a> if erring.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> subtrahend: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the Fraction to subtract from this one</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="fraction.html" class="tsd-signature-type">Fraction</a></h4>
-							<p>a new Fraction representing the difference, <code>minuend - subtrahend</code>, clamped at minimum 0</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="of" class="tsd-anchor"></a>
-					<h3>of</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">of<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L203">Fraction.class.ts:203</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Return the argument scaled by this Fraction.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>x: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the value to take this Fraction of</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p><code>x</code>, scaled</p>
+							<h4 class="tsd-returns-title">Returns <a href="rational.html" class="tsd-signature-type">Rational</a></h4>
+							<p>a new Rational representing the difference, <code>minuend - subtrahend</code></p>
 						</li>
 					</ul>
 				</section>
@@ -491,71 +613,31 @@
 					<a name="plus" class="tsd-anchor"></a>
 					<h3>plus</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">plus<span class="tsd-signature-symbol">(</span>addend<span class="tsd-signature-symbol">?: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a></li>
+						<li class="tsd-signature tsd-kind-icon">plus<span class="tsd-signature-symbol">(</span>addend<span class="tsd-signature-symbol">?: </span><a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L149">Fraction.class.ts:149</a></li>
+									<li>Defined in Rational.class.ts:161</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Add this Fraction (the augend) to another (the addend).</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>throws</dt>
-									<dd><p>{RangeError} if the result is less than 0</p>
-									</dd>
-									<dt>throws</dt>
-									<dd><p>{RangeError} if the result is greater than 1</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> addend: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the Fraction to add to this one</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="fraction.html" class="tsd-signature-type">Fraction</a></h4>
-							<p>a new Fraction representing the sum, <code>augend + addend</code></p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="plusclamp" class="tsd-anchor"></a>
-					<h3>plus<wbr>Clamp</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">plus<wbr>Clamp<span class="tsd-signature-symbol">(</span>addend<span class="tsd-signature-symbol">?: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L162">Fraction.class.ts:162</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Try <a href="fraction.html#plus">Fraction#plus</a>, but return <a href="fraction.html#full">Fraction.FULL</a> if erring.</p>
+									<p>Add this Rational (the augend) to another (the addend).</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> addend: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> addend: <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the Fraction to add to this one</p>
+										<p>the Rational to add to this one</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="fraction.html" class="tsd-signature-type">Fraction</a></h4>
-							<p>a new Fraction representing the sum, <code>augend + addend</code>, clamped at maximum 1</p>
+							<h4 class="tsd-returns-title">Returns <a href="rational.html" class="tsd-signature-type">Rational</a></h4>
+							<p>a new Rational representing the sum, <code>augend + addend</code></p>
 						</li>
 					</ul>
 				</section>
@@ -563,31 +645,31 @@
 					<a name="times" class="tsd-anchor"></a>
 					<h3>times</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">times<span class="tsd-signature-symbol">(</span>multiplier<span class="tsd-signature-symbol">?: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a></li>
+						<li class="tsd-signature tsd-kind-icon">times<span class="tsd-signature-symbol">(</span>multiplier<span class="tsd-signature-symbol">?: </span><a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L190">Fraction.class.ts:190</a></li>
+									<li>Defined in Rational.class.ts:195</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Multiply this Fraction (the multiplicand) by another (the multiplier).</p>
+									<p>Multiply this Rational (the multiplicand) by another (the multiplier).</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> multiplier: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> multiplier: <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the Fraction to multiply this one by</p>
+										<p>the Rational to multiply this one by</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="fraction.html" class="tsd-signature-type">Fraction</a></h4>
-							<p>a new Fraction representing the product, <code>multiplicand * multiplier</code></p>
+							<h4 class="tsd-returns-title">Returns <a href="rational.html" class="tsd-signature-type">Rational</a></h4>
+							<p>a new Rational representing the product, <code>multiplicand * multiplier</code></p>
 						</li>
 					</ul>
 				</section>
@@ -784,30 +866,30 @@
 					<a name="max" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> max</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>fracs<span class="tsd-signature-symbol">: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a></li>
+						<li class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>rats<span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L49">Fraction.class.ts:49</a></li>
+									<li>Defined in Rational.class.ts:37</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return the maximum of two or more Fractions.</p>
+									<p>Return the maximum of two or more Rationals.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>fracs: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>rats: <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>two or more Fractions to compare</p>
+										<p>two or more Rationals to compare</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="fraction.html" class="tsd-signature-type">Fraction</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="rational.html" class="tsd-signature-type">Rational</a></h4>
 							<p>the greatest of all the arguments</p>
 						</li>
 					</ul>
@@ -816,30 +898,30 @@
 					<a name="min" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> min</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>fracs<span class="tsd-signature-symbol">: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a></li>
+						<li class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>rats<span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="rational.html" class="tsd-signature-type">Rational</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Fraction.class.ts#L59">Fraction.class.ts:59</a></li>
+									<li>Defined in Rational.class.ts:47</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return the minimum of two or more Fractions.</p>
+									<p>Return the minimum of two or more Rationals.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>fracs: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>rats: <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>two or more Fractions to compare</p>
+										<p>two or more Rationals to compare</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="fraction.html" class="tsd-signature-type">Fraction</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="rational.html" class="tsd-signature-type">Rational</a></h4>
 							<p>the least of all the arguments</p>
 						</li>
 					</ul>
@@ -883,81 +965,9 @@
 					<li class=" tsd-kind-class">
 						<a href="duration.html" class="tsd-kind-icon">Duration</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class=" tsd-kind-class">
 						<a href="fraction.html" class="tsd-kind-icon">Fraction</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="fraction.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="fraction.html#full" class="tsd-kind-icon">FULL</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="fraction.html#number" class="tsd-kind-icon">Number</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="fraction.html#zero" class="tsd-kind-icon">ZERO</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="fraction.html#conjugate" class="tsd-kind-icon">conjugate</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="fraction.html#clamp" class="tsd-kind-icon">clamp</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="fraction.html#equals" class="tsd-kind-icon">equals</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="fraction.html#lessthan" class="tsd-kind-icon">less<wbr>Than</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="fraction.html#minus" class="tsd-kind-icon">minus</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="fraction.html#minusclamp" class="tsd-kind-icon">minus<wbr>Clamp</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="fraction.html#of" class="tsd-kind-icon">of</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="fraction.html#plus" class="tsd-kind-icon">plus</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="fraction.html#plusclamp" class="tsd-kind-icon">plus<wbr>Clamp</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="fraction.html#times" class="tsd-kind-icon">times</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="fraction.html#toexponential" class="tsd-kind-icon">to<wbr>Exponential</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="fraction.html#tofixed" class="tsd-kind-icon">to<wbr>Fixed</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="fraction.html#tolocalestring" class="tsd-kind-icon">to<wbr>Locale<wbr>String</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="fraction.html#toprecision" class="tsd-kind-icon">to<wbr>Precision</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="fraction.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="fraction.html#valueof" class="tsd-kind-icon">value<wbr>Of</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="fraction.html#max" class="tsd-kind-icon">max</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="fraction.html#min" class="tsd-kind-icon">min</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="halfopenleftinterval.html" class="tsd-kind-icon">Half<wbr>Open<wbr>Left<wbr>Interval</a>
 					</li>
@@ -994,9 +1004,93 @@
 					<li class=" tsd-kind-class">
 						<a href="percentage.html" class="tsd-kind-icon">Percentage</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="rational.html" class="tsd-kind-icon">Rational</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="rational.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="rational.html#_denominator" class="tsd-kind-icon">_DENOMINATOR</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="rational.html#_numerator" class="tsd-kind-icon">_NUMERATOR</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="rational.html#add_iden" class="tsd-kind-icon">ADD_<wbr>IDEN</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="rational.html#mult_absorb" class="tsd-kind-icon">MULT_<wbr>ABSORB</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="rational.html#mult_iden" class="tsd-kind-icon">MULT_<wbr>IDEN</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="rational.html#number" class="tsd-kind-icon">Number</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="rational.html#abs" class="tsd-kind-icon">abs</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="rational.html#negation" class="tsd-kind-icon">negation</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="rational.html#reciprocal" class="tsd-kind-icon">reciprocal</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="rational.html#clamp" class="tsd-kind-icon">clamp</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="rational.html#dividedby" class="tsd-kind-icon">divided<wbr>By</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="rational.html#equals" class="tsd-kind-icon">equals</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="rational.html#exp" class="tsd-kind-icon">exp</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="rational.html#lessthan" class="tsd-kind-icon">less<wbr>Than</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="rational.html#minus" class="tsd-kind-icon">minus</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="rational.html#plus" class="tsd-kind-icon">plus</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="rational.html#times" class="tsd-kind-icon">times</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="rational.html#toexponential" class="tsd-kind-icon">to<wbr>Exponential</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="rational.html#tofixed" class="tsd-kind-icon">to<wbr>Fixed</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="rational.html#tolocalestring" class="tsd-kind-icon">to<wbr>Locale<wbr>String</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="rational.html#toprecision" class="tsd-kind-icon">to<wbr>Precision</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="rational.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="rational.html#valueof" class="tsd-kind-icon">value<wbr>Of</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="rational.html#max" class="tsd-kind-icon">max</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="rational.html#min" class="tsd-kind-icon">min</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="treenode.html" class="tsd-kind-icon">Tree<wbr>Node</a>
 					</li>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Percentage | number-types</title>
+	<title>Interval | number-types</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,21 +54,44 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="percentage.html">Percentage</a>
+					<a href="interval.html">Interval</a>
 				</li>
 			</ul>
-			<h1>Class Percentage</h1>
+			<h1>Class Interval</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>An Interval is an immutable set, a range of real numbers, with a constant lower bound and upper bound.</p>
+					</div>
+					<p>Note that <code>Infinity</code> and <code>-Infinity</code> may be used as bounds,
+					but only for <a href="openinterval.html">open-ended intervals</a>.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Percentage</span>
+						<span class="target">Interval</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="openinterval.html" class="tsd-signature-type">OpenInterval</a>
+							</li>
+							<li>
+								<a href="closedinterval.html" class="tsd-signature-type">ClosedInterval</a>
+							</li>
+							<li>
+								<a href="halfopenleftinterval.html" class="tsd-signature-type">HalfOpenLeftInterval</a>
+							</li>
+							<li>
+								<a href="halfopenrightinterval.html" class="tsd-signature-type">HalfOpenRightInterval</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -77,118 +100,214 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="interval.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="percentage.html#regexp" class="tsd-kind-icon">REGEXP</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="interval.html#length" class="tsd-kind-icon">LENGTH</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="interval.html#lower" class="tsd-kind-icon">LOWER</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="interval.html#upper" class="tsd-kind-icon">UPPER</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="percentage.html#fromstring" class="tsd-kind-icon">from<wbr>String</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="percentage.html#stringify" class="tsd-kind-icon">stringify</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="interval.html#_dohas" class="tsd-kind-icon">_do<wbr>Has</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interval.html#equals" class="tsd-kind-icon">equals</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interval.html#has" class="tsd-kind-icon">has</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Interval<span class="tsd-signature-symbol">(</span>r<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interval.html" class="tsd-signature-type">Interval</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Interval.class.ts#L18">Interval.class.ts:18</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Construct a new Interval object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>r: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>a tuple: <code>[lower, upper]</code></p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interval.html" class="tsd-signature-type">Interval</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="regexp" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP</h3>
-					<div class="tsd-signature tsd-kind-icon">REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^${xjs.Number.REGEXP.source.slice(1,-1)}%$&#x60;)</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="length" class="tsd-anchor"></a>
+					<h3>LENGTH</h3>
+					<div class="tsd-signature tsd-kind-icon">LENGTH<span class="tsd-signature-symbol">:</span> <a href="length.html" class="tsd-signature-type">Length</a><span class="tsd-signature-symbol"> =&nbsp;new Length(this.UPPER - this.LOWER)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Percentage.class.ts#L8">Percentage.class.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Interval.class.ts#L18">Interval.class.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>An immutable RegExp instance, representing a string in Percentage format.</p>
+							<p>The length of this Interval.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="lower" class="tsd-anchor"></a>
+					<h3>LOWER</h3>
+					<div class="tsd-signature tsd-kind-icon">LOWER<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Interval.class.ts#L14">Interval.class.ts:14</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The lower bound of this Interval.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="upper" class="tsd-anchor"></a>
+					<h3>UPPER</h3>
+					<div class="tsd-signature tsd-kind-icon">UPPER<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Interval.class.ts#L16">Interval.class.ts:16</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The upper bound of this Interval.</p>
 						</div>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="fromstring" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> from<wbr>String</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">from<wbr>String<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="_dohas" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> _do<wbr>Has</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">_do<wbr>Has<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Percentage.class.ts#L16">Percentage.class.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Interval.class.ts#L34">Interval.class.ts:34</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Parse a string matching <a href="percentage.html#regexp">Percentage.REGEXP</a>.</p>
+									<p>Subclass operations of {@link Interval#has}</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>throws</dt>
-									<dd><p>{RangeError} if the given string does not match <code>Percentage.REGEXP</code></p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>str: <span class="tsd-signature-type">string</span></h5>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the string to parse</p>
+										<p>the finite number to test</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>a new Percentage emulating the string</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>is the argument in this interval?</p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="stringify" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> stringify</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">stringify<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, radix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="equals" class="tsd-anchor"></a>
+					<h3>equals</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>iv<span class="tsd-signature-symbol">: </span><a href="interval.html" class="tsd-signature-type">Interval</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Percentage.class.ts#L32">Percentage.class.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Interval.class.ts#L53">Interval.class.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determine whether this Interval is the “same as” the argument.</p>
+								</div>
+								<p>Intervals are “the same”, or “equal”, when they contain exactly the same member numbers.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iv: <a href="interval.html" class="tsd-signature-type">Interval</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Interval to test</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>does this Interval have exactly the same members as the argument?</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="has" class="tsd-anchor"></a>
+					<h3>has</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">has<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Interval.class.ts#L41">Interval.class.ts:41</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determine whether a given (finite) number is within this Interval.</p>
+								</div>
 								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
-									<dd><p>Use {@link Intl.NumberFormat} instead.
-										Convert a number to a percentage string.</p>
-										<p>The number will be multiplied by the square of the radix,
-										for example, <code>toString(0.42)</code> returns <code>42%</code>.</p>
-									</dd>
+									<dt>final</dt>
+									<dd></dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <span class="tsd-signature-type">number</span></h5>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the value to stringify</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> radix: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;10</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the base of the numerical value</p>
+										<p>the finite number to test</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							<p>roughly, <code>(value * 100).toString() + &#39;%&#39;</code></p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>is the argument in this interval?</p>
 						</li>
 					</ul>
 				</section>
@@ -243,9 +362,36 @@
 					<li class=" tsd-kind-class">
 						<a href="integer.html" class="tsd-kind-icon">Integer</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="interval.html" class="tsd-kind-icon">Interval</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="interval.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="interval.html#length" class="tsd-kind-icon">LENGTH</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="interval.html#lower" class="tsd-kind-icon">LOWER</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="interval.html#upper" class="tsd-kind-icon">UPPER</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="interval.html#_dohas" class="tsd-kind-icon">_do<wbr>Has</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="interval.html#equals" class="tsd-kind-icon">equals</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="interval.html#has" class="tsd-kind-icon">has</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="length.html" class="tsd-kind-icon">Length</a>
 					</li>
@@ -267,24 +413,9 @@
 					<li class=" tsd-kind-class tsd-is-not-exported">
 						<a href="orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class=" tsd-kind-class">
 						<a href="percentage.html" class="tsd-kind-icon">Percentage</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="percentage.html#regexp" class="tsd-kind-icon">REGEXP</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="percentage.html#fromstring" class="tsd-kind-icon">from<wbr>String</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="percentage.html#stringify" class="tsd-kind-icon">stringify</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="rational.html" class="tsd-kind-icon">Rational</a>
 					</li>

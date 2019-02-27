@@ -1,8 +1,5 @@
 import * as xjs from 'extrajs'
 
-// TODO: move to xjs.Number
-const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
-
 
 /**
  * A list of possible Angle units.
@@ -55,7 +52,7 @@ export default class Angle extends Number {
 	/**
 	 * An immutable RegExp instance, representing a string in Angle format.
 	 */
-	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs_Number_REGEXP.source.slice(1,-1)}(?:turn|deg|grad|rad)$`)
+	static readonly REGEXP: Readonly<RegExp> = new RegExp(`^${xjs.Number.REGEXP.source.slice(1,-1)}(?:turn|deg|grad|rad)$`)
 
 	/**
 	 * Return the maximum of two or more Angles.
@@ -139,21 +136,10 @@ export default class Angle extends Number {
 	}
 
 	/**
-	 * Parse a string of the form `'‹n›‹u›'`, where `‹n›` is a number and `‹u›` is an angle unit.
-	 * @param   str the string to parse
-	 * @returns a new Angle emulating the string
-	 * @throws  {RangeError} if the string given is not of the correct format
+	 * @deprecated use constructor `new Angle()` instead.
 	 */
 	static fromString(str: string): Angle {
-		if (!Angle.REGEXP.test(str)) throw new RangeError(`Invalid string format: '${str}'.`)
-		let numeric_part: number = +str.match(xjs_Number_REGEXP.source.slice(1,-1)) ![0]
-		let unit_part   : string =  str.match(/turn|deg|grad|rad/                 ) ![0]
-		return new Angle(xjs.Object.switch<number>(unit_part, {
-			'turn' : () => numeric_part / Angle.CONVERSION[AngleUnit.TURN],
-			'deg'  : () => numeric_part / Angle.CONVERSION[AngleUnit.DEG ],
-			'grad' : () => numeric_part / Angle.CONVERSION[AngleUnit.GRAD],
-			'rad'  : () => numeric_part / Angle.CONVERSION[AngleUnit.RAD ],
-		})())
+		return new Angle(str)
 	}
 
 
@@ -161,7 +147,26 @@ export default class Angle extends Number {
 	 * Construct a new Angle object.
 	 * @param   theta the numeric value of this Angle
 	 */
-	constructor(theta: Angle|number = 0, unit: AngleUnit = AngleUnit.TURN) {
+	constructor(theta?: Angle|number, unit?: AngleUnit);
+	/**
+	 * Parse a string of the form `'‹n›‹u›'`, where `‹n›` is a number and `‹u›` is an angle unit.
+	 * @param   str the string to parse
+	 * @returns a new Angle emulating the string
+	 * @throws  {RangeError} if the string given is not of the correct format
+	 */
+	constructor(str: string);
+	constructor(theta: Angle|number|string = 0, unit: AngleUnit = AngleUnit.TURN) {
+		if (typeof theta === 'string') {
+			if (!Angle.REGEXP.test(theta)) throw new RangeError(`Invalid string format: '${theta}'.`)
+			let numeric_part: number = +theta.match(xjs.Number.REGEXP.source.slice(1,-1)) ![0]
+			let unit_part   : string =  theta.match(/turn|deg|grad|rad/                 ) ![0]
+			theta = xjs.Object.switch<number>(unit_part, {
+				'turn' : () => numeric_part / Angle.CONVERSION[AngleUnit.TURN],
+				'deg'  : () => numeric_part / Angle.CONVERSION[AngleUnit.DEG ],
+				'grad' : () => numeric_part / Angle.CONVERSION[AngleUnit.GRAD],
+				'rad'  : () => numeric_part / Angle.CONVERSION[AngleUnit.RAD ],
+			})()
+		}
 		theta = theta.valueOf()
 		xjs.Number.assertType(theta, 'finite')
 		super(theta / Angle.CONVERSION[unit])

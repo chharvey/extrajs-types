@@ -187,12 +187,13 @@
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon">new <wbr>Color<span class="tsd-signature-symbol">(</span>red<span class="tsd-signature-symbol">?: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, green<span class="tsd-signature-symbol">?: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, blue<span class="tsd-signature-symbol">?: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, alpha<span class="tsd-signature-symbol">?: </span><a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Color<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="color.html" class="tsd-signature-type">Color</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L562">Color.class.ts:562</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L559">Color.class.ts:559</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -207,7 +208,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> red: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> red: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>the red   channel of this color</p>
@@ -215,7 +216,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> green: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> green: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>the green channel of this color</p>
@@ -223,7 +224,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> blue: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> blue: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>the blue  channel of this color</p>
@@ -231,10 +232,38 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> alpha: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> alpha: <a href="fraction.html" class="tsd-signature-type">Fraction</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>the alpha channel of this color</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="color.html" class="tsd-signature-type">Color</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L573">Color.class.ts:573</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Alias of <a href="color.html#fromstring">Color.fromString</a></p>
+								</div>
+								<p>Calling <code>new Color(r, g, b, a)</code> (4 arguments) specifies default behavior.
+									Calling <code>new Color(r, g, b)</code> (3 arguments) will result in an opaque color (<code>#rrggbbFF</code>),
+									where the alpha is 1 by default.
+								Calling <code>new Color()</code> (no arguments) will result in transparent (<code>#00000000</code>).</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>str: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>same parameter passed to <code>Color.fromString</code></p>
 										</div>
 									</div>
 								</li>
@@ -252,7 +281,7 @@
 					<div class="tsd-signature tsd-kind-icon">_ALPHA<span class="tsd-signature-symbol">:</span> <a href="fraction.html" class="tsd-signature-type">Fraction</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L558">Color.class.ts:558</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L555">Color.class.ts:555</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -267,7 +296,7 @@
 					<div class="tsd-signature tsd-kind-icon">_BLUE<span class="tsd-signature-symbol">:</span> <a href="fraction.html" class="tsd-signature-type">Fraction</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L556">Color.class.ts:556</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L553">Color.class.ts:553</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -282,7 +311,7 @@
 					<div class="tsd-signature tsd-kind-icon">_CHROMA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L562">Color.class.ts:562</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L559">Color.class.ts:559</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -292,7 +321,7 @@
 					<div class="tsd-signature tsd-kind-icon">_GREEN<span class="tsd-signature-symbol">:</span> <a href="fraction.html" class="tsd-signature-type">Fraction</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L554">Color.class.ts:554</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L551">Color.class.ts:551</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -307,7 +336,7 @@
 					<div class="tsd-signature tsd-kind-icon">_MAX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L560">Color.class.ts:560</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L557">Color.class.ts:557</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -317,7 +346,7 @@
 					<div class="tsd-signature tsd-kind-icon">_MIN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L561">Color.class.ts:561</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L558">Color.class.ts:558</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -327,7 +356,7 @@
 					<div class="tsd-signature tsd-kind-icon">_RED<span class="tsd-signature-symbol">:</span> <a href="fraction.html" class="tsd-signature-type">Fraction</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L552">Color.class.ts:552</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L549">Color.class.ts:549</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -339,10 +368,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
 					<a name="regexp_cmyk" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP_<wbr>CMYK</h3>
-					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>CMYK<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^cmyk\\(\\s*${&#x60;(?:${&#x60;${xjs_Number_REGEXP.source.slice(1,-1)}(?:\\s+${xjs_Number_REGEXP.source.slice(1,-1)}){3}&#x60; + &#x60;|&#x60; +&#x60;${Percentage.REGEXP.source.slice(1,-1)}(?:\\s+${Percentage.REGEXP.source.slice(1,-1)}){3}&#x60;})&#x60; +&#x60;(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?&#x60;}\\s*\\)$&#x60;)</span></div>
+					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>CMYK<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^cmyk\\(\\s*${&#x60;(?:${&#x60;${xjs.Number.REGEXP.source.slice(1,-1)}(?:\\s+${xjs.Number.REGEXP.source.slice(1,-1)}){3}&#x60; + &#x60;|&#x60; +&#x60;${Percentage.REGEXP.source.slice(1,-1)}(?:\\s+${Percentage.REGEXP.source.slice(1,-1)}){3}&#x60;})&#x60; +&#x60;(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?&#x60;}\\s*\\)$&#x60;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L98">Color.class.ts:98</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L95">Color.class.ts:95</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -358,7 +387,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>CMYKA_<wbr>LEGACY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^cmyka\\(\\s*${Color._NUMBER_OR_PERCENTAGE +&#x60;(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}){4}&#x60;}\\s*\\)$&#x60;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L89">Color.class.ts:89</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L86">Color.class.ts:86</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -378,7 +407,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>CMYK_<wbr>LEGACY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^cmyk\\(\\s*${Color._NUMBER_OR_PERCENTAGE +&#x60;(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}){3,4}&#x60;}\\s*\\)$&#x60;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L80">Color.class.ts:80</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L77">Color.class.ts:77</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -398,7 +427,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>HEX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;/^#(?:(?:[\da-f]{3}){1,2}|(?:[\da-f]{4}){1,2})$/i</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L44">Color.class.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L41">Color.class.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -413,7 +442,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>HUE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^(?:hsv|hsl|hwb)\\(\\s*${Color._NUMBER_OR_ANGLE +&#x60;(?:\\s+${Percentage.REGEXP.source.slice(1,-1)}){2}&#x60; +&#x60;(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?&#x60;}\\s*\\)$&#x60;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L130">Color.class.ts:130</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L127">Color.class.ts:127</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -429,7 +458,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>HUEA_<wbr>LEGACY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^(?:hsv|hsl|hwb)a\\(\\s*${Color._NUMBER_OR_ANGLE +&#x60;(?:\\s*,\\s*${Percentage.REGEXP.source.slice(1,-1)}){2}&#x60; +&#x60;\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}&#x60;}\\s*\\)$&#x60;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L120">Color.class.ts:120</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L117">Color.class.ts:117</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -449,7 +478,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>HUE_<wbr>LEGACY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^(?:hsv|hsl|hwb)\\(\\s*${Color._NUMBER_OR_ANGLE +&#x60;(?:\\s*,\\s*${Percentage.REGEXP.source.slice(1,-1)}){2}&#x60; +&#x60;(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE})?&#x60;}\\s*\\)$&#x60;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L110">Color.class.ts:110</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L107">Color.class.ts:107</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -466,10 +495,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
 					<a name="regexp_rgb" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP_<wbr>RGB</h3>
-					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>RGB<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^rgb\\(\\s*${&#x60;(?:${&#x60;${xjs_Number_REGEXP.source.slice(1,-1)}(?:\\s+${xjs_Number_REGEXP.source.slice(1,-1)}){2}&#x60; + &#x60;|&#x60; +&#x60;${Percentage.REGEXP.source.slice(1,-1)}(?:\\s+${Percentage.REGEXP.source.slice(1,-1)}){2}&#x60;})&#x60; +&#x60;(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?&#x60;}\\s*\\)$&#x60;)</span></div>
+					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>RGB<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^rgb\\(\\s*${&#x60;(?:${&#x60;${xjs.Number.REGEXP.source.slice(1,-1)}(?:\\s+${xjs.Number.REGEXP.source.slice(1,-1)}){2}&#x60; + &#x60;|&#x60; +&#x60;${Percentage.REGEXP.source.slice(1,-1)}(?:\\s+${Percentage.REGEXP.source.slice(1,-1)}){2}&#x60;})&#x60; +&#x60;(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?&#x60;}\\s*\\)$&#x60;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L68">Color.class.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L65">Color.class.ts:65</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -485,7 +514,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>RGBA_<wbr>LEGACY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^rgba\\(\\s*${Color._NUMBER_OR_PERCENTAGE +&#x60;(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}){3}&#x60;}\\s*\\)$&#x60;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L59">Color.class.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L56">Color.class.ts:56</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -505,7 +534,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEXP_<wbr>RGB_<wbr>LEGACY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new RegExp(&#x60;^rgb\\(\\s*${Color._NUMBER_OR_PERCENTAGE +&#x60;(?:\\s*,\\s*${Color._NUMBER_OR_PERCENTAGE}){2,3}&#x60;}\\s*\\)$&#x60;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L50">Color.class.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L47">Color.class.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -522,20 +551,20 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
 					<a name="_number_or_angle" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> _NUMBER_<wbr>OR_<wbr>ANGLE</h3>
-					<div class="tsd-signature tsd-kind-icon">_NUMBER_<wbr>OR_<wbr>ANGLE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;${xjs_Number_REGEXP.source.slice(1,-1)}(?:deg|grad|rad|turn)?&#x60;</span></div>
+					<div class="tsd-signature tsd-kind-icon">_NUMBER_<wbr>OR_<wbr>ANGLE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;${xjs.Number.REGEXP.source.slice(1,-1)}(?:deg|grad|rad|turn)?&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L39">Color.class.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L36">Color.class.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
 					<a name="_number_or_percentage" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> _NUMBER_<wbr>OR_<wbr>PERCENTAGE</h3>
-					<div class="tsd-signature tsd-kind-icon">_NUMBER_<wbr>OR_<wbr>PERCENTAGE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;${xjs_Number_REGEXP.source.slice(1,-1)}%?&#x60;</span></div>
+					<div class="tsd-signature tsd-kind-icon">_NUMBER_<wbr>OR_<wbr>PERCENTAGE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;${xjs.Number.REGEXP.source.slice(1,-1)}%?&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L38">Color.class.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L35">Color.class.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -552,7 +581,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L604">Color.class.ts:604</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L614">Color.class.ts:614</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -574,7 +603,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L599">Color.class.ts:599</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L609">Color.class.ts:609</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -596,7 +625,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L780">Color.class.ts:780</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L790">Color.class.ts:790</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -618,7 +647,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L642">Color.class.ts:642</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L652">Color.class.ts:652</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -642,7 +671,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L612">Color.class.ts:612</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L622">Color.class.ts:622</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -666,7 +695,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L622">Color.class.ts:622</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L632">Color.class.ts:632</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -690,7 +719,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L632">Color.class.ts:632</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L642">Color.class.ts:642</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -714,7 +743,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L594">Color.class.ts:594</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L604">Color.class.ts:604</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -736,7 +765,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L794">Color.class.ts:794</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L804">Color.class.ts:804</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -758,7 +787,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L700">Color.class.ts:700</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L710">Color.class.ts:710</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -782,7 +811,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L733">Color.class.ts:733</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L743">Color.class.ts:743</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -812,7 +841,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L712">Color.class.ts:712</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L722">Color.class.ts:722</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -842,7 +871,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L787">Color.class.ts:787</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L797">Color.class.ts:797</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -864,7 +893,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L652">Color.class.ts:652</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L662">Color.class.ts:662</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -888,7 +917,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L678">Color.class.ts:678</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L688">Color.class.ts:688</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -918,7 +947,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L690">Color.class.ts:690</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L700">Color.class.ts:700</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -948,7 +977,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L801">Color.class.ts:801</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L811">Color.class.ts:811</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -970,7 +999,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L766">Color.class.ts:766</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L776">Color.class.ts:776</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -996,7 +1025,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L743">Color.class.ts:743</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L753">Color.class.ts:753</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1020,7 +1049,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L754">Color.class.ts:754</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L764">Color.class.ts:764</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1045,7 +1074,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L589">Color.class.ts:589</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L599">Color.class.ts:599</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1067,7 +1096,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L773">Color.class.ts:773</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L783">Color.class.ts:783</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1092,7 +1121,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L1047">Color.class.ts:1047</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L1057">Color.class.ts:1057</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1140,7 +1169,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L878">Color.class.ts:878</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L888">Color.class.ts:888</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1164,7 +1193,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L1128">Color.class.ts:1128</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L1138">Color.class.ts:1138</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1201,7 +1230,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L956">Color.class.ts:956</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L966">Color.class.ts:966</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1240,7 +1269,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L917">Color.class.ts:917</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L927">Color.class.ts:927</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1279,7 +1308,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L1087">Color.class.ts:1087</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L1097">Color.class.ts:1097</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1314,7 +1343,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L986">Color.class.ts:986</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L996">Color.class.ts:996</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1359,7 +1388,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L1005">Color.class.ts:1005</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L1015">Color.class.ts:1015</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1399,7 +1428,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L848">Color.class.ts:848</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L858">Color.class.ts:858</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1423,7 +1452,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L938">Color.class.ts:938</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L948">Color.class.ts:948</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1469,7 +1498,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L1024">Color.class.ts:1024</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L1034">Color.class.ts:1034</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1515,7 +1544,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L1139">Color.class.ts:1139</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L1149">Color.class.ts:1149</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1546,7 +1575,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L966">Color.class.ts:966</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L976">Color.class.ts:976</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1570,7 +1599,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L1114">Color.class.ts:1114</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L1124">Color.class.ts:1124</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1607,7 +1636,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L863">Color.class.ts:863</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L873">Color.class.ts:873</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1639,7 +1668,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L899">Color.class.ts:899</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L909">Color.class.ts:909</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1685,7 +1714,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L824">Color.class.ts:824</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L834">Color.class.ts:834</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1734,7 +1763,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L144">Color.class.ts:144</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L141">Color.class.ts:141</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1768,7 +1797,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L161">Color.class.ts:161</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L158">Color.class.ts:158</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1817,7 +1846,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L187">Color.class.ts:187</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L184">Color.class.ts:184</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1858,7 +1887,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L174">Color.class.ts:174</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L171">Color.class.ts:171</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1899,7 +1928,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L507">Color.class.ts:507</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L504">Color.class.ts:504</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1941,7 +1970,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L218">Color.class.ts:218</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L215">Color.class.ts:215</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2002,7 +2031,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L274">Color.class.ts:274</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L271">Color.class.ts:271</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2057,7 +2086,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L242">Color.class.ts:242</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L239">Color.class.ts:239</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2107,7 +2136,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L306">Color.class.ts:306</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L303">Color.class.ts:303</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2162,7 +2191,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L201">Color.class.ts:201</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L198">Color.class.ts:198</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2213,7 +2242,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L370">Color.class.ts:370</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L367">Color.class.ts:367</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2293,7 +2322,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L485">Color.class.ts:485</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L482">Color.class.ts:482</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2332,7 +2361,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L537">Color.class.ts:537</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L534">Color.class.ts:534</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2364,7 +2393,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/b975747/src/class/Color.class.ts#L545">Color.class.ts:545</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Color.class.ts#L542">Color.class.ts:542</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2396,10 +2425,19 @@
 						<a href="../enums/colorspace.html" class="tsd-kind-icon">Color<wbr>Space</a>
 					</li>
 					<li class=" tsd-kind-enum">
+						<a href="../enums/durationunit.html" class="tsd-kind-icon">Duration<wbr>Unit</a>
+					</li>
+					<li class=" tsd-kind-enum">
 						<a href="../enums/lengthunit.html" class="tsd-kind-icon">Length<wbr>Unit</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-is-not-exported">
+						<a href="../enums/traversal.html" class="tsd-kind-icon">Traversal</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="angle.html" class="tsd-kind-icon">Angle</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="closedinterval.html" class="tsd-kind-icon">Closed<wbr>Interval</a>
 					</li>
 				</ul>
 				<ul class="current">
@@ -2630,22 +2668,61 @@
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class">
+						<a href="duration.html" class="tsd-kind-icon">Duration</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="fraction.html" class="tsd-kind-icon">Fraction</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="halfopenleftinterval.html" class="tsd-kind-icon">Half<wbr>Open<wbr>Left<wbr>Interval</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="halfopenrightinterval.html" class="tsd-kind-icon">Half<wbr>Open<wbr>Right<wbr>Interval</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="integer.html" class="tsd-kind-icon">Integer</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="interval.html" class="tsd-kind-icon">Interval</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="length.html" class="tsd-kind-icon">Length</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="matrix.html" class="tsd-kind-icon">Matrix</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="matrixsquare.html" class="tsd-kind-icon">Matrix<wbr>Square</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="meter.html" class="tsd-kind-icon">Meter</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="meterint.html" class="tsd-kind-icon">Meter<wbr>Int</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="openinterval.html" class="tsd-kind-icon">Open<wbr>Interval</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-not-exported">
+						<a href="orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="percentage.html" class="tsd-kind-icon">Percentage</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#names" class="tsd-kind-icon">NAMES</a>
+					<li class=" tsd-kind-class">
+						<a href="rational.html" class="tsd-kind-icon">Rational</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="treenode.html" class="tsd-kind-icon">Tree<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="vector.html" class="tsd-kind-icon">Vector</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="../globals.html#filterfn" class="tsd-kind-icon">Filter<wbr>Fn</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#xjs_number_regexp" class="tsd-kind-icon">xjs_<wbr><wbr>Number_<wbr>REGEXP</a>
+						<a href="../globals.html#names" class="tsd-kind-icon">NAMES</a>
 					</li>
 				</ul>
 			</nav>

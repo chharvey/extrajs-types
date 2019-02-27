@@ -1,8 +1,5 @@
 import * as xjs from 'extrajs'
 
-// TODO: move to xjs.Number
-const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
-
 import Integer from './Integer.class'
 import Percentage from './Percentage.class'
 import Fraction from './Fraction.class'
@@ -35,8 +32,8 @@ export enum ColorSpace {
  * given three primary color channels and a possible transparency channel.
  */
 export default class Color {
-	private static readonly _NUMBER_OR_PERCENTAGE: string = `${xjs_Number_REGEXP.source.slice(1,-1)}%?`
-	private static readonly _NUMBER_OR_ANGLE     : string = `${xjs_Number_REGEXP.source.slice(1,-1)}(?:deg|grad|rad|turn)?`
+	private static readonly _NUMBER_OR_PERCENTAGE: string = `${xjs.Number.REGEXP.source.slice(1,-1)}%?`
+	private static readonly _NUMBER_OR_ANGLE     : string = `${xjs.Number.REGEXP.source.slice(1,-1)}(?:deg|grad|rad|turn)?`
 
 	/**
 	 * An immutable RegExp instance, representing a string in {@link ColorSpace.HEX} format.
@@ -67,7 +64,7 @@ export default class Color {
 	 */
 	static readonly REGEXP_RGB: Readonly<RegExp> = new RegExp(`^rgb\\(\\s*${
 		`(?:${
-			`${xjs_Number_REGEXP.source.slice(1,-1)}(?:\\s+${xjs_Number_REGEXP.source.slice(1,-1)}){2}` + `|` +
+			`${xjs.Number.REGEXP.source.slice(1,-1)}(?:\\s+${xjs.Number.REGEXP.source.slice(1,-1)}){2}` + `|` +
 			`${Percentage.REGEXP.source.slice(1,-1)}(?:\\s+${Percentage.REGEXP.source.slice(1,-1)}){2}`
 		})` +
 		`(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?`
@@ -97,7 +94,7 @@ export default class Color {
 	 */
 	static readonly REGEXP_CMYK: Readonly<RegExp> = new RegExp(`^cmyk\\(\\s*${
 		`(?:${
-			`${xjs_Number_REGEXP.source.slice(1,-1)}(?:\\s+${xjs_Number_REGEXP.source.slice(1,-1)}){3}` + `|` +
+			`${xjs.Number.REGEXP.source.slice(1,-1)}(?:\\s+${xjs.Number.REGEXP.source.slice(1,-1)}){3}` + `|` +
 			`${Percentage.REGEXP.source.slice(1,-1)}(?:\\s+${Percentage.REGEXP.source.slice(1,-1)}){3}`
 		})` +
 		`(?:\\s*/\\s*${Color._NUMBER_OR_PERCENTAGE})?`
@@ -420,10 +417,10 @@ export default class Color {
 				Color.REGEXP_RGBA_LEGACY,
 				Color.REGEXP_RGB,
 			].map((r) => r.source.slice(1,-1)).join('|')})$`).test(str)) {
-				let red   : Fraction      =                 new Fraction((xjs_Number_REGEXP.test(channels[0])) ? +channels[0] / 255 : Percentage.fromString(channels[0]))
-				let green : Fraction      =                 new Fraction((xjs_Number_REGEXP.test(channels[1])) ? +channels[1] / 255 : Percentage.fromString(channels[1]))
-				let blue  : Fraction      =                 new Fraction((xjs_Number_REGEXP.test(channels[2])) ? +channels[2] / 255 : Percentage.fromString(channels[2]))
-				let alpha : Fraction|null = (channels[3]) ? new Fraction((xjs_Number_REGEXP.test(channels[3])) ? +channels[3]       : Percentage.fromString(channels[3])) : null
+				let red   : Fraction      =                 new Fraction((xjs.Number.REGEXP.test(channels[0])) ? +channels[0] / 255 : Percentage.fromString(channels[0]))
+				let green : Fraction      =                 new Fraction((xjs.Number.REGEXP.test(channels[1])) ? +channels[1] / 255 : Percentage.fromString(channels[1]))
+				let blue  : Fraction      =                 new Fraction((xjs.Number.REGEXP.test(channels[2])) ? +channels[2] / 255 : Percentage.fromString(channels[2]))
+				let alpha : Fraction|null = (channels[3]) ? new Fraction((xjs.Number.REGEXP.test(channels[3])) ? +channels[3]       : Percentage.fromString(channels[3])) : null
 				return new Color(red, green, blue, alpha || void 0)
 			}
 			if (new RegExp(`^(?:${[
@@ -431,11 +428,11 @@ export default class Color {
 				Color.REGEXP_CMYKA_LEGACY,
 				Color.REGEXP_CMYK,
 			].map((r) => r.source.slice(1,-1)).join('|')})$`).test(str)) {
-				let cyan    : Fraction      =                 new Fraction((xjs_Number_REGEXP.test(channels[0])) ? +channels[0] : Percentage.fromString(channels[0]))
-				let magenta : Fraction      =                 new Fraction((xjs_Number_REGEXP.test(channels[1])) ? +channels[1] : Percentage.fromString(channels[1]))
-				let yellow  : Fraction      =                 new Fraction((xjs_Number_REGEXP.test(channels[2])) ? +channels[2] : Percentage.fromString(channels[2]))
-				let black   : Fraction      =                 new Fraction((xjs_Number_REGEXP.test(channels[3])) ? +channels[3] : Percentage.fromString(channels[3]))
-				let alpha   : Fraction|null = (channels[4]) ? new Fraction((xjs_Number_REGEXP.test(channels[4])) ? +channels[4] : Percentage.fromString(channels[4])) : null
+				let cyan    : Fraction      =                 new Fraction((xjs.Number.REGEXP.test(channels[0])) ? +channels[0] : Percentage.fromString(channels[0]))
+				let magenta : Fraction      =                 new Fraction((xjs.Number.REGEXP.test(channels[1])) ? +channels[1] : Percentage.fromString(channels[1]))
+				let yellow  : Fraction      =                 new Fraction((xjs.Number.REGEXP.test(channels[2])) ? +channels[2] : Percentage.fromString(channels[2]))
+				let black   : Fraction      =                 new Fraction((xjs.Number.REGEXP.test(channels[3])) ? +channels[3] : Percentage.fromString(channels[3]))
+				let alpha   : Fraction|null = (channels[4]) ? new Fraction((xjs.Number.REGEXP.test(channels[4])) ? +channels[4] : Percentage.fromString(channels[4])) : null
 				return Color.fromCMYK(cyan, magenta, yellow, black, alpha || void 0)
 			}
 			if (new RegExp(`^(?:${[
@@ -443,10 +440,10 @@ export default class Color {
 				Color.REGEXP_HUEA_LEGACY,
 				Color.REGEXP_HUE,
 			].map((r) => r.source.slice(1,-1)).join('|')})$`).test(str)) {
-				let hue  : Angle         = Angle.fromString((xjs_Number_REGEXP.test(channels[0])) ? `${channels[0]}deg` : channels[0])
+				let hue  : Angle         = Angle.fromString((xjs.Number.REGEXP.test(channels[0])) ? `${channels[0]}deg` : channels[0])
 				let p1   : Fraction      = new Fraction(Percentage.fromString(channels[1]))
 				let p2   : Fraction      = new Fraction(Percentage.fromString(channels[2]))
-				let alpha: Fraction|null = (channels[3]) ? new Fraction((xjs_Number_REGEXP.test(channels[3])) ? +channels[3] : Percentage.fromString(channels[3])) : null
+				let alpha: Fraction|null = (channels[3]) ? new Fraction((xjs.Number.REGEXP.test(channels[3])) ? +channels[3] : Percentage.fromString(channels[3])) : null
 				return xjs.Object.switch<Color>(space, {
 					hsv  : Color.fromHSV,
 					hsva : Color.fromHSV, // COMBAK{DEPRECATED}
@@ -573,8 +570,21 @@ export default class Color {
 	 * @param blue  the blue  channel of this color
 	 * @param alpha the alpha channel of this color
 	 */
-	constructor(red: Fraction|number = 0, green: Fraction|number = 0, blue: Fraction|number = 0, alpha: Fraction|number = 1) {
+	constructor(red?: Fraction|number, green?: Fraction|number, blue?: Fraction|number, alpha?: Fraction|number);
+	/**
+	 * Alias of {@link Color.fromString}
+	 * @param   str same parameter passed to `Color.fromString`
+	 */
+	constructor(str: string);
+	constructor(red: Fraction|number|string = 0, green: Fraction|number = 0, blue: Fraction|number = 0, alpha: Fraction|number = 1) {
 		if (arguments.length === 0) alpha = 0
+		if (typeof red === 'string') {
+			const color = Color.fromString(red)
+			red   = color.red
+			green = color.green
+			blue  = color.blue
+			alpha = color.alpha
+		}
 		;[this._RED, this._GREEN, this._BLUE] = [red, green, blue].map((c) => new Fraction(c))
 		this._ALPHA = new Fraction(alpha)
 
