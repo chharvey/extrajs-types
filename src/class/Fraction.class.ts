@@ -45,20 +45,28 @@ export default class Fraction extends Number {
 	 * Return the maximum of two or more Fractions.
 	 * @param   fracs two or more Fractions to compare
 	 * @returns the greatest of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...fracs: Fraction[]): Fraction {
-		return new Fraction(Math.max(...fracs.map((f) => f.valueOf())))
-		// return fracs.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).slice(-1)[0]
+		try {
+			return new Fraction(Math.max(...fracs.map((f) => f.valueOf())))
+		} catch {
+			throw new Error('No arguments provided.')
+		}
 	}
 
 	/**
 	 * Return the minimum of two or more Fractions.
 	 * @param   fracs two or more Fractions to compare
 	 * @returns the least of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...fracs: Fraction[]): Fraction {
-		return new Fraction(Math.min(...fracs.map((f) => f.valueOf())))
-		// return fracs.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
+		try {
+			return new Fraction(Math.min(...fracs.map((f) => f.valueOf())))
+		} catch {
+			throw new Error('No arguments provided.')
+		}
 	}
 
 	// /**

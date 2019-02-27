@@ -47,20 +47,28 @@ export default class Integer extends Number {
 	 * Return the maximum of two or more Integers.
 	 * @param   ints two or more Integers to compare
 	 * @returns the greatest of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...ints: Integer[]): Integer {
-		return new Integer(Math.max(...ints.map((z) => z.valueOf())))
-		// return ints.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).slice(-1)[0]
+		try {
+			return new Integer(Math.max(...ints.map((z) => z.valueOf())))
+		} catch {
+			throw new Error('No arguments provided.')
+		}
 	}
 
 	/**
 	 * Return the minimum of two or more Integers.
 	 * @param   ints two or more Integers to compare
 	 * @returns the least of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...ints: Integer[]): Integer {
-		return new Integer(Math.min(...ints.map((z) => z.valueOf())))
-		// return ints.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
+		try {
+			return new Integer(Math.min(...ints.map((z) => z.valueOf())))
+		} catch {
+			throw new Error('No arguments provided.')
+		}
 	}
 
 

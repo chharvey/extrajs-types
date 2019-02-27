@@ -58,20 +58,28 @@ export default class Angle extends Number {
 	 * Return the maximum of two or more Angles.
 	 * @param   angles two or more Angles to compare
 	 * @returns the greatest of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...angles: Angle[]): Angle {
-		return new Angle(Math.max(...angles.map((theta) => theta.valueOf())))
-		// return angles.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).slice(-1)[0]
+		try {
+			return new Angle(Math.max(...angles.map((theta) => theta.valueOf())))
+		} catch {
+			throw new Error('No arguments provided.')
+		}
 	}
 
 	/**
 	 * Return the minimum of two or more Angles.
 	 * @param   angles two or more Angles to compare
 	 * @returns the least of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...angles: Angle[]): Angle {
-		return new Angle(Math.min(...angles.map((theta) => theta.valueOf())))
-		// return angles.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
+		try {
+			return new Angle(Math.min(...angles.map((theta) => theta.valueOf())))
+		} catch {
+			throw new Error('No arguments provided.')
+		}
 	}
 
 	/**
