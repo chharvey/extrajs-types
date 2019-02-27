@@ -22,7 +22,7 @@ import * as xjs from 'extrajs'
  * - Integers have (unique) additive inverses:
  * 	for every integer `a`, a unique integer `-a` is guaranteed such that `a + -a === -a + a === 0`
  * 	(where `0` is the additive identity).
- * - Integers have a (unique) multiplicative absorber:
+ * - The set of Integers has a (unique) multiplicative absorber:
  * 	a unique integer `0` is guaranteed such that for every integer `a`, `a * 0 === 0 * a === 0`.
  * 	(In general, the multiplicative absorber need not necessarily be the additive identity,
  * 	but in the standard integers we work with daily, they are one in the same.)
@@ -94,6 +94,22 @@ export default class Integer extends Number {
 	}
 
 	/**
+	 * Get the previous Integer, in standard order.
+	 * @returns the greatest Integer less than this one
+	 */
+	get prev(): Integer {
+		return this.minus(1)
+	}
+
+	/**
+	 * Get the next Integer, in standard order.
+	 * @returns the least Integer greater than this one
+	 */
+	get next(): Integer {
+		return this.plus(1)
+	}
+
+	/**
 	 * Return whether this Integer’s value equals the argument’s.
 	 * @param   int the Integer to compare
 	 * @returns does this Integer equal the argument?
@@ -145,7 +161,8 @@ export default class Integer extends Number {
 	 */
 	plus(addend: Integer|number = 0): Integer {
 		return (addend instanceof Integer) ?
-			(addend.equals(Integer.ADD_IDEN)) ? this :
+			(this  .equals(0)) ? addend :
+			(addend.equals(0)) ? this :
 			new Integer(this.valueOf() + addend.valueOf()) :
 			this.plus(new Integer(addend))
 	}
@@ -170,14 +187,16 @@ export default class Integer extends Number {
 	 */
 	times(multiplier: Integer|number = 1): Integer {
 		return (multiplier instanceof Integer) ?
-			(multiplier.equals(Integer.MULT_ABSORB)) ? Integer.MULT_ABSORB :
-			(multiplier.equals(Integer.MULT_IDEN)) ? this :
+			(this      .equals(0)) ? this :
+			(this      .equals(1)) ? multiplier :
+			(multiplier.equals(0)) ? Integer.MULT_ABSORB :
+			(multiplier.equals(1)) ? this :
 			new Integer(this.valueOf() * multiplier.valueOf()) :
 			this.times(new Integer(multiplier))
 	}
 
 	/**
-	 * Divide this Integer (the dividend) by another (the divisor).
+	 * Divide this Integer (the dividend) by another number (the divisor).
 	 *
 	 * Note that division is not commutative: `a / b` does not always equal `b / a`.
 	 *
@@ -185,20 +204,21 @@ export default class Integer extends Number {
 	 * even if the result happens to be an integer.
 	 *
 	 * ```
-	 * new Integer(6).dividedBy(new Integer(2)) // return the number `3`
-	 * new Integer(6).dividedBy(new Integer(4)) // return the number `1.5`
+	 * new Integer(6).dividedBy(new Integer(2)) // return the number `3` (an integer)
+	 * new Integer(6).dividedBy(new Integer(4)) // return the number `1.5` (not an integer)
+	 * new Integer(6).dividedBy(0.5) // return the number `12` (an integer)
 	 * ```
-	 * @param   divisor the Integer to divide this one by
+	 * @param   divisor the number to divide this one by
 	 * @returns a number equal to the quotient, `dividend / divisor`
 	 */
 	dividedBy(divisor: Integer|number = 1): number {
-		return (divisor instanceof Integer) ?
-			this.valueOf() / divisor.valueOf() :
-			this.dividedBy(new Integer(divisor))
+		const returned = this.valueOf() / divisor.valueOf()
+		xjs.Number.assertType(returned)
+		return returned
 	}
 
 	/**
-	 * Exponentiate this Integer (the base) by another (the exponent).
+	 * Exponentiate this Integer (the base) by another number (the exponent).
 	 *
 	 * Note that exponentiation is not commutative: `a ** b` does not always equal `b ** a`.
 	 *
@@ -206,19 +226,22 @@ export default class Integer extends Number {
 	 * even if the result happens to be an integer.
 	 *
 	 * ```
-	 * new Integer(2).exp(new Integer(3))  // return the number `8`
-	 * new Integer(2).exp(new Integer(-3)) // return the number `0.125`
+	 * new Integer(2).exp(new Integer(3 )) // return the number `8` (an integer)
+	 * new Integer(2).exp(new Integer(-3)) // return the number `0.125` (not an integer)
+	 * new Integer(2).exp(0.5) // return `1.4142135623730951` (not an integer)
 	 * ```
-	 * @param   exponent the other Integer to exponentiate this one by
+	 * @param   exponent the number to raise this Integer by
 	 * @returns a number equal to the power, `base ** exponent`
 	 */
 	exp(exponent: Integer|number = 1): number {
-		return (exponent instanceof Integer) ?
-			this.valueOf() ** exponent.valueOf() :
-			this.exp(new Integer(exponent))
+		const returned = this.valueOf() ** exponent.valueOf()
+		xjs.Number.assertType(returned)
+		return returned
 	}
 
 	/**
+	 * @deprecated WARNING{DEPRECATED} no further development will be made on this method.
+	 *
 	 * Return the `n`th tetration of this Integer.
 	 *
 	 * Tetration is considered the next hyperoperation after exponentiation
@@ -240,14 +263,14 @@ export default class Integer extends Number {
 	 * new Integer(5).tetrate(0) // returns 1
 	 * ```
 	 *
-	 * @param   x the root, any number
-	 * @param   n the hyper-exponent to which the root is raised, a non-negative integer
+	 * @param   hyperexponent the hyper-exponent to which the root is raised, a non-negative integer
 	 * @returns `this *** hyperexponent`
 	 */
 	tetrate(hyperexponent: Integer|number = 1): Integer {
+		console.warn('Warning: `Integer#tetrate` is deprecated.')
 		return (hyperexponent instanceof Integer) ? (
 			xjs.Number.assertType(hyperexponent.valueOf(), 'natural'),
-			(hyperexponent.equals(Integer.MULT_ABSORB)) ? Integer.MULT_IDEN :
+			(hyperexponent.equals(0)) ? Integer.MULT_IDEN :
 				new Integer(this.exp(this.tetrate(hyperexponent.minus(1))))
 		) : this.tetrate(new Integer(hyperexponent))
 	}
