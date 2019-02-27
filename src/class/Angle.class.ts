@@ -295,7 +295,7 @@ export default class Angle extends Number {
 		return 1 / this.tan
 	}
 
-	/** @override */
+	/** @override Object */
 	toString(radix: number = 10, unit: AngleUnit = AngleUnit.TURN): string {
 		return `${this.convert(unit).toString(radix)}${AngleUnit[unit].toLowerCase()}`
 	}

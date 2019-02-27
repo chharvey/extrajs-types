@@ -4,35 +4,38 @@ import * as xjs from 'extrajs'
 /**
  * An Integer is a whole number, a negative whole number, or 0.
  *
- * The set of Integers has the following properties:
+ * The set of Integers exhibits the following properties:
  *
- * - Integers are weakly totally ordered. (There exists a weak total order `<=` on the integers.)
+ * - Integers are weakly totally ordered: There exists a weak total order `<=` on the integers:
  * 	- (Reflexivity) For an integer `a`, `a <= a`.
  * 	- (Antisymmetry) For integers `a` and `b`, if `a <= b` and `b <= a`, then `a === b`.
  * 	- (Transitivity) For integers `a`, `b`, and `c`, if `a <= b` and `b <= c`, then `a <= c`.
  * 	- (Comparability) For distinct integers `a !== b`, at least one of the following statements is guaranteed true:
  * 		- `a <= b`
  * 		- `b <= a`
- * - Integers are closed under addition, subtraction, and multiplication.
+ * - Integers are closed under addition, subtraction, and multiplication:
  * 	For integers `a` and `b`, the expressions `a + b`, `a - b`, and `a * b` are guaranteed to also be integers.
- * - The set of Integers has a (unique) additive and multiplicative idenity.
+ * - The set of Integers has a (unique) additive identity and a (unique) multiplicative idenity:
  * 	There exist integers `0` and `1` such that for every integer `a`,
  * 	`a + 0`, `0 + a`, `a * 1`, and `1 * a` are guaranteed to equal `a`, and
  * 	`0` and `1`, respectively, are the only integers with this property.
- * - Integers have (unique) additive inverses:
- * 	for every integer `a`, a unique integer `-a` is guaranteed such that `a + -a === -a + a === 0`
- * 	(where `0` is the additive identity).
  * - The set of Integers has a (unique) multiplicative absorber:
- * 	a unique integer `0` is guaranteed such that for every integer `a`, `a * 0 === 0 * a === 0`.
+ * 	A unique integer `0` is guaranteed such that for every integer `a`, `a * 0 === 0 * a === 0`.
  * 	(In general, the multiplicative absorber need not necessarily be the additive identity,
  * 	but in the standard integers we work with daily, they are one in the same.)
- * - Addition and multiplication are commutative and associative.
+ * - The set of Integers has no nonzero zero-divisors:
+ * 	For integers `a` and `b`, if `a * b === 0` or if `b * a === 0`, then either `a === 0` or `b === 0`
+ * 	(where `0` is the multiplicative absorber).
+ * - Integers have (unique) additive inverses:
+ * 	For every integer `a`, a unique integer `-a` is guaranteed such that `a + -a === -a + a === 0`
+ * 	(where `0` is the additive identity).
+ * - Addition and multiplication are commutative and associative:
  * 	For integers `a`, `b`, and `c`, the following statments are guaranteed true:
  * 	- `a + b === b + a`
  * 	- `a * b === b * a`
  * 	- `a + (b + c) === (a + b) + c`
  * 	- `a * (b * c) === (a * b) * c`
- * - Multiplication distributes over addition.
+ * - Multiplication distributes over addition:
  * 	For integers `a`, `b`, and `c`, we are guaranteed `a * (b + c) === a * b + a * c`.
  */
 export default class Integer extends Number {
