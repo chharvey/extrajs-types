@@ -20,13 +20,6 @@ function test_out() {
 		.pipe(gulp.dest('./test/out/'))
 }
 
-async function test_run_length() {
-	await Promise.all([
-		require('./test/out/Length-constructor.test.js').default,
-	])
-	console.info('All _Length_ tests ran successfully!')
-}
-
 async function test_run_angle() {
 	await Promise.all([
 		require('./test/out/Angle-constructor.test.js').default,
@@ -49,6 +42,13 @@ async function test_run_color() {
 	console.info('All _Color_ tests ran successfully!')
 }
 
+async function test_run_length() {
+	await Promise.all([
+		require('./test/out/Length-constructor.test.js').default,
+	])
+	console.info('All _Length_ tests ran successfully!')
+}
+
 async function test_run_vector() {
 	await Promise.all([
 		require('./test/out/Vector-constructor.test.js').default,
@@ -59,11 +59,11 @@ async function test_run_vector() {
 
 const test_run = gulp.series(
 	gulp.parallel(
-		test_run_length,
 		test_run_angle,
 		test_run_color,
+		test_run_length,
 		test_run_vector,
-	), function test_run0() {
+	), async function test_run0() {
 		console.info('All tests ran successfully!')
 	}
 )
@@ -87,14 +87,14 @@ const build = gulp.parallel(
 )
 
 module.exports = {
-	dist,
-	test_out,
-	test_run_length,
-	test_run_angle,
-	test_run_color,
-	test_run_vector,
-	test_run,
-	test,
-	docs,
 	build,
+		dist,
+		test,
+			test_out,
+			test_run,
+				test_run_angle,
+				test_run_color,
+				test_run_length,
+				test_run_vector,
+		docs,
 }
