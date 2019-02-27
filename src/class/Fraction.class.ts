@@ -1,8 +1,5 @@
 import * as xjs from 'extrajs'
 
-// // TODO: move to xjs.Number
-// const xjs_Number_REGEXP: Readonly<RegExp> = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/
-
 
 /**
  * A fraction of some other value.

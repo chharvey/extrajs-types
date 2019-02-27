@@ -1,4 +1,4 @@
-import {Color, ColorSpace} from '../../index'
+import { Color } from '../../index'
 import test from './test'
 
 
@@ -11,6 +11,11 @@ export default Promise.all([
 	test(Color.fromString('rgba(20%, 30,  40%,  .5)').toString(), '#331e6680'),
 	test(Color.fromString('rgb(20%   30%  40% / .5)' ).toString(), '#334d6680'),
 	test(Color.fromString('rgb(20    30   40  / 50%)').toString(), '#141e2880'),
+	test(Color.fromString('cmyk(0,0,0,0)').toString(), '#ffffff'),
+	test(Color.fromString('cmyk( 20%, .3,   40%, .15, .5    )' ).toString(), '#ad988280'),
+	test(Color.fromString('cmyka(20%, .30,  40%, .15, .5    )' ).toString(), '#ad988280'),
+	test(Color.fromString('cmyk(20%    30%  40%   15%  / .5 )' ).toString(), '#ad988280'),
+	test(Color.fromString('cmyk(.20   .30   .40  .15   / 50%)').toString(), '#ad988280'),
 	test((() => {
 		try {
 			return Color.fromString('hsl(0,0,0)').toString()
@@ -37,11 +42,6 @@ export default Promise.all([
 	test(Color.fromString('hwb(20deg     30%   40% / .5)'  ).toString(), '#99664d80'),
 	test(Color.fromString('hwb(20        30%  40%  / 50%)').toString(), '#99664d80'),
 	test(Color.fromString('hwb(20grad 30%  40%  / .5)').toString(), '#99634d80'),
-	test(Color.fromString('cmyk(0,0,0,0)').toString(), '#ffffff'),
-	test(Color.fromString('cmyk( 20%, .3,   40%, .15, .5    )' ).toString(), '#ad988280'),
-	test(Color.fromString('cmyka(20%, .30,  40%, .15, .5    )' ).toString(), '#ad988280'),
-	test(Color.fromString('cmyk(20%    30%  40%   15%  / .5 )' ).toString(), '#ad988280'),
-	test(Color.fromString('cmyk(.20   .30   .40  .15   / 50%)').toString(), '#ad988280'),
 	test(Color.fromString('black'     ).toString(), '#000000'),
 	test(Color.fromString('palegreen' ).toString(), '#98fb98'),
 	test((() => {
