@@ -105,7 +105,7 @@ export default class Duration extends Number {
 		super(x / Duration.CONVERSION[unit])
 	}
 
-	/** @override */
+	/** @override Object */
 	toString(radix: number = 10, unit: DurationUnit = DurationUnit.S): string {
 		return `${this.convert(unit).toString(radix)}${DurationUnit[unit].toLowerCase()}`
 	}

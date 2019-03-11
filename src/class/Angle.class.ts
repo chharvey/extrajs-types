@@ -144,9 +144,10 @@ export default class Angle extends Number {
 	}
 
 	/**
-	 * @deprecated use constructor `new Angle()` instead.
+	 * @deprecated WARNING{DEPRECATED} use constructor `new Angle()` instead.
 	 */
 	static fromString(str: string): Angle {
+		console.warn('`Angle#fromString()` is deprecated. Use `new Angle()` instead.')
 		return new Angle(str)
 	}
 
@@ -303,7 +304,7 @@ export default class Angle extends Number {
 		return 1 / this.tan
 	}
 
-	/** @override */
+	/** @override Object */
 	toString(radix: number = 10, unit: AngleUnit = AngleUnit.TURN): string {
 		return `${this.convert(unit).toString(radix)}${AngleUnit[unit].toLowerCase()}`
 	}

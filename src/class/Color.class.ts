@@ -5,7 +5,7 @@ import Percentage from './Percentage.class'
 import Fraction from './Fraction.class'
 import Angle, {AngleUnit} from './Angle.class'
 
-const NAMES: { [index: string]: string } = require('../../src/color-names.json') // NB relative to dist
+const NAMES: { [index: string]: string } = require('../../src/color-names.json')
 
 
 /**
@@ -827,7 +827,7 @@ export default class Color {
 	 * - alpha values are unitless base 10 decimals in [0,1]
 	 * - HSV/HSL/HWB-hue values are base 10 decimals in [0,1), expressed in turns (a unit of angle)
 	 * - HSV/HSL-sat/val/lum and HWB-white/black values are base 10 decimals in [0,1], expressed in percentages
-	 * @override
+	 * @override Object
 	 * @param   space represents the space in which this color exists
 	 * @returns a string representing this color
 	 */

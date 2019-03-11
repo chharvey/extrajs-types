@@ -4,35 +4,38 @@ import * as xjs from 'extrajs'
 /**
  * An Integer is a whole number, a negative whole number, or 0.
  *
- * The set of Integers has the following properties:
+ * The set of Integers exhibits the following properties:
  *
- * - Integers are weakly totally ordered. (There exists a weak total order `<=` on the integers.)
+ * - Integers are weakly totally ordered: There exists a weak total order `<=` on the integers:
  * 	- (Reflexivity) For an integer `a`, `a <= a`.
  * 	- (Antisymmetry) For integers `a` and `b`, if `a <= b` and `b <= a`, then `a === b`.
  * 	- (Transitivity) For integers `a`, `b`, and `c`, if `a <= b` and `b <= c`, then `a <= c`.
  * 	- (Comparability) For distinct integers `a !== b`, at least one of the following statements is guaranteed true:
  * 		- `a <= b`
  * 		- `b <= a`
- * - Integers are closed under addition, subtraction, and multiplication.
+ * - Integers are closed under addition, subtraction, and multiplication:
  * 	For integers `a` and `b`, the expressions `a + b`, `a - b`, and `a * b` are guaranteed to also be integers.
- * - The set of Integers has a (unique) additive and multiplicative idenity.
+ * - The set of Integers has a (unique) additive identity and a (unique) multiplicative idenity:
  * 	There exist integers `0` and `1` such that for every integer `a`,
  * 	`a + 0`, `0 + a`, `a * 1`, and `1 * a` are guaranteed to equal `a`, and
  * 	`0` and `1`, respectively, are the only integers with this property.
- * - Integers have (unique) additive inverses:
- * 	for every integer `a`, a unique integer `-a` is guaranteed such that `a + -a === -a + a === 0`
- * 	(where `0` is the additive identity).
- * - Integers have a (unique) multiplicative absorber:
- * 	a unique integer `0` is guaranteed such that for every integer `a`, `a * 0 === 0 * a === 0`.
+ * - The set of Integers has a (unique) multiplicative absorber:
+ * 	A unique integer `0` is guaranteed such that for every integer `a`, `a * 0 === 0 * a === 0`.
  * 	(In general, the multiplicative absorber need not necessarily be the additive identity,
  * 	but in the standard integers we work with daily, they are one in the same.)
- * - Addition and multiplication are commutative and associative.
+ * - The set of Integers has no nonzero zero-divisors:
+ * 	For integers `a` and `b`, if `a * b === 0` or if `b * a === 0`, then either `a === 0` or `b === 0`
+ * 	(where `0` is the multiplicative absorber).
+ * - Integers have (unique) additive inverses:
+ * 	For every integer `a`, a unique integer `-a` is guaranteed such that `a + -a === -a + a === 0`
+ * 	(where `0` is the additive identity).
+ * - Addition and multiplication are commutative and associative:
  * 	For integers `a`, `b`, and `c`, the following statments are guaranteed true:
  * 	- `a + b === b + a`
  * 	- `a * b === b * a`
  * 	- `a + (b + c) === (a + b) + c`
  * 	- `a * (b * c) === (a * b) * c`
- * - Multiplication distributes over addition.
+ * - Multiplication distributes over addition:
  * 	For integers `a`, `b`, and `c`, we are guaranteed `a * (b + c) === a * b + a * c`.
  */
 export default class Integer extends Number {
@@ -102,6 +105,22 @@ export default class Integer extends Number {
 	}
 
 	/**
+	 * Get the previous Integer, in standard order.
+	 * @returns the greatest Integer less than this one
+	 */
+	get prev(): Integer {
+		return this.minus(1)
+	}
+
+	/**
+	 * Get the next Integer, in standard order.
+	 * @returns the least Integer greater than this one
+	 */
+	get next(): Integer {
+		return this.plus(1)
+	}
+
+	/**
 	 * Return whether this Integer’s value equals the argument’s.
 	 * @param   int the Integer to compare
 	 * @returns does this Integer equal the argument?
@@ -139,10 +158,11 @@ export default class Integer extends Number {
 	}
 
 	/**
-	 * @deprecated Use {@link Integer.negation} instead.
+	 * @deprecated WARNING{DEPRECATED} Use {@link Integer.negation} instead.
 	 * @returns `this.negation`
 	 */
 	negate(): Integer {
+		console.warn('`Integer#negate()` is deprecated. Use `Integer#negation` instead.')
 		return this.negation
 	}
 
@@ -153,7 +173,8 @@ export default class Integer extends Number {
 	 */
 	plus(addend: Integer|number = 0): Integer {
 		return (addend instanceof Integer) ?
-			(addend.equals(Integer.ADD_IDEN)) ? this :
+			(this  .equals(0)) ? addend :
+			(addend.equals(0)) ? this :
 			new Integer(this.valueOf() + addend.valueOf()) :
 			this.plus(new Integer(addend))
 	}
@@ -178,14 +199,16 @@ export default class Integer extends Number {
 	 */
 	times(multiplier: Integer|number = 1): Integer {
 		return (multiplier instanceof Integer) ?
-			(multiplier.equals(Integer.MULT_ABSORB)) ? Integer.MULT_ABSORB :
-			(multiplier.equals(Integer.MULT_IDEN)) ? this :
+			(this      .equals(0)) ? this :
+			(this      .equals(1)) ? multiplier :
+			(multiplier.equals(0)) ? Integer.MULT_ABSORB :
+			(multiplier.equals(1)) ? this :
 			new Integer(this.valueOf() * multiplier.valueOf()) :
 			this.times(new Integer(multiplier))
 	}
 
 	/**
-	 * Divide this Integer (the dividend) by another (the divisor).
+	 * Divide this Integer (the dividend) by another number (the divisor).
 	 *
 	 * Note that division is not commutative: `a / b` does not always equal `b / a`.
 	 *
@@ -193,20 +216,21 @@ export default class Integer extends Number {
 	 * even if the result happens to be an integer.
 	 *
 	 * ```
-	 * new Integer(6).dividedBy(new Integer(2)) // return the number `3`
-	 * new Integer(6).dividedBy(new Integer(4)) // return the number `1.5`
+	 * new Integer(6).dividedBy(new Integer(2)) // return the number `3` (an integer)
+	 * new Integer(6).dividedBy(new Integer(4)) // return the number `1.5` (not an integer)
+	 * new Integer(6).dividedBy(0.5) // return the number `12` (an integer)
 	 * ```
-	 * @param   divisor the Integer to divide this one by
+	 * @param   divisor the number to divide this one by
 	 * @returns a number equal to the quotient, `dividend / divisor`
 	 */
 	dividedBy(divisor: Integer|number = 1): number {
-		return (divisor instanceof Integer) ?
-			this.valueOf() / divisor.valueOf() :
-			this.dividedBy(new Integer(divisor))
+		const returned = this.valueOf() / divisor.valueOf()
+		xjs.Number.assertType(returned)
+		return returned
 	}
 
 	/**
-	 * Exponentiate this Integer (the base) by another (the exponent).
+	 * Exponentiate this Integer (the base) by another number (the exponent).
 	 *
 	 * Note that exponentiation is not commutative: `a ** b` does not always equal `b ** a`.
 	 *
@@ -214,19 +238,22 @@ export default class Integer extends Number {
 	 * even if the result happens to be an integer.
 	 *
 	 * ```
-	 * new Integer(2).exp(new Integer(3))  // return the number `8`
-	 * new Integer(2).exp(new Integer(-3)) // return the number `0.125`
+	 * new Integer(2).exp(new Integer(3 )) // return the number `8` (an integer)
+	 * new Integer(2).exp(new Integer(-3)) // return the number `0.125` (not an integer)
+	 * new Integer(2).exp(0.5) // return `1.4142135623730951` (not an integer)
 	 * ```
-	 * @param   exponent the other Integer to exponentiate this one by
+	 * @param   exponent the number to raise this Integer by
 	 * @returns a number equal to the power, `base ** exponent`
 	 */
 	exp(exponent: Integer|number = 1): number {
-		return (exponent instanceof Integer) ?
-			this.valueOf() ** exponent.valueOf() :
-			this.exp(new Integer(exponent))
+		const returned = this.valueOf() ** exponent.valueOf()
+		xjs.Number.assertType(returned)
+		return returned
 	}
 
 	/**
+	 * @deprecated WARNING{DEPRECATED} no further development will be made on this method.
+	 *
 	 * Return the `n`th tetration of this Integer.
 	 *
 	 * Tetration is considered the next hyperoperation after exponentiation
@@ -248,14 +275,14 @@ export default class Integer extends Number {
 	 * new Integer(5).tetrate(0) // returns 1
 	 * ```
 	 *
-	 * @param   x the root, any number
-	 * @param   n the hyper-exponent to which the root is raised, a non-negative integer
+	 * @param   hyperexponent the hyper-exponent to which the root is raised, a non-negative integer
 	 * @returns `this *** hyperexponent`
 	 */
 	tetrate(hyperexponent: Integer|number = 1): Integer {
+		console.warn('Warning: `Integer#tetrate` is deprecated.')
 		return (hyperexponent instanceof Integer) ? (
 			xjs.Number.assertType(hyperexponent.valueOf(), 'natural'),
-			(hyperexponent.equals(Integer.MULT_ABSORB)) ? Integer.MULT_IDEN :
+			(hyperexponent.equals(0)) ? Integer.MULT_IDEN :
 				new Integer(this.exp(this.tetrate(hyperexponent.minus(1))))
 		) : this.tetrate(new Integer(hyperexponent))
 	}

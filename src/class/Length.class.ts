@@ -70,9 +70,10 @@ export default class Length extends Number {
 	}
 
 	/**
-	 * @deprecated use constructor `new Length()` instead.
+	 * @deprecated WARNING{DEPRECATED} use constructor `new Length()` instead.
 	 */
 	static fromString(str: string): Length {
+		console.warn('`Length#fromString()` is deprecated. Use `new Length()` instead.')
 		return new Length(str)
 	}
 
@@ -108,7 +109,7 @@ export default class Length extends Number {
 		super(x / Length.CONVERSION[unit])
 	}
 
-	/** @override */
+	/** @override Object */
 	toString(radix: number = 10, unit: LengthUnit = LengthUnit.CM): string {
 		return `${this.convert(unit).toString(radix)}${LengthUnit[unit].toLowerCase()}`
 	}
