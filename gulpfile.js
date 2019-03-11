@@ -49,6 +49,14 @@ async function test_run_length() {
 	console.info('All _Length_ tests ran successfully!')
 }
 
+async function test_run_treenode() {
+	await Promise.all([
+		require('./test/out/TreeNode-constructor.test.js').default,
+		require('./test/out/TreeNode-path.test.js').default,
+	])
+	console.info('All _TreeNode_ tests ran successfully!')
+}
+
 async function test_run_vector() {
 	await Promise.all([
 		require('./test/out/Vector-constructor.test.js').default,
@@ -62,6 +70,7 @@ const test_run = gulp.series(
 		test_run_angle,
 		test_run_color,
 		test_run_length,
+		test_run_treenode,
 		test_run_vector,
 	), async function test_run0() {
 		console.info('All tests ran successfully!')
@@ -95,6 +104,7 @@ module.exports = {
 				test_run_angle,
 				test_run_color,
 				test_run_length,
+				test_run_treenode,
 				test_run_vector,
 		docs,
 }
