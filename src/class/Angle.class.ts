@@ -61,11 +61,8 @@ export default class Angle extends Number {
 	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...angles: Angle[]): Angle {
-		try {
-			return new Angle(Math.max(...angles.map((theta) => theta.valueOf())))
-		} catch {
-			throw new Error('No arguments provided.')
-		}
+		if (!angles.length) throw new Error('No arguments provided.')
+		return new Angle(Math.max(...angles.map((theta) => theta.valueOf())))
 	}
 
 	/**
@@ -75,11 +72,8 @@ export default class Angle extends Number {
 	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...angles: Angle[]): Angle {
-		try {
-			return new Angle(Math.min(...angles.map((theta) => theta.valueOf())))
-		} catch {
-			throw new Error('No arguments provided.')
-		}
+		if (!angles.length) throw new Error('No arguments provided.')
+		return new Angle(Math.min(...angles.map((theta) => theta.valueOf())))
 	}
 
 	/**

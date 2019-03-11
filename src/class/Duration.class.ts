@@ -51,11 +51,8 @@ export default class Duration extends Number {
 	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...durations: Duration[]): Duration {
-		try {
-			return new Duration(Math.max(...durations.map((x) => x.valueOf())))
-		} catch {
-			throw new Error('No arguments provided.')
-		}
+		if (!durations.length) throw new Error('No arguments provided.')
+		return new Duration(Math.max(...durations.map((x) => x.valueOf())))
 	}
 
 	/**
@@ -65,11 +62,8 @@ export default class Duration extends Number {
 	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...durations: Duration[]): Duration {
-		try {
-			return new Duration(Math.min(...durations.map((x) => x.valueOf())))
-		} catch {
-			throw new Error('No arguments provided.')
-		}
+		if (!durations.length) throw new Error('No arguments provided.')
+		return new Duration(Math.min(...durations.map((x) => x.valueOf())))
 	}
 
 

@@ -53,11 +53,8 @@ export default class Integer extends Number {
 	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...ints: Integer[]): Integer {
-		try {
-			return new Integer(Math.max(...ints.map((z) => z.valueOf())))
-		} catch {
-			throw new Error('No arguments provided.')
-		}
+		if (!ints.length) throw new Error('No arguments provided.')
+		return new Integer(Math.max(...ints.map((z) => z.valueOf())))
 	}
 
 	/**
@@ -67,11 +64,8 @@ export default class Integer extends Number {
 	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...ints: Integer[]): Integer {
-		try {
-			return new Integer(Math.min(...ints.map((z) => z.valueOf())))
-		} catch {
-			throw new Error('No arguments provided.')
-		}
+		if (!ints.length) throw new Error('No arguments provided.')
+		return new Integer(Math.min(...ints.map((z) => z.valueOf())))
 	}
 
 

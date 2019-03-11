@@ -59,11 +59,8 @@ export default class Rational extends Number {
 	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...rats: Rational[]): Rational {
-		try {
-			return new Rational(Math.max(...rats.map((z) => z.valueOf())))
-		} catch {
-			throw new Error('No arguments provided.')
-		}
+		if (!rats.length) throw new Error('No arguments provided.')
+		return new Rational(Math.max(...rats.map((z) => z.valueOf())))
 	}
 
 	/**
@@ -73,11 +70,8 @@ export default class Rational extends Number {
 	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...rats: Rational[]): Rational {
-		try {
-			return new Rational(Math.min(...rats.map((z) => z.valueOf())))
-		} catch {
-			throw new Error('No arguments provided.')
-		}
+		if (!rats.length) throw new Error('No arguments provided.')
+		return new Rational(Math.min(...rats.map((z) => z.valueOf())))
 	}
 
 

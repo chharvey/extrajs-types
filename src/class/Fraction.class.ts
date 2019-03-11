@@ -51,11 +51,8 @@ export default class Fraction extends Number {
 	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...fracs: Fraction[]): Fraction {
-		try {
-			return new Fraction(Math.max(...fracs.map((f) => f.valueOf())))
-		} catch {
-			throw new Error('No arguments provided.')
-		}
+		if (!fracs.length) throw new Error('No arguments provided.')
+		return new Fraction(Math.max(...fracs.map((f) => f.valueOf())))
 	}
 
 	/**
@@ -65,11 +62,8 @@ export default class Fraction extends Number {
 	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...fracs: Fraction[]): Fraction {
-		try {
-			return new Fraction(Math.min(...fracs.map((f) => f.valueOf())))
-		} catch {
-			throw new Error('No arguments provided.')
-		}
+		if (!fracs.length) throw new Error('No arguments provided.')
+		return new Fraction(Math.min(...fracs.map((f) => f.valueOf())))
 	}
 
 	// /**

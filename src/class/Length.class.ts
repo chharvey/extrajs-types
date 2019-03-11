@@ -48,11 +48,8 @@ export default class Length extends Number {
 	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...lengths: Length[]): Length {
-		try {
-			return new Length(Math.max(...lengths.map((x) => x.valueOf())))
-		} catch {
-			throw new Error('No arguments provided.')
-		}
+		if (!lengths.length) throw new Error('No arguments provided.')
+		return new Length(Math.max(...lengths.map((x) => x.valueOf())))
 	}
 
 	/**
@@ -62,11 +59,8 @@ export default class Length extends Number {
 	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...lengths: Length[]): Length {
-		try {
-			return new Length(Math.min(...lengths.map((x) => x.valueOf())))
-		} catch {
-			throw new Error('No arguments provided.')
-		}
+		if (!lengths.length) throw new Error('No arguments provided.')
+		return new Length(Math.min(...lengths.map((x) => x.valueOf())))
 	}
 
 	/**
