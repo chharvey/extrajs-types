@@ -150,10 +150,11 @@ export default class Integer extends Number {
 	}
 
 	/**
-	 * @deprecated Use {@link Integer.negation} instead.
+	 * @deprecated WARNING{DEPRECATED} Use {@link Integer.negation} instead.
 	 * @returns `this.negation`
 	 */
 	negate(): Integer {
+		console.warn('`Integer#negate()` is deprecated. Use `Integer#negation` instead.')
 		return this.negation
 	}
 
