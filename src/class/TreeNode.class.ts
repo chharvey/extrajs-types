@@ -117,7 +117,7 @@ export default class TreeNode implements Iterable<TreeNode> {
 	 * @returns the root of this TreeNode’s tree
 	 */
 	get root(): TreeNode {
-		return (!this._parent) ? this : this.ancestors().slice(-1)[0] // COMBAK Array#lastItem
+		return (!this._parent) ? this : this.ancestors()[0]
 	}
 
 	/**
@@ -424,7 +424,7 @@ export default class TreeNode implements Iterable<TreeNode> {
 	\* ============================================================================================ */
 
 	/**
-	 * Return a shallow array of the ancestors of this TreeNode, from closest to farthest, optionally filtered by a predicate.
+	 * Return a shallow array of the ancestors of this TreeNode, from “oldest” to “youngest”, optionally filtered by a predicate.
 	 *
 	 * If this TreeNode has no parent, an empty array is returned.
 	 *
@@ -437,7 +437,7 @@ export default class TreeNode implements Iterable<TreeNode> {
 		const returned: TreeNode[] = []
 		let node: TreeNode = this
 		while (node._parent) {
-			returned.push(node._parent)
+			returned.unshift(node._parent)
 			node = node._parent
 		}
 		return returned.filter((ancestor) => filter.call(this_arg, ancestor, ancestor.path, this))
