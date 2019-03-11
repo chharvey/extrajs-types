@@ -69,9 +69,9 @@
 					<div class="lead">
 						<p>An Integer is a whole number, a negative whole number, or 0.</p>
 					</div>
-					<p>The set of Integers has the following properties:</p>
+					<p>The set of Integers exhibits the following properties:</p>
 					<ul>
-						<li>Integers are weakly totally ordered. (There exists a weak total order <code>&lt;=</code> on the integers.)<ul>
+						<li>Integers are weakly totally ordered: There exists a weak total order <code>&lt;=</code> on the integers:<ul>
 								<li>(Reflexivity) For an integer <code>a</code>, <code>a &lt;= a</code>.</li>
 								<li>(Antisymmetry) For integers <code>a</code> and <code>b</code>, if <code>a &lt;= b</code> and <code>b &lt;= a</code>, then <code>a === b</code>.</li>
 								<li>(Transitivity) For integers <code>a</code>, <code>b</code>, and <code>c</code>, if <code>a &lt;= b</code> and <code>b &lt;= c</code>, then <code>a &lt;= c</code>.</li>
@@ -82,20 +82,23 @@
 								</li>
 							</ul>
 						</li>
-						<li>Integers are closed under addition, subtraction, and multiplication.
+						<li>Integers are closed under addition, subtraction, and multiplication:
 						For integers <code>a</code> and <code>b</code>, the expressions <code>a + b</code>, <code>a - b</code>, and <code>a * b</code> are guaranteed to also be integers.</li>
-						<li>The set of Integers has a (unique) additive and multiplicative idenity.
+						<li>The set of Integers has a (unique) additive identity and a (unique) multiplicative idenity:
 							There exist integers <code>0</code> and <code>1</code> such that for every integer <code>a</code>,
 							<code>a + 0</code>, <code>0 + a</code>, <code>a * 1</code>, and <code>1 * a</code> are guaranteed to equal <code>a</code>, and
 						<code>0</code> and <code>1</code>, respectively, are the only integers with this property.</li>
-						<li>Integers have (unique) additive inverses:
-							for every integer <code>a</code>, a unique integer <code>-a</code> is guaranteed such that <code>a + -a === -a + a === 0</code>
-						(where <code>0</code> is the additive identity).</li>
-						<li>Integers have a (unique) multiplicative absorber:
-							a unique integer <code>0</code> is guaranteed such that for every integer <code>a</code>, <code>a * 0 === 0 * a === 0</code>.
+						<li>The set of Integers has a (unique) multiplicative absorber:
+							A unique integer <code>0</code> is guaranteed such that for every integer <code>a</code>, <code>a * 0 === 0 * a === 0</code>.
 							(In general, the multiplicative absorber need not necessarily be the additive identity,
 						but in the standard integers we work with daily, they are one in the same.)</li>
-						<li>Addition and multiplication are commutative and associative.
+						<li>The set of Integers has no nonzero zero-divisors:
+							For integers <code>a</code> and <code>b</code>, if <code>a * b === 0</code> or if <code>b * a === 0</code>, then either <code>a === 0</code> or <code>b === 0</code>
+						(where <code>0</code> is the multiplicative absorber).</li>
+						<li>Integers have (unique) additive inverses:
+							For every integer <code>a</code>, a unique integer <code>-a</code> is guaranteed such that <code>a + -a === -a + a === 0</code>
+						(where <code>0</code> is the additive identity).</li>
+						<li>Addition and multiplication are commutative and associative:
 							For integers <code>a</code>, <code>b</code>, and <code>c</code>, the following statments are guaranteed true:<ul>
 								<li><code>a + b === b + a</code></li>
 								<li><code>a * b === b * a</code></li>
@@ -103,7 +106,7 @@
 								<li><code>a * (b * c) === (a * b) * c</code></li>
 							</ul>
 						</li>
-						<li>Multiplication distributes over addition.
+						<li>Multiplication distributes over addition:
 						For integers <code>a</code>, <code>b</code>, and <code>c</code>, we are guaranteed <code>a * (b + c) === a * b + a * c</code>.</li>
 					</ul>
 				</div>
@@ -145,6 +148,8 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="integer.html#abs" class="tsd-kind-icon">abs</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="integer.html#negation" class="tsd-kind-icon">negation</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="integer.html#next" class="tsd-kind-icon">next</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="integer.html#prev" class="tsd-kind-icon">prev</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -185,7 +190,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L64">Integer.class.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L67">Integer.class.ts:67</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -217,7 +222,7 @@
 					<div class="tsd-signature tsd-kind-icon">ADD_<wbr>IDEN<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> =&nbsp;new Integer()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L40">Integer.class.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L43">Integer.class.ts:43</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -232,7 +237,7 @@
 					<div class="tsd-signature tsd-kind-icon">MULT_<wbr>ABSORB<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> =&nbsp;new Integer()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L44">Integer.class.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L47">Integer.class.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -247,7 +252,7 @@
 					<div class="tsd-signature tsd-kind-icon">MULT_<wbr>IDEN<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> =&nbsp;new Integer(1)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L42">Integer.class.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L45">Integer.class.ts:45</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -284,7 +289,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L81">Integer.class.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L84">Integer.class.ts:84</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -307,7 +312,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L92">Integer.class.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L95">Integer.class.ts:95</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -319,6 +324,52 @@
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a></h4>
 							<p>a new Integer representing the additive inverse</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="next" class="tsd-anchor"></a>
+					<h3>next</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> next<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L111">Integer.class.ts:111</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the next Integer, in standard order.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a></h4>
+							<p>the least Integer greater than this one</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="prev" class="tsd-anchor"></a>
+					<h3>prev</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> prev<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L103">Integer.class.ts:103</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the previous Integer, in standard order.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a></h4>
+							<p>the greatest Integer less than this one</p>
 						</li>
 					</ul>
 				</section>
@@ -335,7 +386,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L127">Integer.class.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L146">Integer.class.ts:146</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -378,25 +429,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L194">Integer.class.ts:194</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L218">Integer.class.ts:218</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Divide this Integer (the dividend) by another (the divisor).</p>
+									<p>Divide this Integer (the dividend) by another number (the divisor).</p>
 								</div>
 								<p>Note that division is not commutative: <code>a / b</code> does not always equal <code>b / a</code>.</p>
 								<p>Warning: the result will not be an instance of this <code>Integer</code> class,
 								even if the result happens to be an integer.</p>
-								<pre><code><span class="hljs-keyword">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">6</span>).dividedBy(<span class="hljs-keyword">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">2</span>)) <span class="hljs-comment">// return the number `3`</span>
-<span class="hljs-keyword">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">6</span>).dividedBy(<span class="hljs-keyword">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">4</span>)) <span class="hljs-comment">// return the number `1.5`</span></code></pre>
+								<pre><code><span class="hljs-keyword">new</span> <span class="hljs-constructor">Integer(6)</span>.divided<span class="hljs-constructor">By(<span class="hljs-params">new</span> Integer(2)</span>) <span class="hljs-comment">// return the number `3` (an integer)</span>
+<span class="hljs-keyword">new</span> <span class="hljs-constructor">Integer(6)</span>.divided<span class="hljs-constructor">By(<span class="hljs-params">new</span> Integer(4)</span>) <span class="hljs-comment">// return the number `1.5` (not an integer)</span>
+<span class="hljs-keyword">new</span> <span class="hljs-constructor">Integer(6)</span>.divided<span class="hljs-constructor">By(0.5)</span> <span class="hljs-comment">// return the number `12` (an integer)</span></code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> divisor: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the Integer to divide this one by</p>
+										<p>the number to divide this one by</p>
 									</div>
 								</li>
 							</ul>
@@ -415,7 +467,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L101">Integer.class.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L120">Integer.class.ts:120</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -447,25 +499,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L215">Integer.class.ts:215</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L240">Integer.class.ts:240</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Exponentiate this Integer (the base) by another (the exponent).</p>
+									<p>Exponentiate this Integer (the base) by another number (the exponent).</p>
 								</div>
 								<p>Note that exponentiation is not commutative: <code>a ** b</code> does not always equal <code>b ** a</code>.</p>
 								<p>Warning: the result will not be an instance of this <code>Integer</code> class,
 								even if the result happens to be an integer.</p>
-								<pre><code><span class="hljs-keyword">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">2</span>).exp(<span class="hljs-keyword">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">3</span>))  <span class="hljs-comment">// return the number `8`</span>
-<span class="hljs-keyword">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">2</span>).exp(<span class="hljs-keyword">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">-3</span>)) <span class="hljs-comment">// return the number `0.125`</span></code></pre>
+								<pre><code><span class="hljs-built_in">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">2</span>).exp(<span class="hljs-built_in">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">3</span> )) // <span class="hljs-keyword">return</span> the number `<span class="hljs-number">8</span>` (an <span class="hljs-type">integer</span>)
+<span class="hljs-built_in">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">2</span>).exp(<span class="hljs-built_in">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">-3</span>)) // <span class="hljs-keyword">return</span> the number `<span class="hljs-number">0.125</span>` (<span class="hljs-keyword">not</span> an <span class="hljs-type">integer</span>)
+<span class="hljs-built_in">new</span> <span class="hljs-type">Integer</span>(<span class="hljs-number">2</span>).exp(<span class="hljs-number">0.5</span>) // <span class="hljs-keyword">return</span> `<span class="hljs-number">1.4142135623730951</span>` (<span class="hljs-keyword">not</span> an <span class="hljs-type">integer</span>)</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> exponent: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the other Integer to exponentiate this one by</p>
+										<p>the number to raise this Integer by</p>
 									</div>
 								</li>
 							</ul>
@@ -484,7 +537,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L111">Integer.class.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L130">Integer.class.ts:130</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -516,7 +569,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L160">Integer.class.ts:160</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L181">Integer.class.ts:181</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -549,13 +602,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L137">Integer.class.ts:137</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L156">Integer.class.ts:156</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>deprecated</dt>
-									<dd><p>Use <a href="integer.html#negation">Integer.negation</a> instead.</p>
+									<dd><p>WARNING{DEPRECATED} Use <a href="integer.html#negation">Integer.negation</a> instead.</p>
 									</dd>
 								</dl>
 							</div>
@@ -574,7 +627,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L146">Integer.class.ts:146</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L166">Integer.class.ts:166</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -606,30 +659,36 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L247">Integer.class.ts:247</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L273">Integer.class.ts:273</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Return the <code>n</code>th tetration of this Integer.</p>
-								</div>
-								<p>Tetration is considered the next hyperoperation after exponentiation
-									(which follows multiplication, following addition).
-									For example, <code>tetrate(5, 3)</code> returns the result of <code>5 ** 5 ** 5</code>: repeated exponentiation.
-								(Note that with ambiguous grouping, <code>a ** b ** c</code> is equal to <code>a ** (b ** c)</code>.)</p>
-								<p>If there were a native JavaScript operator for tetration,
-								it might be a triple-asterisk: <code>5 *** 3</code>.</p>
-								<p>Note that tetration is not commutative: <code>a *** b</code> does not always equal <code>b *** a</code>.</p>
-								<p>Currently, there is only support for non-negative integer hyperexponents.
-								Negative numbers and non-integers are not yet allowed.</p>
-								<pre><code class="language-js"><span class="hljs-keyword">new</span> Integer(<span class="hljs-number">5</span>).tetrate(<span class="hljs-number">3</span>) <span class="hljs-comment">// returns 5 ** 5 ** 5 // equal to 5 ** (5 ** 5)</span>
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd><p>WARNING{DEPRECATED} no further development will be made on this method.</p>
+										<p>Return the <code>n</code>th tetration of this Integer.</p>
+										<p>Tetration is considered the next hyperoperation after exponentiation
+											(which follows multiplication, following addition).
+											For example, <code>tetrate(5, 3)</code> returns the result of <code>5 ** 5 ** 5</code>: repeated exponentiation.
+										(Note that with ambiguous grouping, <code>a ** b ** c</code> is equal to <code>a ** (b ** c)</code>.)</p>
+										<p>If there were a native JavaScript operator for tetration,
+										it might be a triple-asterisk: <code>5 *** 3</code>.</p>
+										<p>Note that tetration is not commutative: <code>a *** b</code> does not always equal <code>b *** a</code>.</p>
+										<p>Currently, there is only support for non-negative integer hyperexponents.
+										Negative numbers and non-integers are not yet allowed.</p>
+										<pre><code class="language-js"><span class="hljs-keyword">new</span> Integer(<span class="hljs-number">5</span>).tetrate(<span class="hljs-number">3</span>) <span class="hljs-comment">// returns 5 ** 5 ** 5 // equal to 5 ** (5 ** 5)</span>
 <span class="hljs-keyword">new</span> Integer(<span class="hljs-number">5</span>).tetrate(<span class="hljs-number">1</span>) <span class="hljs-comment">// returns 5</span>
 <span class="hljs-keyword">new</span> Integer(<span class="hljs-number">5</span>).tetrate(<span class="hljs-number">0</span>) <span class="hljs-comment">// returns 1</span></code></pre>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> hyperexponent: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the hyper-exponent to which the root is raised, a non-negative integer</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a></h4>
@@ -647,7 +706,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L171">Integer.class.ts:171</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L192">Integer.class.ts:192</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -868,7 +927,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L51">Integer.class.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L54">Integer.class.ts:54</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -900,7 +959,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Integer.class.ts#L61">Integer.class.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Integer.class.ts#L64">Integer.class.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -945,9 +1004,6 @@
 					</li>
 					<li class=" tsd-kind-enum">
 						<a href="../enums/lengthunit.html" class="tsd-kind-icon">Length<wbr>Unit</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-not-exported">
-						<a href="../enums/traversal.html" class="tsd-kind-icon">Traversal</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="angle.html" class="tsd-kind-icon">Angle</a>
@@ -995,6 +1051,12 @@
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="integer.html#negation" class="tsd-kind-icon">negation</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="integer.html#next" class="tsd-kind-icon">next</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="integer.html#prev" class="tsd-kind-icon">prev</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="integer.html#clamp" class="tsd-kind-icon">clamp</a>
@@ -1075,9 +1137,6 @@
 					<li class=" tsd-kind-class">
 						<a href="openinterval.html" class="tsd-kind-icon">Open<wbr>Interval</a>
 					</li>
-					<li class=" tsd-kind-class tsd-is-not-exported">
-						<a href="orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a>
-					</li>
 					<li class=" tsd-kind-class">
 						<a href="percentage.html" class="tsd-kind-icon">Percentage</a>
 					</li>
@@ -1085,13 +1144,7 @@
 						<a href="rational.html" class="tsd-kind-icon">Rational</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="treenode.html" class="tsd-kind-icon">Tree<wbr>Node</a>
-					</li>
-					<li class=" tsd-kind-class">
 						<a href="vector.html" class="tsd-kind-icon">Vector</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-is-not-exported">
-						<a href="../globals.html#filterfn" class="tsd-kind-icon">Filter<wbr>Fn</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#names" class="tsd-kind-icon">NAMES</a>

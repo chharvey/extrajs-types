@@ -12,6 +12,7 @@ export { default as MatrixSquare       } from './src/class/MatrixSquare.class'
 export { default as Meter              } from './src/class/Meter.class'
 export { default as MeterInt           } from './src/class/MeterInt.class'
 export { default as Percentage         } from './src/class/Percentage.class'
+export { default as Rational           } from './src/class/Rational.class'
 export { default as Vector             } from './src/class/Vector.class'
 export {
 	Interval,

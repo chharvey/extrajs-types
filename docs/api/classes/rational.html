@@ -69,21 +69,49 @@
 					<div class="lead">
 						<p>A rational number is a real number that can be expressed as a ratio of <a href="integer.html">Integer</a>s.</p>
 					</div>
-					<p>The set of Rationals has the following properties:</p>
+					<p>The set of Rationals exhibits the following properties:</p>
 					<ul>
-						<li>Like Integers, Rationals are weakly totally ordered.</li>
-						<li>Like Integers, Rationals are closed under addition, subtraction, and multiplication.</li>
-						<li>Rationals are closed under division.
-						For rationals <code>a</code> and <code>b</code>, the expression <code>a / b</code> is guaranteed to also be rational.</li>
-						<li>Like Integers, the set of Rationals has a (unique) additive and multiplicative identity.</li>
-						<li>Like Integers, Rationals have (unique) additive inverses.</li>
-						<li>Like the set of Integers, the set of Rationals has a (unique) multiplicative absorber.</li>
-						<li>Rationals, except the multipliative absorber <code>0</code>, have (unique) multipliative inverses:
-							for every rational <code>a !== 0</code> (<code>0</code> the multiplicative absorber),
+						<li>Rationals are weakly totally ordered: There exists a weak total order <code>&lt;=</code> on the rationals:<ul>
+								<li>(Reflexivity) For a rational <code>a</code>, <code>a &lt;= a</code>.</li>
+								<li>(Antisymmetry) For rationals <code>a</code> and <code>b</code>, if <code>a &lt;= b</code> and <code>b &lt;= a</code>, then <code>a === b</code>.</li>
+								<li>(Transitivity) For rationals <code>a</code>, <code>b</code>, and <code>c</code>, if <code>a &lt;= b</code> and <code>b &lt;= c</code>, then <code>a &lt;= c</code>.</li>
+								<li>(Comparability) For distinct rationals <code>a !== b</code>, at least one of the following statements is guaranteed true:<ul>
+										<li><code>a &lt;= b</code></li>
+										<li><code>b &lt;= a</code></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>Rationals are closed under addition, subtraction, multiplication, and division:
+						For rationals <code>a</code> and <code>b</code>, the expressions <code>a + b</code>, <code>a - b</code>, <code>a * b</code>, and <code>a / b</code> are guaranteed to also be rationals.</li>
+						<li>The set of Rationals has a (unique) additive identity and a (unique) multiplicative idenity:
+							There exist rationals <code>0</code> and <code>1</code> such that for every rational <code>a</code>,
+							<code>a + 0</code>, <code>0 + a</code>, <code>a * 1</code>, and <code>1 * a</code> are guaranteed to equal <code>a</code>, and
+						<code>0</code> and <code>1</code>, respectively, are the only rationals with this property.</li>
+						<li>The set of Rationals has a (unique) multiplicative absorber:
+							A unique rational <code>0</code> is guaranteed such that for every rational <code>a</code>, <code>a * 0 === 0 * a === 0</code>.
+							(In general, the multiplicative absorber need not necessarily be the additive identity,
+						but in the standard rationals we work with daily, they are one in the same.)</li>
+						<li>The set of Rationals has no nonzero zero-divisors:
+							For rationals <code>a</code> and <code>b</code>, if <code>a * b === 0</code> or if <code>b * a === 0</code>, then either <code>a === 0</code> or <code>b === 0</code>
+						(where <code>0</code> is the multiplicative absorber).</li>
+						<li>Rationals have (unique) additive inverses:
+							For every rational <code>a</code>, a unique rational <code>-a</code> is guaranteed such that <code>a + -a === -a + a === 0</code>
+						(where <code>0</code> is the additive identity).</li>
+						<li>Non-zero Rationals have (unique) multipliative inverses:
+							For every rational <code>a !== 0</code> (where <code>0</code> is the multiplicative absorber),
 							a unique rational <code>a^</code> is guaranteed such that <code>a * a^ === ^a * a === 1</code>
 						(where <code>1</code> is the multiplicative identity).</li>
-						<li>Like with Integers, addition and multiplication are commutative and associative.</li>
-						<li>Like with Integers, multiplication distributes over addition.</li>
+						<li>Addition and multiplication are commutative and associative:
+							For rationals <code>a</code>, <code>b</code>, and <code>c</code>, the following statments are guaranteed true:<ul>
+								<li><code>a + b === b + a</code></li>
+								<li><code>a * b === b * a</code></li>
+								<li><code>a + (b + c) === (a + b) + c</code></li>
+								<li><code>a * (b * c) === (a * b) * c</code></li>
+							</ul>
+						</li>
+						<li>Multiplication distributes over addition:
+						For rationals <code>a</code>, <code>b</code>, and <code>c</code>, we are guaranteed <code>a * (b + c) === a * b + a * c</code>.</li>
 					</ul>
 				</div>
 			</section>
@@ -166,7 +194,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:56</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L87">Rational.class.ts:87</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -190,7 +218,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:62</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L93">Rational.class.ts:93</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -235,7 +263,7 @@
 					<div class="tsd-signature tsd-kind-icon">_DENOMINATOR<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Rational.class.ts:56</li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L87">Rational.class.ts:87</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -250,7 +278,7 @@
 					<div class="tsd-signature tsd-kind-icon">_NUMERATOR<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Rational.class.ts:54</li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L85">Rational.class.ts:85</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -265,7 +293,7 @@
 					<div class="tsd-signature tsd-kind-icon">ADD_<wbr>IDEN<span class="tsd-signature-symbol">:</span> <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> =&nbsp;new Rational()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Rational.class.ts:26</li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L49">Rational.class.ts:49</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -280,7 +308,7 @@
 					<div class="tsd-signature tsd-kind-icon">MULT_<wbr>ABSORB<span class="tsd-signature-symbol">:</span> <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> =&nbsp;new Rational()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Rational.class.ts:30</li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L53">Rational.class.ts:53</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -295,7 +323,7 @@
 					<div class="tsd-signature tsd-kind-icon">MULT_<wbr>IDEN<span class="tsd-signature-symbol">:</span> <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> =&nbsp;new Rational(1)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Rational.class.ts:28</li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L51">Rational.class.ts:51</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -332,7 +360,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:92</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L123">Rational.class.ts:123</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -355,7 +383,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:103</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L134">Rational.class.ts:134</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -380,7 +408,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:114</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L145">Rational.class.ts:145</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -408,7 +436,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:150</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L181">Rational.class.ts:181</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -451,7 +479,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:219</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L250">Rational.class.ts:250</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -484,7 +512,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:124</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L155">Rational.class.ts:155</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -516,7 +544,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:241</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L272">Rational.class.ts:272</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -554,7 +582,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:134</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L165">Rational.class.ts:165</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -586,7 +614,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:184</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L215">Rational.class.ts:215</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -619,7 +647,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:161</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L192">Rational.class.ts:192</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -651,7 +679,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:195</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L226">Rational.class.ts:226</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -872,13 +900,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:37</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L61">Rational.class.ts:61</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Return the maximum of two or more Rationals.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{Error} if no arguments are provided</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -904,13 +937,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Rational.class.ts:47</li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L75">Rational.class.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Return the minimum of two or more Rationals.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{Error} if no arguments are provided</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -949,9 +987,6 @@
 					</li>
 					<li class=" tsd-kind-enum">
 						<a href="../enums/lengthunit.html" class="tsd-kind-icon">Length<wbr>Unit</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-not-exported">
-						<a href="../enums/traversal.html" class="tsd-kind-icon">Traversal</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="angle.html" class="tsd-kind-icon">Angle</a>
@@ -997,9 +1032,6 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="openinterval.html" class="tsd-kind-icon">Open<wbr>Interval</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-not-exported">
-						<a href="orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="percentage.html" class="tsd-kind-icon">Percentage</a>
@@ -1092,13 +1124,7 @@
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class">
-						<a href="treenode.html" class="tsd-kind-icon">Tree<wbr>Node</a>
-					</li>
-					<li class=" tsd-kind-class">
 						<a href="vector.html" class="tsd-kind-icon">Vector</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-is-not-exported">
-						<a href="../globals.html#filterfn" class="tsd-kind-icon">Filter<wbr>Fn</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#names" class="tsd-kind-icon">NAMES</a>

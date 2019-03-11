@@ -77,36 +77,36 @@
 					For example, a matrix with 3 rows and 2 columns has a height of 3, and a width of 2.</p>
 					<p>A <strong>Matrix Space</strong> is a set of Matrices within a constant dimension. It has the following properties:</p>
 					<ul>
-						<li>Matrices are closed under addition, subtraction, and scalar multiplication.
+						<li>Matrices are closed under addition, subtraction, and scalar multiplication:
 							For matrices <code>a</code> and <code>b</code> of dimension <em>N×M</em>, and for scalar <code>K</code>,
 						the expressions <code>a + b</code>, <code>a - b</code>, and <code>K * a</code> are guaranteed to also be matrices of dimension <em>N×M</em>.</li>
-						<li>A Matrix Space has a (unique) additive idenity.
+						<li>A Matrix Space has a (unique) additive idenity:
 							There exists a matrix <code>0</code> such that for every matrix <code>a</code>,
 							<code>a + 0</code> and <code>0 + a</code> are guaranteed to equal <code>a</code>, and
 						<code>0</code> is the only matrix with this property.</li>
 						<li>Matrices in a Matrix Space have (unique) additive inverses:
-							for every matrix <code>a</code>, a unique matrix <code>-a</code> is guaranteed such that <code>a + -a === -a + a === 0</code>
+							For every matrix <code>a</code>, a unique matrix <code>-a</code> is guaranteed such that <code>a + -a === -a + a === 0</code>
 						(where <code>0</code> is the additive identity).</li>
-						<li>Addition is commutative and associative.
+						<li>Addition is commutative and associative:
 							For matrices <code>a</code>, <code>b</code>, and <code>c</code>, the following statments are guaranteed true:<ul>
 								<li><code>a + b === b + a</code></li>
 								<li><code>a + (b + c) === (a + b) + c</code></li>
 							</ul>
 						</li>
-						<li>Scalar-Multiplication is associative.
+						<li>Scalar-Multiplication is associative:
 						For matrix <code>a</code>, and scalars <code>K</code> and <code>J</code>, we are guaranteed <code>J * (K * a) === (J * K) * a</code>.</li>
-						<li>Scalar-Multiplication distributes over addition.
+						<li>Scalar-Multiplication distributes over addition:
 						For matrices <code>a</code>, <code>b</code>, and scalar <code>K</code>, we are guaranteed <code>K * (a + b) === K * a + K * b</code>.</li>
 					</ul>
 					<h2 id="matrix-multiplication">Matrix Multiplication</h2>
 					<p>Some Matrices can be multiplied. If matrix <code>a</code> has dimension <em>M×N</em>, and matrix <code>b</code> has dimension <em>N×P</em>,
 					then the <strong>product</strong> matrix, <code>ab</code>, exists and will have dimension <em>M×P</em>.</p>
-					<p>Matrix Multiplication is associative.
+					<p>Matrix Multiplication is associative:
 						For matrices <code>a</code> (<em>M×N</em>), <code>b</code> (<em>N×P</em>), and <code>c</code> (<em>P×Q</em>), compatible for multiplication,
 						we are guaranteed <code>a(bc) === (ab)c</code>.
 						Note, however, that although both sides of the equation are equal,
 						the time it takes to compute each product is not necessarily the same. For details, read
-						<a href="https://www.johndcook.com/blog/2017/12/12/efficiency-is-not-associative-for-matrix-multiplication/">“Efficiency is not associative for matrix multiplication”</a>
+						<a href="https://www.johndcook.com/blog/2017/12/12/efficiency-is-not-associative-for-matrix-multiplication/" class="external">“Efficiency is not associative for matrix multiplication”</a>
 					by John D Cook.</p>
 				</div>
 			</section>
@@ -184,7 +184,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L90">Matrix.class.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L90">Matrix.class.ts:90</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -216,7 +216,7 @@
 					<div class="tsd-signature tsd-kind-icon">_DATA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReadonlyArray</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ReadonlyArray</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L82">Matrix.class.ts:82</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L82">Matrix.class.ts:82</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -231,7 +231,7 @@
 					<div class="tsd-signature tsd-kind-icon">_HEIGHT<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L86">Matrix.class.ts:86</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L86">Matrix.class.ts:86</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -246,7 +246,7 @@
 					<div class="tsd-signature tsd-kind-icon">_WIDTH<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L90">Matrix.class.ts:90</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L90">Matrix.class.ts:90</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -268,7 +268,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L122">Matrix.class.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L122">Matrix.class.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -291,7 +291,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L141">Matrix.class.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L141">Matrix.class.ts:141</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -316,7 +316,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L114">Matrix.class.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L114">Matrix.class.ts:114</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -339,7 +339,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L166">Matrix.class.ts:166</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L166">Matrix.class.ts:166</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -375,7 +375,7 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L130">Matrix.class.ts:130</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L130">Matrix.class.ts:130</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -401,7 +401,7 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L187">Matrix.class.ts:187</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L187">Matrix.class.ts:187</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -447,7 +447,7 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L292">Matrix.class.ts:292</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L292">Matrix.class.ts:292</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -485,7 +485,7 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L214">Matrix.class.ts:214</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L214">Matrix.class.ts:214</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -522,7 +522,7 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L201">Matrix.class.ts:201</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L201">Matrix.class.ts:201</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -559,7 +559,7 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L275">Matrix.class.ts:275</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L275">Matrix.class.ts:275</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -598,7 +598,7 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L320">Matrix.class.ts:320</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L320">Matrix.class.ts:320</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -631,7 +631,7 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L306">Matrix.class.ts:306</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L306">Matrix.class.ts:306</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -668,7 +668,7 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L333">Matrix.class.ts:333</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L333">Matrix.class.ts:333</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -701,7 +701,7 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L255">Matrix.class.ts:255</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L255">Matrix.class.ts:255</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -759,7 +759,7 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L346">Matrix.class.ts:346</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L346">Matrix.class.ts:346</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -798,13 +798,14 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L175">Matrix.class.ts:175</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L175">Matrix.class.ts:175</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>override</dt>
-									<dd></dd>
+									<dd><p>Object</p>
+									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -821,7 +822,7 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L71">Matrix.class.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L71">Matrix.class.ts:71</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -859,7 +860,7 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/24421a7/src/class/Matrix.class.ts#L59">Matrix.class.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Matrix.class.ts#L59">Matrix.class.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -920,9 +921,6 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 					</li>
 					<li class=" tsd-kind-enum">
 						<a href="../enums/lengthunit.html" class="tsd-kind-icon">Length<wbr>Unit</a>
-					</li>
-					<li class=" tsd-kind-enum tsd-is-not-exported">
-						<a href="../enums/traversal.html" class="tsd-kind-icon">Traversal</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="angle.html" class="tsd-kind-icon">Angle</a>
@@ -1041,9 +1039,6 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 					<li class=" tsd-kind-class">
 						<a href="openinterval.html" class="tsd-kind-icon">Open<wbr>Interval</a>
 					</li>
-					<li class=" tsd-kind-class tsd-is-not-exported">
-						<a href="orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a>
-					</li>
 					<li class=" tsd-kind-class">
 						<a href="percentage.html" class="tsd-kind-icon">Percentage</a>
 					</li>
@@ -1051,13 +1046,7 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 						<a href="rational.html" class="tsd-kind-icon">Rational</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="treenode.html" class="tsd-kind-icon">Tree<wbr>Node</a>
-					</li>
-					<li class=" tsd-kind-class">
 						<a href="vector.html" class="tsd-kind-icon">Vector</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-is-not-exported">
-						<a href="../globals.html#filterfn" class="tsd-kind-icon">Filter<wbr>Fn</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#names" class="tsd-kind-icon">NAMES</a>
