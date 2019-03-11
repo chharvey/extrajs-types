@@ -53,7 +53,7 @@ type FilterFn = (node: TreeNode, path: ReadonlyArray<Integer>, group: TreeNode) 
  * 		- (Reflexivity) For a node `a`, `a ~ a`.
  * 		- (Symmetry) For nodes `a` and `b`, if `a ~ b`, then `b ~ a`.
  * 		- (Transitivity) For nodes `a`, `b`, and `c`, if `a ~ b` and `b ~ c`, then `a ~ c`.
- * 	- A strict total order, "older than", here denoted "`->`":
+ * 	- A strict total order, "previous to", here denoted "`->`":
  * 		- (Irreflexivity) For a node `a`, `!(a -> a)`.
  * 		- (Asymmetry) For nodes `a` and `b`, if `a -> b`, then `!(b -> a)`.
  * 		- (Transitivity) For nodes `a`, `b`, and `c`, if `a -> b` and `b -> c`, then `a -> c`.
@@ -317,7 +317,7 @@ export default class TreeNode implements Iterable<TreeNode> {
 	/**
 	 * Test the existence of a node within this TreeNode’s descendants.
 	 * @param   node the node to test
-	 * @returns Is `node` a descendant of `this`?
+	 * @returns Is `this` an ancestor of `node`?
 	 */
 	has(node: TreeNode): boolean {
 		while (node._parent) {
@@ -743,6 +743,25 @@ export default class TreeNode implements Iterable<TreeNode> {
 		if (!this._parent) throw new OrphanError(this)
 		this._parent.delete(this)
 		return this
+	}
+
+	/* ============================================================================================ *\
+	 * ================ Miscellaneous============================================================== *
+	\* ============================================================================================ */
+
+	/**
+	 * Return the “youngest” common ancestor of this node and the given node.
+	 *
+	 * If `this` and the argument have multiple ancestors in common, then the minimum ancestor is returned.
+	 * If `this` and the argument have no ancestors in common, `null` is returned.
+	 * If `this` or the argument is a root node, then this method simply returns that root node if it is an ancestor of the other.
+	 * @param   node the node to compare to
+	 * @returns the minimum ancestor between `this` and `node`; if there is none, `null`
+	 */
+	commonAncestor(node: TreeNode): TreeNode|null {
+		if (!this._parent) return (this.has(node)) ? this : null
+		if (!node._parent) return node.commonAncestor(this)
+		return this.ancestors((n) => node.ancestors().includes(n)).slice(-1)[0] // COMBAK Array#lastItem
 	}
 }
 
