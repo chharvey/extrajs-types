@@ -17,6 +17,7 @@ module.exports = {
 	Meter        : require('./dist/class/Meter.class.js'       ).default,
 	MeterInt     : require('./dist/class/MeterInt.class.js'    ).default,
 	Percentage   : require('./dist/class/Percentage.class.js'  ).default,
+	Rational     : require('./dist/class/Rational.class.js'    ).default,
 	Vector       : require('./dist/class/Vector.class.js'      ).default,
 
 	Interval              : Interval_module.Interval,

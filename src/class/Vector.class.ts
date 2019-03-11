@@ -111,7 +111,7 @@ export default class Vector {
 		return this.scale(1/this.magnitude)
 	}
 
-	/** @override */
+	/** @override Object */
 	toString() {
 		return `⟨${this._DATA.join(', ')}⟩`
 	}
@@ -124,7 +124,7 @@ export default class Vector {
 	 */
 	at(i: Integer|number): number {
 		if (i instanceof Integer) {
-			if (i.lessThan(0) || !i.lessThan(this.dimension)) throw new RangeError(`Index ${i} out of bounds.`)
+			if (i.lessThan(0) || !i.lessThan(this.dimension)) throw new RangeError(`Index ${i} out of bounds.`) // COMBAK extrajs^0.19:IndexOutOfBoundsError
 			return this._DATA[i.valueOf()]
 		} else return this.at(new Integer(i))
 	}
@@ -222,7 +222,7 @@ export default class Vector {
 	 */
 	cross(multiplier: Vector): Vector {
 		if (!this.dimension.equals(3) || !multiplier.dimension.equals(3)) throw new TypeError('Vector dimensions are incompatible for cross product.')
-		const MatrixSquare: typeof MatrixSquare_import = require('./MatrixSquare.class.js').default // NB relative to dist
+		const MatrixSquare: typeof MatrixSquare_import = require('./MatrixSquare.class.js').default
 		return new Vector([
 			new MatrixSquare([
 				[this      .at(1), this      .at(2)],
