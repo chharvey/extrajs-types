@@ -170,7 +170,7 @@ export default class Color {
 	 */
 	private static _sRGB_Linear(c_srgb: Fraction): Fraction {
 		let c = c_srgb.valueOf()
-		return new Fraction((c <= 0.03928) ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4)
+		return new Fraction((c <= 0.04045) ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4)
 	}
 	/**
 	 * Return the inverse of {@link Color._sRGB_Linear}.
@@ -183,7 +183,7 @@ export default class Color {
 	 */
 	private static _linear_sRGB(c_lin: Fraction): Fraction {
 		let c = c_lin.valueOf()
-		return new Fraction((c <= 0.00304) ? c * 12.92 : 1.055 * c ** (1 / 2.4) - 0.055)
+		return new Fraction((c <= 0.00313) ? c * 12.92 : 1.055 * c ** (1 / 2.4) - 0.055)
 	}
 
 	/**
