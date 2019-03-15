@@ -5,7 +5,7 @@ import Vector from './Vector.class'
 
 
 /**
- * A Matrix is a two-dimensional array of numbers.
+ * A Matrix is an immutable two-dimensional array of numbers.
  *
  * Matrices have a finite natural number of rows and columns,
  * where each entry at a given row and column is called a **cell**.
