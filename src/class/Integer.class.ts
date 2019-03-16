@@ -150,15 +150,6 @@ export default class Integer extends Number {
 	}
 
 	/**
-	 * @deprecated WARNING{DEPRECATED} Use {@link Integer.negation} instead.
-	 * @returns `this.negation`
-	 */
-	negate(): Integer {
-		console.warn('`Integer#negate()` is deprecated. Use `Integer#negation` instead.')
-		return this.negation
-	}
-
-	/**
 	 * Add this Integer (the augend) to another (the addend).
 	 * @param   addend the Integer to add to this one
 	 * @returns a new Integer representing the sum, `augend + addend`

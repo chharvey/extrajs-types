@@ -61,14 +61,6 @@ export default class Length extends Number {
 		// return lengths.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
 	}
 
-	/**
-	 * @deprecated WARNING{DEPRECATED} use constructor `new Length()` instead.
-	 */
-	static fromString(str: string): Length {
-		console.warn('`Length#fromString()` is deprecated. Use `new Length()` instead.')
-		return new Length(str)
-	}
-
 
 	/**
 	 * Construct a new Length object.
