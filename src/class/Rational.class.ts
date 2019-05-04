@@ -154,7 +154,9 @@ export default class Rational extends Number {
 	 */
 	equals(rat: Rational|number): boolean {
 		if (this === rat) return true
-		return (rat instanceof Rational) ? this.valueOf() === rat.valueOf() : this.equals(new Rational(rat))
+		return (rat instanceof Rational) ?
+			this._NUMERATOR.times(rat._DENOMINATOR).equals(rat._NUMERATOR.times(this._DENOMINATOR)) :
+			this.equals(new Rational(rat))
 	}
 
 	/**
