@@ -218,7 +218,7 @@ export default class Integer extends Number {
 	 * @returns a number equal to the quotient, `dividend / divisor`
 	 */
 	dividedBy(divisor: Integer|number = 1): number {
-		const returned = this.valueOf() / divisor.valueOf()
+		const returned: number = this.valueOf() / divisor.valueOf()
 		xjs.Number.assertType(returned)
 		return returned
 	}
@@ -240,7 +240,7 @@ export default class Integer extends Number {
 	 * @returns a number equal to the power, `base ** exponent`
 	 */
 	exp(exponent: Integer|number = 1): number {
-		const returned = this.valueOf() ** exponent.valueOf()
+		const returned: number = this.valueOf() ** exponent.valueOf()
 		xjs.Number.assertType(returned)
 		return returned
 	}

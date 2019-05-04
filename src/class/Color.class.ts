@@ -169,7 +169,7 @@ export default class Color {
 	 * @returns the transformed linear value
 	 */
 	private static _sRGB_Linear(c_srgb: Fraction): Fraction {
-		let c = c_srgb.valueOf()
+		let c: number = c_srgb.valueOf()
 		return new Fraction((c <= 0.04045) ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4)
 	}
 	/**
@@ -182,7 +182,7 @@ export default class Color {
 	 * @returns the transformed sRGB value
 	 */
 	private static _linear_sRGB(c_lin: Fraction): Fraction {
-		let c = c_lin.valueOf()
+		let c: number = c_lin.valueOf()
 		return new Fraction((c <= 0.00313) ? c * 12.92 : 1.055 * c ** (1 / 2.4) - 0.055)
 	}
 
@@ -531,7 +531,7 @@ export default class Color {
 	 * @param   alpha should the alpha channel also be randomized? (if false, default alpha value is 1)
 	 * @returns a Color object with random values
 	 */
-	static random(alpha = true): Color {
+	static random(alpha: boolean = true): Color {
 		return Color.fromString(`#${Math.random().toString(16).slice(2, (alpha) ? 10 : 8)}`)
 	}
 
@@ -579,7 +579,7 @@ export default class Color {
 	constructor(red: Fraction|number|string = 0, green: Fraction|number = 0, blue: Fraction|number = 0, alpha: Fraction|number = 1) {
 		if (arguments.length === 0) alpha = 0
 		if (typeof red === 'string') {
-			const color = Color.fromString(red)
+			const color: Color = Color.fromString(red)
 			red   = color.red
 			green = color.green
 			blue  = color.blue
@@ -831,8 +831,8 @@ export default class Color {
 	 * @param   space represents the space in which this color exists
 	 * @returns a string representing this color
 	 */
-	toString(space = ColorSpace.HEX): string {
-		const PERCENT_FORMAT = Intl.NumberFormat('en', { style: 'percent', maximumFractionDigits: 20 })
+	toString(space: ColorSpace = ColorSpace.HEX): string {
+		const PERCENT_FORMAT: Intl.NumberFormat = Intl.NumberFormat('en', { style: 'percent', maximumFractionDigits: 20 })
 		const leadingZero = (n: number, radix: number = 10) => `0${n.toString(radix)}`.slice(-2)
 		if (space === ColorSpace.HEX) {
 			return `#${this.rgb.slice(0,3).map((c) => leadingZero(Math.round(c.of(255)), 16)).join('')}${(this.alpha.lessThan(1)) ? leadingZero(Math.round(this.alpha.of(255)), 16) : ''}`

@@ -268,7 +268,7 @@ export default class Rational extends Number {
 		 * (a/b) ** x
 		 * == (a ** x / b ** x)
 		 */
-		const returned = this._NUMERATOR.exp(exponent.valueOf()) / this._DENOMINATOR.exp(exponent.valueOf())
+		const returned: number = this._NUMERATOR.exp(exponent.valueOf()) / this._DENOMINATOR.exp(exponent.valueOf())
 		xjs.Number.assertType(returned)
 		return returned
 	}
