@@ -306,7 +306,7 @@ export default class TreeNode implements Iterable<TreeNode> {
 				returned.push(this)
 			},
 			[Traversal.BREADTH]: () => {
-				for (let i = new Integer(0); i < this.height; i = i.next) {
+				for (let i: Integer = new Integer(0); i < this.height; i = i.next) {
 					returned.push(...this._givenLevel(i))
 				}
 			},
