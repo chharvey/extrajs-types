@@ -5,9 +5,10 @@ import TreeNode from './TreeNode.class'
 
 
 /**
- * A node in a Tree, whose traversal is depth-first postorder.
+ * A node in a Tree, whose traversal is breadth-first order.
+ * @see https://en.wikipedia.org/wiki/Tree_traversal#Breadth-first_search
  */
-export default abstract class TreeNodeBreadth extends TreeNode {
+export default class TreeNodeBreadth extends TreeNode {
 	/**
 	 * Construct a new TreeNode object.
 	 * @param   value this node’s data value

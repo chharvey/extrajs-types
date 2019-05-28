@@ -64,7 +64,7 @@ type FilterFn = (node: TreeNode, path: ReadonlyArray<Integer>, group: TreeNode) 
  *
  * *(Meta: The outlined list above is an example of a tree.)*
  */
-export default class TreeNode implements Iterable<TreeNode> {
+export default abstract class TreeNode implements Iterable<TreeNode> {
 	/** The parent TreeNode that this TreeNode is a child of. */
 	private _parent: TreeNode|null = null
 	/** The data value of this node. */
@@ -265,24 +265,15 @@ export default class TreeNode implements Iterable<TreeNode> {
 	 * Return a shallow array of all nodes in this TreeNode’s tree.
 	 *
 	 * The order of elements in the returned array is
-	 * determined by the traversal method:
-	 * {@link https://en.wikipedia.org/wiki/Tree_traversal#Pre-order_(NLR)|depth-first preorder} (default),
-	 * {@link https://en.wikipedia.org/wiki/Tree_traversal#Post-order_(LRN)|depth-first postorder}, or
-	 * {@link https://en.wikipedia.org/wiki/Tree_traversal#Breadth-first_search|breadth-first order}.
+	 * determined by the subclasses of this class, which each have their own traversal algorithms.
 	 *
 	 * NOTE: The returned array is shallow, not live, meaning any changes to it will not affect the tree.
+	 * @see TreeNodePre
 	 * @see TreeNodePost
 	 * @see TreeNodeBreadth
 	 * @returns an array of this tree’s nodes that satisfy the predicate
 	 */
-	nodes(): this[] {
-		const returned: this[] = []
-		returned.push(this)
-		this._CHILDREN.forEach((child) => {
-			returned.push(...child.nodes())
-		})
-		return returned
-	}
+	abstract nodes(): this[];
 
 	/**
 	 * Test the existence of a node within this TreeNode’s descendants.
