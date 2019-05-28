@@ -15,7 +15,7 @@ export abstract class Interval {
 	/** The upper bound of this Interval. */
 	readonly UPPER: number;
 	/** The length of this Interval. */
-	readonly LENGTH: Length = new Length(this.UPPER - this.LOWER)
+	readonly LENGTH: Length;
 
 	/**
 	 * Construct a new Interval object.
@@ -24,6 +24,7 @@ export abstract class Interval {
 	constructor(r: [number, number]) {
 		this.LOWER = r[0]
 		this.UPPER = r[1]
+		this.LENGTH = new Length(this.UPPER - this.LOWER)
 	}
 
 	/**
