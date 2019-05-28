@@ -28,19 +28,18 @@ export default abstract class TreeNodeBreadth extends TreeNode {
 	 * @returns an array of nodes at the given level, in sibling order
 	 * @throws  {AssertionError} if the given level is negative
 	 */
-	private _givenLevel(level: Integer): TreeNodeBreadth[] {
+	private _givenLevel(level: Integer): this[] {
 		xjs.Number.assertType(level.valueOf(), 'non-negative') // TODO Integer#assertType
 		return (level.equals(0)) ? [this] :
-			this._CHILDREN.map((child) => (child as TreeNodeBreadth)._givenLevel(level.prev)).reduce((a, b) => a.concat(b)) // COMBAK Array#flat
-		// TODO change `this._CHILDREN` to type `this[]`
+			this._CHILDREN.map((child) => child._givenLevel(level.prev)).flat()
 	}
 
 	/**
 	 * Return a shallow array of all nodes in this TreeNode’s tree, in order of breadth-first order.
 	 * @override TreeNode
 	 */
-	nodes(): TreeNodeBreadth[] {
-		const returned: TreeNodeBreadth[] = []
+	nodes(): this[] {
+		const returned: this[] = []
 		for (let i: Integer = new Integer(0); i < this.height; i = i.next) {
 			returned.push(...this._givenLevel(i))
 		}

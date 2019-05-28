@@ -17,8 +17,8 @@ export default abstract class TreeNodePost extends TreeNode {
 	 * Return a shallow array of all nodes in this TreeNode’s tree, in order of depth-first postorder.
 	 * @override TreeNode
 	 */
-	nodes(): TreeNodePost[] {
-		const returned: TreeNodePost[] = []
+	nodes(): this[] {
+		const returned: this[] = []
 		this._CHILDREN.forEach((child) => {
 			returned.push(...child.nodes())
 		})

@@ -70,7 +70,7 @@ export default class TreeNode implements Iterable<TreeNode> {
 	/** The data value of this node. */
 	private readonly _VALUE: unknown;
 	/** The children of this node. */
-	protected readonly _CHILDREN: TreeNode[] = []
+	protected readonly _CHILDREN: this[] = []
 
 	/**
 	 * Construct a new TreeNode object.
@@ -275,8 +275,8 @@ export default class TreeNode implements Iterable<TreeNode> {
 	 * @see TreeNodeBreadth
 	 * @returns an array of this tree’s nodes that satisfy the predicate
 	 */
-	nodes(): TreeNode[] {
-		const returned: TreeNode[] = []
+	nodes(): this[] {
+		const returned: this[] = []
 		returned.push(this)
 		this._CHILDREN.forEach((child) => {
 			returned.push(...child.nodes())
@@ -465,7 +465,7 @@ export default class TreeNode implements Iterable<TreeNode> {
 	 * @param    nodes the nodes to prepend
 	 * @returns `this`
 	 */
-	prepend(...nodes: TreeNode[]): this {
+	prepend(...nodes: this[]): this {
 		this._CHILDREN.unshift(...nodes)
 		nodes.forEach((node) => {
 			if (node._parent) node._parent.delete(node)
@@ -479,7 +479,7 @@ export default class TreeNode implements Iterable<TreeNode> {
 	 * @param    nodes the nodes to append
 	 * @returns `this`
 	 */
-	append(...nodes: TreeNode[]): this {
+	append(...nodes: this[]): this {
 		this._CHILDREN.push(...nodes)
 		nodes.forEach((node) => {
 			if (node._parent) node._parent.delete(node)
@@ -497,7 +497,7 @@ export default class TreeNode implements Iterable<TreeNode> {
 	 * @param    reference the node or index to insert the new nodes after
 	 * @returns `this`
 	 */
-	insertAfter(nodes: ReadonlyArray<TreeNode>, reference: TreeNode|Integer|number): this {
+	insertAfter(nodes: ReadonlyArray<this>, reference: this|Integer|number): this {
 		let index: number = (reference instanceof TreeNode) ? this._CHILDREN.indexOf(reference) : reference.valueOf()
 		if (index < 0) throw new ReferenceError(`${reference} not found among children.`)
 		this._CHILDREN.splice(index, 0, ...nodes)
@@ -516,7 +516,7 @@ export default class TreeNode implements Iterable<TreeNode> {
 	 * @param   children the child nodes to remove
 	 * @returns `this`
 	 */
-	delete(...children: TreeNode[]): this {
+	delete(...children: this[]): this {
 		children.forEach((child) => {
 			if (this.has(child)) {
 				this._CHILDREN.splice(this._CHILDREN.indexOf(child), 1)
