@@ -20,7 +20,6 @@ module.exports = {
 	Percentage   : require('./dist/class/Percentage.class.js'  ).default,
 	Rational     : require('./dist/class/Rational.class.js'    ).default,
 	TreeNode     : TreeNode_module.default,
-	Traversal    : TreeNode_module.Traversal,
 	Vector       : require('./dist/class/Vector.class.js'      ).default,
 
 	Interval              : Interval_module.Interval,

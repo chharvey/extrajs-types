@@ -70,7 +70,7 @@ export default class TreeNode implements Iterable<TreeNode> {
 	/** The data value of this node. */
 	private readonly _VALUE: unknown;
 	/** The children of this node. */
-	private readonly _CHILDREN: TreeNode[] = []
+	protected readonly _CHILDREN: TreeNode[] = []
 
 	/**
 	 * Construct a new TreeNode object.
@@ -262,55 +262,25 @@ export default class TreeNode implements Iterable<TreeNode> {
 	\* ============================================================================================ */
 
 	/**
-	 * Return a given level of this node’s tree.
-	 *
-	 * Levels:
-	 * - 0 returns this
-	 * - 1 returns this children
-	 * - 2 returns grandchildren
-	 * - etc.
-	 * @param   level the tree level
-	 * @returns an array of nodes at the given level, in sibling order
-	 * @throws  {AssertionError} if the given level is negative
-	 */
-	private _givenLevel(level: Integer): TreeNode[] {
-		xjs.Number.assertType(level.valueOf(), 'non-negative') // TODO Integer#assertType
-		return (level.equals(0)) ? [this] :
-			this._CHILDREN.map((child) => child._givenLevel(level.prev)).reduce((a, b) => a.concat(b)) // COMBAK Array#flat
-	}
-
-	/**
 	 * Return a shallow array of all nodes in this TreeNode’s tree.
 	 *
 	 * The order of elements in the returned array is
-	 * determined by the {@link Traversal} method:
-	 * depth-first preorder (default), depth-first postorder, or breadth-first order.
+	 * determined by the traversal method:
+	 * {@link https://en.wikipedia.org/wiki/Tree_traversal#Pre-order_(NLR)|depth-first preorder} (default),
+	 * {@link https://en.wikipedia.org/wiki/Tree_traversal#Post-order_(LRN)|depth-first postorder}, or
+	 * {@link https://en.wikipedia.org/wiki/Tree_traversal#Breadth-first_search|breadth-first order}.
 	 *
 	 * NOTE: The returned array is shallow, not live, meaning any changes to it will not affect the tree.
-	 * @param   traversal the tree traversal method indicating the order of the returned array
+	 * @see TreeNodePost
+	 * @see TreeNodeBreadth
 	 * @returns an array of this tree’s nodes that satisfy the predicate
 	 */
-	nodes(traversal: Traversal = Traversal.PREORDER): TreeNode[] {
+	nodes(): TreeNode[] {
 		const returned: TreeNode[] = []
-		xjs.Object.switch<void>(`${traversal}`, {
-			[Traversal.PREORDER]: () => {
-				returned.push(this)
-				this._CHILDREN.forEach((child) => {
-					returned.push(...child.nodes(traversal))
-				})
-			},
-			[Traversal.POSTORDER]: () => {
-				this._CHILDREN.forEach((child) => {
-					returned.push(...child.nodes(traversal))
-				})
-				returned.push(this)
-			},
-			[Traversal.BREADTH]: () => {
-				for (let i: Integer = new Integer(0); i < this.height; i = i.next) {
-					returned.push(...this._givenLevel(i))
-				}
-			},
-		})()
+		returned.push(this)
+		this._CHILDREN.forEach((child) => {
+			returned.push(...child.nodes())
+		})
 		return returned
 	}
 
@@ -409,12 +379,11 @@ export default class TreeNode implements Iterable<TreeNode> {
 	 * NOTE: The returned array is shallow, not live, meaning any changes to it will not affect the tree.
 	 * @param   filter an optional predicate by which to filter the descendants
 	 * @param   this_arg optional `this` context in which to call the filter
-	 * @param   traversal the tree traversal method indicating the order of the returned array
 	 * @returns a shallow array of this node’s descendant nodes
 	 */
-	descendants(filter: FilterFn = () => true, this_arg: unknown = this, traversal: Traversal = Traversal.PREORDER): TreeNode[] {
+	descendants(filter: FilterFn = () => true, this_arg: unknown = this): TreeNode[] {
 		if (this._CHILDREN.length === 0) return []
-		const returned: TreeNode[] = this.nodes(traversal)
+		const returned: TreeNode[] = this.nodes()
 		returned.splice(returned.indexOf(this), 1)
 		return returned.filter((descendant) => filter.call(this_arg, descendant, descendant.path, this))
 	}
@@ -576,29 +545,26 @@ export default class TreeNode implements Iterable<TreeNode> {
 
 	/**
 	 * Return a new `Iterator` object that contains the key/value pairs for each node in this tree, with `this` being the first node.
-	 * @param   traversal the tree traversal method indicating the order of the returned iterator
 	 * @returns a new `Iterator` object
 	 */
-	entries(traversal: Traversal = Traversal.PREORDER): IterableIterator<[Integer[], TreeNode]> {
-		return new Map(this.nodes(traversal).map((d) => [d.path, d] as [Integer[], TreeNode])).entries()
+	entries(): IterableIterator<[Integer[], TreeNode]> {
+		return new Map(this.nodes().map((d) => [d.path, d] as [Integer[], TreeNode])).entries()
 	}
 
 	/**
 	 * Return a new `Iterator` object that contains the paths of each node in this tree, with `this` being the first node.
-	 * @param   traversal the tree traversal method indicating the order of the returned iterator
 	 * @returns a new `Iterator` object
 	 */
-	paths(traversal: Traversal = Traversal.PREORDER): IterableIterator<Integer[]> {
-		return this.nodes(traversal).map((d) => d.path).values()
+	paths(): IterableIterator<Integer[]> {
+		return this.nodes().map((d) => d.path).values()
 	}
 
 	/**
 	 * Return a new `Iterator` object that contains the nodes in this tree, with `this` being the first node.
-	 * @param   traversal the tree traversal method indicating the order of the returned iterator
 	 * @returns a new `Iterator` object
 	 */
-	values(traversal: Traversal = Traversal.PREORDER): IterableIterator<TreeNode> {
-		return this.nodes(traversal).values()
+	values(): IterableIterator<TreeNode> {
+		return this.nodes().values()
 	}
 	/** @implements Iterable<TreeNode> */
 	[Symbol.iterator](): Iterator<TreeNode> { return this.values() }
@@ -607,32 +573,29 @@ export default class TreeNode implements Iterable<TreeNode> {
 	 * Iterate over all nodes in this tree, performing the callback function for each node.
 	 * @param   callback function to call for each iteration, passing `(node, i, this)` as the arguments (where `i` is the iteration index)
 	 * @param   this_arg optional `this` context in which to call the callback
-	 * @param   traversal the tree traversal method indicating the iteration order
 	 */
-	forEach(callback: (node: TreeNode, path: ReadonlyArray<Integer>, parentnode: TreeNode) => void, this_arg: unknown = this, traversal: Traversal = Traversal.PREORDER): void {
-		return this.nodes(traversal).forEach((node) => { callback.call(this_arg, node, node.path, this) })
+	forEach(callback: (node: TreeNode, path: ReadonlyArray<Integer>, parentnode: TreeNode) => void, this_arg: unknown = this): void {
+		return this.nodes().forEach((node) => { callback.call(this_arg, node, node.path, this) })
 	}
 
 	/**
 	 * Test whether all nodes in this tree satisfy the given predicate.
 	 * @param   predicate predicate to test for each descendant
 	 * @param   this_arg optional `this` context in which to call the callback
-	 * @param   traversal the tree traversal method indicating the iteration order
 	 * @returns Does the callback return `true` for each iteration?
 	 */
-	every(predicate: FilterFn, this_arg: unknown = this, traversal: Traversal = Traversal.PREORDER): boolean {
-		return this.nodes(traversal).every((node) => predicate.call(this_arg, node, node.path, this))
+	every(predicate: FilterFn, this_arg: unknown = this): boolean {
+		return this.nodes().every((node) => predicate.call(this_arg, node, node.path, this))
 	}
 
 	/**
 	 * Test whether at least one node in this tree satisfies the given predicate.
 	 * @param   predicate predicate to test for each descendant
 	 * @param   this_arg optional `this` context in which to call the callback
-	 * @param   traversal the tree traversal method indicating the iteration order
 	 * @returns Does the callback return `true` for at least one iteration?
 	 */
-	some(predicate: FilterFn, this_arg: unknown = this, traversal: Traversal = Traversal.PREORDER): boolean {
-		return this.nodes(traversal).some((node) => predicate.call(this_arg, node, node.path, this))
+	some(predicate: FilterFn, this_arg: unknown = this): boolean {
+		return this.nodes().some((node) => predicate.call(this_arg, node, node.path, this))
 	}
 
 	/**
@@ -640,33 +603,30 @@ export default class TreeNode implements Iterable<TreeNode> {
 	 * optionally filtered by a predicate.
 	 * @param   filter predicate by which to filter the nodes
 	 * @param   this_arg optional `this` context in which to call the filter
-	 * @param   traversal the tree traversal method indicating the iteration order
 	 * @returns `this.nodes(traversal).filter()`
 	 */
-	filter(filter: FilterFn, this_arg: unknown = this, traversal: Traversal = Traversal.PREORDER): TreeNode[] {
-		return this.nodes(traversal).filter((node) => filter.call(this_arg, node, node.path, this))
+	filter(filter: FilterFn, this_arg: unknown = this): TreeNode[] {
+		return this.nodes().filter((node) => filter.call(this_arg, node, node.path, this))
 	}
 
 	/**
 	 * Find the first descendant that satisfies the predicate.
 	 * @param   predicate predicate by which to filter the descendants
 	 * @param   this_arg optional `this` context in which to call the filter
-	 * @param   traversal the tree traversal method indicating the iteration order
 	 * @returns the first node, in the provided traversal order, that satisfies the predicate
 	 */
-	find(predicate: FilterFn, this_arg: unknown = this, traversal: Traversal = Traversal.PREORDER): TreeNode|null {
-		return this.filter(predicate, this_arg, traversal)[0] || null
+	find(predicate: FilterFn, this_arg: unknown = this): TreeNode|null {
+		return this.filter(predicate, this_arg)[0] || null
 	}
 
 	/**
 	 * Find the path of the first descendant that satisfies the predicate.
 	 * @param   predicate predicate by which to filter the descendants
 	 * @param   this_arg optional `this` context in which to call the filter
-	 * @param   traversal the tree traversal method indicating the iteration order
 	 * @returns the path of the first node, in the provided traversal order, that satisfies the predicate
 	 */
-	findPath(predicate: FilterFn, this_arg: unknown = this, traversal: Traversal = Traversal.PREORDER): Integer[]|null {
-		const found: TreeNode|null = this.find(predicate, this_arg, traversal)
+	findPath(predicate: FilterFn, this_arg: unknown = this): Integer[]|null {
+		const found: TreeNode|null = this.find(predicate, this_arg)
 		return (found) ? found.path : null
 	}
 
@@ -763,25 +723,6 @@ export default class TreeNode implements Iterable<TreeNode> {
 		if (!node._parent) return node.commonAncestor(this)
 		return this.ancestors((n) => node.ancestors().includes(n)).slice(-1)[0] // COMBAK Array#lastItem
 	}
-}
-
-
-export enum Traversal {
-	/**
-	 * Depth-first preorder.
-	 * @see https://en.wikipedia.org/wiki/Tree_traversal#Pre-order_(NLR)
-	 */
-	PREORDER,
-	/**
-	 * Depth-first postorder.
-	 * @see https://en.wikipedia.org/wiki/Tree_traversal#Post-order_(LRN)
-	 */
-	POSTORDER,
-	/**
-	 * Breadth-first order.
-	 * @see https://en.wikipedia.org/wiki/Tree_traversal#Breadth-first_search
-	 */
-	BREADTH,
 }
 
 
