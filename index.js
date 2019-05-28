@@ -2,7 +2,6 @@ const Angle_module    = require('./dist/class/Angle.class.js')
 const Color_module    = require('./dist/class/Color.class.js')
 const Interval_module = require('./dist/class/Interval.class.js')
 const Length_module   = require('./dist/class/Length.class.js')
-const TreeNode_module = require('./dist/class/TreeNode.class.js')
 
 module.exports = {
 	Angle        : Angle_module.default,
@@ -19,7 +18,10 @@ module.exports = {
 	MeterInt     : require('./dist/class/MeterInt.class.js'    ).default,
 	Percentage   : require('./dist/class/Percentage.class.js'  ).default,
 	Rational     : require('./dist/class/Rational.class.js'    ).default,
-	TreeNode     : TreeNode_module.default,
+	TreeNode     : require('./dist/class/TreeNode.class.js'    ).default,
+	TreeNodePre  : require('./dist/class/TreeNodePre.class.js' ).default,
+	TreeNodePost : require('./dist/class/TreeNodePost.class.js').default,
+	TreeNodeDepth: require('./dist/class/TreeNodeDepth.class.js').default,
 	Vector       : require('./dist/class/Vector.class.js'      ).default,
 
 	Interval              : Interval_module.Interval,

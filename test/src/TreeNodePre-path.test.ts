@@ -1,4 +1,4 @@
-import { TreeNode } from '../../index'
+import { TreeNodePre } from '../../index'
 import test from './test'
 
 
@@ -10,13 +10,13 @@ import test from './test'
 //   c  d     |
 //            f
 
-let r: TreeNode = new TreeNode('r')
-let a: TreeNode = new TreeNode('a')
-let b: TreeNode = new TreeNode('b')
-let c: TreeNode = new TreeNode('c')
-let d: TreeNode = new TreeNode('d')
-let e: TreeNode = new TreeNode('e')
-let f: TreeNode = new TreeNode('f')
+let r: TreeNodePre = new TreeNodePre('r')
+let a: TreeNodePre = new TreeNodePre('a')
+let b: TreeNodePre = new TreeNodePre('b')
+let c: TreeNodePre = new TreeNodePre('c')
+let d: TreeNodePre = new TreeNodePre('d')
+let e: TreeNodePre = new TreeNodePre('e')
+let f: TreeNodePre = new TreeNodePre('f')
 
 r.append(
 	a.append(c, d),
