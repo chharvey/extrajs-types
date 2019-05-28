@@ -5,7 +5,7 @@ import MatrixSquare_import from './MatrixSquare.class'
 
 
 /**
- * A Vector is a one-dimensional array of numbers.
+ * A Vector is an immutable one-dimensional array of numbers.
  *
  * Vectors have a finite natural number of entries, called **coordinates**.
  * An empty vector is a vector with 0 coordinates.

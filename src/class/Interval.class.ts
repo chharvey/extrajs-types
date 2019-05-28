@@ -19,11 +19,12 @@ export abstract class Interval {
 
 	/**
 	 * Construct a new Interval object.
-	 * @param   r a tuple: `[lower, upper]`
+	 * @param   lower the lower bound
+	 * @param   upper the upper bound
 	 */
-	constructor(r: [number, number]) {
-		this.LOWER = r[0]
-		this.UPPER = r[1]
+	constructor(lower: number, upper: number) {
+		this.LOWER = lower
+		this.UPPER = upper
 	}
 
 	/**
@@ -64,9 +65,10 @@ export abstract class Interval {
 export class OpenInterval extends Interval {
 	/**
 	 * Construct a new OpenInterval object.
-	 * @param   r a tuple: `[lower, upper]`
+	 * @param   lower the lower bound
+	 * @param   upper the upper bound
 	 */
-	constructor(r: [number, number]) { super(r) }
+	constructor(lower: number, upper: number) { super(lower, upper) }
 	/** @implements Interval */
 	protected _doHas(x: number): boolean {
 		return this.LOWER < x && x < this.UPPER
@@ -79,9 +81,10 @@ export class OpenInterval extends Interval {
 export class ClosedInterval extends Interval {
 	/**
 	 * Construct a new ClosedInterval object.
-	 * @param   r a tuple: `[lower, upper]`
+	 * @param   lower the lower bound
+	 * @param   upper the upper bound
 	 */
-	constructor(r: [number, number]) { super(r) }
+	constructor(lower: number, upper: number) { super(lower, upper) }
 	/** @implements Interval */
 	protected _doHas(x: number): boolean {
 		return this.LOWER <= x && x <= this.UPPER
@@ -94,9 +97,10 @@ export class ClosedInterval extends Interval {
 export class HalfOpenLeftInterval extends Interval {
 	/**
 	 * Construct a new HalfOpenLeftInterval object.
-	 * @param   r a tuple: `[lower, upper]`
+	 * @param   lower the lower bound
+	 * @param   upper the upper bound
 	 */
-	constructor(r: [number, number]) { super(r) }
+	constructor(lower: number, upper: number) { super(lower, upper) }
 	/** @implements Interval */
 	protected _doHas(x: number): boolean {
 		return this.LOWER < x && x <= this.UPPER
@@ -109,9 +113,10 @@ export class HalfOpenLeftInterval extends Interval {
 export class HalfOpenRightInterval extends Interval {
 	/**
 	 * Construct a new HalfOpenRightInterval object.
-	 * @param   r a tuple: `[lower, upper]`
+	 * @param   lower the lower bound
+	 * @param   upper the upper bound
 	 */
-	constructor(r: [number, number]) { super(r) }
+	constructor(lower: number, upper: number) { super(lower, upper) }
 	/** @implements Interval */
 	protected _doHas(x: number): boolean {
 		return this.LOWER <= x && x < this.UPPER

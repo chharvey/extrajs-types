@@ -62,9 +62,10 @@ export default class Length extends Number {
 	}
 
 	/**
-	 * @deprecated use constructor `new Length()` instead.
+	 * @deprecated WARNING{DEPRECATED} use constructor `new Length()` instead.
 	 */
 	static fromString(str: string): Length {
+		console.warn('`Length#fromString()` is deprecated. Use `new Length()` instead.')
 		return new Length(str)
 	}
 

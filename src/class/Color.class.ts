@@ -4,8 +4,16 @@ import Integer from './Integer.class'
 import Percentage from './Percentage.class'
 import Fraction from './Fraction.class'
 import Angle, {AngleUnit} from './Angle.class'
+import { HalfOpenRightInterval } from './Interval.class'
 
 const NAMES: { [index: string]: string } = require('../../src/color-names.json')
+
+
+// TODO xjs.Map.find
+function xjs_Map_find<K, V>(map: Map<K, V>, predicate: (value: V, key: K, map: Map<K, V>) => boolean, this_arg?: any): V|null {
+	const returned: [K, V]|null = [...map].find((entry) => predicate.call(this_arg, entry[1], entry[0], map)) || null
+	return (returned) ? returned[1] : null
+}
 
 
 /**
@@ -197,7 +205,12 @@ export default class Color {
 	 */
 	static fromRGB(red: Integer|number = 0, green: Integer|number = 0, blue: Integer|number = 0, alpha: Fraction|number = 1): Color {
 		return (red instanceof Integer && green instanceof Integer && blue instanceof Integer && alpha instanceof Fraction) ?
-			new Color(...[red, green, blue].map((c) => new Fraction(c.clamp(0, 255).dividedBy(255))), alpha) :
+			new Color(
+				new Fraction(red  .clamp(0, 255).dividedBy(255)),
+				new Fraction(green.clamp(0, 255).dividedBy(255)),
+				new Fraction(blue .clamp(0, 255).dividedBy(255)),
+				alpha
+			) :
 			Color.fromRGB(new Integer(red), new Integer(green), new Integer(blue), new Fraction(alpha))
 	}
 
@@ -242,14 +255,20 @@ export default class Color {
 			let c: number = s * v
 			let x: number = c * (1 - Math.abs(hue.convert(AngleUnit.DEG) / 60 % 2 - 1))
 			let m: number = v - c
-			let rgb: number[] = [c, x, 0]
-			;    if (!hue.lessThan(0/6) && hue.lessThan(1/6)) { rgb = [c, x, 0] }
-			else if (!hue.lessThan(1/6) && hue.lessThan(2/6)) { rgb = [x, c, 0] }
-			else if (!hue.lessThan(2/6) && hue.lessThan(3/6)) { rgb = [0, c, x] }
-			else if (!hue.lessThan(3/6) && hue.lessThan(4/6)) { rgb = [0, x, c] }
-			else if (!hue.lessThan(4/6) && hue.lessThan(5/6)) { rgb = [x, 0, c] }
-			else if (!hue.lessThan(5/6) && hue.lessThan(6/6)) { rgb = [c, 0, x] }
-			return new Color(...rgb.map((c) => new Fraction(Math.min(c + m, 1))), alpha)
+			let rgb: number[] = xjs_Map_find(new Map([
+				[new HalfOpenRightInterval(0/6, 1/6), [c, x, 0]],
+				[new HalfOpenRightInterval(1/6, 2/6), [x, c, 0]],
+				[new HalfOpenRightInterval(2/6, 3/6), [0, c, x]],
+				[new HalfOpenRightInterval(3/6, 4/6), [0, x, c]],
+				[new HalfOpenRightInterval(4/6, 5/6), [x, 0, c]],
+				[new HalfOpenRightInterval(5/6, 6/6), [c, 0, x]],
+			]), (_arr, iv) => iv.has(hue.valueOf())) || [c, x, 0]
+			return new Color(
+				new Fraction(Math.min(rgb[0] + m, 1)),
+				new Fraction(Math.min(rgb[1] + m, 1)),
+				new Fraction(Math.min(rgb[2] + m, 1)),
+				alpha
+			)
 		})() : Color.fromHSV(
 			new Angle(hue),
 			new Fraction(sat),
@@ -274,14 +293,20 @@ export default class Color {
 			let c: number = s * (1 - Math.abs(2*l - 1))
 			let x: number = c * (1 - Math.abs(hue.convert(AngleUnit.DEG) / 60 % 2 - 1))
 			let m: number = l - c/2
-			let rgb: number[] = [c, x, 0]
-			;    if (!hue.lessThan(0/6) && hue.lessThan(1/6)) { rgb = [c, x, 0] }
-			else if (!hue.lessThan(1/6) && hue.lessThan(2/6)) { rgb = [x, c, 0] }
-			else if (!hue.lessThan(2/6) && hue.lessThan(3/6)) { rgb = [0, c, x] }
-			else if (!hue.lessThan(3/6) && hue.lessThan(4/6)) { rgb = [0, x, c] }
-			else if (!hue.lessThan(4/6) && hue.lessThan(5/6)) { rgb = [x, 0, c] }
-			else if (!hue.lessThan(5/6) && hue.lessThan(6/6)) { rgb = [c, 0, x] }
-			return new Color(...rgb.map((c) => new Fraction(Math.min(c + m, 1))), alpha)
+			let rgb: number[] = xjs_Map_find(new Map([
+				[new HalfOpenRightInterval(0/6, 1/6), [c, x, 0]],
+				[new HalfOpenRightInterval(1/6, 2/6), [x, c, 0]],
+				[new HalfOpenRightInterval(2/6, 3/6), [0, c, x]],
+				[new HalfOpenRightInterval(3/6, 4/6), [0, x, c]],
+				[new HalfOpenRightInterval(4/6, 5/6), [x, 0, c]],
+				[new HalfOpenRightInterval(5/6, 6/6), [c, 0, x]],
+			]), (_arr, iv) => iv.has(hue.valueOf())) || [c, x, 0]
+			return new Color(
+				new Fraction(Math.min(rgb[0] + m, 1)),
+				new Fraction(Math.min(rgb[1] + m, 1)),
+				new Fraction(Math.min(rgb[2] + m, 1)),
+				alpha
+			)
 		})() : Color.fromHSL(
 			new Angle(hue),
 			new Fraction(sat),
@@ -305,7 +330,7 @@ export default class Color {
 			const [w, b]: number[] = [white, black].map((p) => p.valueOf())
 			let rgb: Fraction[] = Color.fromHSL(hue, new Fraction(1), new Fraction(0.5)).rgb.slice(0, 3)
 				.map((c) => new Fraction(Math.min(c.valueOf() * (1 - w - b) + w, 1)))
-			return new Color(...rgb, alpha)
+			return new Color(rgb[0], rgb[1], rgb[2], alpha)
 		})() : Color.fromHWB(
 			new Angle(hue),
 			new Fraction(white),
@@ -532,7 +557,7 @@ export default class Color {
 	 * @returns a Color object with random values
 	 */
 	static random(alpha = true): Color {
-		return Color.fromString(`#${Math.random().toString(16).slice(2, (alpha) ? 10 : 8)}`)
+		return new Color(`#${Math.random().toString(16).slice(2, (alpha) ? 10 : 8)}`)
 	}
 
 	/**
@@ -541,7 +566,7 @@ export default class Color {
 	 */
 	static randomName(): Color {
 		let named_colors: [string, string][] = Object.entries(NAMES)
-		return Color.fromString(named_colors[Math.floor(Math.random() * named_colors.length)][0])
+		return new Color(named_colors[Math.floor(Math.random() * named_colors.length)][1])
 	}
 
 
@@ -561,16 +586,21 @@ export default class Color {
 	/**
 	 * Construct a new Color object.
 	 *
+	 * Calling `new Color()` (no arguments) will result in transparent (`#00000000`).
+	 */
+	constructor();
+	/**
+	 * Construct a new Color object.
+	 *
 	 * Calling `new Color(r, g, b, a)` (4 arguments) specifies default behavior.
 	 * Calling `new Color(r, g, b)` (3 arguments) will result in an opaque color (`#rrggbbFF`),
 	 * where the alpha is 1 by default.
-	 * Calling `new Color()` (no arguments) will result in transparent (`#00000000`).
 	 * @param red   the red   channel of this color
 	 * @param green the green channel of this color
 	 * @param blue  the blue  channel of this color
 	 * @param alpha the alpha channel of this color
 	 */
-	constructor(red?: Fraction|number, green?: Fraction|number, blue?: Fraction|number, alpha?: Fraction|number);
+	constructor(red: Fraction|number, green: Fraction|number, blue: Fraction|number, alpha?: Fraction|number);
 	/**
 	 * Alias of {@link Color.fromString}
 	 * @param   str same parameter passed to `Color.fromString`

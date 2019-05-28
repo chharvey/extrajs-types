@@ -1,6 +1,6 @@
 {
   "name": "extrajs-types",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Additional all-purpose JavaScript classes.",
   "main": "index.js",
   "scripts": {
@@ -27,9 +27,9 @@
     "gulp-typedoc": "^2.2.1",
     "gulp-typescript": "^5.0.0",
     "typedoc": "^0.14.2",
-    "typescript": "~3.3.3"
+    "typescript": "~3.4.5"
   },
   "dependencies": {
-    "extrajs": "^0.18.1"
+    "extrajs": "^0.19.0"
   }
 }

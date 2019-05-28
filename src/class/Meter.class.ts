@@ -205,17 +205,17 @@ export default class Meter {
 		let a: ClosedInterval;
 		let c: ClosedInterval;
 		if (this._low !== null) {
-			a = new ClosedInterval([this._min, this._low])
-			c = new ClosedInterval((this._high !== null) ? [this._high, this._max] : [this._low, this._max])
+			a = new ClosedInterval(this._min, this._low)
+			c = (this._high !== null) ? new ClosedInterval(this._high, this._max) : new ClosedInterval(this._low, this._max)
 		} else {
 			if (this._high !== null) {
-				a = new ClosedInterval([this._min, this._high])
-				c = new ClosedInterval([this._high, this._max])
+				a = new ClosedInterval(this._min, this._high)
+				c = new ClosedInterval(this._high, this._max)
 			} else {
-				a = c = new ClosedInterval([this._min, this._max])
+				a = c = new ClosedInterval(this._min, this._max)
 			}
 		}
-		let b: OpenInterval = new OpenInterval((a.UPPER < c.LOWER) ? [a.UPPER, c.LOWER] : [0, 0])
+		let b: OpenInterval = (a.UPPER < c.LOWER) ? new OpenInterval(a.UPPER, c.LOWER) : new OpenInterval(0, 0)
 		let preferences: ReadonlyMap<Interval, number>|null =
 			(a.equals(c)     ) ? new Map<Interval, number>([[a, 1                         ], [b, 1], [c, 1                         ]]) :
 			(a.has(this._opt)) ? new Map<Interval, number>([[a, 1                         ], [b, 2], [c, b.LENGTH.equals(0) ? 2 : 3]]) :
