@@ -29,7 +29,7 @@ import * as xjs from 'extrajs'
  * 	For fractions `a` and `b`, if `a * b === 0` or if `b * a === 0`, then either `a === 0` or `b === 0`
  * 	(where `0` is the multiplicative absorber).
  * - Multiplication is commutative and associative:
- * 	For fractions `a`, `b`, and `c`, the following statments are guaranteed true:
+ * 	For fractions `a`, `b`, and `c`, the following statements are guaranteed true:
  * 	- `a * b === b * a`
  * 	- `a * (b * c) === (a * b) * c`
  */

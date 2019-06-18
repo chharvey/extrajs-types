@@ -1142,7 +1142,7 @@ export default class Color {
 	 *
 	 * The relative luminance of a color is the perceived brightness of that color.
 	 * Note that this is different from the actual luminosity of the color.
-	 * For examle, lime (`#00ff00`) and blue (`#0000ff`) both have a luminosity of 0.5,
+	 * For example, lime (`#00ff00`) and blue (`#0000ff`) both have a luminosity of 0.5,
 	 * even though lime is perceived to be much brighter than blue.
 	 * In fact, the relative luminance of lime is 0.72 — about ten times that of blue’s, which is only 0.07.
 	 *

@@ -400,7 +400,7 @@ export default class Angle extends Number {
 	 * Return the ratio of this Angle (the dividend) to the argument (the divisor).
 	 *
 	 * Note: to “divide” this Angle into even pieces, call {@link Angle.scale}.
-	 * @param   divisior the Angle to divide this one by
+	 * @param   divisor the Angle to divide this one by
 	 * @returns a number equal to the quotient, `dividend / divisor`
 	 */
 	ratio(divisor: Angle|number = 1): number {

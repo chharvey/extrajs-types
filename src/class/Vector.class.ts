@@ -18,7 +18,7 @@ import MatrixSquare_import from './MatrixSquare.class'
  * - Vectors are closed under addition, subtraction, and scalar multiplication.
  * 	For vectors `a` and `b` of dimension *N*, and for scalar `K`,
  * 	the expressions `a + b`, `a - b`, and `K * a` are guaranteed to also be vectors of dimension *N*.
- * - A Vector Space has a (unique) additive idenity.
+ * - A Vector Space has a (unique) additive identity.
  * 	There exists a vector `0` such that for every vector `a`,
  * 	`a + 0` and `0 + a` are guaranteed to equal `a`, and
  * 	`0` is the only vector with this property.
@@ -26,7 +26,7 @@ import MatrixSquare_import from './MatrixSquare.class'
  * 	for every vector `a`, a unique vector `-a` is guaranteed such that `a + -a === -a + a === 0`
  * 	(where `0` is the additive identity).
  * - Addition is commutative and associative.
- * 	For vectors `a`, `b`, and `c`, the following statments are guaranteed true:
+ * 	For vectors `a`, `b`, and `c`, the following statements are guaranteed true:
  * 	- `a + b === b + a`
  * 	- `a + (b + c) === (a + b) + c`
  * - Scalar-Multiplication is associative.

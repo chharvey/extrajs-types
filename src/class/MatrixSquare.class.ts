@@ -13,7 +13,7 @@ import Matrix from './Matrix.class'
  * - Matrices in a Square Matrix Space are closed under multiplication:
  * 	For matrices `a` and `b` of dimension *N×N*,
  * 	the expression `ab` is guaranteed to also be a matrix of dimension *N×N*.
- * - A Square Matrix Space has a (unique) multiplicative idenity:
+ * - A Square Matrix Space has a (unique) multiplicative identity:
  * 	There exists a matrix `1` such that for every matrix `a`,
  * 	`a1`, and `1a` are guaranteed to equal `a`, and
  * 	`1` is the only matrix with this property.

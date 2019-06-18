@@ -15,7 +15,7 @@ import * as xjs from 'extrajs'
  * 		- `b <= a`
  * - Integers are closed under addition, subtraction, and multiplication:
  * 	For integers `a` and `b`, the expressions `a + b`, `a - b`, and `a * b` are guaranteed to also be integers.
- * - The set of Integers has a (unique) additive identity and a (unique) multiplicative idenity:
+ * - The set of Integers has a (unique) additive identity and a (unique) multiplicative identity:
  * 	There exist integers `0` and `1` such that for every integer `a`,
  * 	`a + 0`, `0 + a`, `a * 1`, and `1 * a` are guaranteed to equal `a`, and
  * 	`0` and `1`, respectively, are the only integers with this property.
@@ -30,7 +30,7 @@ import * as xjs from 'extrajs'
  * 	For every integer `a`, a unique integer `-a` is guaranteed such that `a + -a === -a + a === 0`
  * 	(where `0` is the additive identity).
  * - Addition and multiplication are commutative and associative:
- * 	For integers `a`, `b`, and `c`, the following statments are guaranteed true:
+ * 	For integers `a`, `b`, and `c`, the following statements are guaranteed true:
  * 	- `a + b === b + a`
  * 	- `a * b === b * a`
  * 	- `a + (b + c) === (a + b) + c`

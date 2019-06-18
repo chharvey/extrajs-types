@@ -17,7 +17,7 @@ import Integer from './Integer.class'
  * 		- `b <= a`
  * - Rationals are closed under addition, subtraction, multiplication, and division:
  * 	For rationals `a` and `b`, the expressions `a + b`, `a - b`, `a * b`, and `a / b` are guaranteed to also be rationals.
- * - The set of Rationals has a (unique) additive identity and a (unique) multiplicative idenity:
+ * - The set of Rationals has a (unique) additive identity and a (unique) multiplicative identity:
  * 	There exist rationals `0` and `1` such that for every rational `a`,
  * 	`a + 0`, `0 + a`, `a * 1`, and `1 * a` are guaranteed to equal `a`, and
  * 	`0` and `1`, respectively, are the only rationals with this property.
@@ -31,12 +31,12 @@ import Integer from './Integer.class'
  * - Rationals have (unique) additive inverses:
  * 	For every rational `a`, a unique rational `-a` is guaranteed such that `a + -a === -a + a === 0`
  * 	(where `0` is the additive identity).
- * - Non-zero Rationals have (unique) multipliative inverses:
+ * - Non-zero Rationals have (unique) multiplicative inverses:
  * 	For every rational `a !== 0` (where `0` is the multiplicative absorber),
  * 	a unique rational `a^` is guaranteed such that `a * a^ === ^a * a === 1`
  * 	(where `1` is the multiplicative identity).
  * - Addition and multiplication are commutative and associative:
- * 	For rationals `a`, `b`, and `c`, the following statments are guaranteed true:
+ * 	For rationals `a`, `b`, and `c`, the following statements are guaranteed true:
  * 	- `a + b === b + a`
  * 	- `a * b === b * a`
  * 	- `a + (b + c) === (a + b) + c`

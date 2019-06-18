@@ -219,7 +219,7 @@ export default abstract class TreeNode implements Iterable<TreeNode> {
 
 	/**
 	 * Get the previous sibling, if it exists, of this TreeNode, if it has a parent.
-	 * @returns the sibling preceeding this TreeNode in its parent, or `null` if this is the first sibling
+	 * @returns the sibling preceding this TreeNode in its parent, or `null` if this is the first sibling
 	 * @throws  {OrphanError} if this TreeNode has no parent
 	 */
 	get prevSibling(): TreeNode|null {
@@ -239,7 +239,7 @@ export default abstract class TreeNode implements Iterable<TreeNode> {
 
 	/**
 	 * Get the first sibling, if it exists, of this TreeNode, if it has a parent.
-	 * @returns the first sibling preceeding this TreeNode in its parent (or `this` if this is the first sibling)
+	 * @returns the first sibling preceding this TreeNode in its parent (or `this` if this is the first sibling)
 	 * @throws  {OrphanError} if this TreeNode has no parent
 	 */
 	get firstSibling(): TreeNode {
@@ -423,7 +423,7 @@ export default abstract class TreeNode implements Iterable<TreeNode> {
 	 * NOTE: The returned array is shallow, not live, meaning any changes to it will not affect the tree.
 	 * @param   filter an optional predicate by which to filter the siblings
 	 * @param   this_arg optional `this` context in which to call the filter
-	 * @returns shallow array of the siblings preceeding this TreeNode in its parent
+	 * @returns shallow array of the siblings preceding this TreeNode in its parent
 	 * @throws  {OrphanError} if this TreeNode has no parent
 	 */
 	prevSiblingsAll(filter: FilterFn = () => true, this_arg: unknown = this): TreeNode[] {
@@ -723,7 +723,7 @@ export default abstract class TreeNode implements Iterable<TreeNode> {
  */
 class OrphanError extends Error {
 	/**
-	 * Construct a new OrphanError oject.
+	 * Construct a new OrphanError object.
 	 * @param orphan the orphan node
 	 */
 	constructor(orphan: TreeNode) {

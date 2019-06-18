@@ -189,7 +189,7 @@ export default class Duration extends Number {
 	 * Return the ratio of this Duration (the dividend) to the argument (the divisor).
 	 *
 	 * Note: to “divide” this Duration into even pieces, call {@link Duration.scale}.
-	 * @param   divisior the Duration to divide this one by
+	 * @param   divisor the Duration to divide this one by
 	 * @returns a number equal to the quotient, `dividend / divisor`
 	 */
 	ratio(divisor: Duration|number = 1): number {

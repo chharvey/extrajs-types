@@ -223,7 +223,7 @@ export default class Length extends Number {
 	 * Return the ratio of this Length (the dividend) to the argument (the divisor).
 	 *
 	 * Note: to “divide” this Length into even pieces, call {@link Length.scale}.
-	 * @param   divisior the Length to divide this one by
+	 * @param   divisor the Length to divide this one by
 	 * @returns a number equal to the quotient, `dividend / divisor`
 	 */
 	ratio(divisor: Length|number = 1): number {
