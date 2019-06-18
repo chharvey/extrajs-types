@@ -48,20 +48,22 @@ export default class Duration extends Number {
 	 * Return the maximum of two or more Durations.
 	 * @param   durations two or more Durations to compare
 	 * @returns the greatest of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...durations: Duration[]): Duration {
+		if (!durations.length) throw new Error('No arguments provided.')
 		return new Duration(Math.max(...durations.map((x) => x.valueOf())))
-		// return durations.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).lastItem
 	}
 
 	/**
 	 * Return the minimum of two or more Durations.
 	 * @param   durations two or more Durations to compare
 	 * @returns the least of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...durations: Duration[]): Duration {
+		if (!durations.length) throw new Error('No arguments provided.')
 		return new Duration(Math.min(...durations.map((x) => x.valueOf())))
-		// return durations.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
 	}
 
 

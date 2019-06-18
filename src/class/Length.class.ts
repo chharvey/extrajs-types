@@ -45,20 +45,22 @@ export default class Length extends Number {
 	 * Return the maximum of two or more Lengths.
 	 * @param   lengths two or more Lengths to compare
 	 * @returns the greatest of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...lengths: Length[]): Length {
+		if (!lengths.length) throw new Error('No arguments provided.')
 		return new Length(Math.max(...lengths.map((x) => x.valueOf())))
-		// return lengths.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).lastItem
 	}
 
 	/**
 	 * Return the minimum of two or more Lengths.
 	 * @param   lengths two or more Lengths to compare
 	 * @returns the least of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...lengths: Length[]): Length {
+		if (!lengths.length) throw new Error('No arguments provided.')
 		return new Length(Math.min(...lengths.map((x) => x.valueOf())))
-		// return lengths.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
 	}
 
 	/**

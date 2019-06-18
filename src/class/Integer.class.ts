@@ -50,20 +50,22 @@ export default class Integer extends Number {
 	 * Return the maximum of two or more Integers.
 	 * @param   ints two or more Integers to compare
 	 * @returns the greatest of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...ints: Integer[]): Integer {
+		if (!ints.length) throw new Error('No arguments provided.')
 		return new Integer(Math.max(...ints.map((z) => z.valueOf())))
-		// return ints.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).slice(-1)[0]
 	}
 
 	/**
 	 * Return the minimum of two or more Integers.
 	 * @param   ints two or more Integers to compare
 	 * @returns the least of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...ints: Integer[]): Integer {
+		if (!ints.length) throw new Error('No arguments provided.')
 		return new Integer(Math.min(...ints.map((z) => z.valueOf())))
-		// return ints.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
 	}
 
 
@@ -216,7 +218,7 @@ export default class Integer extends Number {
 	 * @returns a number equal to the quotient, `dividend / divisor`
 	 */
 	dividedBy(divisor: Integer|number = 1): number {
-		const returned = this.valueOf() / divisor.valueOf()
+		const returned: number = this.valueOf() / divisor.valueOf()
 		xjs.Number.assertType(returned)
 		return returned
 	}
@@ -238,7 +240,7 @@ export default class Integer extends Number {
 	 * @returns a number equal to the power, `base ** exponent`
 	 */
 	exp(exponent: Integer|number = 1): number {
-		const returned = this.valueOf() ** exponent.valueOf()
+		const returned: number = this.valueOf() ** exponent.valueOf()
 		xjs.Number.assertType(returned)
 		return returned
 	}
