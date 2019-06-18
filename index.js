@@ -24,7 +24,7 @@ module.exports = {
 	TreeNode     : require('./dist/class/TreeNode.class.js'    ).default,
 	TreeNodePre  : require('./dist/class/TreeNodePre.class.js' ).default,
 	TreeNodePost : require('./dist/class/TreeNodePost.class.js').default,
-	TreeNodeDepth: require('./dist/class/TreeNodeDepth.class.js').default,
+	TreeNodeBreadth: require('./dist/class/TreeNodeBreadth.class.js').default,
 	Vector       : require('./dist/class/Vector.class.js'      ).default,
 
 	Interval              : Interval_module.Interval,
