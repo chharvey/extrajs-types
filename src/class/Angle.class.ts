@@ -163,12 +163,12 @@ export default class Angle extends Number {
 			if (!Angle.REGEXP.test(theta)) throw new RangeError(`Invalid string format: '${theta}'.`)
 			let numeric_part: number = +theta.match(xjs.Number.REGEXP.source.slice(1,-1)) ![0]
 			let unit_part   : string =  theta.match(/turn|deg|grad|rad/                 ) ![0]
-			theta = xjs.Object.switch<number>(unit_part, {
-				'turn' : () => numeric_part / Angle.CONVERSION[AngleUnit.TURN],
-				'deg'  : () => numeric_part / Angle.CONVERSION[AngleUnit.DEG ],
-				'grad' : () => numeric_part / Angle.CONVERSION[AngleUnit.GRAD],
-				'rad'  : () => numeric_part / Angle.CONVERSION[AngleUnit.RAD ],
-			})()
+			theta = new Map<string, () => number>([
+				['turn' , () => numeric_part / Angle.CONVERSION[AngleUnit.TURN]],
+				['deg'  , () => numeric_part / Angle.CONVERSION[AngleUnit.DEG ]],
+				['grad' , () => numeric_part / Angle.CONVERSION[AngleUnit.GRAD]],
+				['rad'  , () => numeric_part / Angle.CONVERSION[AngleUnit.RAD ]],
+			]).get(unit_part) !()
 		}
 		theta = theta.valueOf()
 		xjs.Number.assertType(theta, 'finite')

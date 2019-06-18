@@ -89,13 +89,13 @@ export default class Length extends Number {
 			if (!Length.REGEXP.test(x)) throw new RangeError(`Invalid string format: '${x}'.`)
 			let numeric_part: number = +x.match(xjs.Number.REGEXP.source.slice(1,-1)) ![0]
 			let unit_part   : string =  x.match(/cm|mm|in|pt|px/                    ) ![0]
-			x = xjs.Object.switch<number>(unit_part, {
-				'cm': () => numeric_part / Length.CONVERSION[LengthUnit.CM],
-				'mm': () => numeric_part / Length.CONVERSION[LengthUnit.MM],
-				'in': () => numeric_part / Length.CONVERSION[LengthUnit.IN],
-				'pt': () => numeric_part / Length.CONVERSION[LengthUnit.PT],
-				'px': () => numeric_part / Length.CONVERSION[LengthUnit.PX],
-			})()
+			x = new Map<string, () => number>([
+				['cm', () => numeric_part / Length.CONVERSION[LengthUnit.CM]],
+				['mm', () => numeric_part / Length.CONVERSION[LengthUnit.MM]],
+				['in', () => numeric_part / Length.CONVERSION[LengthUnit.IN]],
+				['pt', () => numeric_part / Length.CONVERSION[LengthUnit.PT]],
+				['px', () => numeric_part / Length.CONVERSION[LengthUnit.PX]],
+			]).get(unit_part) !()
 		}
 		x = x.valueOf()
 		xjs.Number.assertType(x, 'non-negative')

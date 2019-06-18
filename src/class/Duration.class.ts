@@ -84,14 +84,14 @@ export default class Duration extends Number {
 			if (!Duration.REGEXP.test(x)) throw new RangeError(`Invalid string format: '${x}'.`)
 			let numeric_part: number = +x.match(xjs.Number.REGEXP.source.slice(1,-1)) ![0]
 			let unit_part   : string =  x.match(/s|ms|ns|min|hr|d/                  ) ![0]
-			x = xjs.Object.switch<number>(unit_part, {
-				's'  : () => numeric_part / Duration.CONVERSION[DurationUnit.S  ],
-				'ms' : () => numeric_part / Duration.CONVERSION[DurationUnit.MS ],
-				'ns' : () => numeric_part / Duration.CONVERSION[DurationUnit.NS ],
-				'min': () => numeric_part / Duration.CONVERSION[DurationUnit.MIN],
-				'hr' : () => numeric_part / Duration.CONVERSION[DurationUnit.HR ],
-				'd'  : () => numeric_part / Duration.CONVERSION[DurationUnit.D  ],
-			})()
+			x = new Map<string, () => number>([
+				['s'   , () => numeric_part / Duration.CONVERSION[DurationUnit.S  ]],
+				['ms'  , () => numeric_part / Duration.CONVERSION[DurationUnit.MS ]],
+				['ns'  , () => numeric_part / Duration.CONVERSION[DurationUnit.NS ]],
+				['min' , () => numeric_part / Duration.CONVERSION[DurationUnit.MIN]],
+				['hr'  , () => numeric_part / Duration.CONVERSION[DurationUnit.HR ]],
+				['d'   , () => numeric_part / Duration.CONVERSION[DurationUnit.D  ]],
+			]).get(unit_part) !()
 		}
 		x = x.valueOf()
 		xjs.Number.assertType(x, 'non-negative')

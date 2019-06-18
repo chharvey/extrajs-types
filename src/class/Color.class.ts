@@ -469,14 +469,14 @@ export default class Color {
 				let p1   : Fraction      = new Fraction(Percentage.fromString(channels[1]))
 				let p2   : Fraction      = new Fraction(Percentage.fromString(channels[2]))
 				let alpha: Fraction|null = (channels[3]) ? new Fraction((xjs.Number.REGEXP.test(channels[3])) ? +channels[3] : Percentage.fromString(channels[3])) : null
-				return xjs.Object.switch<Color>(space, {
-					hsv  : Color.fromHSV,
-					hsva : Color.fromHSV, // COMBAK{DEPRECATED}
-					hsl  : Color.fromHSL,
-					hsla : Color.fromHSL, // COMBAK{DEPRECATED}
-					hwb  : Color.fromHWB,
-					hwba : Color.fromHWB, // COMBAK{DEPRECATED}
-				})(hue, p1, p2, alpha || void 0)
+				return new Map<string, (hue: Angle, p1: Fraction, p2: Fraction, alpha?: Fraction) => Color>([
+					['hsv'  , Color.fromHSV],
+					['hsva' , Color.fromHSV], // COMBAK{DEPRECATED}
+					['hsl'  , Color.fromHSL],
+					['hsla' , Color.fromHSL], // COMBAK{DEPRECATED}
+					['hwb'  , Color.fromHWB],
+					['hwba' , Color.fromHWB], // COMBAK{DEPRECATED}
+				]).get(space) !(hue, p1, p2, alpha || void 0)
 			}
 		}
 
@@ -696,11 +696,11 @@ export default class Color {
 			this._GREEN.valueOf(),
 			this._BLUE.valueOf(),
 		]
-		return new Angle(xjs.Object.switch<number>(`${this._MAX}`, {
-			[r]: () => ((g - b) / this._CHROMA + 6) % 6 * 1/6,
-			[g]: () => ((b - r) / this._CHROMA + 2)     * 1/6,
-			[b]: () => ((r - g) / this._CHROMA + 4)     * 1/6,
-		})())
+		return new Angle(new Map<number, () => number>([
+			[r, () => ((g - b) / this._CHROMA + 6) % 6 * 1/6],
+			[g, () => ((b - r) / this._CHROMA + 2)     * 1/6],
+			[b, () => ((r - g) / this._CHROMA + 4)     * 1/6],
+		]).get(this._MAX) !())
 		/*
 		 * Exercise: prove:
 		 * _HSV_HUE === Math.atan2(Math.sqrt(3) * (g - b), 2*r - g - b)
@@ -867,13 +867,13 @@ export default class Color {
 		if (space === ColorSpace.HEX) {
 			return `#${this.rgb.slice(0,3).map((c) => leadingZero(Math.round(c.of(255)), 16)).join('')}${(this.alpha.lessThan(1)) ? leadingZero(Math.round(this.alpha.of(255)), 16) : ''}`
 		}
-		const returned: string[] = xjs.Object.switch<string[]>(`${space}`, {
-			[ColorSpace.RGB ]: () => this.rgb .slice(0,3).map((c) => `${Math.round(c.of(255))}`),
-			[ColorSpace.CMYK]: () => this.cmyk.slice(0,4).map((c) => `${c}`),
-			[ColorSpace.HSV ]: () => [this.hsvHue.toString(10, AngleUnit.TURN), PERCENT_FORMAT.format(this.hsvSat  .valueOf()), PERCENT_FORMAT.format(this.hsvVal  .valueOf())],
-			[ColorSpace.HSL ]: () => [this.hslHue.toString(10, AngleUnit.TURN), PERCENT_FORMAT.format(this.hslSat  .valueOf()), PERCENT_FORMAT.format(this.hslLum  .valueOf())],
-			[ColorSpace.HWB ]: () => [this.hwbHue.toString(10, AngleUnit.TURN), PERCENT_FORMAT.format(this.hwbWhite.valueOf()), PERCENT_FORMAT.format(this.hwbBlack.valueOf())],
-		})()
+		const returned: string[] = new Map<ColorSpace, () => string[]>([
+			[ColorSpace.RGB  , () => this.rgb .slice(0,3).map((c) => `${Math.round(c.of(255))}`) ],
+			[ColorSpace.CMYK , () => this.cmyk.slice(0,4).map((c) => `${c}`) ],
+			[ColorSpace.HSV  , () => [this.hsvHue.toString(10, AngleUnit.TURN), PERCENT_FORMAT.format(this.hsvSat  .valueOf()), PERCENT_FORMAT.format(this.hsvVal  .valueOf())] ],
+			[ColorSpace.HSL  , () => [this.hslHue.toString(10, AngleUnit.TURN), PERCENT_FORMAT.format(this.hslSat  .valueOf()), PERCENT_FORMAT.format(this.hslLum  .valueOf())] ],
+			[ColorSpace.HWB  , () => [this.hwbHue.toString(10, AngleUnit.TURN), PERCENT_FORMAT.format(this.hwbWhite.valueOf()), PERCENT_FORMAT.format(this.hwbBlack.valueOf())] ],
+		]).get(space) !()
 		return `${ColorSpace[space].toLowerCase()}(${returned.join(' ')}${
 			(this.alpha.lessThan(1)) ? ` / ${this.alpha}` : ''
 		})`
