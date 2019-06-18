@@ -18,6 +18,10 @@ module.exports = {
 	MeterInt     : require('./dist/class/MeterInt.class.js'    ).default,
 	Percentage   : require('./dist/class/Percentage.class.js'  ).default,
 	Rational     : require('./dist/class/Rational.class.js'    ).default,
+	TreeNode     : require('./dist/class/TreeNode.class.js'    ).default,
+	TreeNodePre  : require('./dist/class/TreeNodePre.class.js' ).default,
+	TreeNodePost : require('./dist/class/TreeNodePost.class.js').default,
+	TreeNodeDepth: require('./dist/class/TreeNodeDepth.class.js').default,
 	Vector       : require('./dist/class/Vector.class.js'      ).default,
 
 	Interval              : Interval_module.Interval,
