@@ -13,7 +13,7 @@ import Integer from './Integer.class'
  * @param   group the node with which the array is associated
  * @returns Does the node satisfy the predicate?
  */
-type FilterFn = (node: TreeNode, path: ReadonlyArray<Integer>, group: TreeNode) => boolean
+type FilterFn = (node: TreeNode, path: readonly Integer[], group: TreeNode) => boolean
 
 
 /**
@@ -315,7 +315,7 @@ export default abstract class TreeNode implements Iterable<TreeNode> {
 	 * @param   path the path to locate a node
 	 * @returns the node located at the given path, or `null` if no node exists there
 	 */
-	get(path: ReadonlyArray<Integer>): TreeNode|null {
+	get(path: readonly Integer[]): TreeNode|null {
 		if (path.length === 0) return this
 		let step: TreeNode;
 		try {
@@ -488,7 +488,7 @@ export default abstract class TreeNode implements Iterable<TreeNode> {
 	 * @param    reference the node or index to insert the new nodes after
 	 * @returns `this`
 	 */
-	insertAfter(nodes: ReadonlyArray<this>, reference: this|Integer|number): this {
+	insertAfter(nodes: readonly this[], reference: this|Integer|number): this {
 		let index: number = (reference instanceof TreeNode) ? this._CHILDREN.indexOf(reference) : reference.valueOf()
 		if (index < 0) throw new ReferenceError(`${reference} not found among children.`)
 		this._CHILDREN.splice(index, 0, ...nodes)
@@ -565,7 +565,7 @@ export default abstract class TreeNode implements Iterable<TreeNode> {
 	 * @param   callback function to call for each iteration, passing `(node, i, this)` as the arguments (where `i` is the iteration index)
 	 * @param   this_arg optional `this` context in which to call the callback
 	 */
-	forEach(callback: (node: TreeNode, path: ReadonlyArray<Integer>, parentnode: TreeNode) => void, this_arg: unknown = this): void {
+	forEach(callback: (node: TreeNode, path: readonly Integer[], parentnode: TreeNode) => void, this_arg: unknown = this): void {
 		return this.nodes().forEach((node) => { callback.call(this_arg, node, node.path, this) })
 	}
 

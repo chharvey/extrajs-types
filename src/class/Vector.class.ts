@@ -49,7 +49,7 @@ export default class Vector {
 	/**
 	 * The coordinates of this Vector.
 	 */
-	private readonly _DATA: ReadonlyArray<number>;
+	private readonly _DATA: readonly number[];
 	/**
 	 * The dimension of this Vector.
 	 */
@@ -59,7 +59,7 @@ export default class Vector {
 	 * Construct a new Vector object.
 	 * @param   data a Vector or array of finite numbers
 	 */
-	constructor(data: Vector|ReadonlyArray<number> = []) {
+	constructor(data: Vector|readonly number[] = []) {
 		if (data instanceof Vector) data = data.raw
 		data.forEach((c) => xjs.Number.assertType(c, 'finite'))
 		this._DATA = data
@@ -70,7 +70,7 @@ export default class Vector {
 	 * Get this Vector’s raw data: the list of coordinates.
 	 * @returns this Vector’s raw data
 	 */
-	get raw(): ReadonlyArray<number> {
+	get raw(): readonly number[] {
 		return this._DATA.slice()
 	}
 

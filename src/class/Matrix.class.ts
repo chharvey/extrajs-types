@@ -79,7 +79,7 @@ export default class Matrix {
 	/**
 	 * The cells of this Matrix.
 	 */
-	protected readonly _DATA: ReadonlyArray<ReadonlyArray<number>>;
+	protected readonly _DATA: readonly (readonly number[])[];
 	/**
 	 * The height of this Matrix.
 	 */
@@ -93,8 +93,8 @@ export default class Matrix {
 	 * Construct a new Matrix object.
 	 * @param   data a Matrix, an array of Vectors, or array of arrays of finite numbers
 	 */
-	constructor(data: Matrix|ReadonlyArray<Vector|number[]> = []) {
-		let rawdata: ReadonlyArray<number[]> = (data instanceof Matrix) ?
+	constructor(data: Matrix|readonly (Vector|number[])[] = []) {
+		let rawdata: readonly number[][] = (data instanceof Matrix) ?
 			data.raw.map((row) => [...row]) : // each row must be a full Array
 			data.map((row) => (row instanceof Vector) ? [...row.raw] : row) // each row must be a full Array
 		const maxwidth: number = Math.max(...rawdata.map((row) => row.length), 0)
@@ -111,7 +111,7 @@ export default class Matrix {
 	 * Get this Matrix’s raw data: the cells.
 	 * @returns this Matrix’s raw data
 	 */
-	get raw(): ReadonlyArray<ReadonlyArray<number>> {
+	get raw(): readonly (readonly number[])[] {
 		return this._DATA.slice()
 	}
 
