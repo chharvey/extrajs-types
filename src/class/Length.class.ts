@@ -63,14 +63,6 @@ export default class Length extends Number {
 		return new Length(Math.min(...lengths.map((x) => x.valueOf())))
 	}
 
-	/**
-	 * @deprecated WARNING{DEPRECATED} use constructor `new Length()` instead.
-	 */
-	static fromString(str: string): Length {
-		console.warn('`Length#fromString()` is deprecated. Use `new Length()` instead.')
-		return new Length(str)
-	}
-
 
 	/**
 	 * Construct a new Length object.
