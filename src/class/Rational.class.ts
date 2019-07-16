@@ -169,12 +169,12 @@ export default class Rational extends Number {
 	 */
 	assertType(type?: 'positive'|'negative'|'non-positive'|'non-negative'): void {
 		if (!type) return;
-		return xjs.Object.switch<void>(type, {
-			'positive'    : () => assert( Rational.ADD_IDEN.lessThan(this), `${this} must     be a positive integer.`),
-			'non-positive': () => assert(!Rational.ADD_IDEN.lessThan(this), `${this} must not be a positive integer.`),
-			'negative'    : () => assert( this.lessThan(0)                , `${this} must     be a negative integer.`),
-			'non-negative': () => assert(!this.lessThan(0)                , `${this} must not be a negative integer.`),
-		})()
+		return (new Map([
+			['positive'    , () => assert( Rational.ADD_IDEN.lessThan(this), `${this} must     be a positive integer.`)],
+			['non-positive', () => assert(!Rational.ADD_IDEN.lessThan(this), `${this} must not be a positive integer.`)],
+			['negative'    , () => assert( this.lessThan(0)                , `${this} must     be a negative integer.`)],
+			['non-negative', () => assert(!this.lessThan(0)                , `${this} must not be a negative integer.`)],
+		]).get(type) || (() => { throw new Error('No argument was given.') }))()
 	}
 
 	/**
