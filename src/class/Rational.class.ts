@@ -1,3 +1,5 @@
+import * as assert from 'assert'
+
 import * as xjs from 'extrajs'
 
 import Integer from './Integer.class'
@@ -139,6 +141,34 @@ export default class Rational extends Number {
 	get reciprocal(): Rational {
 		if (this.equals(0)) throw new RangeError('0 does not have a reciprocal.')
 		return new Rational(this._DENOMINATOR, this._NUMERATOR)
+	}
+
+	/**
+	 * Verify the type of this Rational, throwing if it does not match.
+	 *
+	 * Given a "type" argument, test to see if this Rational is of that type.
+	 * The acceptable "types", which are not mutually exclusive, follow:
+	 *
+	 * - `'positive'`     : the rational is strictly greater than 0
+	 * - `'negative'`     : the rational is strictly less    than 0
+	 * - `'non-positive'` : the rational is less    than or equal to 0
+	 * - `'non-negative'` : the rational is greater than or equal to 0
+	 *
+	 * If this Integer matches the described type, this method returns `void` instead of `true`.
+	 * If it does not match, this method throws an error instead of returning `false`.
+	 * This pattern is helpful where an error message is more descriptive than a boolean.
+	 *
+	 * @param   type one of the string literals listed above
+	 * @throws  {AssertionError} if the Rational does not match the described type
+	 */
+	assertType(type?: 'positive'|'negative'|'non-positive'|'non-negative'): void {
+		if (!type) return;
+		return (new Map([
+			['positive'    , () => assert( Rational.ADD_IDEN.lessThan(this), `${this} must     be a positive integer.`)],
+			['non-positive', () => assert(!Rational.ADD_IDEN.lessThan(this), `${this} must not be a positive integer.`)],
+			['negative'    , () => assert( this.lessThan(0)                , `${this} must     be a negative integer.`)],
+			['non-negative', () => assert(!this.lessThan(0)                , `${this} must not be a negative integer.`)],
+		]).get(type) || (() => { throw new Error('No argument was given.') }))()
 	}
 
 	/**

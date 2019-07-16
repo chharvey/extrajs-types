@@ -1,3 +1,5 @@
+import * as assert from 'assert'
+
 import * as xjs from 'extrajs'
 
 
@@ -112,6 +114,38 @@ export default class Integer extends Number {
 	 */
 	get next(): Integer {
 		return this.plus(1)
+	}
+
+	/**
+	 * Verify the type of this Integer, throwing if it does not match.
+	 *
+	 * Given a "type" argument, test to see if this Integer is of that type.
+	 * The acceptable "types", which are not mutually exclusive, follow:
+	 *
+	 * - `'positive'`     : the integer is strictly greater than 0
+	 * - `'negative'`     : the integer is strictly less    than 0
+	 * - `'non-positive'` : the integer is less    than or equal to 0
+	 * - `'non-negative'` : the integer is greater than or equal to 0
+	 * - `'whole'`        : alias of `'positive'`
+	 * - `'natural'`      : alias of `'non-negative'`
+	 *
+	 * If this Integer matches the described type, this method returns `void` instead of `true`.
+	 * If it does not match, this method throws an error instead of returning `false`.
+	 * This pattern is helpful where an error message is more descriptive than a boolean.
+	 *
+	 * @param   type one of the string literals listed above
+	 * @throws  {AssertionError} if the Integer does not match the described type
+	 */
+	assertType(type?: 'positive'|'negative'|'non-positive'|'non-negative'|'whole'|'natural'): void {
+		if (!type) return;
+		return (new Map([
+			['positive'    , () => assert( Integer.ADD_IDEN.lessThan(this), `${this} must     be a positive integer.`)],
+			['non-positive', () => assert(!Integer.ADD_IDEN.lessThan(this), `${this} must not be a positive integer.`)],
+			['negative'    , () => assert( this.lessThan(0)               , `${this} must     be a negative integer.`)],
+			['non-negative', () => assert(!this.lessThan(0)               , `${this} must not be a negative integer.`)],
+			['whole'       , () => this.assertType('positive'    )],
+			['natural'     , () => this.assertType('non-negative')],
+		]).get(type) || (() => { throw new Error('No argument was given.') }))()
 	}
 
 	/**
