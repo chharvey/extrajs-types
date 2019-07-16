@@ -134,7 +134,7 @@ export default class Integer extends Number {
 	 * @param   type one of the string literals listed above
 	 * @throws  {AssertionError} if the Integer does not match the described type
 	 */
-	assertType(type: 'positive'|'negative'|'non-positive'|'non-negative'|'whole'|'natural'): void {
+	assertType(type?: 'positive'|'negative'|'non-positive'|'non-negative'|'whole'|'natural'): void {
 		if (!type) return;
 		return xjs.Object.switch<void>(type, {
 			'positive'    : () => assert( Integer.ADD_IDEN.lessThan(this), `${this} must     be a positive integer.`),

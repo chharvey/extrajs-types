@@ -165,9 +165,9 @@ export default class Rational extends Number {
 	 * This pattern is helpful where an error message is more descriptive than a boolean.
 	 *
 	 * @param   type one of the string literals listed above
-	 * @throws  {AssertionError} if the Integer does not match the described type
+	 * @throws  {AssertionError} if the Rational does not match the described type
 	 */
-	assertType(type: 'positive'|'negative'|'non-positive'|'non-negative'): void {
+	assertType(type?: 'positive'|'negative'|'non-positive'|'non-negative'): void {
 		if (!type) return;
 		return xjs.Object.switch<void>(type, {
 			'positive'    : () => assert( Rational.ADD_IDEN.lessThan(this), `${this} must     be a positive integer.`),
