@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Rational | number-types</title>
+	<title>Rational | extrajs-types</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">number-types</a>
+					<a href="../index.html" class="title">extrajs-types</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -84,7 +84,7 @@
 						</li>
 						<li>Rationals are closed under addition, subtraction, multiplication, and division:
 						For rationals <code>a</code> and <code>b</code>, the expressions <code>a + b</code>, <code>a - b</code>, <code>a * b</code>, and <code>a / b</code> are guaranteed to also be rationals.</li>
-						<li>The set of Rationals has a (unique) additive identity and a (unique) multiplicative idenity:
+						<li>The set of Rationals has a (unique) additive identity and a (unique) multiplicative identity:
 							There exist rationals <code>0</code> and <code>1</code> such that for every rational <code>a</code>,
 							<code>a + 0</code>, <code>0 + a</code>, <code>a * 1</code>, and <code>1 * a</code> are guaranteed to equal <code>a</code>, and
 						<code>0</code> and <code>1</code>, respectively, are the only rationals with this property.</li>
@@ -98,12 +98,12 @@
 						<li>Rationals have (unique) additive inverses:
 							For every rational <code>a</code>, a unique rational <code>-a</code> is guaranteed such that <code>a + -a === -a + a === 0</code>
 						(where <code>0</code> is the additive identity).</li>
-						<li>Non-zero Rationals have (unique) multipliative inverses:
+						<li>Non-zero Rationals have (unique) multiplicative inverses:
 							For every rational <code>a !== 0</code> (where <code>0</code> is the multiplicative absorber),
 							a unique rational <code>a^</code> is guaranteed such that <code>a * a^ === ^a * a === 1</code>
 						(where <code>1</code> is the multiplicative identity).</li>
 						<li>Addition and multiplication are commutative and associative:
-							For rationals <code>a</code>, <code>b</code>, and <code>c</code>, the following statments are guaranteed true:<ul>
+							For rationals <code>a</code>, <code>b</code>, and <code>c</code>, the following statements are guaranteed true:<ul>
 								<li><code>a + b === b + a</code></li>
 								<li><code>a * b === b * a</code></li>
 								<li><code>a + (b + c) === (a + b) + c</code></li>
@@ -160,6 +160,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rational.html#asserttype" class="tsd-kind-icon">assert<wbr>Type</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rational.html#clamp" class="tsd-kind-icon">clamp</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rational.html#dividedby" class="tsd-kind-icon">divided<wbr>By</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="rational.html#equals" class="tsd-kind-icon">equals</a></li>
@@ -194,7 +195,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L87">Rational.class.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L83">Rational.class.ts:83</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -218,7 +219,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L93">Rational.class.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L89">Rational.class.ts:89</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -263,7 +264,7 @@
 					<div class="tsd-signature tsd-kind-icon">_DENOMINATOR<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L87">Rational.class.ts:87</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L83">Rational.class.ts:83</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -278,7 +279,7 @@
 					<div class="tsd-signature tsd-kind-icon">_NUMERATOR<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L85">Rational.class.ts:85</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L81">Rational.class.ts:81</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -293,7 +294,7 @@
 					<div class="tsd-signature tsd-kind-icon">ADD_<wbr>IDEN<span class="tsd-signature-symbol">:</span> <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> =&nbsp;new Rational()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L49">Rational.class.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L51">Rational.class.ts:51</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -308,7 +309,7 @@
 					<div class="tsd-signature tsd-kind-icon">MULT_<wbr>ABSORB<span class="tsd-signature-symbol">:</span> <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> =&nbsp;new Rational()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L53">Rational.class.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L55">Rational.class.ts:55</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -323,7 +324,7 @@
 					<div class="tsd-signature tsd-kind-icon">MULT_<wbr>IDEN<span class="tsd-signature-symbol">:</span> <a href="rational.html" class="tsd-signature-type">Rational</a><span class="tsd-signature-symbol"> =&nbsp;new Rational(1)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L51">Rational.class.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L53">Rational.class.ts:53</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -360,7 +361,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L123">Rational.class.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L119">Rational.class.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -383,7 +384,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L134">Rational.class.ts:134</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L130">Rational.class.ts:130</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -408,7 +409,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L145">Rational.class.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L141">Rational.class.ts:141</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -427,6 +428,53 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="asserttype" class="tsd-anchor"></a>
+					<h3>assert<wbr>Type</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">assert<wbr>Type<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">"positive"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"negative"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"non-positive"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"non-negative"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L164">Rational.class.ts:164</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Verify the type of this Rational, throwing if it does not match.</p>
+								</div>
+								<p>Given a &quot;type&quot; argument, test to see if this Rational is of that type.
+								The acceptable &quot;types&quot;, which are not mutually exclusive, follow:</p>
+								<ul>
+									<li><code>&#39;positive&#39;</code>     : the rational is strictly greater than 0</li>
+									<li><code>&#39;negative&#39;</code>     : the rational is strictly less    than 0</li>
+									<li><code>&#39;non-positive&#39;</code> : the rational is less    than or equal to 0</li>
+									<li><code>&#39;non-negative&#39;</code> : the rational is greater than or equal to 0</li>
+								</ul>
+								<p>If this Integer matches the described type, this method returns <code>void</code> instead of <code>true</code>.
+									If it does not match, this method throws an error instead of returning <code>false</code>.
+								This pattern is helpful where an error message is more descriptive than a boolean.</p>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{AssertionError} if the Rational does not match the described type</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> type: <span class="tsd-signature-type">"positive"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"negative"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"non-positive"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"non-negative"</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>one of the string literals listed above</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="clamp" class="tsd-anchor"></a>
 					<h3>clamp</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -436,7 +484,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L181">Rational.class.ts:181</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L207">Rational.class.ts:207</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -479,7 +527,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L250">Rational.class.ts:250</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L276">Rational.class.ts:276</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -512,7 +560,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L155">Rational.class.ts:155</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L179">Rational.class.ts:179</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -544,7 +592,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L272">Rational.class.ts:272</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L298">Rational.class.ts:298</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -582,7 +630,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L165">Rational.class.ts:165</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L191">Rational.class.ts:191</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -614,7 +662,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L215">Rational.class.ts:215</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L241">Rational.class.ts:241</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -647,7 +695,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L192">Rational.class.ts:192</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L218">Rational.class.ts:218</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -679,7 +727,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L226">Rational.class.ts:226</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L252">Rational.class.ts:252</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -705,7 +753,7 @@
 					<a name="toexponential" class="tsd-anchor"></a>
 					<h3>to<wbr>Exponential</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Exponential<span class="tsd-signature-symbol">(</span>fractionDigits<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Exponential<span class="tsd-signature-symbol">(</span>fractionDigits<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -723,7 +771,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fractionDigits: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fractionDigits: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Number of digits after the decimal point. Must be in the range 0 - 20, inclusive.</p>
 									</div>
@@ -737,7 +785,7 @@
 					<a name="tofixed" class="tsd-anchor"></a>
 					<h3>to<wbr>Fixed</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Fixed<span class="tsd-signature-symbol">(</span>fractionDigits<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Fixed<span class="tsd-signature-symbol">(</span>fractionDigits<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -755,7 +803,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fractionDigits: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fractionDigits: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Number of digits after the decimal point. Must be in the range 0 - 20, inclusive.</p>
 									</div>
@@ -769,7 +817,7 @@
 					<a name="tolocalestring" class="tsd-anchor"></a>
 					<h3>to<wbr>Locale<wbr>String</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Locale<wbr>String<span class="tsd-signature-symbol">(</span>locales<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">NumberFormatOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Locale<wbr>String<span class="tsd-signature-symbol">(</span>locales<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Intl.NumberFormatOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -793,7 +841,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">NumberFormatOptions</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">Intl.NumberFormatOptions</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>An object that contains one or more properties that specify comparison options.</p>
 									</div>
@@ -807,7 +855,7 @@
 					<a name="toprecision" class="tsd-anchor"></a>
 					<h3>to<wbr>Precision</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Precision<span class="tsd-signature-symbol">(</span>precision<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Precision<span class="tsd-signature-symbol">(</span>precision<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -825,7 +873,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> precision: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> precision: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Number of significant digits. Must be in the range 1 - 21, inclusive.</p>
 									</div>
@@ -839,7 +887,7 @@
 					<a name="tostring" class="tsd-anchor"></a>
 					<h3>to<wbr>String</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span>radix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span>radix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -857,7 +905,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> radix: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> radix: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Specifies a radix for converting numeric values to strings. This value is only used for numbers.</p>
 									</div>
@@ -900,7 +948,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L61">Rational.class.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L63">Rational.class.ts:63</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -937,7 +985,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Rational.class.ts#L75">Rational.class.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Rational.class.ts#L74">Rational.class.ts:74</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1033,6 +1081,9 @@
 					<li class=" tsd-kind-class">
 						<a href="openinterval.html" class="tsd-kind-icon">Open<wbr>Interval</a>
 					</li>
+					<li class=" tsd-kind-class tsd-is-not-exported">
+						<a href="orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a>
+					</li>
 					<li class=" tsd-kind-class">
 						<a href="percentage.html" class="tsd-kind-icon">Percentage</a>
 					</li>
@@ -1070,6 +1121,9 @@
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="rational.html#reciprocal" class="tsd-kind-icon">reciprocal</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="rational.html#asserttype" class="tsd-kind-icon">assert<wbr>Type</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="rational.html#clamp" class="tsd-kind-icon">clamp</a>
@@ -1124,10 +1178,46 @@
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class">
+						<a href="treenode.html" class="tsd-kind-icon">Tree<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="treenodebreadth.html" class="tsd-kind-icon">Tree<wbr>Node<wbr>Breadth</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="treenodepost.html" class="tsd-kind-icon">Tree<wbr>Node<wbr>Post</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="treenodepre.html" class="tsd-kind-icon">Tree<wbr>Node<wbr>Pre</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="vector.html" class="tsd-kind-icon">Vector</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="../globals.html#filterfn" class="tsd-kind-icon">Filter<wbr>Fn</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#names" class="tsd-kind-icon">NAMES</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#colindices" class="tsd-kind-icon">colindices</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#matrix" class="tsd-kind-icon">matrix</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#maxwidth" class="tsd-kind-icon">maxwidth</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#number" class="tsd-kind-icon">number</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#rawdata" class="tsd-kind-icon">rawdata</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#rowindices" class="tsd-kind-icon">rowindices</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../globals.html#xjs_map_find" class="tsd-kind-icon">xjs_<wbr><wbr>Map_<wbr>find</a>
 					</li>
 				</ul>
 			</nav>

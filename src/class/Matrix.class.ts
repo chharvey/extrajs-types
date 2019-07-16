@@ -5,7 +5,7 @@ import Vector from './Vector.class'
 
 
 /**
- * A Matrix is a two-dimensional array of numbers.
+ * A Matrix is an immutable two-dimensional array of numbers.
  *
  * Matrices have a finite natural number of rows and columns,
  * where each entry at a given row and column is called a **cell**.
@@ -19,7 +19,7 @@ import Vector from './Vector.class'
  * - Matrices are closed under addition, subtraction, and scalar multiplication:
  * 	For matrices `a` and `b` of dimension *N×M*, and for scalar `K`,
  * 	the expressions `a + b`, `a - b`, and `K * a` are guaranteed to also be matrices of dimension *N×M*.
- * - A Matrix Space has a (unique) additive idenity:
+ * - A Matrix Space has a (unique) additive identity:
  * 	There exists a matrix `0` such that for every matrix `a`,
  * 	`a + 0` and `0 + a` are guaranteed to equal `a`, and
  * 	`0` is the only matrix with this property.
@@ -27,7 +27,7 @@ import Vector from './Vector.class'
  * 	For every matrix `a`, a unique matrix `-a` is guaranteed such that `a + -a === -a + a === 0`
  * 	(where `0` is the additive identity).
  * - Addition is commutative and associative:
- * 	For matrices `a`, `b`, and `c`, the following statments are guaranteed true:
+ * 	For matrices `a`, `b`, and `c`, the following statements are guaranteed true:
  * 	- `a + b === b + a`
  * 	- `a + (b + c) === (a + b) + c`
  * - Scalar-Multiplication is associative:
@@ -79,7 +79,7 @@ export default class Matrix {
 	/**
 	 * The cells of this Matrix.
 	 */
-	protected readonly _DATA: ReadonlyArray<ReadonlyArray<number>>;
+	protected readonly _DATA: readonly (readonly number[])[];
 	/**
 	 * The height of this Matrix.
 	 */
@@ -93,8 +93,8 @@ export default class Matrix {
 	 * Construct a new Matrix object.
 	 * @param   data a Matrix, an array of Vectors, or array of arrays of finite numbers
 	 */
-	constructor(data: Matrix|ReadonlyArray<Vector|number[]> = []) {
-		let rawdata: ReadonlyArray<number[]> = (data instanceof Matrix) ?
+	constructor(data: Matrix|readonly (Vector|number[])[] = []) {
+		let rawdata: readonly number[][] = (data instanceof Matrix) ?
 			data.raw.map((row) => [...row]) : // each row must be a full Array
 			data.map((row) => (row instanceof Vector) ? [...row.raw] : row) // each row must be a full Array
 		const maxwidth: number = Math.max(...rawdata.map((row) => row.length), 0)
@@ -111,7 +111,7 @@ export default class Matrix {
 	 * Get this Matrix’s raw data: the cells.
 	 * @returns this Matrix’s raw data
 	 */
-	get raw(): ReadonlyArray<ReadonlyArray<number>> {
+	get raw(): readonly (readonly number[])[] {
 		return this._DATA.slice()
 	}
 
@@ -265,7 +265,7 @@ export default class Matrix {
 	}
 
 	/**
-	 * Return a minor of this Matrix, a submatrix excluding a single spcified row and column.
+	 * Return a minor of this Matrix, a submatrix excluding a single specified row and column.
 	 *
 	 * Helpful when calculating determinants and reciprocals.
 	 * @param   row the index of the row to exclude

@@ -29,7 +29,7 @@ import * as xjs from 'extrajs'
  * 	For fractions `a` and `b`, if `a * b === 0` or if `b * a === 0`, then either `a === 0` or `b === 0`
  * 	(where `0` is the multiplicative absorber).
  * - Multiplication is commutative and associative:
- * 	For fractions `a`, `b`, and `c`, the following statments are guaranteed true:
+ * 	For fractions `a`, `b`, and `c`, the following statements are guaranteed true:
  * 	- `a * b === b * a`
  * 	- `a * (b * c) === (a * b) * c`
  */
@@ -48,20 +48,22 @@ export default class Fraction extends Number {
 	 * Return the maximum of two or more Fractions.
 	 * @param   fracs two or more Fractions to compare
 	 * @returns the greatest of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...fracs: Fraction[]): Fraction {
+		if (!fracs.length) throw new Error('No arguments provided.')
 		return new Fraction(Math.max(...fracs.map((f) => f.valueOf())))
-		// return fracs.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).slice(-1)[0]
 	}
 
 	/**
 	 * Return the minimum of two or more Fractions.
 	 * @param   fracs two or more Fractions to compare
 	 * @returns the least of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...fracs: Fraction[]): Fraction {
+		if (!fracs.length) throw new Error('No arguments provided.')
 		return new Fraction(Math.min(...fracs.map((f) => f.valueOf())))
-		// return fracs.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
 	}
 
 	// /**

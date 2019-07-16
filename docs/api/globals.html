@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>number-types</title>
+	<title>extrajs-types</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">number-types</a>
+					<a href="index.html" class="title">extrajs-types</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> number-types</h1>
+			<h1> extrajs-types</h1>
 		</div>
 	</div>
 </header>
@@ -92,17 +92,106 @@
 								<li class="tsd-kind-class"><a href="classes/meter.html" class="tsd-kind-icon">Meter</a></li>
 								<li class="tsd-kind-class"><a href="classes/meterint.html" class="tsd-kind-icon">Meter<wbr>Int</a></li>
 								<li class="tsd-kind-class"><a href="classes/openinterval.html" class="tsd-kind-icon">Open<wbr>Interval</a></li>
+								<li class="tsd-kind-class tsd-is-not-exported"><a href="classes/orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a></li>
 								<li class="tsd-kind-class"><a href="classes/percentage.html" class="tsd-kind-icon">Percentage</a></li>
 								<li class="tsd-kind-class"><a href="classes/rational.html" class="tsd-kind-icon">Rational</a></li>
+								<li class="tsd-kind-class"><a href="classes/treenode.html" class="tsd-kind-icon">Tree<wbr>Node</a></li>
+								<li class="tsd-kind-class"><a href="classes/treenodebreadth.html" class="tsd-kind-icon">Tree<wbr>Node<wbr>Breadth</a></li>
+								<li class="tsd-kind-class"><a href="classes/treenodepost.html" class="tsd-kind-icon">Tree<wbr>Node<wbr>Post</a></li>
+								<li class="tsd-kind-class"><a href="classes/treenodepre.html" class="tsd-kind-icon">Tree<wbr>Node<wbr>Pre</a></li>
 								<li class="tsd-kind-class"><a href="classes/vector.html" class="tsd-kind-icon">Vector</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#filterfn" class="tsd-kind-icon">Filter<wbr>Fn</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#names" class="tsd-kind-icon">NAMES</a></li>
+								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#colindices" class="tsd-kind-icon">colindices</a></li>
+								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#matrix" class="tsd-kind-icon">matrix</a></li>
+								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#maxwidth" class="tsd-kind-icon">maxwidth</a></li>
+								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#number" class="tsd-kind-icon">number</a></li>
+								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#rawdata" class="tsd-kind-icon">rawdata</a></li>
+								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#rowindices" class="tsd-kind-icon">rowindices</a></li>
 							</ul>
 						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-has-type-parameter tsd-is-not-exported"><a href="globals.html#xjs_map_find" class="tsd-kind-icon">xjs_<wbr><wbr>Map_<wbr>find</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
+					<a name="filterfn" class="tsd-anchor"></a>
+					<h3>Filter<wbr>Fn</h3>
+					<div class="tsd-signature tsd-kind-icon">Filter<wbr>Fn<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L16">TreeNode.class.ts:16</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A filter function passed to various methods of <code>TreeNode</code>.</p>
+						</div>
+						<p>The function is a predicate that filters out or tests some quality of each node in an array.</p>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>the node in the array</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>the path of the node within its tree</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>the node with which the array is associated</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>Does the node satisfy the predicate?</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="classes/treenode.html" class="tsd-signature-type">TreeNode</a>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">readonly</span>, Integer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, __namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">[]</span>, group<span class="tsd-signature-symbol">: </span><a href="classes/treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>node: <a href="classes/treenode.html" class="tsd-signature-type">TreeNode</a></h5>
+											</li>
+											<li>
+												<h5>path: <span class="tsd-signature-type">readonly</span></h5>
+											</li>
+											<li>
+												<h5>Integer: <span class="tsd-signature-type">any</span></h5>
+											</li>
+											<li>
+												<h5>__namedParameters: <span class="tsd-signature-type">[]</span></h5>
+											</li>
+											<li>
+												<h5>group: <a href="classes/treenode.html" class="tsd-signature-type">TreeNode</a></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</div>
 				</section>
 			</section>
@@ -114,7 +203,7 @@
 					<div class="tsd-signature tsd-kind-icon">NAMES<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;require(&#x27;../../src/color-names.json&#x27;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/14a346e/src/class/Color.class.ts#L8">Color.class.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Color.class.ts#L9">Color.class.ts:9</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -125,6 +214,136 @@
 							</li>
 						</ul>
 					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
+					<a name="colindices" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagLet">Let</span> colindices</h3>
+					<div class="tsd-signature tsd-kind-icon">colindices<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;Array.from(new Array(this.width .valueOf()), (_, j) &#x3D;&gt; j)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Matrix.class.ts#L277">Matrix.class.ts:277</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
+					<a name="matrix" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> matrix</h3>
+					<div class="tsd-signature tsd-kind-icon">matrix<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Matrix.class.ts#L256">Matrix.class.ts:256</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
+					<a name="maxwidth" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> maxwidth</h3>
+					<div class="tsd-signature tsd-kind-icon">maxwidth<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;Math.max(...rawdata.map((row) &#x3D;&gt; row.length), 0)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Matrix.class.ts#L100">Matrix.class.ts:100</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
+					<a name="number" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagLet">Let</span> number</h3>
+					<div class="tsd-signature tsd-kind-icon">number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/MatrixSquare.class.ts#L51">MatrixSquare.class.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Matrix.class.ts#L97">Matrix.class.ts:97</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
+					<a name="rawdata" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagLet">Let</span> rawdata</h3>
+					<div class="tsd-signature tsd-kind-icon">rawdata<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">readonly</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/MatrixSquare.class.ts#L51">MatrixSquare.class.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Matrix.class.ts#L97">Matrix.class.ts:97</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
+					<a name="rowindices" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagLet">Let</span> rowindices</h3>
+					<div class="tsd-signature tsd-kind-icon">rowindices<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;Array.from(new Array(this.height.valueOf()), (_, i) &#x3D;&gt; i)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Matrix.class.ts#L276">Matrix.class.ts:276</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+					<a name="xjs_map_find" class="tsd-anchor"></a>
+					<h3>xjs_<wbr><wbr>Map_<wbr>find</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">xjs_<wbr><wbr>Map_<wbr>find&lt;K, V&gt;<span class="tsd-signature-symbol">(</span>map<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span>, predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, this_arg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Color.class.ts#L13">Color.class.ts:13</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>K</h4>
+								</li>
+								<li>
+									<h4>V</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>map: <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>predicate: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span>, map<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>value: <span class="tsd-signature-type">V</span></h5>
+														</li>
+														<li>
+															<h5>key: <span class="tsd-signature-type">K</span></h5>
+														</li>
+														<li>
+															<h5>map: <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> this_arg: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">V</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -195,6 +414,9 @@
 					<li class=" tsd-kind-class">
 						<a href="classes/openinterval.html" class="tsd-kind-icon">Open<wbr>Interval</a>
 					</li>
+					<li class=" tsd-kind-class tsd-is-not-exported">
+						<a href="classes/orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a>
+					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/percentage.html" class="tsd-kind-icon">Percentage</a>
 					</li>
@@ -202,10 +424,46 @@
 						<a href="classes/rational.html" class="tsd-kind-icon">Rational</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/treenode.html" class="tsd-kind-icon">Tree<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/treenodebreadth.html" class="tsd-kind-icon">Tree<wbr>Node<wbr>Breadth</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/treenodepost.html" class="tsd-kind-icon">Tree<wbr>Node<wbr>Post</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/treenodepre.html" class="tsd-kind-icon">Tree<wbr>Node<wbr>Pre</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/vector.html" class="tsd-kind-icon">Vector</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#filterfn" class="tsd-kind-icon">Filter<wbr>Fn</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#names" class="tsd-kind-icon">NAMES</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#colindices" class="tsd-kind-icon">colindices</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#matrix" class="tsd-kind-icon">matrix</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#maxwidth" class="tsd-kind-icon">maxwidth</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#number" class="tsd-kind-icon">number</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#rawdata" class="tsd-kind-icon">rawdata</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#rowindices" class="tsd-kind-icon">rowindices</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+						<a href="globals.html#xjs_map_find" class="tsd-kind-icon">xjs_<wbr><wbr>Map_<wbr>find</a>
 					</li>
 				</ul>
 			</nav>

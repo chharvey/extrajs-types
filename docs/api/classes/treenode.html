@@ -1,0 +1,2193 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>TreeNode | extrajs-types</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">extrajs-types</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="treenode.html">TreeNode</a>
+				</li>
+			</ul>
+			<h1>Class TreeNode</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A node in a Tree.</p>
+					</div>
+					<p>A Tree is a data structure containing a set of nodes arranged in a hierarchy.
+					This class encodes the ‘node’ concept in the tree.</p>
+					<p>In the hierarchy, nodes are connected by ‘links’.
+						The links between nodes are not encoded directly in an object, but are formed implicitly
+						when nodes are added as children of each other.
+						The links form an acyclical directed graph:
+						directed in that they only connect parent nodes to child nodes (not vice versa), and
+						acyclical in that no node can be eventually linked to itself.
+					The links are also unique in that there may be no more than one link from a node <code>a</code> to a node <code>b</code>.</p>
+					<p>A tree must have exactly one root, which is a unique node that has no parent.
+					Trees must have at least one node (the root node).</p>
+					<p>The following properties of the tree hierarchy are observed:</p>
+					<ul>
+						<li>The tree hierarchy embeds a strict partial order relation, &quot;ancestor of&quot;, here denoted &quot;<code>&gt;&gt;</code>&quot;:<ul>
+								<li>(Irreflexivity) For a node <code>a</code>, <code>!(a &gt;&gt; a)</code>.</li>
+								<li>(Asymmetry) For nodes <code>a</code> and <code>b</code>, if <code>a &gt;&gt; b</code>, then <code>!(b &gt;&gt; a)</code>.</li>
+								<li>(Transitivity) For nodes <code>a</code>, <code>b</code>, and <code>c</code>, if <code>a &gt;&gt; b</code> and <code>b &gt;&gt; c</code>, then <code>a &gt;&gt; c</code>.</li>
+							</ul>
+						</li>
+						<li>The tree contains a &quot;root node&quot; (a unique maximal element):
+						There exists a node <code>r</code> such that for every other node <code>n !== r</code>, <code>r &gt;&gt; n</code>.</li>
+						<li>Every non-root node has a &quot;parent&quot; (a unique minimum of all its ancestors):
+							For each non-root node <code>a</code> there exists a node <code>p</code> such that the following statements hold:<ul>
+								<li><code>p &gt;&gt; a</code> (and by irreflexivity, <code>p !== a</code>)</li>
+								<li>Of all other ancestors of <code>a</code>, <code>p</code> is the minimal element:
+								For all <code>b</code>, if <code>b &gt;&gt; a</code>, then either <code>b === p</code> or <code>b &gt;&gt; p</code></li>
+							</ul>
+						</li>
+						<li>There are no nodes between a node and its parent in this ordering:
+						For every node <code>a</code> with parent <code>b</code>, there does not exist a node <code>c</code> such that <code>b &gt;&gt; c &gt;&gt; a</code>.</li>
+						<li>Each set of nodes that share the same &quot;parent&quot; embeds two relations:<ul>
+								<li>An equivalence relation, &quot;sibling of&quot;, here denoted &quot;<code>~</code>&quot;:<ul>
+										<li>(Reflexivity) For a node <code>a</code>, <code>a ~ a</code>.</li>
+										<li>(Symmetry) For nodes <code>a</code> and <code>b</code>, if <code>a ~ b</code>, then <code>b ~ a</code>.</li>
+										<li>(Transitivity) For nodes <code>a</code>, <code>b</code>, and <code>c</code>, if <code>a ~ b</code> and <code>b ~ c</code>, then <code>a ~ c</code>.</li>
+									</ul>
+								</li>
+								<li>A strict total order, &quot;previous to&quot;, here denoted &quot;<code>-&gt;</code>&quot;:<ul>
+										<li>(Irreflexivity) For a node <code>a</code>, <code>!(a -&gt; a)</code>.</li>
+										<li>(Asymmetry) For nodes <code>a</code> and <code>b</code>, if <code>a -&gt; b</code>, then <code>!(b -&gt; a)</code>.</li>
+										<li>(Transitivity) For nodes <code>a</code>, <code>b</code>, and <code>c</code>, if <code>a -&gt; b</code> and <code>b -&gt; c</code>, then <code>a -&gt; c</code>.</li>
+										<li>(Comparability) For distinct nodes <code>a !== b</code> sharing the same parent,
+											at least one of the following statements is guaranteed true:<ul>
+												<li><code>a -&gt; b</code></li>
+												<li><code>b -&gt; a</code></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<p><em>(Meta: The outlined list above is an example of a tree.)</em></p>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">TreeNode</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="treenodebreadth.html" class="tsd-signature-type">TreeNodeBreadth</a>
+							</li>
+							<li>
+								<a href="treenodepost.html" class="tsd-signature-type">TreeNodePost</a>
+							</li>
+							<li>
+								<a href="treenodepre.html" class="tsd-signature-type">TreeNodePre</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="treenode.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private-protected">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="treenode.html#_children" class="tsd-kind-icon">_CHILDREN</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="treenode.html#_value" class="tsd-kind-icon">_VALUE</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="treenode.html#_parent" class="tsd-kind-icon">_parent</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="treenode.html#firstchild" class="tsd-kind-icon">first<wbr>Child</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="treenode.html#firstsibling" class="tsd-kind-icon">first<wbr>Sibling</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="treenode.html#height" class="tsd-kind-icon">height</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="treenode.html#lastchild" class="tsd-kind-icon">last<wbr>Child</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="treenode.html#lastsibling" class="tsd-kind-icon">last<wbr>Sibling</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="treenode.html#nextsibling" class="tsd-kind-icon">next<wbr>Sibling</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="treenode.html#parent" class="tsd-kind-icon">parent</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="treenode.html#path" class="tsd-kind-icon">path</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="treenode.html#prevsibling" class="tsd-kind-icon">prev<wbr>Sibling</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="treenode.html#root" class="tsd-kind-icon">root</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="treenode.html#size" class="tsd-kind-icon">size</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="treenode.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="treenode.html#valuedeep" class="tsd-kind-icon">value<wbr>Deep</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#after" class="tsd-kind-icon">after</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#ancestors" class="tsd-kind-icon">ancestors</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#append" class="tsd-kind-icon">append</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#appendto" class="tsd-kind-icon">append<wbr>To</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#before" class="tsd-kind-icon">before</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#children" class="tsd-kind-icon">children</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#clear" class="tsd-kind-icon">clear</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#commonancestor" class="tsd-kind-icon">common<wbr>Ancestor</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#delete" class="tsd-kind-icon">delete</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#descendants" class="tsd-kind-icon">descendants</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#entries" class="tsd-kind-icon">entries</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#equals" class="tsd-kind-icon">equals</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#every" class="tsd-kind-icon">every</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#filter" class="tsd-kind-icon">filter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#find" class="tsd-kind-icon">find</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#findpath" class="tsd-kind-icon">find<wbr>Path</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#has" class="tsd-kind-icon">has</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#insertafter" class="tsd-kind-icon">insert<wbr>After</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#nextsiblingsall" class="tsd-kind-icon">next<wbr>Siblings<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#nodes" class="tsd-kind-icon">nodes</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#paths" class="tsd-kind-icon">paths</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#prepend" class="tsd-kind-icon">prepend</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#prependto" class="tsd-kind-icon">prepend<wbr>To</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#prevsiblingsall" class="tsd-kind-icon">prev<wbr>Siblings<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#remove" class="tsd-kind-icon">remove</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#siblings" class="tsd-kind-icon">siblings</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#some" class="tsd-kind-icon">some</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="treenode.html#values" class="tsd-kind-icon">values</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Tree<wbr>Node<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L73">TreeNode.class.ts:73</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Construct a new TreeNode object.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{NanError} if NaN was given as the argument</p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p>{TypeError} if <code>undefined</code> was given as the argument</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">unknown</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>this node’s data value</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="_children" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _CHILDREN</h3>
+					<div class="tsd-signature tsd-kind-icon">_CHILDREN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L73">TreeNode.class.ts:73</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The children of this node.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_value" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _VALUE</h3>
+					<div class="tsd-signature tsd-kind-icon">_VALUE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unknown</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L71">TreeNode.class.ts:71</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The data value of this node.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_parent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _parent</h3>
+					<div class="tsd-signature tsd-kind-icon">_parent<span class="tsd-signature-symbol">:</span> <a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L69">TreeNode.class.ts:69</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The parent TreeNode that this TreeNode is a child of.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="firstchild" class="tsd-anchor"></a>
+					<h3>first<wbr>Child</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> firstChild<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L196">TreeNode.class.ts:196</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the first child of this TreeNode.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a></h4>
+							<p>the child at the start of this TreeNode’s children</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="firstsibling" class="tsd-anchor"></a>
+					<h3>first<wbr>Sibling</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> firstSibling<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L245">TreeNode.class.ts:245</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the first sibling, if it exists, of this TreeNode, if it has a parent.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{OrphanError} if this TreeNode has no parent</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a></h4>
+							<p>the first sibling preceding this TreeNode in its parent (or <code>this</code> if this is the first sibling)</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="height" class="tsd-anchor"></a>
+					<h3>height</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> height<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L187">TreeNode.class.ts:187</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the height of a tree with this TreeNode as its root.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a></h4>
+							<p>if this node has no children, 1; otherwise, the maximum height of each child, plus 1</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="lastchild" class="tsd-anchor"></a>
+					<h3>last<wbr>Child</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> lastChild<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L204">TreeNode.class.ts:204</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the last child of this TreeNode.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a></h4>
+							<p>the child at the end of this TreeNode’s children</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="lastsibling" class="tsd-anchor"></a>
+					<h3>last<wbr>Sibling</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> lastSibling<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L255">TreeNode.class.ts:255</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the last sibling, if it exists, of this TreeNode, if it has a parent.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{OrphanError} if this TreeNode has no parent</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a></h4>
+							<p>the last sibling following this TreeNode in its parent (or <code>this</code> if this is the last sibling)</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="nextsibling" class="tsd-anchor"></a>
+					<h3>next<wbr>Sibling</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> nextSibling<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L235">TreeNode.class.ts:235</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the next sibling, if it exists, of this TreeNode, if it has a parent.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{OrphanError} if this TreeNode has no parent</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+							<p>the sibling following this TreeNode in its parent, or <code>null</code> if this is the last sibling</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="parent" class="tsd-anchor"></a>
+					<h3>parent</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> parent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L216">TreeNode.class.ts:216</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the parent, if it exists, of this TreeNode.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+							<p>the parent of this TreeNode in its parent, or <code>null</code> if it has none</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="path" class="tsd-anchor"></a>
+					<h3>path</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> path<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L160">TreeNode.class.ts:160</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return an array of indices describing the path of this TreeNode in its tree.</p>
+								</div>
+								<p>If this node has no parent, an empty array is returned.</p>
+								<p>Each index in the array describes the position of an ancestor of this node,
+									where the order of indices begins with the root and ends with this node.
+									That is, the first entry is the index of this node’s ancestor within the root’s children;
+									the second entry is the index of this node’s ancestor within the root’s grandchildren;
+								and so on.</p>
+								<p>To get the “depth” of a node, you can call <code>node.path.length</code>.</p>
+								<p>For example, this diagram shows a tree with nodes.
+								The paths of the nodes are listed below it.</p>
+								<pre><code>       <span class="hljs-attr">r</span> <span class="hljs-string">(root)</span>
+      <span class="hljs-meta">/</span> <span class="hljs-string">\
+     a   b</span>
+    <span class="hljs-meta">/</span>     <span class="hljs-string">\
+   /\      e</span>
+  <span class="hljs-attr">c</span>  <span class="hljs-string">d     |</span>
+           <span class="hljs-attr">f</span></code></pre><pre><code>r<span class="hljs-selector-class">.path</span>  <span class="hljs-comment">//  []  (the path of a root node is an empty array)</span>
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-class">.path</span>  <span class="hljs-comment">//  [0]</span>
+<span class="hljs-selector-tag">b</span><span class="hljs-selector-class">.path</span>  <span class="hljs-comment">//  [1]</span>
+c<span class="hljs-selector-class">.path</span>  <span class="hljs-comment">//  [0, 0]</span>
+d<span class="hljs-selector-class">.path</span>  <span class="hljs-comment">//  [0, 1]</span>
+e<span class="hljs-selector-class">.path</span>  <span class="hljs-comment">//  [1, 0]</span>
+f<span class="hljs-selector-class">.path</span>  <span class="hljs-comment">//  [1, 0, 0]</span></code></pre><p>NOTE: The returned array is shallow, not live, meaning any changes to it will not affect the tree.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>an array of non-negative integers describing the position of each of this TreeNode’s ancestors</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="prevsibling" class="tsd-anchor"></a>
+					<h3>prev<wbr>Sibling</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> prevSibling<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L225">TreeNode.class.ts:225</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the previous sibling, if it exists, of this TreeNode, if it has a parent.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{OrphanError} if this TreeNode has no parent</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+							<p>the sibling preceding this TreeNode in its parent, or <code>null</code> if this is the first sibling</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="root" class="tsd-anchor"></a>
+					<h3>root</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> root<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L119">TreeNode.class.ts:119</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the root of this TreeNode’s tree.</p>
+								</div>
+								<p>Return <code>this</code> if this TreeNode is the root (has no parents).</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a></h4>
+							<p>the root of this TreeNode’s tree</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="size" class="tsd-anchor"></a>
+					<h3>size</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> size<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L179">TreeNode.class.ts:179</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the size of a tree with this TreeNode as its root.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a></h4>
+							<p>the total number of nodes in the tree, including this node and descendants of this node</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="value" class="tsd-anchor"></a>
+					<h3>value</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> value<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L98">TreeNode.class.ts:98</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return this TreeNode’s value exactly.</p>
+								</div>
+								<p>WARNING: this method returns this node’s actual value.
+								If the value returned is mutable and is changed, this node will be affected.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4>
+							<p>the actual value of this node</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="valuedeep" class="tsd-anchor"></a>
+					<h3>value<wbr>Deep</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> valueDeep<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L109">TreeNode.class.ts:109</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a deep clone of this TreeNode’s value.</p>
+								</div>
+								<p>NOTE: If the value returned is mutable and is changed, this node will remain unaffected.</p>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p>xjs.Object.cloneDeep</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4>
+							<p>a deep clone of this node’s value</p>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="___iterator" class="tsd-anchor"></a>
+					<h3>__@iterator</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">__@iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L561">TreeNode.class.ts:561</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>implements</dt>
+									<dd><p>Iterable<TreeNode></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="after" class="tsd-anchor"></a>
+					<h3>after</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">after<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>nodes<span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L682">TreeNode.class.ts:682</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Insert the given nodes after this node in its parent.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{OrphanError} if this TreeNode has no parent</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>nodes: <a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the nodes to insert</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p><code>this</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ancestors" class="tsd-anchor"></a>
+					<h3>ancestors</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">ancestors<span class="tsd-signature-symbol">(</span>filter<span class="tsd-signature-symbol">?: </span><a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a>, this_arg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L396">TreeNode.class.ts:396</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a shallow array of the ancestors of this TreeNode, from “oldest” to “youngest”, optionally filtered by a predicate.</p>
+								</div>
+								<p>If this TreeNode has no parent, an empty array is returned.</p>
+								<p>NOTE: The returned array is shallow, not live, meaning any changes to it will not affect the tree.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> filter: <a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a><span class="tsd-signature-symbol"> =&nbsp;() &#x3D;&gt; true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an optional predicate by which to filter the ancestors</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> this_arg: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> =&nbsp;this</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional <code>this</code> context in which to call the filter</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>shallow array of this node’s ancestor nodes, starting with its parent</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="append" class="tsd-anchor"></a>
+					<h3>append</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">append<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>nodes<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L473">TreeNode.class.ts:473</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Append the given nodes to this TreeNode’s list of children, at the end of the list.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>nodes: <span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the nodes to append</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p><code>this</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="appendto" class="tsd-anchor"></a>
+					<h3>append<wbr>To</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">append<wbr>To<span class="tsd-signature-symbol">(</span>parentnode<span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L643">TreeNode.class.ts:643</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Append this TreeNode to another node’s children, at the end of the list.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>parentnode: <a href="treenode.html" class="tsd-signature-type">TreeNode</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the parent node to append to</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p><code>this</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="before" class="tsd-anchor"></a>
+					<h3>before</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">before<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>nodes<span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L666">TreeNode.class.ts:666</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Insert the given nodes before this node in its parent.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{OrphanError} if this TreeNode has no parent</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>nodes: <a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the nodes to insert</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p><code>this</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="children" class="tsd-anchor"></a>
+					<h3>children</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">children<span class="tsd-signature-symbol">(</span>filter<span class="tsd-signature-symbol">?: </span><a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a>, this_arg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L359">TreeNode.class.ts:359</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a shallow array of the direct children of this TreeNode, optionally filtered by a predicate.</p>
+								</div>
+								<p>The order of elements in the returned array is the order of this TreeNode’s children.
+								If this TreeNode has no children, an empty array is returned.</p>
+								<p>NOTE: The returned array is shallow, not live, meaning any changes to it will not affect the tree.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> filter: <a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a><span class="tsd-signature-symbol"> =&nbsp;() &#x3D;&gt; true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an optional predicate by which to filter the children</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> this_arg: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> =&nbsp;this</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional <code>this</code> context in which to call the filter</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>a shallow array of this node’s child nodes</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="clear" class="tsd-anchor"></a>
+					<h3>clear</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">clear<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L524">TreeNode.class.ts:524</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove all children from this TreeNode.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p><code>this</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="commonancestor" class="tsd-anchor"></a>
+					<h3>common<wbr>Ancestor</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">common<wbr>Ancestor<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L712">TreeNode.class.ts:712</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the “youngest” common ancestor of this node and the given node.</p>
+								</div>
+								<p>If <code>this</code> and the argument have multiple ancestors in common, then the minimum ancestor is returned.
+									If <code>this</code> and the argument have no ancestors in common, <code>null</code> is returned.
+								If <code>this</code> or the argument is a root node, then this method simply returns that root node if it is an ancestor of the other.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="treenode.html" class="tsd-signature-type">TreeNode</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the node to compare to</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+							<p>the minimum ancestor between <code>this</code> and <code>node</code>; if there is none, <code>null</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="delete" class="tsd-anchor"></a>
+					<h3>delete</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>children<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L510">TreeNode.class.ts:510</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove the specified children from this TreeNode.</p>
+								</div>
+								<p>Only children of this node will be removed
+								(arguments that are provided but are not children of this node will not be affected).</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>children: <span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the child nodes to remove</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p><code>this</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="descendants" class="tsd-anchor"></a>
+					<h3>descendants</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">descendants<span class="tsd-signature-symbol">(</span>filter<span class="tsd-signature-symbol">?: </span><a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a>, this_arg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L375">TreeNode.class.ts:375</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a shallow array of all direct and indirect children of this TreeNode, optionally filtered by a predicate.</p>
+								</div>
+								<p>The array contains the direct children of this TreeNode, along with the
+									direct children of <em>those</em> children, and so on.
+								If this TreeNode has no children, an empty array is returned.</p>
+								<p>NOTE: The returned array is shallow, not live, meaning any changes to it will not affect the tree.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> filter: <a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a><span class="tsd-signature-symbol"> =&nbsp;() &#x3D;&gt; true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an optional predicate by which to filter the descendants</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> this_arg: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> =&nbsp;this</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional <code>this</code> context in which to call the filter</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>a shallow array of this node’s descendant nodes</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="entries" class="tsd-anchor"></a>
+					<h3>entries</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">entries<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L541">TreeNode.class.ts:541</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a new <code>Iterator</code> object that contains the key/value pairs for each node in this tree, with <code>this</code> being the first node.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>a new <code>Iterator</code> object</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="equals" class="tsd-anchor"></a>
+					<h3>equals</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a>, predicate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L338">TreeNode.class.ts:338</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Test custom equality between nodes.</p>
+								</div>
+								<p>Nodes are equal iff they have “the same” value (as determined by the predicate)
+								and they have “the same” child nodes (as compared by this method and the same predicate).</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="treenode.html" class="tsd-signature-type">TreeNode</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the TreeNode to compare</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> predicate: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;xjs.Object.sameValueZero</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>check the “sameness” of node values</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>x: <span class="tsd-signature-type">any</span></h5>
+														</li>
+														<li>
+															<h5>y: <span class="tsd-signature-type">any</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>Is this node effectively the same as the given node?</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="every" class="tsd-anchor"></a>
+					<h3>every</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">every<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a>, this_arg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L578">TreeNode.class.ts:578</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Test whether all nodes in this tree satisfy the given predicate.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>predicate: <a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>predicate to test for each descendant</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> this_arg: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> =&nbsp;this</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional <code>this</code> context in which to call the callback</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>Does the callback return <code>true</code> for each iteration?</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="filter" class="tsd-anchor"></a>
+					<h3>filter</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">filter<span class="tsd-signature-symbol">(</span>filter<span class="tsd-signature-symbol">: </span><a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a>, this_arg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L599">TreeNode.class.ts:599</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a shallow array of nodes in this TreeNode’s tree,
+									optionally filtered by a predicate.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filter: <a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>predicate by which to filter the nodes</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> this_arg: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> =&nbsp;this</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional <code>this</code> context in which to call the filter</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p><code>this.nodes(traversal).filter()</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="find" class="tsd-anchor"></a>
+					<h3>find</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">find<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a>, this_arg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L609">TreeNode.class.ts:609</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Find the first descendant that satisfies the predicate.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>predicate: <a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>predicate by which to filter the descendants</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> this_arg: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> =&nbsp;this</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional <code>this</code> context in which to call the filter</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+							<p>the first node, in the provided traversal order, that satisfies the predicate</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="findpath" class="tsd-anchor"></a>
+					<h3>find<wbr>Path</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Path<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a>, this_arg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L619">TreeNode.class.ts:619</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Find the path of the first descendant that satisfies the predicate.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>predicate: <a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>predicate by which to filter the descendants</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> this_arg: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> =&nbsp;this</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional <code>this</code> context in which to call the filter</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">[]</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+							<p>the path of the first node, in the provided traversal order, that satisfies the predicate</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="foreach" class="tsd-anchor"></a>
+					<h3>for<wbr>Each</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">for<wbr>Each<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, this_arg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L568">TreeNode.class.ts:568</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Iterate over all nodes in this tree, performing the callback function for each node.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>function to call for each iteration, passing <code>(node, i, this)</code> as the arguments (where <code>i</code> is the iteration index)</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">readonly</span>, Integer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, __namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">[]</span>, parentnode<span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>node: <a href="treenode.html" class="tsd-signature-type">TreeNode</a></h5>
+														</li>
+														<li>
+															<h5>path: <span class="tsd-signature-type">readonly</span></h5>
+														</li>
+														<li>
+															<h5>Integer: <span class="tsd-signature-type">any</span></h5>
+														</li>
+														<li>
+															<h5>__namedParameters: <span class="tsd-signature-type">[]</span></h5>
+														</li>
+														<li>
+															<h5>parentnode: <a href="treenode.html" class="tsd-signature-type">TreeNode</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> this_arg: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> =&nbsp;this</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional <code>this</code> context in which to call the callback</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="get" class="tsd-anchor"></a>
+					<h3>get</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">readonly</span>, Integer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, __namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L318">TreeNode.class.ts:318</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a TreeNode given a path and using this TreeNode as the root.</p>
+								</div>
+								<p>See {@link TreeNode#path} for details on paths.</p>
+								<p>For example:</p>
+								<pre><code>       <span class="hljs-attr">r</span> <span class="hljs-string">(root)</span>
+      <span class="hljs-meta">/</span> <span class="hljs-string">\
+     a   b</span>
+    <span class="hljs-meta">/</span>     <span class="hljs-string">\
+   /\      e</span>
+  <span class="hljs-attr">c</span>  <span class="hljs-string">d     |</span>
+           <span class="hljs-attr">f</span></code></pre><pre><code>r.<span class="hljs-built_in">get</span>([])    <span class="hljs-comment"> //  r</span>
+r.<span class="hljs-built_in">get</span>([<span class="hljs-number">0</span>])   <span class="hljs-comment"> //  a</span>
+r.<span class="hljs-built_in">get</span>([<span class="hljs-number">1</span>,<span class="hljs-number">0</span>]) <span class="hljs-comment"> //  e</span>
+<span class="hljs-keyword">a</span>.<span class="hljs-built_in">get</span>([])    <span class="hljs-comment"> //  a</span>
+<span class="hljs-keyword">a</span>.<span class="hljs-built_in">get</span>([<span class="hljs-number">1</span>])   <span class="hljs-comment"> //  d</span>
+b.<span class="hljs-built_in">get</span>([<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]) <span class="hljs-comment"> //  f</span>
+e.<span class="hljs-built_in">get</span>([<span class="hljs-number">1</span>])   <span class="hljs-comment"> //  null</span></code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>path: <span class="tsd-signature-type">readonly</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the path to locate a node</p>
+									</div>
+								</li>
+								<li>
+									<h5>Integer: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>__namedParameters: <span class="tsd-signature-type">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+							<p>the node located at the given path, or <code>null</code> if no node exists there</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="has" class="tsd-anchor"></a>
+					<h3>has</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">has<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L283">TreeNode.class.ts:283</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Test the existence of a node within this TreeNode’s descendants.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="treenode.html" class="tsd-signature-type">TreeNode</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the node to test</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>Is <code>this</code> an ancestor of <code>node</code>?</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="insertafter" class="tsd-anchor"></a>
+					<h3>insert<wbr>After</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">insert<wbr>After<span class="tsd-signature-symbol">(</span>nodes<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">readonly</span>, this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, __namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">[]</span>, reference<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> | </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L491">TreeNode.class.ts:491</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Insert the given nodes into this TreeNode’s list of children, after the specified node or index.</p>
+								</div>
+								<p>To prepend the nodes before all the children, use {@link TreeNode#prependChildren|prepend}.
+								To append  the nodes after  all the children, use {@link TreeNode#prependChildren|append}.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>nodes: <span class="tsd-signature-type">readonly</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an array of nodes to insert</p>
+									</div>
+								</li>
+								<li>
+									<h5>this: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>__namedParameters: <span class="tsd-signature-type">[]</span></h5>
+								</li>
+								<li>
+									<h5>reference: <span class="tsd-signature-type">this</span><span class="tsd-signature-symbol"> | </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the node or index to insert the new nodes after</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p><code>this</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="nextsiblingsall" class="tsd-anchor"></a>
+					<h3>next<wbr>Siblings<wbr>All</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">next<wbr>Siblings<wbr>All<span class="tsd-signature-symbol">(</span>filter<span class="tsd-signature-symbol">?: </span><a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a>, this_arg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L444">TreeNode.class.ts:444</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get a shallow array of all the next siblings of this TreeNode, optionally filtered by a predicate.</p>
+								</div>
+								<p>NOTE: The returned array is shallow, not live, meaning any changes to it will not affect the tree.</p>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{OrphanError} if this TreeNode has no parent</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> filter: <a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a><span class="tsd-signature-symbol"> =&nbsp;() &#x3D;&gt; true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an optional predicate by which to filter the siblings</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> this_arg: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> =&nbsp;this</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional <code>this</code> context in which to call the filter</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>all the siblings following this TreeNode in its parent</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="nodes" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> nodes</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">nodes<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L276">TreeNode.class.ts:276</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a shallow array of all nodes in this TreeNode’s tree.</p>
+								</div>
+								<p>The order of elements in the returned array is
+								determined by the subclasses of this class, which each have their own traversal algorithms.</p>
+								<p>NOTE: The returned array is shallow, not live, meaning any changes to it will not affect the tree.</p>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p>TreeNodePre</p>
+									</dd>
+									<dt>see</dt>
+									<dd><p>TreeNodePost</p>
+									</dd>
+									<dt>see</dt>
+									<dd><p>TreeNodeBreadth</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>an array of this tree’s nodes that satisfy the predicate</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="paths" class="tsd-anchor"></a>
+					<h3>paths</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">paths<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L549">TreeNode.class.ts:549</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a new <code>Iterator</code> object that contains the paths of each node in this tree, with <code>this</code> being the first node.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>a new <code>Iterator</code> object</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="prepend" class="tsd-anchor"></a>
+					<h3>prepend</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">prepend<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>nodes<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L459">TreeNode.class.ts:459</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Prepend the given nodes to this TreeNode’s list of children, at the start of the list.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>nodes: <span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the nodes to prepend</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p><code>this</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="prependto" class="tsd-anchor"></a>
+					<h3>prepend<wbr>To</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">prepend<wbr>To<span class="tsd-signature-symbol">(</span>parentnode<span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L633">TreeNode.class.ts:633</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Prepend this TreeNode to another node’s children, at the start of the list.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>parentnode: <a href="treenode.html" class="tsd-signature-type">TreeNode</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the parent node to prepend to</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p><code>this</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="prevsiblingsall" class="tsd-anchor"></a>
+					<h3>prev<wbr>Siblings<wbr>All</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">prev<wbr>Siblings<wbr>All<span class="tsd-signature-symbol">(</span>filter<span class="tsd-signature-symbol">?: </span><a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a>, this_arg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L429">TreeNode.class.ts:429</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get a shallow array of all the previous siblings of this TreeNode, optionally filtered by a predicate.</p>
+								</div>
+								<p>NOTE: The returned array is shallow, not live, meaning any changes to it will not affect the tree.</p>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{OrphanError} if this TreeNode has no parent</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> filter: <a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a><span class="tsd-signature-symbol"> =&nbsp;() &#x3D;&gt; true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an optional predicate by which to filter the siblings</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> this_arg: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> =&nbsp;this</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional <code>this</code> context in which to call the filter</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>shallow array of the siblings preceding this TreeNode in its parent</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="remove" class="tsd-anchor"></a>
+					<h3>remove</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L693">TreeNode.class.ts:693</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove this node from its parent.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{OrphanError} if this TreeNode has no parent</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p><code>this</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="siblings" class="tsd-anchor"></a>
+					<h3>siblings</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">siblings<span class="tsd-signature-symbol">(</span>filter<span class="tsd-signature-symbol">?: </span><a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a>, this_arg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L415">TreeNode.class.ts:415</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a shallow array of the siblings of this TreeNode, optionally filtered by a predicate.</p>
+								</div>
+								<p>NOTE: The returned array is shallow, not live, meaning any changes to it will not affect the tree.</p>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{OrphanError} if this TreeNode has no parent</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> filter: <a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a><span class="tsd-signature-symbol"> =&nbsp;() &#x3D;&gt; true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an optional predicate by which to filter the siblings</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> this_arg: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> =&nbsp;this</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional <code>this</code> context in which to call the filter</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>shallow array of this node’s sibling nodes</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="some" class="tsd-anchor"></a>
+					<h3>some</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">some<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a>, this_arg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L588">TreeNode.class.ts:588</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Test whether at least one node in this tree satisfies the given predicate.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>predicate: <a href="../globals.html#filterfn" class="tsd-signature-type">FilterFn</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>predicate to test for each descendant</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> this_arg: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> =&nbsp;this</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional <code>this</code> context in which to call the callback</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>Does the callback return <code>true</code> for at least one iteration?</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="values" class="tsd-anchor"></a>
+					<h3>values</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">values<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/TreeNode.class.ts#L557">TreeNode.class.ts:557</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a new <code>Iterator</code> object that contains the nodes in this tree, with <code>this</code> being the first node.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><a href="treenode.html" class="tsd-signature-type">TreeNode</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>a new <code>Iterator</code> object</p>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="../enums/angleunit.html" class="tsd-kind-icon">Angle<wbr>Unit</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/colorspace.html" class="tsd-kind-icon">Color<wbr>Space</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/durationunit.html" class="tsd-kind-icon">Duration<wbr>Unit</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/lengthunit.html" class="tsd-kind-icon">Length<wbr>Unit</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="angle.html" class="tsd-kind-icon">Angle</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="closedinterval.html" class="tsd-kind-icon">Closed<wbr>Interval</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="color.html" class="tsd-kind-icon">Color</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="duration.html" class="tsd-kind-icon">Duration</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="fraction.html" class="tsd-kind-icon">Fraction</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="halfopenleftinterval.html" class="tsd-kind-icon">Half<wbr>Open<wbr>Left<wbr>Interval</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="halfopenrightinterval.html" class="tsd-kind-icon">Half<wbr>Open<wbr>Right<wbr>Interval</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="integer.html" class="tsd-kind-icon">Integer</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="interval.html" class="tsd-kind-icon">Interval</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="length.html" class="tsd-kind-icon">Length</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="matrix.html" class="tsd-kind-icon">Matrix</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="matrixsquare.html" class="tsd-kind-icon">Matrix<wbr>Square</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="meter.html" class="tsd-kind-icon">Meter</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="meterint.html" class="tsd-kind-icon">Meter<wbr>Int</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="openinterval.html" class="tsd-kind-icon">Open<wbr>Interval</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-not-exported">
+						<a href="orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="percentage.html" class="tsd-kind-icon">Percentage</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="rational.html" class="tsd-kind-icon">Rational</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="treenode.html" class="tsd-kind-icon">Tree<wbr>Node</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="treenode.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="treenode.html#_children" class="tsd-kind-icon">_CHILDREN</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="treenode.html#_value" class="tsd-kind-icon">_VALUE</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="treenode.html#_parent" class="tsd-kind-icon">_parent</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="treenode.html#firstchild" class="tsd-kind-icon">first<wbr>Child</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="treenode.html#firstsibling" class="tsd-kind-icon">first<wbr>Sibling</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="treenode.html#height" class="tsd-kind-icon">height</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="treenode.html#lastchild" class="tsd-kind-icon">last<wbr>Child</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="treenode.html#lastsibling" class="tsd-kind-icon">last<wbr>Sibling</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="treenode.html#nextsibling" class="tsd-kind-icon">next<wbr>Sibling</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="treenode.html#parent" class="tsd-kind-icon">parent</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="treenode.html#path" class="tsd-kind-icon">path</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="treenode.html#prevsibling" class="tsd-kind-icon">prev<wbr>Sibling</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="treenode.html#root" class="tsd-kind-icon">root</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="treenode.html#size" class="tsd-kind-icon">size</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="treenode.html#value" class="tsd-kind-icon">value</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="treenode.html#valuedeep" class="tsd-kind-icon">value<wbr>Deep</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#___iterator" class="tsd-kind-icon">__@iterator</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#after" class="tsd-kind-icon">after</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#ancestors" class="tsd-kind-icon">ancestors</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#append" class="tsd-kind-icon">append</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#appendto" class="tsd-kind-icon">append<wbr>To</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#before" class="tsd-kind-icon">before</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#children" class="tsd-kind-icon">children</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#clear" class="tsd-kind-icon">clear</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#commonancestor" class="tsd-kind-icon">common<wbr>Ancestor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#delete" class="tsd-kind-icon">delete</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#descendants" class="tsd-kind-icon">descendants</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#entries" class="tsd-kind-icon">entries</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#equals" class="tsd-kind-icon">equals</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#every" class="tsd-kind-icon">every</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#filter" class="tsd-kind-icon">filter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#find" class="tsd-kind-icon">find</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#findpath" class="tsd-kind-icon">find<wbr>Path</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#get" class="tsd-kind-icon">get</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#has" class="tsd-kind-icon">has</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#insertafter" class="tsd-kind-icon">insert<wbr>After</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#nextsiblingsall" class="tsd-kind-icon">next<wbr>Siblings<wbr>All</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#nodes" class="tsd-kind-icon">nodes</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#paths" class="tsd-kind-icon">paths</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#prepend" class="tsd-kind-icon">prepend</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#prependto" class="tsd-kind-icon">prepend<wbr>To</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#prevsiblingsall" class="tsd-kind-icon">prev<wbr>Siblings<wbr>All</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#remove" class="tsd-kind-icon">remove</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#siblings" class="tsd-kind-icon">siblings</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#some" class="tsd-kind-icon">some</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="treenode.html#values" class="tsd-kind-icon">values</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-class">
+						<a href="treenodebreadth.html" class="tsd-kind-icon">Tree<wbr>Node<wbr>Breadth</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="treenodepost.html" class="tsd-kind-icon">Tree<wbr>Node<wbr>Post</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="treenodepre.html" class="tsd-kind-icon">Tree<wbr>Node<wbr>Pre</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="vector.html" class="tsd-kind-icon">Vector</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="../globals.html#filterfn" class="tsd-kind-icon">Filter<wbr>Fn</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#names" class="tsd-kind-icon">NAMES</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#colindices" class="tsd-kind-icon">colindices</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#matrix" class="tsd-kind-icon">matrix</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#maxwidth" class="tsd-kind-icon">maxwidth</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#number" class="tsd-kind-icon">number</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#rawdata" class="tsd-kind-icon">rawdata</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#rowindices" class="tsd-kind-icon">rowindices</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../globals.html#xjs_map_find" class="tsd-kind-icon">xjs_<wbr><wbr>Map_<wbr>find</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
