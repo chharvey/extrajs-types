@@ -465,7 +465,7 @@ export default class Color {
 				Color.REGEXP_HUEA_LEGACY,
 				Color.REGEXP_HUE,
 			].map((r) => r.source.slice(1,-1)).join('|')})$`).test(str)) {
-				let hue  : Angle         = Angle.fromString((xjs.Number.REGEXP.test(channels[0])) ? `${channels[0]}deg` : channels[0])
+				let hue  : Angle         = new Angle((xjs.Number.REGEXP.test(channels[0])) ? `${channels[0]}deg` : channels[0])
 				let p1   : Fraction      = new Fraction(Percentage.fromString(channels[1]))
 				let p2   : Fraction      = new Fraction(Percentage.fromString(channels[2]))
 				let alpha: Fraction|null = (channels[3]) ? new Fraction((xjs.Number.REGEXP.test(channels[3])) ? +channels[3] : Percentage.fromString(channels[3])) : null
