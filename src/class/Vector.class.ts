@@ -5,7 +5,7 @@ import MatrixSquare_import from './MatrixSquare.class'
 
 
 /**
- * A Vector is a one-dimensional array of numbers.
+ * A Vector is an immutable one-dimensional array of numbers.
  *
  * Vectors have a finite natural number of entries, called **coordinates**.
  * An empty vector is a vector with 0 coordinates.
@@ -18,7 +18,7 @@ import MatrixSquare_import from './MatrixSquare.class'
  * - Vectors are closed under addition, subtraction, and scalar multiplication.
  * 	For vectors `a` and `b` of dimension *N*, and for scalar `K`,
  * 	the expressions `a + b`, `a - b`, and `K * a` are guaranteed to also be vectors of dimension *N*.
- * - A Vector Space has a (unique) additive idenity.
+ * - A Vector Space has a (unique) additive identity.
  * 	There exists a vector `0` such that for every vector `a`,
  * 	`a + 0` and `0 + a` are guaranteed to equal `a`, and
  * 	`0` is the only vector with this property.
@@ -26,7 +26,7 @@ import MatrixSquare_import from './MatrixSquare.class'
  * 	for every vector `a`, a unique vector `-a` is guaranteed such that `a + -a === -a + a === 0`
  * 	(where `0` is the additive identity).
  * - Addition is commutative and associative.
- * 	For vectors `a`, `b`, and `c`, the following statments are guaranteed true:
+ * 	For vectors `a`, `b`, and `c`, the following statements are guaranteed true:
  * 	- `a + b === b + a`
  * 	- `a + (b + c) === (a + b) + c`
  * - Scalar-Multiplication is associative.
@@ -49,7 +49,7 @@ export default class Vector {
 	/**
 	 * The coordinates of this Vector.
 	 */
-	private readonly _DATA: ReadonlyArray<number>;
+	private readonly _DATA: readonly number[];
 	/**
 	 * The dimension of this Vector.
 	 */
@@ -59,7 +59,7 @@ export default class Vector {
 	 * Construct a new Vector object.
 	 * @param   data a Vector or array of finite numbers
 	 */
-	constructor(data: Vector|ReadonlyArray<number> = []) {
+	constructor(data: Vector|readonly number[] = []) {
 		if (data instanceof Vector) data = data.raw
 		data.forEach((c) => xjs.Number.assertType(c, 'finite'))
 		this._DATA = data
@@ -70,7 +70,7 @@ export default class Vector {
 	 * Get this Vector’s raw data: the list of coordinates.
 	 * @returns this Vector’s raw data
 	 */
-	get raw(): ReadonlyArray<number> {
+	get raw(): readonly number[] {
 		return this._DATA.slice()
 	}
 

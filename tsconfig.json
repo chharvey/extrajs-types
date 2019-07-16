@@ -1,10 +1,19 @@
 {
 	"compilerOptions": {
-		"target"            : "ES2017",
+		"target"            : "ES2019",
 		"module"            : "commonjs",
 		"strict"            : true,
 		"noImplicitReturns" : true,
 		"removeComments"    : true,
 		"noEmitOnError"     : true
+	},
+	"typedocOptions": {
+		"tsconfig": "./",
+		"mode"   : "file",
+		"name"   : "extrajs-types",
+		"out"    : "./docs/api/",
+		"includeDeclarations" : true,
+		"excludeExternals"    : true,
+		"ignoreCompilerErrors": true
 	}
 }

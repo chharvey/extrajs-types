@@ -13,7 +13,7 @@ import Matrix from './Matrix.class'
  * - Matrices in a Square Matrix Space are closed under multiplication:
  * 	For matrices `a` and `b` of dimension *N×N*,
  * 	the expression `ab` is guaranteed to also be a matrix of dimension *N×N*.
- * - A Square Matrix Space has a (unique) multiplicative idenity:
+ * - A Square Matrix Space has a (unique) multiplicative identity:
  * 	There exists a matrix `1` such that for every matrix `a`,
  * 	`a1`, and `1a` are guaranteed to equal `a`, and
  * 	`1` is the only matrix with this property.
@@ -47,8 +47,8 @@ export default class MatrixSquare extends Matrix {
 	 * Construct a new MatrixSquare object.
 	 * @param   data a Matrix, an array of Vectors, or array of arrays of finite numbers
 	 */
-	constructor(data: Matrix|ReadonlyArray<Vector|number[]> = []) {
-		let rawdata: ReadonlyArray<number[]> = (data instanceof Matrix) ?
+	constructor(data: Matrix|readonly (Vector|number[])[] = []) {
+		let rawdata: readonly number[][] = (data instanceof Matrix) ?
 			data.raw.map((row) => [...row]) : // each row must be a full Array
 			data.map((row) => (row instanceof Vector) ? [...row.raw] : row) // each row must be a full Array
 		rawdata.forEach((row) => {

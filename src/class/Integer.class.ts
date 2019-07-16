@@ -1,3 +1,5 @@
+import * as assert from 'assert'
+
 import * as xjs from 'extrajs'
 
 
@@ -15,7 +17,7 @@ import * as xjs from 'extrajs'
  * 		- `b <= a`
  * - Integers are closed under addition, subtraction, and multiplication:
  * 	For integers `a` and `b`, the expressions `a + b`, `a - b`, and `a * b` are guaranteed to also be integers.
- * - The set of Integers has a (unique) additive identity and a (unique) multiplicative idenity:
+ * - The set of Integers has a (unique) additive identity and a (unique) multiplicative identity:
  * 	There exist integers `0` and `1` such that for every integer `a`,
  * 	`a + 0`, `0 + a`, `a * 1`, and `1 * a` are guaranteed to equal `a`, and
  * 	`0` and `1`, respectively, are the only integers with this property.
@@ -30,7 +32,7 @@ import * as xjs from 'extrajs'
  * 	For every integer `a`, a unique integer `-a` is guaranteed such that `a + -a === -a + a === 0`
  * 	(where `0` is the additive identity).
  * - Addition and multiplication are commutative and associative:
- * 	For integers `a`, `b`, and `c`, the following statments are guaranteed true:
+ * 	For integers `a`, `b`, and `c`, the following statements are guaranteed true:
  * 	- `a + b === b + a`
  * 	- `a * b === b * a`
  * 	- `a + (b + c) === (a + b) + c`
@@ -50,20 +52,22 @@ export default class Integer extends Number {
 	 * Return the maximum of two or more Integers.
 	 * @param   ints two or more Integers to compare
 	 * @returns the greatest of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...ints: Integer[]): Integer {
+		if (!ints.length) throw new Error('No arguments provided.')
 		return new Integer(Math.max(...ints.map((z) => z.valueOf())))
-		// return ints.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).slice(-1)[0]
 	}
 
 	/**
 	 * Return the minimum of two or more Integers.
 	 * @param   ints two or more Integers to compare
 	 * @returns the least of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...ints: Integer[]): Integer {
+		if (!ints.length) throw new Error('No arguments provided.')
 		return new Integer(Math.min(...ints.map((z) => z.valueOf())))
-		// return ints.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
 	}
 
 
@@ -113,6 +117,38 @@ export default class Integer extends Number {
 	}
 
 	/**
+	 * Verify the type of this Integer, throwing if it does not match.
+	 *
+	 * Given a "type" argument, test to see if this Integer is of that type.
+	 * The acceptable "types", which are not mutually exclusive, follow:
+	 *
+	 * - `'positive'`     : the integer is strictly greater than 0
+	 * - `'negative'`     : the integer is strictly less    than 0
+	 * - `'non-positive'` : the integer is less    than or equal to 0
+	 * - `'non-negative'` : the integer is greater than or equal to 0
+	 * - `'whole'`        : alias of `'positive'`
+	 * - `'natural'`      : alias of `'non-negative'`
+	 *
+	 * If this Integer matches the described type, this method returns `void` instead of `true`.
+	 * If it does not match, this method throws an error instead of returning `false`.
+	 * This pattern is helpful where an error message is more descriptive than a boolean.
+	 *
+	 * @param   type one of the string literals listed above
+	 * @throws  {AssertionError} if the Integer does not match the described type
+	 */
+	assertType(type?: 'positive'|'negative'|'non-positive'|'non-negative'|'whole'|'natural'): void {
+		if (!type) return;
+		return (new Map([
+			['positive'    , () => assert( Integer.ADD_IDEN.lessThan(this), `${this} must     be a positive integer.`)],
+			['non-positive', () => assert(!Integer.ADD_IDEN.lessThan(this), `${this} must not be a positive integer.`)],
+			['negative'    , () => assert( this.lessThan(0)               , `${this} must     be a negative integer.`)],
+			['non-negative', () => assert(!this.lessThan(0)               , `${this} must not be a negative integer.`)],
+			['whole'       , () => this.assertType('positive'    )],
+			['natural'     , () => this.assertType('non-negative')],
+		]).get(type) || (() => { throw new Error('No argument was given.') }))()
+	}
+
+	/**
 	 * Return whether this Integer’s value equals the argument’s.
 	 * @param   int the Integer to compare
 	 * @returns does this Integer equal the argument?
@@ -147,15 +183,6 @@ export default class Integer extends Number {
 		return (min instanceof Integer && max instanceof Integer) ?
 			(min.lessThan(max) || min.equals(max)) ? Integer.min(Integer.max(min, this), max) : this.clamp(max, min) :
 			this.clamp(new Integer(min), new Integer(max))
-	}
-
-	/**
-	 * @deprecated WARNING{DEPRECATED} Use {@link Integer.negation} instead.
-	 * @returns `this.negation`
-	 */
-	negate(): Integer {
-		console.warn('`Integer#negate()` is deprecated. Use `Integer#negation` instead.')
-		return this.negation
 	}
 
 	/**
@@ -216,7 +243,7 @@ export default class Integer extends Number {
 	 * @returns a number equal to the quotient, `dividend / divisor`
 	 */
 	dividedBy(divisor: Integer|number = 1): number {
-		const returned = this.valueOf() / divisor.valueOf()
+		const returned: number = this.valueOf() / divisor.valueOf()
 		xjs.Number.assertType(returned)
 		return returned
 	}
@@ -238,7 +265,7 @@ export default class Integer extends Number {
 	 * @returns a number equal to the power, `base ** exponent`
 	 */
 	exp(exponent: Integer|number = 1): number {
-		const returned = this.valueOf() ** exponent.valueOf()
+		const returned: number = this.valueOf() ** exponent.valueOf()
 		xjs.Number.assertType(returned)
 		return returned
 	}

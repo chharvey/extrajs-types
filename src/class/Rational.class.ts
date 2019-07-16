@@ -1,3 +1,5 @@
+import * as assert from 'assert'
+
 import * as xjs from 'extrajs'
 
 import Integer from './Integer.class'
@@ -17,7 +19,7 @@ import Integer from './Integer.class'
  * 		- `b <= a`
  * - Rationals are closed under addition, subtraction, multiplication, and division:
  * 	For rationals `a` and `b`, the expressions `a + b`, `a - b`, `a * b`, and `a / b` are guaranteed to also be rationals.
- * - The set of Rationals has a (unique) additive identity and a (unique) multiplicative idenity:
+ * - The set of Rationals has a (unique) additive identity and a (unique) multiplicative identity:
  * 	There exist rationals `0` and `1` such that for every rational `a`,
  * 	`a + 0`, `0 + a`, `a * 1`, and `1 * a` are guaranteed to equal `a`, and
  * 	`0` and `1`, respectively, are the only rationals with this property.
@@ -31,12 +33,12 @@ import Integer from './Integer.class'
  * - Rationals have (unique) additive inverses:
  * 	For every rational `a`, a unique rational `-a` is guaranteed such that `a + -a === -a + a === 0`
  * 	(where `0` is the additive identity).
- * - Non-zero Rationals have (unique) multipliative inverses:
+ * - Non-zero Rationals have (unique) multiplicative inverses:
  * 	For every rational `a !== 0` (where `0` is the multiplicative absorber),
  * 	a unique rational `a^` is guaranteed such that `a * a^ === ^a * a === 1`
  * 	(where `1` is the multiplicative identity).
  * - Addition and multiplication are commutative and associative:
- * 	For rationals `a`, `b`, and `c`, the following statments are guaranteed true:
+ * 	For rationals `a`, `b`, and `c`, the following statements are guaranteed true:
  * 	- `a + b === b + a`
  * 	- `a * b === b * a`
  * 	- `a + (b + c) === (a + b) + c`
@@ -59,11 +61,8 @@ export default class Rational extends Number {
 	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...rats: Rational[]): Rational {
-		try {
-			return new Rational(Math.max(...rats.map((z) => z.valueOf())))
-		} catch {
-			throw new Error('No arguments provided.')
-		}
+		if (!rats.length) throw new Error('No arguments provided.')
+		return new Rational(Math.max(...rats.map((z) => z.valueOf())))
 	}
 
 	/**
@@ -73,11 +72,8 @@ export default class Rational extends Number {
 	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...rats: Rational[]): Rational {
-		try {
-			return new Rational(Math.min(...rats.map((z) => z.valueOf())))
-		} catch {
-			throw new Error('No arguments provided.')
-		}
+		if (!rats.length) throw new Error('No arguments provided.')
+		return new Rational(Math.min(...rats.map((z) => z.valueOf())))
 	}
 
 
@@ -148,13 +144,43 @@ export default class Rational extends Number {
 	}
 
 	/**
+	 * Verify the type of this Rational, throwing if it does not match.
+	 *
+	 * Given a "type" argument, test to see if this Rational is of that type.
+	 * The acceptable "types", which are not mutually exclusive, follow:
+	 *
+	 * - `'positive'`     : the rational is strictly greater than 0
+	 * - `'negative'`     : the rational is strictly less    than 0
+	 * - `'non-positive'` : the rational is less    than or equal to 0
+	 * - `'non-negative'` : the rational is greater than or equal to 0
+	 *
+	 * If this Integer matches the described type, this method returns `void` instead of `true`.
+	 * If it does not match, this method throws an error instead of returning `false`.
+	 * This pattern is helpful where an error message is more descriptive than a boolean.
+	 *
+	 * @param   type one of the string literals listed above
+	 * @throws  {AssertionError} if the Rational does not match the described type
+	 */
+	assertType(type?: 'positive'|'negative'|'non-positive'|'non-negative'): void {
+		if (!type) return;
+		return (new Map([
+			['positive'    , () => assert( Rational.ADD_IDEN.lessThan(this), `${this} must     be a positive integer.`)],
+			['non-positive', () => assert(!Rational.ADD_IDEN.lessThan(this), `${this} must not be a positive integer.`)],
+			['negative'    , () => assert( this.lessThan(0)                , `${this} must     be a negative integer.`)],
+			['non-negative', () => assert(!this.lessThan(0)                , `${this} must not be a negative integer.`)],
+		]).get(type) || (() => { throw new Error('No argument was given.') }))()
+	}
+
+	/**
 	 * Return whether this Rational’s value equals the argument’s.
 	 * @param   rat the Rational to compare
 	 * @returns does this Rational equal the argument?
 	 */
 	equals(rat: Rational|number): boolean {
 		if (this === rat) return true
-		return (rat instanceof Rational) ? this.valueOf() === rat.valueOf() : this.equals(new Rational(rat))
+		return (rat instanceof Rational) ?
+			this._NUMERATOR.times(rat._DENOMINATOR).equals(rat._NUMERATOR.times(this._DENOMINATOR)) :
+			this.equals(new Rational(rat))
 	}
 
 	/**
@@ -274,7 +300,7 @@ export default class Rational extends Number {
 		 * (a/b) ** x
 		 * == (a ** x / b ** x)
 		 */
-		const returned = this._NUMERATOR.exp(exponent.valueOf()) / this._DENOMINATOR.exp(exponent.valueOf())
+		const returned: number = this._NUMERATOR.exp(exponent.valueOf()) / this._DENOMINATOR.exp(exponent.valueOf())
 		xjs.Number.assertType(returned)
 		return returned
 	}

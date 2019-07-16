@@ -48,20 +48,22 @@ export default class Duration extends Number {
 	 * Return the maximum of two or more Durations.
 	 * @param   durations two or more Durations to compare
 	 * @returns the greatest of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...durations: Duration[]): Duration {
+		if (!durations.length) throw new Error('No arguments provided.')
 		return new Duration(Math.max(...durations.map((x) => x.valueOf())))
-		// return durations.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).lastItem
 	}
 
 	/**
 	 * Return the minimum of two or more Durations.
 	 * @param   durations two or more Durations to compare
 	 * @returns the least of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...durations: Duration[]): Duration {
+		if (!durations.length) throw new Error('No arguments provided.')
 		return new Duration(Math.min(...durations.map((x) => x.valueOf())))
-		// return durations.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
 	}
 
 
@@ -82,14 +84,14 @@ export default class Duration extends Number {
 			if (!Duration.REGEXP.test(x)) throw new RangeError(`Invalid string format: '${x}'.`)
 			let numeric_part: number = +x.match(xjs.Number.REGEXP.source.slice(1,-1)) ![0]
 			let unit_part   : string =  x.match(/s|ms|ns|min|hr|d/                  ) ![0]
-			x = xjs.Object.switch<number>(unit_part, {
-				's'  : () => numeric_part / Duration.CONVERSION[DurationUnit.S  ],
-				'ms' : () => numeric_part / Duration.CONVERSION[DurationUnit.MS ],
-				'ns' : () => numeric_part / Duration.CONVERSION[DurationUnit.NS ],
-				'min': () => numeric_part / Duration.CONVERSION[DurationUnit.MIN],
-				'hr' : () => numeric_part / Duration.CONVERSION[DurationUnit.HR ],
-				'd'  : () => numeric_part / Duration.CONVERSION[DurationUnit.D  ],
-			})()
+			x = new Map<string, () => number>([
+				['s'   , () => numeric_part / Duration.CONVERSION[DurationUnit.S  ]],
+				['ms'  , () => numeric_part / Duration.CONVERSION[DurationUnit.MS ]],
+				['ns'  , () => numeric_part / Duration.CONVERSION[DurationUnit.NS ]],
+				['min' , () => numeric_part / Duration.CONVERSION[DurationUnit.MIN]],
+				['hr'  , () => numeric_part / Duration.CONVERSION[DurationUnit.HR ]],
+				['d'   , () => numeric_part / Duration.CONVERSION[DurationUnit.D  ]],
+			]).get(unit_part) !()
 		}
 		x = x.valueOf()
 		xjs.Number.assertType(x, 'non-negative')
@@ -189,7 +191,7 @@ export default class Duration extends Number {
 	 * Return the ratio of this Duration (the dividend) to the argument (the divisor).
 	 *
 	 * Note: to “divide” this Duration into even pieces, call {@link Duration.scale}.
-	 * @param   divisior the Duration to divide this one by
+	 * @param   divisor the Duration to divide this one by
 	 * @returns a number equal to the quotient, `dividend / divisor`
 	 */
 	ratio(divisor: Duration|number = 1): number {

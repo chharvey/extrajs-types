@@ -12,11 +12,11 @@ import { Interval, OpenInterval, ClosedInterval } from './Interval.class'
  * Optionally, a Meter may also have the numeric properties **low**, **high**, and **optimum**.
  * All six properties must be writable.
  *
- * - the maximum must be loosly greater than the minimum
- * - the value must fall loosly between them (inclusively)
- * - the low must be loosly between the minimum and the maximum
- * - the high must be loosly between the low (if it exists, else the minimum) and the maximum
- * - the optimum must be loosly between the minimum and maximum
+ * - the maximum must be loosely greater than the minimum
+ * - the value must fall loosely between them (inclusively)
+ * - the low must be loosely between the minimum and the maximum
+ * - the high must be loosely between the low (if it exists, else the minimum) and the maximum
+ * - the optimum must be loosely between the minimum and maximum
  */
 export default class Meter {
 	/** The minimum. */
@@ -93,8 +93,8 @@ export default class Meter {
 	/**
 	 * Set the minimum.
 	 *
-	 * This method clamps the maximum to be loosly greater than the new minimum,
-	 * and then clamps the value loosly between the new minimum and the maximum.
+	 * This method clamps the maximum to be loosely greater than the new minimum,
+	 * and then clamps the value loosely between the new minimum and the maximum.
 	 * @param   min the maximum
 	 */
 	set min(min: number) {
@@ -105,7 +105,7 @@ export default class Meter {
 	/**
 	 * Set the maximum.
 	 *
-	 * The new maximum must be loosly greater than the minimum.
+	 * The new maximum must be loosely greater than the minimum.
 	 *
 	 * This method clamps the value between the minimum and the new maximum.
 	 * @param   max the maximum
@@ -117,7 +117,7 @@ export default class Meter {
 	/**
 	 * Set the value.
 	 *
-	 * The new value must be loosly between the minimum and maximum.
+	 * The new value must be loosely between the minimum and maximum.
 	 *
 	 * @param   val the value
 	 */
@@ -127,9 +127,9 @@ export default class Meter {
 	/**
 	 * Set the low.
 	 *
-	 * The new low must be loosly between the minimum and the maximum.
+	 * The new low must be loosely between the minimum and the maximum.
 	 *
-	 * This method clamps the high to be loosly greater than the new low.
+	 * This method clamps the high to be loosely greater than the new low.
 	 * @param   low the low
 	 */
 	set low(low: number|null) {
@@ -139,7 +139,7 @@ export default class Meter {
 	/**
 	 * Set the high.
 	 *
-	 * The new high must be loosly between the low (if it exists, else the minimum) and the maximum.
+	 * The new high must be loosely between the low (if it exists, else the minimum) and the maximum.
 	 * @param   high the high
 	 */
 	set high(high: number|null) {
@@ -149,7 +149,7 @@ export default class Meter {
 	/**
 	 * Set the optimum.
 	 *
-	 * The new optimum must be loosly between the minimum and maximum.
+	 * The new optimum must be loosely between the minimum and maximum.
 	 *
 	 * @param   opt the optimum
 	 */
@@ -205,17 +205,17 @@ export default class Meter {
 		let a: ClosedInterval;
 		let c: ClosedInterval;
 		if (this._low !== null) {
-			a = new ClosedInterval([this._min, this._low])
-			c = new ClosedInterval((this._high !== null) ? [this._high, this._max] : [this._low, this._max])
+			a = new ClosedInterval(this._min, this._low)
+			c = (this._high !== null) ? new ClosedInterval(this._high, this._max) : new ClosedInterval(this._low, this._max)
 		} else {
 			if (this._high !== null) {
-				a = new ClosedInterval([this._min, this._high])
-				c = new ClosedInterval([this._high, this._max])
+				a = new ClosedInterval(this._min, this._high)
+				c = new ClosedInterval(this._high, this._max)
 			} else {
-				a = c = new ClosedInterval([this._min, this._max])
+				a = c = new ClosedInterval(this._min, this._max)
 			}
 		}
-		let b: OpenInterval = new OpenInterval((a.UPPER < c.LOWER) ? [a.UPPER, c.LOWER] : [0, 0])
+		let b: OpenInterval = (a.UPPER < c.LOWER) ? new OpenInterval(a.UPPER, c.LOWER) : new OpenInterval(0, 0)
 		let preferences: ReadonlyMap<Interval, number>|null =
 			(a.equals(c)     ) ? new Map<Interval, number>([[a, 1                         ], [b, 1], [c, 1                         ]]) :
 			(a.has(this._opt)) ? new Map<Interval, number>([[a, 1                         ], [b, 2], [c, b.LENGTH.equals(0) ? 2 : 3]]) :
