@@ -26,10 +26,10 @@
     "gulp": "^4.0.0",
     "gulp-typedoc": "^2.2.1",
     "gulp-typescript": "^5.0.0",
-    "typedoc": "^0.14.2",
-    "typescript": "~3.4.5"
+    "typedoc": "^0.16.9",
+    "typescript": "~3.8.2"
   },
   "dependencies": {
-    "extrajs": "^0.19.0"
+    "extrajs": "^0.20.0"
   }
 }
