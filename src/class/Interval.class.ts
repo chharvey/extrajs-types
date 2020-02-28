@@ -4,7 +4,7 @@ import Length from './Length.class'
 
 
 /**
- * An Interval is a set, a range of real numbers, with a lower bound and an upper bound.
+ * An Interval is an immutable set, a range of real numbers, with a constant lower bound and upper bound.
  *
  * Note that `Infinity` and `-Infinity` may be used as bounds,
  * but only for {@link OpenInterval|open-ended intervals}.
@@ -15,35 +15,48 @@ export abstract class Interval {
 	/** The upper bound of this Interval. */
 	readonly UPPER: number;
 	/** The length of this Interval. */
-	readonly LENGTH: Length = new Length(this.UPPER - this.LOWER)
+	readonly LENGTH: Length;
 
 	/**
 	 * Construct a new Interval object.
-	 * @param   r a tuple: `[lower, upper]`
+	 * @param   lower the lower bound
+	 * @param   upper the upper bound
 	 */
-	constructor(r: [number, number]) {
-		this.LOWER = r[0]
-		this.UPPER = r[1]
+	constructor(lower: number, upper: number) {
+		this.LOWER = lower
+		this.UPPER = upper
+		this.LENGTH = new Length(this.UPPER - this.LOWER)
 	}
 
 	/**
-	 * Determine whether a given (finite) number is within this Interval.
+	 * Subclass operations of {@link Interval#has}
 	 * @param   x the finite number to test
 	 * @returns is the argument in this interval?
 	 */
-	abstract contains(x: number): boolean;
+	protected abstract _doHas(x: number): boolean;
+	/**
+	 * Determine whether a given (finite) number is within this Interval.
+	 * @final
+	 * @param   x the finite number to test
+	 * @returns is the argument in this interval?
+	 */
+	has(x: number): boolean {
+		xjs.Number.assertType(x, 'finite')
+		return this._doHas(x)
+	}
 
 	/**
 	 * Determine whether this Interval is the “same as” the argument.
 	 *
-	 * Intervals are “the same”, or “equal”, when they contain exactly the same numbers.
+	 * Intervals are “the same”, or “equal”, when they contain exactly the same member numbers.
 	 * @param   iv the Interval to test
-	 * @returns does this Interval contain exactly the same numbers as the argument?
+	 * @returns does this Interval have exactly the same members as the argument?
 	 */
 	equals(iv: Interval): boolean {
+		if (this === iv) return true
 		return xjs.Array.is([this.LOWER, this.UPPER], [iv.LOWER, iv.UPPER])
-			&& (this.contains(this.LOWER) === iv.contains(iv.LOWER))
-			&& (this.contains(this.UPPER) === iv.contains(iv.UPPER))
+			&& (this.has(this.LOWER) === iv.has(iv.LOWER))
+			&& (this.has(this.UPPER) === iv.has(iv.UPPER))
 	}
 }
 /**
@@ -53,12 +66,12 @@ export abstract class Interval {
 export class OpenInterval extends Interval {
 	/**
 	 * Construct a new OpenInterval object.
-	 * @param   r a tuple: `[lower, upper]`
+	 * @param   lower the lower bound
+	 * @param   upper the upper bound
 	 */
-	constructor(r: [number, number]) { super(r) }
+	constructor(lower: number, upper: number) { super(lower, upper) }
 	/** @implements Interval */
-	contains(x: number): boolean {
-		xjs.Number.assertType(x, 'finite')
+	protected _doHas(x: number): boolean {
 		return this.LOWER < x && x < this.UPPER
 	}
 }
@@ -69,12 +82,12 @@ export class OpenInterval extends Interval {
 export class ClosedInterval extends Interval {
 	/**
 	 * Construct a new ClosedInterval object.
-	 * @param   r a tuple: `[lower, upper]`
+	 * @param   lower the lower bound
+	 * @param   upper the upper bound
 	 */
-	constructor(r: [number, number]) { super(r) }
+	constructor(lower: number, upper: number) { super(lower, upper) }
 	/** @implements Interval */
-	contains(x: number): boolean {
-		xjs.Number.assertType(x, 'finite')
+	protected _doHas(x: number): boolean {
 		return this.LOWER <= x && x <= this.UPPER
 	}
 }
@@ -85,12 +98,12 @@ export class ClosedInterval extends Interval {
 export class HalfOpenLeftInterval extends Interval {
 	/**
 	 * Construct a new HalfOpenLeftInterval object.
-	 * @param   r a tuple: `[lower, upper]`
+	 * @param   lower the lower bound
+	 * @param   upper the upper bound
 	 */
-	constructor(r: [number, number]) { super(r) }
+	constructor(lower: number, upper: number) { super(lower, upper) }
 	/** @implements Interval */
-	contains(x: number): boolean {
-		xjs.Number.assertType(x, 'finite')
+	protected _doHas(x: number): boolean {
 		return this.LOWER < x && x <= this.UPPER
 	}
 }
@@ -101,12 +114,12 @@ export class HalfOpenLeftInterval extends Interval {
 export class HalfOpenRightInterval extends Interval {
 	/**
 	 * Construct a new HalfOpenRightInterval object.
-	 * @param   r a tuple: `[lower, upper]`
+	 * @param   lower the lower bound
+	 * @param   upper the upper bound
 	 */
-	constructor(r: [number, number]) { super(r) }
+	constructor(lower: number, upper: number) { super(lower, upper) }
 	/** @implements Interval */
-	contains(x: number): boolean {
-		xjs.Number.assertType(x, 'finite')
+	protected _doHas(x: number): boolean {
 		return this.LOWER <= x && x < this.UPPER
 	}
 }

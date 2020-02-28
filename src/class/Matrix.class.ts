@@ -5,7 +5,7 @@ import Vector from './Vector.class'
 
 
 /**
- * A Matrix is a two-dimensional array of numbers.
+ * A Matrix is an immutable two-dimensional array of numbers.
  *
  * Matrices have a finite natural number of rows and columns,
  * where each entry at a given row and column is called a **cell**.
@@ -16,23 +16,23 @@ import Vector from './Vector.class'
  *
  * A **Matrix Space** is a set of Matrices within a constant dimension. It has the following properties:
  *
- * - Matrices are closed under addition, subtraction, and scalar multiplication.
+ * - Matrices are closed under addition, subtraction, and scalar multiplication:
  * 	For matrices `a` and `b` of dimension *N×M*, and for scalar `K`,
  * 	the expressions `a + b`, `a - b`, and `K * a` are guaranteed to also be matrices of dimension *N×M*.
- * - A Matrix Space has a (unique) additive idenity.
+ * - A Matrix Space has a (unique) additive identity:
  * 	There exists a matrix `0` such that for every matrix `a`,
  * 	`a + 0` and `0 + a` are guaranteed to equal `a`, and
  * 	`0` is the only matrix with this property.
  * - Matrices in a Matrix Space have (unique) additive inverses:
- * 	for every matrix `a`, a unique matrix `-a` is guaranteed such that `a + -a === -a + a === 0`
+ * 	For every matrix `a`, a unique matrix `-a` is guaranteed such that `a + -a === -a + a === 0`
  * 	(where `0` is the additive identity).
- * - Addition is commutative and associative.
- * 	For matrices `a`, `b`, and `c`, the following statments are guaranteed true:
+ * - Addition is commutative and associative:
+ * 	For matrices `a`, `b`, and `c`, the following statements are guaranteed true:
  * 	- `a + b === b + a`
  * 	- `a + (b + c) === (a + b) + c`
- * - Scalar-Multiplication is associative.
+ * - Scalar-Multiplication is associative:
  * 	For matrix `a`, and scalars `K` and `J`, we are guaranteed `J * (K * a) === (J * K) * a`.
- * - Scalar-Multiplication distributes over addition.
+ * - Scalar-Multiplication distributes over addition:
  * 	For matrices `a`, `b`, and scalar `K`, we are guaranteed `K * (a + b) === K * a + K * b`.
  *
  * ## Matrix Multiplication
@@ -40,12 +40,12 @@ import Vector from './Vector.class'
  * Some Matrices can be multiplied. If matrix `a` has dimension *M×N*, and matrix `b` has dimension *N×P*,
  * then the **product** matrix, `ab`, exists and will have dimension *M×P*.
  *
- * Matrix Multiplication is associative.
+ * Matrix Multiplication is associative:
  * 	For matrices `a` (*M×N*), `b` (*N×P*), and `c` (*P×Q*), compatible for multiplication,
  * 	we are guaranteed `a(bc) === (ab)c`.
  * 	Note, however, that although both sides of the equation are equal,
  * 	the time it takes to compute each product is not necessarily the same. For details, read
- * 	[“Efficiency is not associative for matrix multiplication”](https://www.johndcook.com/blog/2017/12/12/efficiency-is-not-associative-for-matrix-multiplication/)
+ * 	{@link https://www.johndcook.com/blog/2017/12/12/efficiency-is-not-associative-for-matrix-multiplication/|“Efficiency is not associative for matrix multiplication”}
  * 	by John D Cook.
  */
 export default class Matrix {
@@ -79,7 +79,7 @@ export default class Matrix {
 	/**
 	 * The cells of this Matrix.
 	 */
-	protected readonly _DATA: ReadonlyArray<ReadonlyArray<number>>;
+	protected readonly _DATA: readonly (readonly number[])[];
 	/**
 	 * The height of this Matrix.
 	 */
@@ -93,8 +93,8 @@ export default class Matrix {
 	 * Construct a new Matrix object.
 	 * @param   data a Matrix, an array of Vectors, or array of arrays of finite numbers
 	 */
-	constructor(data: Matrix|ReadonlyArray<Vector|number[]> = []) {
-		let rawdata: ReadonlyArray<number[]> = (data instanceof Matrix) ?
+	constructor(data: Matrix|readonly (Vector|number[])[] = []) {
+		let rawdata: readonly number[][] = (data instanceof Matrix) ?
 			data.raw.map((row) => [...row]) : // each row must be a full Array
 			data.map((row) => (row instanceof Vector) ? [...row.raw] : row) // each row must be a full Array
 		const maxwidth: number = Math.max(...rawdata.map((row) => row.length), 0)
@@ -111,7 +111,7 @@ export default class Matrix {
 	 * Get this Matrix’s raw data: the cells.
 	 * @returns this Matrix’s raw data
 	 */
-	get raw(): ReadonlyArray<ReadonlyArray<number>> {
+	get raw(): readonly (readonly number[])[] {
 		return this._DATA.slice()
 	}
 
@@ -171,7 +171,7 @@ export default class Matrix {
 	}
 
 
-	/** @override */
+	/** @override Object */
 	toString() {
 		return `⟨${this._DATA.map((row) => new Vector(row).toString()).join(',\n')}⟩`
 	}
@@ -186,8 +186,8 @@ export default class Matrix {
 	 */
 	at(i: Integer|number, j: Integer|number): number {
 		if (i instanceof Integer && j instanceof Integer) {
-			if (i.lessThan(0) || !i.lessThan(this.height)) throw new RangeError(`Index ${i} out of bounds.`)
-			if (j.lessThan(0) || !j.lessThan(this.width )) throw new RangeError(`Index ${j} out of bounds.`)
+			if (i.lessThan(0) || !i.lessThan(this.height)) throw new xjs.IndexOutOfBoundsError(i.valueOf())
+			if (j.lessThan(0) || !j.lessThan(this.width )) throw new xjs.IndexOutOfBoundsError(j.valueOf())
 			return this._DATA[i.valueOf()][j.valueOf()]
 		} else return this.at(new Integer(i), new Integer(j))
 	}
@@ -200,7 +200,7 @@ export default class Matrix {
 	 */
 	getRow(i: Integer|number): Vector {
 		if (i instanceof Integer) {
-			if (i.lessThan(0) || !i.lessThan(this.height)) throw new RangeError(`Index ${i} out of bounds.`)
+			if (i.lessThan(0) || !i.lessThan(this.height)) throw new xjs.IndexOutOfBoundsError(i.valueOf())
 			return new Vector(this._DATA[i.valueOf()])
 		} else return this.getRow(new Integer(i))
 	}
@@ -213,7 +213,7 @@ export default class Matrix {
 	 */
 	getCol(j: Integer|number): Vector {
 		if (j instanceof Integer) {
-			if (j.lessThan(0) || !j.lessThan(this.width)) throw new RangeError(`Index ${j} out of bounds.`)
+			if (j.lessThan(0) || !j.lessThan(this.width)) throw new xjs.IndexOutOfBoundsError(j.valueOf())
 			let col: number[] = []
 			this._DATA.forEach((row) => {
 				col.push(row[j.valueOf()])
@@ -265,7 +265,7 @@ export default class Matrix {
 	}
 
 	/**
-	 * Return a minor of this Matrix, a submatrix excluding a single spcified row and column.
+	 * Return a minor of this Matrix, a submatrix excluding a single specified row and column.
 	 *
 	 * Helpful when calculating determinants and reciprocals.
 	 * @param   row the index of the row to exclude

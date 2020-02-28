@@ -1,4 +1,4 @@
-import Fraction from './Fraction.class'
+import type Fraction from './Fraction.class'
 import Meter from './Meter.class'
 
 
@@ -87,7 +87,7 @@ export default class MeterInt {
 	 * Set the minimum.
 	 *
 	 * This method clamps the maximum to be strictly greater than the new minimum,
-	 * and then clamps the value loosly between the new minimum and the maximum.
+	 * and then clamps the value loosely between the new minimum and the maximum.
 	 * @param   min the maximum
 	 */
 	set min(min: bigint) {
@@ -109,7 +109,7 @@ export default class MeterInt {
 	/**
 	 * Set the value.
 	 *
-	 * The new value must be loosly between the minimum and maximum.
+	 * The new value must be loosely between the minimum and maximum.
 	 *
 	 * @param   val the value
 	 */
@@ -120,9 +120,9 @@ export default class MeterInt {
 	/**
 	 * Set the low.
 	 *
-	 * The new low must be loosly between the minimum and the maximum.
+	 * The new low must be loosely between the minimum and the maximum.
 	 *
-	 * This method clamps the high to be loosly greater than the new low.
+	 * This method clamps the high to be loosely greater than the new low.
 	 * @param   low the low
 	 */
 	set low(low: bigint|null) {
@@ -136,7 +136,7 @@ export default class MeterInt {
 	/**
 	 * Set the high.
 	 *
-	 * The new high must be loosly between the low (if it exists, else the minimum) and the maximum.
+	 * The new high must be loosely between the low (if it exists, else the minimum) and the maximum.
 	 * @param   high the high
 	 */
 	set high(high: bigint|null) {
@@ -150,7 +150,7 @@ export default class MeterInt {
 	/**
 	 * Set the optimum.
 	 *
-	 * The new optimum must be loosly between the minimum and maximum.
+	 * The new optimum must be loosely between the minimum and maximum.
 	 *
 	 * @param   opt the optimum
 	 */

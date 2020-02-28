@@ -20,7 +20,7 @@ export default abstract class Percentage {
 	}
 
 	/**
-	 * @deprecated Use {@link Intl.NumberFormat} instead.
+	 * @deprecated WARNING{DEPRECATED} Use {@link Intl.NumberFormat} instead.
 	 * Convert a number to a percentage string.
 	 *
 	 * The number will be multiplied by the square of the radix,
@@ -30,7 +30,7 @@ export default abstract class Percentage {
 	 * @returns roughly, `(value * 100).toString() + '%'`
 	 */
 	static stringify(value: number, radix: number = 10): string {
-		console.warn('Percentage.stringify is deprecated - use Intl.NumberFormat instead.')
+		console.warn('`Percentage.stringify` is deprecated. Use `Intl.NumberFormat` instead.')
 		return `${(radix**2 * value).toString(radix)}%`
 	}
 }

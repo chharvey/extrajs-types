@@ -8,25 +8,28 @@ import * as xjs from 'extrajs'
  * where `0` is none of the value and `1` is the whole of the value.
  * Fractions must not exceed beyond this interval.
  *
- * The set of Fractions has the following properties:
+ * The set of Fractions exhibits the following properties:
  *
- * - Fractions are weakly totally ordered. (There exists a weak total order `<=` on the fractions.)
+ * - Fractions are weakly totally ordered: There exists a weak total order `<=` on the fractions:
  * 	- (Reflexivity) For a fraction `a`, `a <= a`.
  * 	- (Antisymmetry) For fractions `a` and `b`, if `a <= b` and `b <= a`, then `a === b`.
  * 	- (Transitivity) For fractions `a`, `b`, and `c`, if `a <= b` and `b <= c`, then `a <= c`.
  * 	- (Comparability) For distinct fraction `a !== b`, at least one of the following statements is guaranteed true:
  * 		- `a <= b`
  * 		- `b <= a`
- * - Fractions are closed under multiplication.
+ * - Fractions are closed under multiplication:
  * 	For fractions `a` and `b`, the expression `a * b` is guaranteed to also be a fraction.
- * - The set of Fractions has a (unique) multiplicative idenity.
+ * - The set of Fractions has a (unique) multiplicative identity:
  * 	There exists a fraction `1` such that for every fraction `a`,
  * 	`a * 1`, and `1 * a` are guaranteed to equal `a`, and
  * 	`1` is the only fraction with this property.
  * - Fractions have a (unique) multiplicative absorber:
- * 	a unique fraction `0` is guaranteed such that for every fraction `a`, `a * 0 === 0 * a === 0`.
- * - Multiplication is commutative and associative.
- * 	For fractions `a`, `b`, and `c`, the following statments are guaranteed true:
+ * 	A unique fraction `0` is guaranteed such that for every fraction `a`, `a * 0 === 0 * a === 0`.
+ * - The set of Fractions has no nonzero zero-divisors:
+ * 	For fractions `a` and `b`, if `a * b === 0` or if `b * a === 0`, then either `a === 0` or `b === 0`
+ * 	(where `0` is the multiplicative absorber).
+ * - Multiplication is commutative and associative:
+ * 	For fractions `a`, `b`, and `c`, the following statements are guaranteed true:
  * 	- `a * b === b * a`
  * 	- `a * (b * c) === (a * b) * c`
  */
@@ -45,20 +48,22 @@ export default class Fraction extends Number {
 	 * Return the maximum of two or more Fractions.
 	 * @param   fracs two or more Fractions to compare
 	 * @returns the greatest of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...fracs: Fraction[]): Fraction {
+		if (!fracs.length) throw new Error('No arguments provided.')
 		return new Fraction(Math.max(...fracs.map((f) => f.valueOf())))
-		// return fracs.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).slice(-1)[0]
 	}
 
 	/**
 	 * Return the minimum of two or more Fractions.
 	 * @param   fracs two or more Fractions to compare
 	 * @returns the least of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...fracs: Fraction[]): Fraction {
+		if (!fracs.length) throw new Error('No arguments provided.')
 		return new Fraction(Math.min(...fracs.map((f) => f.valueOf())))
-		// return fracs.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
 	}
 
 	// /**
@@ -97,7 +102,7 @@ export default class Fraction extends Number {
 		return Fraction.FULL.minus(this)
 	}
 
-	// /** @override */
+	// /** @override Object */
 	// toString(radix: number = 10): string {
 	// 	return `${(radix**2 * this.valueOf()).toString(radix)}%`
 	// }

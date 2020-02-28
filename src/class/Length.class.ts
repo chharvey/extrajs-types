@@ -45,27 +45,22 @@ export default class Length extends Number {
 	 * Return the maximum of two or more Lengths.
 	 * @param   lengths two or more Lengths to compare
 	 * @returns the greatest of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...lengths: Length[]): Length {
+		if (!lengths.length) throw new Error('No arguments provided.')
 		return new Length(Math.max(...lengths.map((x) => x.valueOf())))
-		// return lengths.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).slice(-1)[0]
 	}
 
 	/**
 	 * Return the minimum of two or more Lengths.
 	 * @param   lengths two or more Lengths to compare
 	 * @returns the least of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...lengths: Length[]): Length {
+		if (!lengths.length) throw new Error('No arguments provided.')
 		return new Length(Math.min(...lengths.map((x) => x.valueOf())))
-		// return lengths.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
-	}
-
-	/**
-	 * @deprecated use constructor `new Length()` instead.
-	 */
-	static fromString(str: string): Length {
-		return new Length(str)
 	}
 
 
@@ -86,13 +81,13 @@ export default class Length extends Number {
 			if (!Length.REGEXP.test(x)) throw new RangeError(`Invalid string format: '${x}'.`)
 			let numeric_part: number = +x.match(xjs.Number.REGEXP.source.slice(1,-1)) ![0]
 			let unit_part   : string =  x.match(/cm|mm|in|pt|px/                    ) ![0]
-			x = xjs.Object.switch<number>(unit_part, {
-				'cm': () => numeric_part / Length.CONVERSION[LengthUnit.CM],
-				'mm': () => numeric_part / Length.CONVERSION[LengthUnit.MM],
-				'in': () => numeric_part / Length.CONVERSION[LengthUnit.IN],
-				'pt': () => numeric_part / Length.CONVERSION[LengthUnit.PT],
-				'px': () => numeric_part / Length.CONVERSION[LengthUnit.PX],
-			})()
+			x = new Map<string, () => number>([
+				['cm', () => numeric_part / Length.CONVERSION[LengthUnit.CM]],
+				['mm', () => numeric_part / Length.CONVERSION[LengthUnit.MM]],
+				['in', () => numeric_part / Length.CONVERSION[LengthUnit.IN]],
+				['pt', () => numeric_part / Length.CONVERSION[LengthUnit.PT]],
+				['px', () => numeric_part / Length.CONVERSION[LengthUnit.PX]],
+			]).get(unit_part) !()
 		}
 		x = x.valueOf()
 		xjs.Number.assertType(x, 'non-negative')
@@ -100,7 +95,7 @@ export default class Length extends Number {
 		super(x / Length.CONVERSION[unit])
 	}
 
-	/** @override */
+	/** @override Object */
 	toString(radix: number = 10, unit: LengthUnit = LengthUnit.CM): string {
 		return `${this.convert(unit).toString(radix)}${LengthUnit[unit].toLowerCase()}`
 	}
@@ -222,7 +217,7 @@ export default class Length extends Number {
 	 * Return the ratio of this Length (the dividend) to the argument (the divisor).
 	 *
 	 * Note: to “divide” this Length into even pieces, call {@link Length.scale}.
-	 * @param   divisior the Length to divide this one by
+	 * @param   divisor the Length to divide this one by
 	 * @returns a number equal to the quotient, `dividend / divisor`
 	 */
 	ratio(divisor: Length|number = 1): number {

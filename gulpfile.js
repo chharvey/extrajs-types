@@ -5,7 +5,7 @@ const typescript = require('gulp-typescript')
 // require('typescript') // DO NOT REMOVE … peerDependency of `gulp-typescript`
 
 const tsconfig      = require('./tsconfig.json')
-const typedocconfig = require('./config/typedoc.json')
+const typedocconfig = tsconfig.typedocOptions
 
 
 function dist() {
@@ -18,13 +18,6 @@ function test_out() {
 	return gulp.src(['./test/src/{,*.}test.ts'])
 		.pipe(typescript(tsconfig.compilerOptions))
 		.pipe(gulp.dest('./test/out/'))
-}
-
-async function test_run_length() {
-	await Promise.all([
-		require('./test/out/Length-constructor.test.js').default,
-	])
-	console.info('All _Length_ tests ran successfully!')
 }
 
 async function test_run_angle() {
@@ -49,6 +42,21 @@ async function test_run_color() {
 	console.info('All _Color_ tests ran successfully!')
 }
 
+async function test_run_length() {
+	await Promise.all([
+		require('./test/out/Length-constructor.test.js').default,
+	])
+	console.info('All _Length_ tests ran successfully!')
+}
+
+async function test_run_treenode() {
+	await Promise.all([
+		require('./test/out/TreeNode-constructor.test.js').default,
+		require('./test/out/TreeNode-path.test.js').default,
+	])
+	console.info('All _TreeNode_ tests ran successfully!')
+}
+
 async function test_run_vector() {
 	await Promise.all([
 		require('./test/out/Vector-constructor.test.js').default,
@@ -59,11 +67,12 @@ async function test_run_vector() {
 
 const test_run = gulp.series(
 	gulp.parallel(
-		test_run_length,
 		test_run_angle,
 		test_run_color,
+		test_run_length,
+		test_run_treenode,
 		test_run_vector,
-	), async () => {
+	), async function test_run0() {
 		console.info('All tests ran successfully!')
 	}
 )
@@ -87,14 +96,15 @@ const build = gulp.parallel(
 )
 
 module.exports = {
-	dist,
-	test_out,
-	test_run_length,
-	test_run_angle,
-	test_run_color,
-	test_run_vector,
-	test_run,
-	test,
-	docs,
 	build,
+		dist,
+		test,
+			test_out,
+			test_run,
+				test_run_angle,
+				test_run_color,
+				test_run_length,
+				test_run_treenode,
+				test_run_vector,
+		docs,
 }

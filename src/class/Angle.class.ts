@@ -58,20 +58,22 @@ export default class Angle extends Number {
 	 * Return the maximum of two or more Angles.
 	 * @param   angles two or more Angles to compare
 	 * @returns the greatest of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static max(...angles: Angle[]): Angle {
+		if (!angles.length) throw new Error('No arguments provided.')
 		return new Angle(Math.max(...angles.map((theta) => theta.valueOf())))
-		// return angles.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0).slice(-1)[0]
 	}
 
 	/**
 	 * Return the minimum of two or more Angles.
 	 * @param   angles two or more Angles to compare
 	 * @returns the least of all the arguments
+	 * @throws  {Error} if no arguments are provided
 	 */
 	static min(...angles: Angle[]): Angle {
+		if (!angles.length) throw new Error('No arguments provided.')
 		return new Angle(Math.min(...angles.map((theta) => theta.valueOf())))
-		// return angles.sort((a, b) => (a.lessThan(b)) ? -1 : (b.lessThan(a)) ? 1 : 0)[0]
 	}
 
 	/**
@@ -135,13 +137,6 @@ export default class Angle extends Number {
 		return Angle.atan(1 / x)
 	}
 
-	/**
-	 * @deprecated use constructor `new Angle()` instead.
-	 */
-	static fromString(str: string): Angle {
-		return new Angle(str)
-	}
-
 
 	/**
 	 * Construct a new Angle object.
@@ -160,12 +155,12 @@ export default class Angle extends Number {
 			if (!Angle.REGEXP.test(theta)) throw new RangeError(`Invalid string format: '${theta}'.`)
 			let numeric_part: number = +theta.match(xjs.Number.REGEXP.source.slice(1,-1)) ![0]
 			let unit_part   : string =  theta.match(/turn|deg|grad|rad/                 ) ![0]
-			theta = xjs.Object.switch<number>(unit_part, {
-				'turn' : () => numeric_part / Angle.CONVERSION[AngleUnit.TURN],
-				'deg'  : () => numeric_part / Angle.CONVERSION[AngleUnit.DEG ],
-				'grad' : () => numeric_part / Angle.CONVERSION[AngleUnit.GRAD],
-				'rad'  : () => numeric_part / Angle.CONVERSION[AngleUnit.RAD ],
-			})()
+			theta = new Map<string, () => number>([
+				['turn' , () => numeric_part / Angle.CONVERSION[AngleUnit.TURN]],
+				['deg'  , () => numeric_part / Angle.CONVERSION[AngleUnit.DEG ]],
+				['grad' , () => numeric_part / Angle.CONVERSION[AngleUnit.GRAD]],
+				['rad'  , () => numeric_part / Angle.CONVERSION[AngleUnit.RAD ]],
+			]).get(unit_part) !()
 		}
 		theta = theta.valueOf()
 		xjs.Number.assertType(theta, 'finite')
@@ -295,7 +290,7 @@ export default class Angle extends Number {
 		return 1 / this.tan
 	}
 
-	/** @override */
+	/** @override Object */
 	toString(radix: number = 10, unit: AngleUnit = AngleUnit.TURN): string {
 		return `${this.convert(unit).toString(radix)}${AngleUnit[unit].toLowerCase()}`
 	}
@@ -399,7 +394,7 @@ export default class Angle extends Number {
 	 * Return the ratio of this Angle (the dividend) to the argument (the divisor).
 	 *
 	 * Note: to “divide” this Angle into even pieces, call {@link Angle.scale}.
-	 * @param   divisior the Angle to divide this one by
+	 * @param   divisor the Angle to divide this one by
 	 * @returns a number equal to the quotient, `dividend / divisor`
 	 */
 	ratio(divisor: Angle|number = 1): number {

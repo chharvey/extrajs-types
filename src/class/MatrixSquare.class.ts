@@ -10,19 +10,20 @@ import Matrix from './Matrix.class'
  *
  * A **Square Matrix Space** is a matrix space whose row dimension and column dimension are equal.
  *
- * - Matrices in a Square Matrix Space are closed under multiplication.
+ * - Matrices in a Square Matrix Space are closed under multiplication:
  * 	For matrices `a` and `b` of dimension *N×N*,
  * 	the expression `ab` is guaranteed to also be a matrix of dimension *N×N*.
- * - A Square Matrix Space has a (unique) multiplicative idenity.
+ * - A Square Matrix Space has a (unique) multiplicative identity:
  * 	There exists a matrix `1` such that for every matrix `a`,
  * 	`a1`, and `1a` are guaranteed to equal `a`, and
  * 	`1` is the only matrix with this property.
- * - Matrices in a Square Matrix Space have (unique) multiplicative inverses:
- * 	for every matrix `a`, a unique matrix `a’` is guaranteed such that `aa’ === a’a === 1`
- * 	(where `1` is the multiplicative identity).
  * - Matrices in a Square Matrix Space have a (unique) multiplicative absorber:
- * 	a unique matrix `0` is guaranteed such that for every matrix `a`, `a0 === 0a === 0`.
+ * 	A unique matrix `0` is guaranteed such that for every matrix `a`, `a0 === 0a === 0`.
  * 	(In a Square Matrix Space, the multiplicative absorber and the additive identity are one in the same.)
+ * - Non-zero Matrices in a Square Matrix Space have (unique) multiplicative inverses:
+ * 	For every matrix `a !== 0` (where `0` is the multiplicative absorber),
+ * 	a unique matrix `a^` is guaranteed such that `aa^ === a^a === 1`
+ * 	(where `1` is the multiplicative identity).
  */
 export default class MatrixSquare extends Matrix {
 	/**
@@ -46,8 +47,8 @@ export default class MatrixSquare extends Matrix {
 	 * Construct a new MatrixSquare object.
 	 * @param   data a Matrix, an array of Vectors, or array of arrays of finite numbers
 	 */
-	constructor(data: Matrix|ReadonlyArray<Vector|number[]> = []) {
-		let rawdata: ReadonlyArray<number[]> = (data instanceof Matrix) ?
+	constructor(data: Matrix|readonly (Vector|number[])[] = []) {
+		let rawdata: readonly number[][] = (data instanceof Matrix) ?
 			data.raw.map((row) => [...row]) : // each row must be a full Array
 			data.map((row) => (row instanceof Vector) ? [...row.raw] : row) // each row must be a full Array
 		rawdata.forEach((row) => {
@@ -59,7 +60,7 @@ export default class MatrixSquare extends Matrix {
 
 	/**
 	 * The transposition of a square matrix is always a square matrix.
-	 * @override
+	 * @override Matrix
 	 */
 	get transposition(): MatrixSquare {
 		return super.transposition as MatrixSquare
@@ -106,7 +107,7 @@ export default class MatrixSquare extends Matrix {
 
 	/**
 	 * The minor of a square matrix is always a square matrix.
-	 * @override
+	 * @override Matrix
 	 */
 	minor(row: Integer|number, col: Integer|number): MatrixSquare {
 		return new MatrixSquare(super.minor(row, col))
@@ -114,7 +115,7 @@ export default class MatrixSquare extends Matrix {
 
 	/**
 	 * Scaling a square matrix always yields a square matrix.
-	 * @override
+	 * @override Matrix
 	 */
 	scale(scalar: number = 1): MatrixSquare {
 		return new MatrixSquare(super.scale(scalar))
@@ -122,7 +123,7 @@ export default class MatrixSquare extends Matrix {
 
 	/**
 	 * Multiplying two square matrices always yields a square matrix.
-	 * @override
+	 * @override Matrix
 	 */
 	times(multiplier: Matrix|number[][]): MatrixSquare {
 		return new MatrixSquare(super.times(multiplier))
