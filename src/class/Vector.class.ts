@@ -1,7 +1,7 @@
 import * as xjs from 'extrajs'
 
 import Integer from './Integer.class'
-import MatrixSquare_import from './MatrixSquare.class'
+import type MatrixSquare_import from './MatrixSquare.class' // COMBAK circular dependency
 
 
 /**

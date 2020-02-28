@@ -1,4 +1,4 @@
-import Fraction from './Fraction.class'
+import type Fraction from './Fraction.class'
 import Integer from './Integer.class'
 import Meter from './Meter.class'
 
