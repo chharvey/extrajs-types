@@ -91,7 +91,6 @@ export default class Rational extends Number {
 	 * Construct a new Rational object.
 	 * @param   q the numerator of the Rational
 	 * @param   r the denominator of the Rational
-	 * @throws  {RangeError} if `r` is equivalent to `0`
 	 */
 	constructor(q?: Integer|number, r?: Integer|number);
 	constructor(q: Rational|Integer|number = 0, r: Integer|number = 1) {
@@ -104,7 +103,7 @@ export default class Rational extends Number {
 		r = r.valueOf()
 		xjs.Number.assertType(q, 'finite')
 		xjs.Number.assertType(r, 'finite')
-		if (r === 0) throw new RangeError(`${r} must not be zero.`) // TODO assertType('non-zero') // COMBAK extrajs^0.19
+		xjs.Number.assertType(r, 'non-zero')
 		q_int = q_int || new Integer(q * 1e16)
 		r_int = r_int || new Integer(r * 1e16)
 		super(q_int.valueOf() / r_int.valueOf())

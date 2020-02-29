@@ -1,7 +1,7 @@
 import * as xjs from 'extrajs'
 
 import Integer from './Integer.class'
-import MatrixSquare_import from './MatrixSquare.class'
+import type MatrixSquare_import from './MatrixSquare.class' // COMBAK circular dependency
 
 
 /**
@@ -124,7 +124,7 @@ export default class Vector {
 	 */
 	at(i: Integer|number): number {
 		if (i instanceof Integer) {
-			if (i.lessThan(0) || !i.lessThan(this.dimension)) throw new RangeError(`Index ${i} out of bounds.`) // COMBAK extrajs^0.19:IndexOutOfBoundsError
+			if (i.lessThan(0) || !i.lessThan(this.dimension)) throw new xjs.IndexOutOfBoundsError(i.valueOf())
 			return this._DATA[i.valueOf()]
 		} else return this.at(new Integer(i))
 	}

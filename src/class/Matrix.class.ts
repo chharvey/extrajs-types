@@ -186,8 +186,8 @@ export default class Matrix {
 	 */
 	at(i: Integer|number, j: Integer|number): number {
 		if (i instanceof Integer && j instanceof Integer) {
-			if (i.lessThan(0) || !i.lessThan(this.height)) throw new RangeError(`Index ${i} out of bounds.`) // COMBAK extrajs^0.19:IndexOutOfBoundsError
-			if (j.lessThan(0) || !j.lessThan(this.width )) throw new RangeError(`Index ${j} out of bounds.`) // COMBAK extrajs^0.19:IndexOutOfBoundsError
+			if (i.lessThan(0) || !i.lessThan(this.height)) throw new xjs.IndexOutOfBoundsError(i.valueOf())
+			if (j.lessThan(0) || !j.lessThan(this.width )) throw new xjs.IndexOutOfBoundsError(j.valueOf())
 			return this._DATA[i.valueOf()][j.valueOf()]
 		} else return this.at(new Integer(i), new Integer(j))
 	}
@@ -200,7 +200,7 @@ export default class Matrix {
 	 */
 	getRow(i: Integer|number): Vector {
 		if (i instanceof Integer) {
-			if (i.lessThan(0) || !i.lessThan(this.height)) throw new RangeError(`Index ${i} out of bounds.`) // COMBAK extrajs^0.19:IndexOutOfBoundsError
+			if (i.lessThan(0) || !i.lessThan(this.height)) throw new xjs.IndexOutOfBoundsError(i.valueOf())
 			return new Vector(this._DATA[i.valueOf()])
 		} else return this.getRow(new Integer(i))
 	}
@@ -213,7 +213,7 @@ export default class Matrix {
 	 */
 	getCol(j: Integer|number): Vector {
 		if (j instanceof Integer) {
-			if (j.lessThan(0) || !j.lessThan(this.width)) throw new RangeError(`Index ${j} out of bounds.`) // COMBAK extrajs^0.19:IndexOutOfBoundsError
+			if (j.lessThan(0) || !j.lessThan(this.width)) throw new xjs.IndexOutOfBoundsError(j.valueOf())
 			let col: number[] = []
 			this._DATA.forEach((row) => {
 				col.push(row[j.valueOf()])
