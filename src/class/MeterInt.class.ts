@@ -178,8 +178,8 @@ export default class MeterInt {
 	 * @returns the ranges (between minimum, low, high, maximum), and preference based on where the optimum exists; else `null`
 	 */
 	intervals(): {
-		interval: [number, number];
-		preference: number;
+		interval: [bigint, bigint];
+		preference: bigint;
 	}[]|null {
 		const meter = new Meter(
 			Number(this.min),
@@ -189,6 +189,13 @@ export default class MeterInt {
 		meter.low     = Number(this.low)
 		meter.high    = Number(this.high)
 		meter.optimum = Number(this.optimum)
-		return meter.intervals()
+		const intervals: {
+			interval: [number, number];
+			preference: number;
+		}[]|null = meter.intervals()
+		return (intervals !== null) ? intervals.map((iv) => ({
+			interval  : iv.interval.map((n) => BigInt(n)) as [bigint, bigint],
+			preference: BigInt(iv.preference),
+		})) : null
 	}
 }

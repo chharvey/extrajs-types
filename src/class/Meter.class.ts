@@ -181,20 +181,26 @@ export default class Meter {
 	 *
 	 * condition                                       | preference value
 	 * ----------                                      |-------------
-	 * the optimum is in the interval                  | `1`
-	 * the optimum is in an adjacent interval          | `2`
-	 * the optimum is not in an adjacent interval      | `3`
+	 * the optimum is in the interval                  | 1
+	 * the optimum is in an adjacent interval          | 2
+	 * the optimum is not in an adjacent interval      | 3
 	 *
 	 * Example:
 	 * ```
 	 * min         low                       high     max
 	 * |------------|-------------------------|--------|
-	 *                                            ^
-	 *                                         optimum
+	 *                    ^                       ^
+	 *                  value                  optimum
 	 * ```
 	 * In the example above, there are 3 intervals, and the optimum value is in the
-	 * right-most (highest) interval. Then the preferences of the intervals are:
-	 * `[min, low]: 3, [low, high]: 2, [high–max]: 1`.
+	 * right-most (highest) interval. Then the preferences of the intervals are as follows:
+	 *
+	 * | Interval     | Preference |
+	 * | ------------ | ---------- |
+	 * | [min , low ] | 3          |
+	 * | [low , high] | 2          |
+	 * | [high, max ] | 1          |
+	 * ```
 	 *
 	 * @returns the ranges (between minimum, low, high, maximum), and preference based on where the optimum exists; else `null`
 	 */
@@ -225,7 +231,7 @@ export default class Meter {
 			null
 		return (preferences !== null) ? [a, b, c].map((iv) => ({
 			interval: [iv.LOWER, iv.UPPER] as [number, number],
-			preference: preferences !.get(iv) !
+			preference: preferences.get(iv) !
 		})) : null
 	}
 }
