@@ -111,7 +111,8 @@ export default class Meter {
 	 * @param   max the maximum
 	 */
 	set max(max: number) {
-		this._max = xjs.Math.clamp(this._min, max, Infinity)
+		xjs.Number.assertType(max, 'finite')
+		this._max = Math.max(this._min, max)
 		this.value = this._val
 	}
 	/**
@@ -133,7 +134,7 @@ export default class Meter {
 	 * @param   low the low
 	 */
 	set low(low: number|null) {
-		this._low = (low === null) ? low : xjs.Math.clamp(this._min, low, this._max)
+		this._low = (low !== null) ? xjs.Math.clamp(this._min, low, this._max) : low
 		this.high = this._high
 	}
 	/**
@@ -143,8 +144,8 @@ export default class Meter {
 	 * @param   high the high
 	 */
 	set high(high: number|null) {
-		let low: number = (this._low !== null) ? this._low : this._min
-		this._high = (high === null) ? high : xjs.Math.clamp(low, high, this._max)
+		const low: number = (this._low !== null) ? this._low : this._min
+		this._high = (high !== null) ? xjs.Math.clamp(low, high, this._max) : high
 	}
 	/**
 	 * Set the optimum.
@@ -154,7 +155,7 @@ export default class Meter {
 	 * @param   opt the optimum
 	 */
 	set optimum(opt: number|null) {
-		this._opt = (opt === null) ? opt : xjs.Math.clamp(this._min, opt, this._max)
+		this._opt = (opt !== null) ? xjs.Math.clamp(this._min, opt, this._max) : opt
 	}
 
 	/**
@@ -180,20 +181,26 @@ export default class Meter {
 	 *
 	 * condition                                       | preference value
 	 * ----------                                      |-------------
-	 * the optimum is in the interval                  | `1`
-	 * the optimum is in an adjacent interval          | `2`
-	 * the optimum is not in an adjacent interval      | `3`
+	 * the optimum is in the interval                  | 1
+	 * the optimum is in an adjacent interval          | 2
+	 * the optimum is not in an adjacent interval      | 3
 	 *
 	 * Example:
 	 * ```
 	 * min         low                       high     max
 	 * |------------|-------------------------|--------|
-	 *                                            ^
-	 *                                         optimum
+	 *                    ^                       ^
+	 *                  value                  optimum
 	 * ```
 	 * In the example above, there are 3 intervals, and the optimum value is in the
-	 * right-most (highest) interval. Then the preferences of the intervals are:
-	 * `[min, low]: 3, [low, high]: 2, [high–max]: 1`.
+	 * right-most (highest) interval. Then the preferences of the intervals are as follows:
+	 *
+	 * | Interval     | Preference |
+	 * | ------------ | ---------- |
+	 * | [min , low ] | 3          |
+	 * | [low , high] | 2          |
+	 * | [high, max ] | 1          |
+	 * ```
 	 *
 	 * @returns the ranges (between minimum, low, high, maximum), and preference based on where the optimum exists; else `null`
 	 */
@@ -215,8 +222,8 @@ export default class Meter {
 				a = c = new ClosedInterval(this._min, this._max)
 			}
 		}
-		let b: OpenInterval = (a.UPPER < c.LOWER) ? new OpenInterval(a.UPPER, c.LOWER) : new OpenInterval(0, 0)
-		let preferences: ReadonlyMap<Interval, number>|null =
+		const b: OpenInterval = (a.UPPER < c.LOWER) ? new OpenInterval(a.UPPER, c.LOWER) : new OpenInterval(0, 0)
+		const preferences: ReadonlyMap<Interval, number>|null =
 			(a.equals(c)     ) ? new Map<Interval, number>([[a, 1                         ], [b, 1], [c, 1                         ]]) :
 			(a.has(this._opt)) ? new Map<Interval, number>([[a, 1                         ], [b, 2], [c, b.LENGTH.equals(0) ? 2 : 3]]) :
 			(c.has(this._opt)) ? new Map<Interval, number>([[a, b.LENGTH.equals(0) ? 2 : 3], [b, 2], [c, 1                         ]]) :
@@ -224,7 +231,7 @@ export default class Meter {
 			null
 		return (preferences !== null) ? [a, b, c].map((iv) => ({
 			interval: [iv.LOWER, iv.UPPER] as [number, number],
-			preference: preferences !.get(iv) !
+			preference: preferences.get(iv) !
 		})) : null
 	}
 }

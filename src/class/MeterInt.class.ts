@@ -1,34 +1,40 @@
 import type Fraction from './Fraction.class'
-import Integer from './Integer.class'
 import Meter from './Meter.class'
+
+
+// COMBAK import functions from extrajs^0.21
+const Math_minBigInt = (a: bigint, b: bigint): bigint =>
+	a < b ? a : b
+
+const Math_maxBigInt = (a: bigint, b: bigint): bigint =>
+	a < b ? b : a
+
+const Math_clampBigInt = (min: bigint, val: bigint, max: bigint): bigint =>
+	min <= max ? Math_minBigInt(Math_maxBigInt(min, val), max) : Math_clampBigInt(max, val, min)
 
 
 /**
  * A MeterInt is like a {@link Meter} whose properties are all integers.
  *
  * - the maximum must be strictly greater than the minimum
- * - the value must fall loosely between them (inclusively)
- * - the low must be loosely between the minimum and the maximum
- * - the high must be loosely between the low (if it exists, else the minimum) and the maximum
- * - the optimum must be loosely between the minimum and maximum
- *
- * @todo COMBAK: replace `Integer` values with `bigint`
+ * - the value must fall loosly between them (inclusively)
+ * - the low must be loosly between the minimum and the maximum
+ * - the high must be loosly between the low (if it exists, else the minimum) and the maximum
+ * - the optimum must be loosly between the minimum and maximum
  */
 export default class MeterInt {
-	/** The underlying Meter, which provides all the logic. */
-	private readonly _METER: Meter;
 	/** The minimum. */
-	private _min: Integer;
+	private _min: bigint;
 	/** The maximum. */
-	private _max: Integer;
+	private _max: bigint;
 	/** The value. */
-	private _val: Integer;
+	private _val: bigint;
 	/** The low. */
-	private _low: Integer|null = null;
+	private _low: bigint|null = null;
 	/** The high. */
-	private _high: Integer|null = null;
+	private _high: bigint|null = null;
 	/** The optimum. */
-	private _opt: Integer|null = null;
+	private _opt: bigint|null = null;
 
 	/**
 	 * Construct a new MeterInt object.
@@ -36,53 +42,52 @@ export default class MeterInt {
 	 * @param   val the value   of this Meter
 	 * @param   max the maximum of this Meter
 	 */
-	constructor(min: Integer|number = 0, val: Integer|number = 0, max: Integer|number = 1) {
-		this._METER = new Meter(min.valueOf(), val.valueOf(), max.valueOf())
-		this._min = new Integer(this._METER.min)
-		this._max = new Integer(this._METER.max)
-		this._val = new Integer(this._METER.value)
+	constructor(min: bigint = 0n, val: bigint = 0n, max: bigint = 1n) {
+		this._min = min
+		this._max = Math_maxBigInt(min, max)
+		this._val = Math_clampBigInt(min, val, max)
 	}
 
 	/**
 	 * Get the minimum.
 	 * @returns the minimum
 	 */
-	get min(): Integer {
+	get min(): bigint {
 		return this._min
 	}
 	/**
 	 * Get the maximum.
 	 * @returns the maximum
 	 */
-	get max(): Integer {
+	get max(): bigint {
 		return this._max
 	}
 	/**
 	 * Get the value.
 	 * @returns the value
 	 */
-	get value(): Integer {
+	get value(): bigint {
 		return this._val
 	}
 	/**
 	 * Get the low.
 	 * @returns the low
 	 */
-	get low(): Integer|null {
+	get low(): bigint|null {
 		return this._low
 	}
 	/**
 	 * Get the high.
 	 * @returns the high
 	 */
-	get high(): Integer|null {
+	get high(): bigint|null {
 		return this._high
 	}
 	/**
 	 * Get the optimum.
 	 * @returns the optimum
 	 */
-	get optimum(): Integer|null {
+	get optimum(): bigint|null {
 		return this._opt
 	}
 
@@ -93,9 +98,9 @@ export default class MeterInt {
 	 * and then clamps the value loosely between the new minimum and the maximum.
 	 * @param   min the maximum
 	 */
-	set min(min: Integer) {
-		this._METER.min = min.valueOf()
-		this._min = new Integer(this._METER.min)
+	set min(min: bigint) {
+		this._min = min
+		this.max = this._max
 	}
 	/**
 	 * Set the maximum.
@@ -105,9 +110,9 @@ export default class MeterInt {
 	 * This method clamps the value between the minimum and the new maximum.
 	 * @param   max the maximum
 	 */
-	set max(max: Integer) {
-		this._METER.max = max.valueOf()
-		this._max = new Integer(this._METER.max)
+	set max(max: bigint) {
+		this._max = Math_maxBigInt(this._min, max)
+		this.value = this._val
 	}
 	/**
 	 * Set the value.
@@ -116,9 +121,8 @@ export default class MeterInt {
 	 *
 	 * @param   val the value
 	 */
-	set value(val: Integer) {
-		this._METER.value = val.valueOf()
-		this._val = new Integer(this._METER.value)
+	set value(val: bigint) {
+		this._val = Math_clampBigInt(this._min, val, this._max)
 	}
 	/**
 	 * Set the low.
@@ -128,13 +132,9 @@ export default class MeterInt {
 	 * This method clamps the high to be loosely greater than the new low.
 	 * @param   low the low
 	 */
-	set low(low: Integer|null) {
-		if (low === null) {
-			this._METER.low = this._low = low
-		} else {
-			this._METER.low = low.valueOf()
-			this._low = new Integer(this._METER.low)
-		}
+	set low(low: bigint|null) {
+		this._low = (low === null) ? low : Math_clampBigInt(this._min, low, this._max)
+		this.high = this._high
 	}
 	/**
 	 * Set the high.
@@ -142,13 +142,9 @@ export default class MeterInt {
 	 * The new high must be loosely between the low (if it exists, else the minimum) and the maximum.
 	 * @param   high the high
 	 */
-	set high(high: Integer|null) {
-		if (high === null) {
-			this._METER.high = this._high = high
-		} else {
-			this._METER.high = high.valueOf()
-			this._high = new Integer(this._METER.high)
-		}
+	set high(high: bigint|null) {
+		const low: bigint = (this._low !== null) ? this._low : this._min
+		this._high = (high !== null) ? Math_clampBigInt(low, high, this._max) : high
 	}
 	/**
 	 * Set the optimum.
@@ -157,13 +153,8 @@ export default class MeterInt {
 	 *
 	 * @param   opt the optimum
 	 */
-	set optimum(opt: Integer|null) {
-		if (opt === null) {
-			this._METER.optimum = this._opt = opt
-		} else {
-			this._METER.optimum = opt.valueOf()
-			this._opt = new Integer(this._METER.optimum)
-		}
+	set optimum(opt: bigint|null) {
+		this._opt = (opt !== null) ? Math_clampBigInt(this._min, opt, this._max) : opt
 	}
 
 	/**
@@ -171,7 +162,15 @@ export default class MeterInt {
 	 * @returns exactly `(this.value - this.min) / (this.max - this.min)`
 	 */
 	fraction(): Fraction {
-		return this._METER.fraction()
+		const meter = new Meter(
+			Number(this.min),
+			Number(this.value),
+			Number(this.max),
+		)
+		meter.low     = Number(this.low)
+		meter.high    = Number(this.high)
+		meter.optimum = Number(this.optimum)
+		return meter.fraction()
 	}
 
 	/**
@@ -179,9 +178,24 @@ export default class MeterInt {
 	 * @returns the ranges (between minimum, low, high, maximum), and preference based on where the optimum exists; else `null`
 	 */
 	intervals(): {
-		interval: [number, number];
-		preference: number;
+		interval: [bigint, bigint];
+		preference: bigint;
 	}[]|null {
-		return this._METER.intervals()
+		const meter = new Meter(
+			Number(this.min),
+			Number(this.value),
+			Number(this.max),
+		)
+		meter.low     = Number(this.low)
+		meter.high    = Number(this.high)
+		meter.optimum = Number(this.optimum)
+		const intervals: {
+			interval: [number, number];
+			preference: number;
+		}[]|null = meter.intervals()
+		return (intervals !== null) ? intervals.map((iv) => ({
+			interval  : iv.interval.map((n) => BigInt(n)) as [bigint, bigint],
+			preference: BigInt(iv.preference),
+		})) : null
 	}
 }
