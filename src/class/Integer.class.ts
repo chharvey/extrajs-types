@@ -6,6 +6,10 @@ import * as xjs from 'extrajs'
 /**
  * An Integer is a whole number, a negative whole number, or 0.
  *
+ * NOTE: This class is designed to represent numeric types of integral values.
+ * However, the recommended and less expensive approach is to use the native BigInt class,
+ * with bigint literals, rather than this class.
+ *
  * The set of Integers exhibits the following properties:
  *
  * - Integers are weakly totally ordered: There exists a weak total order `<=` on the integers:
