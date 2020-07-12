@@ -86,7 +86,7 @@ export default class Fraction extends Number {
 	 */
 	constructor(f: Fraction|number = 0) {
 		f = f.valueOf()
-		xjs.Number.assertType(f, 'finite')
+		xjs.Number.assertType(f, xjs.NumericType.FINITE)
 		if (f < 0 || 1 < f) throw new RangeError(`${f} must be between 0 and 1, inclusive.`)
 		super(f)
 	}

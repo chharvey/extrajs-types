@@ -101,9 +101,9 @@ export default class Rational extends Number {
 		let r_int: Integer|null = (r instanceof Integer) ? r : null
 		q = q.valueOf()
 		r = r.valueOf()
-		xjs.Number.assertType(q, 'finite')
-		xjs.Number.assertType(r, 'finite')
-		xjs.Number.assertType(r, 'non-zero')
+		xjs.Number.assertType(q, xjs.NumericType.FINITE)
+		xjs.Number.assertType(r, xjs.NumericType.FINITE)
+		xjs.Number.assertType(r, xjs.NumericType.NONZERO)
 		q_int = q_int || new Integer(q * 1e16)
 		r_int = r_int || new Integer(r * 1e16)
 		super(q_int.valueOf() / r_int.valueOf())

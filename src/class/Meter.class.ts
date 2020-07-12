@@ -39,9 +39,9 @@ export default class Meter {
 	 * @param   max the maximum of this Meter
 	 */
 	constructor(min: number = 0, val: number = 0, max: number = 1) {
-		xjs.Number.assertType(min, 'finite')
-		xjs.Number.assertType(val, 'finite')
-		xjs.Number.assertType(max, 'finite')
+		xjs.Number.assertType(min, xjs.NumericType.FINITE)
+		xjs.Number.assertType(val, xjs.NumericType.FINITE)
+		xjs.Number.assertType(max, xjs.NumericType.FINITE)
 		this._min = min
 		this._max = Math.max(min, max)
 		this._val = xjs.Math.clamp(min, val, max)
@@ -98,7 +98,7 @@ export default class Meter {
 	 * @param   min the maximum
 	 */
 	set min(min: number) {
-		xjs.Number.assertType(min, 'finite')
+		xjs.Number.assertType(min, xjs.NumericType.FINITE)
 		this._min = min
 		this.max = this._max
 	}
@@ -111,7 +111,7 @@ export default class Meter {
 	 * @param   max the maximum
 	 */
 	set max(max: number) {
-		xjs.Number.assertType(max, 'finite')
+		xjs.Number.assertType(max, xjs.NumericType.FINITE)
 		this._max = Math.max(this._min, max)
 		this.value = this._val
 	}

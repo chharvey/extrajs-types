@@ -163,7 +163,7 @@ export default class Angle extends Number {
 			]).get(unit_part) !()
 		}
 		theta = theta.valueOf()
-		xjs.Number.assertType(theta, 'finite')
+		xjs.Number.assertType(theta, xjs.NumericType.FINITE)
 		super(theta / Angle.CONVERSION[unit])
 	}
 

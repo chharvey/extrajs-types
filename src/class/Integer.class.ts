@@ -77,7 +77,7 @@ export default class Integer extends Number {
 	 */
 	constructor(z: Integer|number = 0) {
 		z = z.valueOf()
-		xjs.Number.assertType(z, 'finite')
+		xjs.Number.assertType(z, xjs.NumericType.FINITE)
 		super(Math.trunc(z))
 	}
 
@@ -300,7 +300,7 @@ export default class Integer extends Number {
 	tetrate(hyperexponent: Integer|number = 1): Integer {
 		console.warn('Warning: `Integer#tetrate` is deprecated.')
 		return (hyperexponent instanceof Integer) ? (
-			xjs.Number.assertType(hyperexponent.valueOf(), 'natural'),
+			xjs.Number.assertType(hyperexponent.valueOf(), xjs.NumericType.NATURAL),
 			(hyperexponent.equals(0)) ? Integer.MULT_IDEN :
 				new Integer(this.exp(this.tetrate(hyperexponent.minus(1))))
 		) : this.tetrate(new Integer(hyperexponent))

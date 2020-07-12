@@ -90,8 +90,8 @@ export default class Length extends Number {
 			]).get(unit_part) !()
 		}
 		x = x.valueOf()
-		xjs.Number.assertType(x, 'non-negative')
-		xjs.Number.assertType(x, 'finite')
+		xjs.Number.assertType(x, xjs.NumericType.NONNEGATIVE)
+		xjs.Number.assertType(x, xjs.NumericType.FINITE)
 		super(x / Length.CONVERSION[unit])
 	}
 
@@ -179,7 +179,7 @@ export default class Length extends Number {
 	 * @throws  {AssertionError} if `scalar` is negative
 	 */
 	scale(scalar: number = 1): Length {
-		xjs.Number.assertType(scalar, 'non-negative')
+		xjs.Number.assertType(scalar, xjs.NumericType.NONNEGATIVE)
 		return new Length(this.valueOf() * scalar)
 	}
 
