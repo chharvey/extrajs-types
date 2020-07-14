@@ -22,13 +22,6 @@ function test_out() {
 		.pipe(gulp.dest('./test/out/'))
 }
 
-async function test_run_angle() {
-	await Promise.all([
-		require('./test/out/Angle-constructor.test.js').default,
-	])
-	console.info('All _Angle_ tests ran successfully!')
-}
-
 async function test_run_color() {
 	await Promise.all([
 		require('./test/out/Color--fromString.test.js').default,
@@ -69,7 +62,6 @@ async function test_run_vector() {
 
 const test_run = gulp.series(
 	gulp.parallel(
-		test_run_angle,
 		test_run_color,
 		test_run_length,
 		test_run_treenodepre,
@@ -113,7 +105,6 @@ module.exports = {
 		test_old,
 			test_out,
 			test_run,
-				test_run_angle,
 				test_run_color,
 				test_run_length,
 				test_run_treenodepre,
