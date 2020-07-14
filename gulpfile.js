@@ -1,6 +1,8 @@
 const gulp  = require('gulp')
+const mocha      = require('gulp-mocha')
 const typedoc    = require('gulp-typedoc')
 const typescript = require('gulp-typescript')
+// require('ts-node')    // used by `gulp-mocha` below
 // require('typedoc')    // DO NOT REMOVE … peerDependency of `gulp-typedoc`
 // require('typescript') // DO NOT REMOVE … peerDependency of `gulp-typescript`
 
@@ -49,12 +51,12 @@ async function test_run_length() {
 	console.info('All _Length_ tests ran successfully!')
 }
 
-async function test_run_treenode() {
+async function test_run_treenodepre() {
 	await Promise.all([
-		require('./test/out/TreeNode-constructor.test.js').default,
-		require('./test/out/TreeNode-path.test.js').default,
+		require('./test/out/TreeNodePre-constructor.test.js').default,
+		require('./test/out/TreeNodePre-path.test.js').default,
 	])
-	console.info('All _TreeNode_ tests ran successfully!')
+	console.info('All _TreeNodePre_ tests ran successfully!')
 }
 
 async function test_run_vector() {
@@ -70,14 +72,22 @@ const test_run = gulp.series(
 		test_run_angle,
 		test_run_color,
 		test_run_length,
-		test_run_treenode,
+		test_run_treenodepre,
 		test_run_vector,
 	), async function test_run0() {
 		console.info('All tests ran successfully!')
 	}
 )
 
-const test = gulp.series(test_out, test_run)
+const test_old = gulp.series(test_out, test_run)
+
+function test() {
+	return gulp.src('./test/*.ts')
+		.pipe(mocha({
+			require: 'ts-node/register',
+		}))
+}
+
 
 function docs() {
 	return gulp.src('./src/**/*.ts')
@@ -92,19 +102,21 @@ const build = gulp.parallel(
 		),
 		test_run
 	),
-	docs
+	test,
+	docs,
 )
 
 module.exports = {
 	build,
 		dist,
 		test,
+		test_old,
 			test_out,
 			test_run,
 				test_run_angle,
 				test_run_color,
 				test_run_length,
-				test_run_treenode,
+				test_run_treenodepre,
 				test_run_vector,
 		docs,
 }
