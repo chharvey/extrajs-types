@@ -81,7 +81,7 @@ export default class Integer extends Number {
 	 */
 	constructor(z: Integer|number = 0) {
 		z = z.valueOf()
-		xjs.Number.assertType(z, 'finite')
+		xjs.Number.assertType(z, xjs.NumericType.FINITE)
 		super(Math.trunc(z))
 	}
 
@@ -143,10 +143,10 @@ export default class Integer extends Number {
 	assertType(type?: 'positive'|'negative'|'non-positive'|'non-negative'|'whole'|'natural'): void {
 		if (!type) return;
 		return (new Map([
-			['positive'    , () => assert( Integer.ADD_IDEN.lessThan(this), `${this} must     be a positive integer.`)],
-			['non-positive', () => assert(!Integer.ADD_IDEN.lessThan(this), `${this} must not be a positive integer.`)],
-			['negative'    , () => assert( this.lessThan(0)               , `${this} must     be a negative integer.`)],
-			['non-negative', () => assert(!this.lessThan(0)               , `${this} must not be a negative integer.`)],
+			['positive'    , () => assert.ok( Integer.ADD_IDEN.lessThan(this), `${this} must     be a positive integer.`)],
+			['non-positive', () => assert.ok(!Integer.ADD_IDEN.lessThan(this), `${this} must not be a positive integer.`)],
+			['negative'    , () => assert.ok( this.lessThan(0)               , `${this} must     be a negative integer.`)],
+			['non-negative', () => assert.ok(!this.lessThan(0)               , `${this} must not be a negative integer.`)],
 			['whole'       , () => this.assertType('positive'    )],
 			['natural'     , () => this.assertType('non-negative')],
 		]).get(type) || (() => { throw new Error('No argument was given.') }))()
@@ -304,7 +304,7 @@ export default class Integer extends Number {
 	tetrate(hyperexponent: Integer|number = 1): Integer {
 		console.warn('Warning: `Integer#tetrate` is deprecated.')
 		return (hyperexponent instanceof Integer) ? (
-			xjs.Number.assertType(hyperexponent.valueOf(), 'natural'),
+			xjs.Number.assertType(hyperexponent.valueOf(), xjs.NumericType.NATURAL),
 			(hyperexponent.equals(0)) ? Integer.MULT_IDEN :
 				new Integer(this.exp(this.tetrate(hyperexponent.minus(1))))
 		) : this.tetrate(new Integer(hyperexponent))

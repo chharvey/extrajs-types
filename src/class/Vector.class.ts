@@ -61,7 +61,7 @@ export default class Vector {
 	 */
 	constructor(data: Vector|readonly number[] = []) {
 		if (data instanceof Vector) data = data.raw
-		data.forEach((c) => xjs.Number.assertType(c, 'finite'))
+		data.forEach((c) => xjs.Number.assertType(c, xjs.NumericType.FINITE))
 		this._DATA = data
 		this._DIMENSION = new Integer(data.length)
 	}
