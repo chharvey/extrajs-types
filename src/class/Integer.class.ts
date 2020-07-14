@@ -139,10 +139,10 @@ export default class Integer extends Number {
 	assertType(type?: 'positive'|'negative'|'non-positive'|'non-negative'|'whole'|'natural'): void {
 		if (!type) return;
 		return (new Map([
-			['positive'    , () => assert( Integer.ADD_IDEN.lessThan(this), `${this} must     be a positive integer.`)],
-			['non-positive', () => assert(!Integer.ADD_IDEN.lessThan(this), `${this} must not be a positive integer.`)],
-			['negative'    , () => assert( this.lessThan(0)               , `${this} must     be a negative integer.`)],
-			['non-negative', () => assert(!this.lessThan(0)               , `${this} must not be a negative integer.`)],
+			['positive'    , () => assert.ok( Integer.ADD_IDEN.lessThan(this), `${this} must     be a positive integer.`)],
+			['non-positive', () => assert.ok(!Integer.ADD_IDEN.lessThan(this), `${this} must not be a positive integer.`)],
+			['negative'    , () => assert.ok( this.lessThan(0)               , `${this} must     be a negative integer.`)],
+			['non-negative', () => assert.ok(!this.lessThan(0)               , `${this} must not be a negative integer.`)],
 			['whole'       , () => this.assertType('positive'    )],
 			['natural'     , () => this.assertType('non-negative')],
 		]).get(type) || (() => { throw new Error('No argument was given.') }))()
