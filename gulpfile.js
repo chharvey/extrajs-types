@@ -22,21 +22,6 @@ function test_out() {
 		.pipe(gulp.dest('./test/out/'))
 }
 
-async function test_run_color() {
-	await Promise.all([
-		require('./test/out/Color--fromString.test.js').default,
-		require('./test/out/Color--random.test.js').default,
-		require('./test/out/Color--randomName.test.js').default,
-		require('./test/out/Color-constructor.test.js').default,
-		require('./test/out/Color-toString.test.js').default,
-		require('./test/out/Color-invert.test.js').default,
-		require('./test/out/Color-rotate.test.js').default,
-		require('./test/out/Color-complement.test.js').default,
-		require('./test/out/Color-name.test.js').default,
-	])
-	console.info('All _Color_ tests ran successfully!')
-}
-
 async function test_run_length() {
 	await Promise.all([
 		require('./test/out/Length-constructor.test.js').default,
@@ -62,7 +47,6 @@ async function test_run_vector() {
 
 const test_run = gulp.series(
 	gulp.parallel(
-		test_run_color,
 		test_run_length,
 		test_run_treenodepre,
 		test_run_vector,
@@ -105,7 +89,6 @@ module.exports = {
 		test_old,
 			test_out,
 			test_run,
-				test_run_color,
 				test_run_length,
 				test_run_treenodepre,
 				test_run_vector,
