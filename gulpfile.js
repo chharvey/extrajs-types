@@ -22,18 +22,8 @@ function test_out() {
 		.pipe(gulp.dest('./test/out/'))
 }
 
-async function test_run_treenodepre() {
-	await Promise.all([
-		require('./test/out/TreeNodePre-constructor.test.js').default,
-		require('./test/out/TreeNodePre-path.test.js').default,
-	])
-	console.info('All _TreeNodePre_ tests ran successfully!')
-}
-
 const test_run = gulp.series(
-	gulp.parallel(
-		test_run_treenodepre,
-	), async function test_run0() {
+	async function test_run0() {
 		console.info('All tests ran successfully!')
 	}
 )
@@ -72,6 +62,5 @@ module.exports = {
 		test_old,
 			test_out,
 			test_run,
-				test_run_treenodepre,
 		docs,
 }
