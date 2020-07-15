@@ -16,20 +16,6 @@ function dist() {
 		.pipe(gulp.dest('./dist/'))
 }
 
-function test_out() {
-	return gulp.src(['./test/src/{,*.}test.ts'])
-		.pipe(typescript(tsconfig.compilerOptions))
-		.pipe(gulp.dest('./test/out/'))
-}
-
-const test_run = gulp.series(
-	async function test_run0() {
-		console.info('All tests ran successfully!')
-	}
-)
-
-const test_old = gulp.series(test_out, test_run)
-
 function test() {
 	return gulp.src('./test/*.ts')
 		.pipe(mocha({
@@ -37,30 +23,22 @@ function test() {
 		}))
 }
 
-
 function docs() {
 	return gulp.src('./src/**/*.ts')
 		.pipe(typedoc(typedocconfig))
 }
 
-const build = gulp.parallel(
-	gulp.series(
-		gulp.parallel(
-			dist,
-			test_out
-		),
-		test_run
+const build = gulp.series(
+	dist, // `dist` needs to come before `test` because `src/class/Vector.class.ts` contains a `require()` call
+	gulp.parallel(
+		test,
+		docs,
 	),
-	test,
-	docs,
 )
 
 module.exports = {
 	build,
 		dist,
 		test,
-		test_old,
-			test_out,
-			test_run,
 		docs,
 }
