@@ -1,7 +1,6 @@
 import * as xjs from 'extrajs'
 import { NaNError } from 'extrajs'
 
-import Integer from './Integer.class'
 
 
 /**
@@ -178,17 +177,18 @@ export default abstract class TreeNode implements Iterable<TreeNode> {
 	 * Get the size of a tree with this TreeNode as its root.
 	 * @returns the total number of nodes in the tree, including this node and descendants of this node
 	 */
-	get size(): Integer {
-		return new Integer(this.nodes().length)
+	get size(): bigint {
+		return BigInt(this.nodes().length)
 	}
 
 	/**
 	 * Get the height of a tree with this TreeNode as its root.
-	 * @returns if this node has no children, 1; otherwise, the maximum height of each child, plus 1
+	 * @returns if this node has no children, 1; otherwise, the maximum of the children’s heights, plus 1
 	 */
-	get height(): Integer {
-		if (this._CHILDREN.length === 0) return new Integer(1)
-		return Integer.max(...this._CHILDREN.map((child) => child.height)).plus(1)
+	get height(): bigint {
+		return (this._CHILDREN.length === 0)
+			? 1n
+			: xjs.Math.maxBigInt(...this._CHILDREN.map((child) => child.height)) + 1n
 	}
 
 	/**
@@ -490,8 +490,8 @@ export default abstract class TreeNode implements Iterable<TreeNode> {
 	 * @param    reference the node or index to insert the new nodes after
 	 * @returns `this`
 	 */
-	insertAfter(nodes: readonly this[], reference: this|Integer|number): this {
-		let index: number = (reference instanceof TreeNode) ? this._CHILDREN.indexOf(reference) : reference.valueOf()
+	insertAfter(nodes: readonly this[], reference: this | bigint | number): this {
+		const index: number = (reference instanceof TreeNode) ? this._CHILDREN.indexOf(reference) : Number(reference)
 		if (index < 0) throw new ReferenceError(`${reference} not found among children.`)
 		this._CHILDREN.splice(index, 0, ...nodes)
 		nodes.forEach((node) => {
