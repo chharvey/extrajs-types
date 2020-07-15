@@ -1,6 +1,8 @@
 const gulp  = require('gulp')
+const mocha      = require('gulp-mocha')
 const typedoc    = require('gulp-typedoc')
 const typescript = require('gulp-typescript')
+// require('ts-node')    // used by `gulp-mocha` below
 // require('typedoc')    // DO NOT REMOVE … peerDependency of `gulp-typedoc`
 // require('typescript') // DO NOT REMOVE … peerDependency of `gulp-typescript`
 
@@ -14,97 +16,29 @@ function dist() {
 		.pipe(gulp.dest('./dist/'))
 }
 
-function test_out() {
-	return gulp.src(['./test/src/{,*.}test.ts'])
-		.pipe(typescript(tsconfig.compilerOptions))
-		.pipe(gulp.dest('./test/out/'))
+function test() {
+	return gulp.src('./test/*.ts')
+		.pipe(mocha({
+			require: 'ts-node/register',
+		}))
 }
-
-async function test_run_angle() {
-	await Promise.all([
-		require('./test/out/Angle-constructor.test.js').default,
-	])
-	console.info('All _Angle_ tests ran successfully!')
-}
-
-async function test_run_color() {
-	await Promise.all([
-		require('./test/out/Color--fromString.test.js').default,
-		require('./test/out/Color--random.test.js').default,
-		require('./test/out/Color--randomName.test.js').default,
-		require('./test/out/Color-constructor.test.js').default,
-		require('./test/out/Color-toString.test.js').default,
-		require('./test/out/Color-invert.test.js').default,
-		require('./test/out/Color-rotate.test.js').default,
-		require('./test/out/Color-complement.test.js').default,
-		require('./test/out/Color-name.test.js').default,
-	])
-	console.info('All _Color_ tests ran successfully!')
-}
-
-async function test_run_length() {
-	await Promise.all([
-		require('./test/out/Length-constructor.test.js').default,
-	])
-	console.info('All _Length_ tests ran successfully!')
-}
-
-async function test_run_treenode() {
-	await Promise.all([
-		require('./test/out/TreeNode-constructor.test.js').default,
-		require('./test/out/TreeNode-path.test.js').default,
-	])
-	console.info('All _TreeNode_ tests ran successfully!')
-}
-
-async function test_run_vector() {
-	await Promise.all([
-		require('./test/out/Vector-constructor.test.js').default,
-		require('./test/out/Vector-cross.test.js').default,
-	])
-	console.info('All _Vector_ tests ran successfully!')
-}
-
-const test_run = gulp.series(
-	gulp.parallel(
-		test_run_angle,
-		test_run_color,
-		test_run_length,
-		test_run_treenode,
-		test_run_vector,
-	), async function test_run0() {
-		console.info('All tests ran successfully!')
-	}
-)
-
-const test = gulp.series(test_out, test_run)
 
 function docs() {
 	return gulp.src('./src/**/*.ts')
 		.pipe(typedoc(typedocconfig))
 }
 
-const build = gulp.parallel(
-	gulp.series(
-		gulp.parallel(
-			dist,
-			test_out
-		),
-		test_run
+const build = gulp.series(
+	dist, // `dist` needs to come before `test` because `src/class/Vector.class.ts` contains a `require()` call
+	gulp.parallel(
+		test,
+		docs,
 	),
-	docs
 )
 
 module.exports = {
 	build,
 		dist,
 		test,
-			test_out,
-			test_run,
-				test_run_angle,
-				test_run_color,
-				test_run_length,
-				test_run_treenode,
-				test_run_vector,
 		docs,
 }

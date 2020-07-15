@@ -222,7 +222,7 @@ export default class Vector {
 	 */
 	cross(multiplier: Vector): Vector {
 		if (!this.dimension.equals(3) || !multiplier.dimension.equals(3)) throw new TypeError('Vector dimensions are incompatible for cross product.')
-		const MatrixSquare: typeof MatrixSquare_import = require('./MatrixSquare.class.js').default
+		const MatrixSquare: typeof MatrixSquare_import = require('../../dist/class/MatrixSquare.class.js').default // COMBAK circular dependency
 		return new Vector([
 			new MatrixSquare([
 				[this      .at(1), this      .at(2)],

@@ -4,7 +4,7 @@
   "description": "Additional all-purpose JavaScript classes.",
   "main": "index.js",
   "scripts": {
-    "build": "gulp build",
+    "build": "rm -rf ./dist/ ./docs/api/ && gulp build",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,9 +23,12 @@
   },
   "homepage": "https://github.com/chharvey/number-types#readme",
   "devDependencies": {
+    "@types/mocha": "^8.0.0",
     "gulp": "^4.0.0",
+    "gulp-mocha": "^7.0.2",
     "gulp-typedoc": "^2.2.1",
     "gulp-typescript": "^5.0.0",
+    "ts-node": "^8.10.2",
     "typedoc": "^0.17.8",
     "typescript": "~3.9.6"
   },
