@@ -22,13 +22,6 @@ function test_out() {
 		.pipe(gulp.dest('./test/out/'))
 }
 
-async function test_run_length() {
-	await Promise.all([
-		require('./test/out/Length-constructor.test.js').default,
-	])
-	console.info('All _Length_ tests ran successfully!')
-}
-
 async function test_run_treenodepre() {
 	await Promise.all([
 		require('./test/out/TreeNodePre-constructor.test.js').default,
@@ -47,7 +40,6 @@ async function test_run_vector() {
 
 const test_run = gulp.series(
 	gulp.parallel(
-		test_run_length,
 		test_run_treenodepre,
 		test_run_vector,
 	), async function test_run0() {
@@ -89,7 +81,6 @@ module.exports = {
 		test_old,
 			test_out,
 			test_run,
-				test_run_length,
 				test_run_treenodepre,
 				test_run_vector,
 		docs,
