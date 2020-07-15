@@ -30,18 +30,9 @@ async function test_run_treenodepre() {
 	console.info('All _TreeNodePre_ tests ran successfully!')
 }
 
-async function test_run_vector() {
-	await Promise.all([
-		require('./test/out/Vector-constructor.test.js').default,
-		require('./test/out/Vector-cross.test.js').default,
-	])
-	console.info('All _Vector_ tests ran successfully!')
-}
-
 const test_run = gulp.series(
 	gulp.parallel(
 		test_run_treenodepre,
-		test_run_vector,
 	), async function test_run0() {
 		console.info('All tests ran successfully!')
 	}
@@ -82,6 +73,5 @@ module.exports = {
 			test_out,
 			test_run,
 				test_run_treenodepre,
-				test_run_vector,
 		docs,
 }
