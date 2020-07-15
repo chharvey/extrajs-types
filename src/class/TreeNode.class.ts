@@ -13,7 +13,7 @@ import Integer from './Integer.class'
  * @param   group the node with which the array is associated
  * @returns Does the node satisfy the predicate?
  */
-type FilterFn = (node: TreeNode, path: readonly Integer[], group: TreeNode) => boolean
+type FilterFn = (node: TreeNode, path: readonly bigint[], group: TreeNode) => boolean
 
 
 /**
@@ -157,12 +157,14 @@ export default abstract class TreeNode implements Iterable<TreeNode> {
 	 * NOTE: The returned array is shallow, not live, meaning any changes to it will not affect the tree.
 	 * @returns an array of non-negative integers describing the position of each of this TreeNode’s ancestors
 	 */
-	get path(): Integer[] {
+	get path(): bigint[] {
 		if (!this._parent) return []
-		const returned: Integer[] = []
+		const returned: bigint[] = []
 		let node: TreeNode = this
 		while (node._parent) {
-			returned.unshift(new Integer(node._parent._CHILDREN.indexOf(node))) // guaranteed to be non-negative
+			const index: number = node._parent._CHILDREN.indexOf(node)
+			xjs.Number.assertType(index, xjs.NumericType.NONNEGATIVE)
+			returned.unshift(BigInt(index))
 			node = node._parent
 		}
 		return returned
@@ -306,20 +308,20 @@ export default abstract class TreeNode implements Iterable<TreeNode> {
 	 * ```
 	 * r.get([])     //  r
 	 * r.get([0])    //  a
-	 * r.get([1,0])  //  e
+	 * r.get([1, 0]) //  e
 	 * a.get([])     //  a
 	 * a.get([1])    //  d
-	 * b.get([0,0])  //  f
+	 * b.get([0, 0]) //  f
 	 * e.get([1])    //  null
 	 * ```
 	 * @param   path the path to locate a node
 	 * @returns the node located at the given path, or `null` if no node exists there
 	 */
-	get(path: readonly Integer[]): TreeNode|null {
+	get(path: readonly bigint[]): TreeNode | null {
 		if (path.length === 0) return this
 		let step: TreeNode;
 		try {
-			step = xjs.Array.get(this._CHILDREN, path[0].valueOf())
+			step = xjs.Array.get(this._CHILDREN, Number(path[0]))
 		} catch {
 			return null
 		}
@@ -538,15 +540,15 @@ export default abstract class TreeNode implements Iterable<TreeNode> {
 	 * Return a new `Iterator` object that contains the key/value pairs for each node in this tree, with `this` being the first node.
 	 * @returns a new `Iterator` object
 	 */
-	entries(): IterableIterator<[Integer[], TreeNode]> {
-		return new Map(this.nodes().map((d) => [d.path, d] as [Integer[], TreeNode])).entries()
+	entries(): IterableIterator<[bigint[], TreeNode]> {
+		return new Map(this.nodes().map((d) => [d.path, d])).entries()
 	}
 
 	/**
 	 * Return a new `Iterator` object that contains the paths of each node in this tree, with `this` being the first node.
 	 * @returns a new `Iterator` object
 	 */
-	paths(): IterableIterator<Integer[]> {
+	paths(): IterableIterator<bigint[]> {
 		return this.nodes().map((d) => d.path).values()
 	}
 
@@ -565,7 +567,7 @@ export default abstract class TreeNode implements Iterable<TreeNode> {
 	 * @param   callback function to call for each iteration, passing `(node, i, this)` as the arguments (where `i` is the iteration index)
 	 * @param   this_arg optional `this` context in which to call the callback
 	 */
-	forEach(callback: (node: TreeNode, path: readonly Integer[], parentnode: TreeNode) => void, this_arg: unknown = this): void {
+	forEach(callback: (node: TreeNode, path: readonly bigint[], parentnode: TreeNode) => void, this_arg: unknown = this): void {
 		return this.nodes().forEach((node) => { callback.call(this_arg, node, node.path, this) })
 	}
 
@@ -616,7 +618,7 @@ export default abstract class TreeNode implements Iterable<TreeNode> {
 	 * @param   this_arg optional `this` context in which to call the filter
 	 * @returns the path of the first node, in the provided traversal order, that satisfies the predicate
 	 */
-	findPath(predicate: FilterFn, this_arg: unknown = this): Integer[]|null {
+	findPath(predicate: FilterFn, this_arg: unknown = this): bigint[] | null {
 		const found: TreeNode|null = this.find(predicate, this_arg)
 		return (found) ? found.path : null
 	}
