@@ -77,8 +77,8 @@
 					<p>A <strong>Vector Space</strong> is a set of Vectors within a constant dimension. It has the following properties:</p>
 					<ul>
 						<li>Vectors are closed under addition, subtraction, and scalar multiplication.
-							For vectors <code>a</code> and <code>b</code> of dimension <em>N*, and for scalar <code>K</code>,
-						the expressions <code>a + b</code>, <code>a - b</code>, and <code>K * a</code> are guaranteed to also be vectors of dimension *N</em>.</li>
+							For vectors <code>a</code> and <code>b</code> of dimension <em>N</em>, and for scalar <code>K</code>,
+						the expressions <code>a + b</code>, <code>a - b</code>, and <code>K * a</code> are guaranteed to also be vectors of dimension <em>N</em>.</li>
 						<li>A Vector Space has a (unique) additive identity.
 							There exists a vector <code>0</code> such that for every vector <code>a</code>,
 							<code>a + 0</code> and <code>0 + a</code> are guaranteed to equal <code>a</code>, and
@@ -107,43 +107,6 @@
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel tsd-kind-class">
-				<h3 class="tsd-before-signature">Indexable</h3>
-				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></div>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>A Vector is an immutable one-dimensional array of numbers.</p>
-					</div>
-					<p>Vectors have a finite natural number of entries, called <strong>coordinates</strong>.
-						An empty vector is a vector with 0 coordinates.
-						Each vector entry is a finite number (any primitive JavaScript number that is not <code>Infinity</code>, <code>-Infinity</code>, or <code>NaN</code>).
-						The ‘length’ of a vector is called its <strong>dimension</strong>.
-					For example, a vector with 3 coordinates is three-dimensional.</p>
-					<p>A <strong>Vector Space</strong> is a set of Vectors within a constant dimension. It has the following properties:</p>
-					<ul>
-						<li>Vectors are closed under addition, subtraction, and scalar multiplication.
-							For vectors <code>a</code> and <code>b</code> of dimension <em>N*, and for scalar <code>K</code>,
-						the expressions <code>a + b</code>, <code>a - b</code>, and <code>K * a</code> are guaranteed to also be vectors of dimension *N</em>.</li>
-						<li>A Vector Space has a (unique) additive identity.
-							There exists a vector <code>0</code> such that for every vector <code>a</code>,
-							<code>a + 0</code> and <code>0 + a</code> are guaranteed to equal <code>a</code>, and
-						<code>0</code> is the only vector with this property.</li>
-						<li>Vectors have (unique) additive inverses:
-							for every vector <code>a</code>, a unique vector <code>-a</code> is guaranteed such that <code>a + -a === -a + a === 0</code>
-						(where <code>0</code> is the additive identity).</li>
-						<li>Addition is commutative and associative.
-							For vectors <code>a</code>, <code>b</code>, and <code>c</code>, the following statements are guaranteed true:<ul>
-								<li><code>a + b === b + a</code></li>
-								<li><code>a + (b + c) === (a + b) + c</code></li>
-							</ul>
-						</li>
-						<li>Scalar-Multiplication is associative.
-						For vector <code>a</code>, and scalars <code>K</code> and <code>J</code>, we are guaranteed <code>J * (K * a) === (J * K) * a</code>.</li>
-						<li>Scalar-Multiplication distributes over addition.
-						For vectors <code>a</code>, <code>b</code>, and scalar <code>K</code>, we are guaranteed <code>K * (a + b) === K * a + K * b</code>.</li>
-					</ul>
-				</div>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -154,23 +117,34 @@
 								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="vector.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="vector.html#_data" class="tsd-kind-icon">_DATA</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="vector.html#_dimension" class="tsd-kind-icon">_DIMENSION</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="vector.html#number" class="tsd-kind-icon">number</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="vector.html#dimension" class="tsd-kind-icon">dimension</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="vector.html#magnitude" class="tsd-kind-icon">magnitude</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="vector.html#negation" class="tsd-kind-icon">negation</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="vector.html#raw" class="tsd-kind-icon">raw</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="vector.html#unit" class="tsd-kind-icon">unit</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="vector.html#at" class="tsd-kind-icon">at</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="vector.html#cross" class="tsd-kind-icon">cross</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="vector.html#dot" class="tsd-kind-icon">dot</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="vector.html#equals" class="tsd-kind-icon">equals</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="vector.html#minus" class="tsd-kind-icon">minus</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="vector.html#plus" class="tsd-kind-icon">plus</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="vector.html#scale" class="tsd-kind-icon">scale</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="vector.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="vector.html#assertsamedimensions" class="tsd-kind-icon">assert<wbr>Same<wbr>Dimensions</a></li>
 							</ul>
 						</section>
@@ -183,13 +157,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Vector<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">readonly</span>, number<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, __namedParameters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Vector<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">?: </span><a href="vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Vector.class.ts#L56">Vector.class.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L56">src/class/Vector.class.ts:56</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -200,18 +174,12 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>data: <a href="vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">readonly</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> data: <a href="vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>a Vector or array of finite numbers</p>
 										</div>
 									</div>
-								</li>
-								<li>
-									<h5>number: <span class="tsd-signature-type">any</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> __namedParameters: <span class="tsd-signature-type">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="vector.html" class="tsd-signature-type">Vector</a></h4>
@@ -219,15 +187,15 @@
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_data" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _DATA</h3>
-					<div class="tsd-signature tsd-kind-icon">_DATA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">readonly</span></div>
+					<div class="tsd-signature tsd-kind-icon">_DATA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Vector.class.ts#L52">Vector.class.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L52">src/class/Vector.class.ts:52</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -242,7 +210,7 @@
 					<div class="tsd-signature tsd-kind-icon">_DIMENSION<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Vector.class.ts#L56">Vector.class.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L56">src/class/Vector.class.ts:56</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -251,31 +219,91 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="number" class="tsd-anchor"></a>
-					<h3>number</h3>
-					<div class="tsd-signature tsd-kind-icon">number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Vector.class.ts#L52">Vector.class.ts:52</a></li>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Vector.class.ts#L73">Vector.class.ts:73</a></li>
-						</ul>
-					</aside>
-				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Accessors</h2>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="raw" class="tsd-anchor"></a>
-					<h3>raw</h3>
+					<a name="dimension" class="tsd-anchor"></a>
+					<h3>dimension</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> raw<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">readonly</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> dimension<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Vector.class.ts#L73">Vector.class.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L81">src/class/Vector.class.ts:81</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the dimension of this Vector: how many coordinates this Vector has.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a></h4>
+							<p>this Vector’s dimension</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="magnitude" class="tsd-anchor"></a>
+					<h3>magnitude</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> magnitude<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L89">src/class/Vector.class.ts:89</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the magnitude of this Vector as a raw value.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>this Vector’s magnitude</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="negation" class="tsd-anchor"></a>
+					<h3>negation</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> negation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L100">src/class/Vector.class.ts:100</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the negation of this Vector.</p>
+								</div>
+								<p>The negation of a Vector is its additive inverse:
+								the Vector that when added to this, gives a sum of 0 (the additive identity).</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="vector.html" class="tsd-signature-type">Vector</a></h4>
+							<p>a new Vector representing the additive inverse</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="raw" class="tsd-anchor"></a>
+					<h3>raw</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> raw<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L73">src/class/Vector.class.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -283,14 +311,326 @@
 									<p>Get this Vector’s raw data: the list of coordinates.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">readonly</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h4>
 							<p>this Vector’s raw data</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="unit" class="tsd-anchor"></a>
+					<h3>unit</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> unit<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L110">src/class/Vector.class.ts:110</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the unit vector corresponding to this Vector.</p>
+								</div>
+								<p>A unit vector has magnitude 1 but otherwise preserves direction.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="vector.html" class="tsd-signature-type">Vector</a></h4>
+							<p>this Vector’s unit</p>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="at" class="tsd-anchor"></a>
+					<h3>at</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">at<span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L125">src/class/Vector.class.ts:125</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the <code>i</code>th coordinate of this Vector, if it exists.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{RangeError} if <code>i</code> is out of bounds</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>i: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the index of the coordinate to get</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>the value at the <code>i</code>th entry</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="cross" class="tsd-anchor"></a>
+					<h3>cross</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">cross<span class="tsd-signature-symbol">(</span>multiplier<span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L223">src/class/Vector.class.ts:223</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the cross product of this Vector (the multiplicand) with another (the multiplier).</p>
+								</div>
+								<p><a href="https://en.wikipedia.org/wiki/Cross_product">Cross Product</a></p>
+								<p><strong>Both Vectors must have a dimension of exactly 3.</strong></p>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{TypeError} if <code>this</code> or the argument are not of the correct dimension</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>multiplier: <a href="vector.html" class="tsd-signature-type">Vector</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Vector to cross with this</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="vector.html" class="tsd-signature-type">Vector</a></h4>
+							<p>a new Vector representing the cross product, <code>multiplicand × multiplier</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="dot" class="tsd-anchor"></a>
+					<h3>dot</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">dot<span class="tsd-signature-symbol">(</span>multiplier<span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L208">src/class/Vector.class.ts:208</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the dot product of this Vector (the multiplicand) and another (the multiplier).</p>
+								</div>
+								<p>The <a href="https://en.wikipedia.org/wiki/Dot_product">Dot Product</a> formula:</p>
+								<pre><code>  N
+ ⎲   (A_i * B_i)
+ ⎳
+<span class="hljs-attribute">i</span>=0</code></pre><p>Example:</p>
+								<pre><code>new Vector([<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>]).dot(new Vector([<span class="hljs-number">7</span>,<span class="hljs-number">5</span>,<span class="hljs-number">3</span>]))  <span class="hljs-comment">//  returns 52 (equal to 14 + 20 + 18)</span></code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{TypeError} if the argument is not of the correct dimension</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>multiplier: <a href="vector.html" class="tsd-signature-type">Vector</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Vector to dot with this</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>a scalar value representing the dot product, <code>multiplicand • multiplier</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="equals" class="tsd-anchor"></a>
+					<h3>equals</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>vector<span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L139">src/class/Vector.class.ts:139</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return whether this Vector equals the argument.
+									Vectors are equal if and only if their corresponding coordinates are equal.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{TypeError} if the argument is not of the correct dimension</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>vector: <a href="vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Vector to compare</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>does this Vector equal the argument?</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="minus" class="tsd-anchor"></a>
+					<h3>minus</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">minus<span class="tsd-signature-symbol">(</span>subtrahend<span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L167">src/class/Vector.class.ts:167</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Subtract another Vector (the subtrahend) from this (the minuend).</p>
+								</div>
+								<p>Note that subtraction is not commutative: <code>a - b</code> does not always equal <code>b - a</code>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>subtrahend: <a href="vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Vector to subtract from this one</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="vector.html" class="tsd-signature-type">Vector</a></h4>
+							<p>a new Vector representing the difference, <code>minuend - subtrahend</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="plus" class="tsd-anchor"></a>
+					<h3>plus</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">plus<span class="tsd-signature-symbol">(</span>addend<span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L153">src/class/Vector.class.ts:153</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add this Vector (the augend) to another (the addend).</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>{TypeError} if the argument is not of the correct dimension</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>addend: <a href="vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Vector to add to this one</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="vector.html" class="tsd-signature-type">Vector</a></h4>
+							<p>a new Vector representing the sum, <code>augend + addend</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="scale" class="tsd-anchor"></a>
+					<h3>scale</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">scale<span class="tsd-signature-symbol">(</span>scalar<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L184">src/class/Vector.class.ts:184</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Scale this Vector by a scalar factor.</p>
+								</div>
+								<p>If the scale factor is &lt;1, returns a new Vector ‘longer’  than this Vector.
+									If the scale factor is &gt;1, returns a new Vector ‘shorter’ than this Vector.
+									If the scale factor is =1, returns a new Vector equal to       this Vector.
+									If the scale factor is negative, returns a negative Vector:
+								for example, <code>(60).scale(-2)</code> returns <code>-120</code>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> scalar: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the scale factor</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="vector.html" class="tsd-signature-type">Vector</a></h4>
+							<p>a new Vector representing the product</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="tostring" class="tsd-anchor"></a>
+					<h3>to<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L115">src/class/Vector.class.ts:115</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>override</dt>
+									<dd><p>Object</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a name="assertsamedimensions" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> assert<wbr>Same<wbr>Dimensions</h3>
@@ -301,7 +641,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/9035768/src/class/Vector.class.ts#L45">Vector.class.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Vector.class.ts#L45">src/class/Vector.class.ts:45</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -329,7 +669,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> message: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Vector dimensions are not equal.&quot;</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> message: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Vector dimensions are not equal.&quot;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>a message for the error</p>
 									</div>
@@ -408,7 +748,7 @@
 					<li class=" tsd-kind-class">
 						<a href="openinterval.html" class="tsd-kind-icon">Open<wbr>Interval</a>
 					</li>
-					<li class=" tsd-kind-class tsd-is-not-exported">
+					<li class=" tsd-kind-class">
 						<a href="orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -443,11 +783,44 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="vector.html#_dimension" class="tsd-kind-icon">_DIMENSION</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="vector.html#number" class="tsd-kind-icon">number</a>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="vector.html#dimension" class="tsd-kind-icon">dimension</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="vector.html#magnitude" class="tsd-kind-icon">magnitude</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="vector.html#negation" class="tsd-kind-icon">negation</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="vector.html#raw" class="tsd-kind-icon">raw</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="vector.html#unit" class="tsd-kind-icon">unit</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="vector.html#at" class="tsd-kind-icon">at</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="vector.html#cross" class="tsd-kind-icon">cross</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="vector.html#dot" class="tsd-kind-icon">dot</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="vector.html#equals" class="tsd-kind-icon">equals</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="vector.html#minus" class="tsd-kind-icon">minus</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="vector.html#plus" class="tsd-kind-icon">plus</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="vector.html#scale" class="tsd-kind-icon">scale</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="vector.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="vector.html#assertsamedimensions" class="tsd-kind-icon">assert<wbr>Same<wbr>Dimensions</a>
@@ -456,31 +829,13 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias">
 						<a href="../globals.html#filterfn" class="tsd-kind-icon">Filter<wbr>Fn</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
+					<li class=" tsd-kind-variable">
 						<a href="../globals.html#names" class="tsd-kind-icon">NAMES</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#colindices" class="tsd-kind-icon">colindices</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#matrix" class="tsd-kind-icon">matrix</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#maxwidth" class="tsd-kind-icon">maxwidth</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#number" class="tsd-kind-icon">number</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#rawdata" class="tsd-kind-icon">rawdata</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#rowindices" class="tsd-kind-icon">rowindices</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="../globals.html#xjs_map_find" class="tsd-kind-icon">xjs_<wbr><wbr>Map_<wbr>find</a>
 					</li>
 				</ul>
@@ -500,6 +855,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -548,7 +904,7 @@
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>

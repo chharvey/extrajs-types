@@ -51,8 +51,8 @@ async function test_run_length() {
 
 async function test_run_treenode() {
 	await Promise.all([
-		require('./test/out/TreeNode-constructor.test.js').default,
-		require('./test/out/TreeNode-path.test.js').default,
+		require('./test/out/TreeNodePre-constructor.test.js').default,
+		require('./test/out/TreeNodePre-path.test.js').default,
 	])
 	console.info('All _TreeNode_ tests ran successfully!')
 }
