@@ -1,10 +1,10 @@
 {
   "name": "extrajs-types",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Additional all-purpose JavaScript classes.",
   "main": "index.js",
   "scripts": {
-    "build": "gulp build",
+    "build": "rm -rf ./dist/ ./test/out/ ./docs/api/ && gulp build",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,10 +26,10 @@
     "gulp": "^4.0.0",
     "gulp-typedoc": "^2.2.1",
     "gulp-typescript": "^5.0.0",
-    "typedoc": "^0.14.2",
+    "typedoc": "^0.16.11",
     "typescript": "~3.4.5"
   },
   "dependencies": {
-    "extrajs": "^0.19.0"
+    "extrajs": "^0.20.0"
   }
 }
