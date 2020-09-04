@@ -1,6 +1,6 @@
 {
   "name": "extrajs-types",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Additional all-purpose JavaScript classes.",
   "main": "index.js",
   "scripts": {
