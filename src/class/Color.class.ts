@@ -1,6 +1,5 @@
 import * as xjs from 'extrajs'
 
-import Integer from './Integer.class'
 import Percentage from './Percentage.class'
 import Fraction from './Fraction.class'
 import Angle, {AngleUnit} from './Angle.class'
@@ -199,15 +198,13 @@ export default class Color {
 	 * @param   alpha the alpha channel of this color
 	 * @returns a new Color object with rgba(red, green, blue, alpha)
 	 */
-	static fromRGB(red: Integer|number = 0, green: Integer|number = 0, blue: Integer|number = 0, alpha: Fraction|number = 1): Color {
-		return (red instanceof Integer && green instanceof Integer && blue instanceof Integer && alpha instanceof Fraction) ?
-			new Color(
-				new Fraction(red  .clamp(0, 255).dividedBy(255)),
-				new Fraction(green.clamp(0, 255).dividedBy(255)),
-				new Fraction(blue .clamp(0, 255).dividedBy(255)),
-				alpha
-			) :
-			Color.fromRGB(new Integer(red), new Integer(green), new Integer(blue), new Fraction(alpha))
+	static fromRGB(red: number = 0, green: number = 0, blue: number = 0, alpha: Fraction | number = 1): Color {
+		return new Color(
+			new Fraction(xjs.Math.clamp(0, red,   255) / 255),
+			new Fraction(xjs.Math.clamp(0, green, 255) / 255),
+			new Fraction(xjs.Math.clamp(0, blue,  255) / 255),
+			(alpha instanceof Fraction) ? alpha : new Fraction(alpha),
+		);
 	}
 
 	/**
