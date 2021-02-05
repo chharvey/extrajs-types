@@ -70,7 +70,7 @@ export default class MatrixSquare extends Matrix {
 	 * Get this matrix’s size, the number of rows and columns in this matrix.
 	 * @returns `this.height` or `this.width` — they are equal
 	 */
-	get size(): Integer {
+	get size(): bigint {
 		return this.height
 	}
 
@@ -80,8 +80,12 @@ export default class MatrixSquare extends Matrix {
 	 * @throws  {TypeError} if this MatrixSquare is empty
 	 */
 	get det(): number {
-		if (this.size.equals(0)) throw new TypeError('Determinant of an empty matrix is undefined.')
-		if (this.size.equals(1)) return this.at(0,0)
+		if (this.size === 0n) {
+			throw new TypeError('Determinant of an empty matrix is undefined.');
+		};
+		if (this.size === 1n) {
+			return this.at(0, 0);
+		};
 		return this._DATA[0].map((cell, j) =>
 			((j % 2 === 0) ? 1 : -1) * cell * this.minor(0, j).det
 		).reduce((a, b) => a + b)
@@ -98,11 +102,13 @@ export default class MatrixSquare extends Matrix {
 	 */
 	get reciprocal(): MatrixSquare {
 		if (this.det === 0) throw new TypeError('A matrix whose determinant is 0 has no reciprocal.')
-		if (this.size.equals(0)) return new MatrixSquare()
-		if (this.size.equals(1)) return new MatrixSquare([[1 / this.det]])
-		return new MatrixSquare(this._DATA.map((row, i) =>
-			row.map((_cell, j) => (((i+j) % 2 === 0) ? 1 : -1) * this.transposition.minor(i, j).det) // NB transposed on purpose; see <http://mathworld.wolfram.com/MatrixInverse.html>
-		)).scale(1 / this.det)
+		return (
+			(this.size === 0n) ? new MatrixSquare() :
+			(this.size === 1n) ? new MatrixSquare([[1 / this.det]]) :
+			new MatrixSquare(this._DATA.map((row, i) =>
+				row.map((_cell, j) => (((i + j) % 2 === 0) ? 1 : -1) * this.transposition.minor(i, j).det) // NB transposed on purpose; see <http://mathworld.wolfram.com/MatrixInverse.html>
+			)).scale(1 / this.det)
+		);
 	}
 
 	/**

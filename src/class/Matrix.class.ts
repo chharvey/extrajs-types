@@ -57,8 +57,12 @@ export default class Matrix {
 	 * @throws  {TypeError} if the assertion fails
 	 */
 	static assertSameDimensions(matrix1: Matrix, matrix2: Matrix, message: string = 'Matrix dimensions are not equal.'): void {
-		if (!matrix1.height.equals(matrix2.height)) throw new TypeError(message)
-		if (!matrix1.width .equals(matrix2.width )) throw new TypeError(message)
+		if (
+			   matrix1.height !== matrix2.height
+			|| matrix1.width  !== matrix2.width
+		) {
+			throw new TypeError(message);
+		};
 	}
 
 	/**
@@ -83,11 +87,11 @@ export default class Matrix {
 	/**
 	 * The height of this Matrix.
 	 */
-	private readonly _HEIGHT: Integer;
+	private readonly _HEIGHT: bigint;
 	/**
 	 * The width of this Matrix.
 	 */
-	private readonly _WIDTH: Integer;
+	private readonly _WIDTH: bigint;
 
 	/**
 	 * Construct a new Matrix object.
@@ -103,8 +107,8 @@ export default class Matrix {
 			row = xjs.Array.fillHoles(row, 0)
 		})
 		this._DATA = rawdata
-		this._HEIGHT = new Integer(rawdata.length)
-		this._WIDTH  = new Integer(maxwidth)
+		this._HEIGHT = BigInt(rawdata.length);
+		this._WIDTH  = BigInt(maxwidth);
 	}
 
 	/**
@@ -119,7 +123,7 @@ export default class Matrix {
 	 * Get this Matrix’s height, the number of rows in this Matrix.
 	 * @returns the length of the array provided in construction
 	 */
-	get height(): Integer {
+	get height(): bigint {
 		return this._HEIGHT
 	}
 
@@ -127,7 +131,7 @@ export default class Matrix {
 	 * Get this Matrix’s width, the number of columns in this Matrix.
 	 * @returns the length of each row
 	 */
-	get width(): Integer {
+	get width(): bigint {
 		return this._WIDTH
 	}
 
@@ -186,8 +190,8 @@ export default class Matrix {
 	 */
 	at(i: Integer|number, j: Integer|number): number {
 		if (i instanceof Integer && j instanceof Integer) {
-			if (i.lessThan(0) || !i.lessThan(this.height)) throw new xjs.IndexOutOfBoundsError(i.valueOf())
-			if (j.lessThan(0) || !j.lessThan(this.width )) throw new xjs.IndexOutOfBoundsError(j.valueOf())
+			if (i.lessThan(0) || !i.lessThan(Number(this.height))) throw new xjs.IndexOutOfBoundsError(i.valueOf());
+			if (j.lessThan(0) || !j.lessThan(Number(this.width) )) throw new xjs.IndexOutOfBoundsError(j.valueOf());
 			return this._DATA[i.valueOf()][j.valueOf()]
 		} else return this.at(new Integer(i), new Integer(j))
 	}
@@ -200,7 +204,9 @@ export default class Matrix {
 	 */
 	getRow(i: Integer|number): Vector {
 		if (i instanceof Integer) {
-			if (i.lessThan(0) || !i.lessThan(this.height)) throw new xjs.IndexOutOfBoundsError(i.valueOf())
+			if (i.lessThan(0) || !i.lessThan(Number(this.height))) {
+				throw new xjs.IndexOutOfBoundsError(i.valueOf());
+			};
 			return new Vector(this._DATA[i.valueOf()])
 		} else return this.getRow(new Integer(i))
 	}
@@ -213,7 +219,9 @@ export default class Matrix {
 	 */
 	getCol(j: Integer|number): Vector {
 		if (j instanceof Integer) {
-			if (j.lessThan(0) || !j.lessThan(this.width)) throw new xjs.IndexOutOfBoundsError(j.valueOf())
+			if (j.lessThan(0) || !j.lessThan(Number(this.width))) {
+				throw new xjs.IndexOutOfBoundsError(j.valueOf());
+			};
 			let col: number[] = []
 			this._DATA.forEach((row) => {
 				col.push(row[j.valueOf()])
@@ -273,8 +281,8 @@ export default class Matrix {
 	 * @returns a new Matrix containing all rows and columns except those specified
 	 */
 	minor(row: Integer|number, col: Integer|number): Matrix {
-		let rowindices: number[] = Array.from(new Array(this.height.valueOf()), (_, i) => i) // [0, 1, 2, ..., this.height - 1]
-		let colindices: number[] = Array.from(new Array(this.width .valueOf()), (_, j) => j) // [0, 1, 2, ..., this.width  - 1]
+		const rowindices: number[] = Array.from(new Array(Number(this.height)), (_, i) => i); // [0, 1, 2, ..., this.height - 1]
+		const colindices: number[] = Array.from(new Array(Number(this.width )), (_, j) => j); // [0, 1, 2, ..., this.width  - 1]
 		if (row instanceof Integer && col instanceof Integer) {
 			let rows: number[] = rowindices.slice(0, row.valueOf()).concat(rowindices.slice(row.plus(1).valueOf()))
 			let cols: number[] = colindices.slice(0, col.valueOf()).concat(colindices.slice(col.plus(1).valueOf()))
@@ -345,7 +353,9 @@ export default class Matrix {
 	 */
 	times(multiplier: Matrix|number[][]): Matrix {
 		if (multiplier instanceof Matrix) {
-			if (!this.width.equals(multiplier.height)) throw new RangeError('Matrix dimensions are incompatible for multiplication.')
+			if (this.width !== multiplier.height) {
+				throw new RangeError('Matrix dimensions are incompatible for multiplication.');
+			};
 			const matrix: number[][] = []
 			this._DATA.forEach((_row, i) => {
 				const newrow: number[] = []
