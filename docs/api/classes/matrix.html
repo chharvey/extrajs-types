@@ -4,16 +4,17 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Matrix | extrajs-types</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for extrajs-types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -38,8 +39,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -51,7 +52,7 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
+					<a href="../modules.html">extrajs-types</a>
 				</li>
 				<li>
 					<a href="matrix.html">Matrix</a>
@@ -119,7 +120,7 @@
 						<span class="target">Matrix</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="matrixsquare.html" class="tsd-signature-type">MatrixSquare</a>
+								<a href="matrixsquare.html" class="tsd-signature-type" data-tsd-kind="Class">MatrixSquare</a>
 							</li>
 						</ul>
 					</li>
@@ -180,13 +181,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Matrix<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">?: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-symbol">(</span><a href="vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Matrix<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">?: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-symbol">(</span><a href="vector.html" class="tsd-signature-type" data-tsd-kind="Class">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L90">src/class/Matrix.class.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L90">src/class/Matrix.class.ts:90</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -197,15 +198,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> data: <a href="matrix.html" class="tsd-signature-type">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-symbol">(</span><a href="vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></h5>
+									<h5>data: <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-symbol">(</span><a href="vector.html" class="tsd-signature-type" data-tsd-kind="Class">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = ...</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>a Matrix, an array of Vectors, or array of arrays of finite numbers</p>
-										</div>
+										<p>a Matrix, an array of Vectors, or array of arrays of finite numbers</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type">Matrix</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -214,11 +213,11 @@
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="_data" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _DATA</h3>
-					<div class="tsd-signature tsd-kind-icon">_DATA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">ReadonlyArray</span><span class="tsd-signature-symbol">[]</span></div>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> _DATA</h3>
+					<div class="tsd-signature tsd-kind-icon">_DATA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">readonly number[]</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L82">src/class/Matrix.class.ts:82</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L82">src/class/Matrix.class.ts:82</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -229,11 +228,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_height" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _HEIGHT</h3>
-					<div class="tsd-signature tsd-kind-icon">_HEIGHT<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a></div>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> _HEIGHT</h3>
+					<div class="tsd-signature tsd-kind-icon">_HEIGHT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">bigint</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L86">src/class/Matrix.class.ts:86</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L86">src/class/Matrix.class.ts:86</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -244,11 +243,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_width" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _WIDTH</h3>
-					<div class="tsd-signature tsd-kind-icon">_WIDTH<span class="tsd-signature-symbol">:</span> <a href="integer.html" class="tsd-signature-type">Integer</a></div>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> _WIDTH</h3>
+					<div class="tsd-signature tsd-kind-icon">_WIDTH<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">bigint</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L90">src/class/Matrix.class.ts:90</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L90">src/class/Matrix.class.ts:90</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -264,13 +263,13 @@
 					<a name="height" class="tsd-anchor"></a>
 					<h3>height</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> height<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> height<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L122">src/class/Matrix.class.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L122">src/class/Matrix.class.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -278,7 +277,7 @@
 									<p>Get this Matrix’s height, the number of rows in this Matrix.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">bigint</span></h4>
 							<p>the length of the array provided in construction</p>
 						</li>
 					</ul>
@@ -287,13 +286,13 @@
 					<a name="negation" class="tsd-anchor"></a>
 					<h3>negation</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> negation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> negation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L141">src/class/Matrix.class.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L141">src/class/Matrix.class.ts:141</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -303,7 +302,7 @@
 								<p>The negation of a Matrix is its additive inverse:
 								the Matrix that when added to this, gives a sum of 0 (the additive identity).</p>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type">Matrix</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></h4>
 							<p>a new Matrix representing the additive inverse</p>
 						</li>
 					</ul>
@@ -312,13 +311,13 @@
 					<a name="raw" class="tsd-anchor"></a>
 					<h3>raw</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> raw<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">ReadonlyArray</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> raw<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">readonly number[]</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L114">src/class/Matrix.class.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L114">src/class/Matrix.class.ts:114</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -326,7 +325,7 @@
 									<p>Get this Matrix’s raw data: the cells.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">ReadonlyArray</span><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">readonly number[]</span><span class="tsd-signature-symbol">[]</span></h4>
 							<p>this Matrix’s raw data</p>
 						</li>
 					</ul>
@@ -335,13 +334,13 @@
 					<a name="transposition" class="tsd-anchor"></a>
 					<h3>transposition</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> transposition<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> transposition<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L166">src/class/Matrix.class.ts:166</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L166">src/class/Matrix.class.ts:166</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -351,18 +350,19 @@
 								<p>The transposition of an N×M matrix <code>a</code> is a new M×N matrix <code>b</code>,
 								such that the row and column indices of the cells of <code>a</code> have been flipped.</p>
 								<p>Example:</p>
-								<pre><code>let m = new Matrix([
-    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
-    [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ],
-])
-m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
-<span class="hljs-comment">// [</span>
-<span class="hljs-comment">//     [1, 4],</span>
-<span class="hljs-comment">//     [2, 5],</span>
-<span class="hljs-comment">//     [3, 6],</span>
-<span class="hljs-comment">// ]</span></code></pre>
+								<pre><code><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">m</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Matrix</span><span style="color: #000000">([</span>
+<span style="color: #000000">    [ </span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000"> ],</span>
+<span style="color: #000000">    [ </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">6</span><span style="color: #000000"> ],</span>
+<span style="color: #000000">])</span>
+<span style="color: #001080">m</span><span style="color: #000000">.</span><span style="color: #001080">transpose</span><span style="color: #000000"> </span><span style="color: #008000">// returns a new 3×2 matrix:</span>
+<span style="color: #008000">// [</span>
+<span style="color: #008000">//     [1, 4],</span>
+<span style="color: #008000">//     [2, 5],</span>
+<span style="color: #008000">//     [3, 6],</span>
+<span style="color: #008000">// ]</span>
+</code></pre>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type">Matrix</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></h4>
 							<p>the transposition of this Matrix</p>
 						</li>
 					</ul>
@@ -371,13 +371,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 					<a name="width" class="tsd-anchor"></a>
 					<h3>width</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> width<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> width<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L130">src/class/Matrix.class.ts:130</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L130">src/class/Matrix.class.ts:130</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -385,7 +385,7 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 									<p>Get this Matrix’s width, the number of columns in this Matrix.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="integer.html" class="tsd-signature-type">Integer</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">bigint</span></h4>
 							<p>the length of each row</p>
 						</li>
 					</ul>
@@ -397,13 +397,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 					<a name="at" class="tsd-anchor"></a>
 					<h3>at</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">at<span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, j<span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">at<span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span>, j<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L187">src/class/Matrix.class.ts:187</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L187">src/class/Matrix.class.ts:187</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -422,13 +422,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>i: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>i: <span class="tsd-signature-type">bigint</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the row-index of the cell to get</p>
 									</div>
 								</li>
 								<li>
-									<h5>j: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>j: <span class="tsd-signature-type">bigint</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the column-index of the cell to get</p>
 									</div>
@@ -443,13 +443,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 					<a name="equals" class="tsd-anchor"></a>
 					<h3>equals</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>matrix<span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>matrix<span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L292">src/class/Matrix.class.ts:292</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L281">src/class/Matrix.class.ts:281</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -466,7 +466,7 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>matrix: <a href="matrix.html" class="tsd-signature-type">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>matrix: <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the Matrix to compare</p>
 									</div>
@@ -481,13 +481,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 					<a name="getcol" class="tsd-anchor"></a>
 					<h3>get<wbr>Col</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Col<span class="tsd-signature-symbol">(</span>j<span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Col<span class="tsd-signature-symbol">(</span>j<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type" data-tsd-kind="Class">Vector</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L214">src/class/Matrix.class.ts:214</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L214">src/class/Matrix.class.ts:214</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -503,13 +503,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>j: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>j: <span class="tsd-signature-type">bigint</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the index of the column to get</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="vector.html" class="tsd-signature-type">Vector</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="vector.html" class="tsd-signature-type" data-tsd-kind="Class">Vector</a></h4>
 							<p>the column of entries</p>
 						</li>
 					</ul>
@@ -518,13 +518,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 					<a name="getrow" class="tsd-anchor"></a>
 					<h3>get<wbr>Row</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Row<span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type">Vector</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Row<span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vector.html" class="tsd-signature-type" data-tsd-kind="Class">Vector</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L201">src/class/Matrix.class.ts:201</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L200">src/class/Matrix.class.ts:200</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -540,13 +540,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>i: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>i: <span class="tsd-signature-type">bigint</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the index of the row to get</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="vector.html" class="tsd-signature-type">Vector</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="vector.html" class="tsd-signature-type" data-tsd-kind="Class">Vector</a></h4>
 							<p>the row of entries</p>
 						</li>
 					</ul>
@@ -555,13 +555,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 					<a name="minor" class="tsd-anchor"></a>
 					<h3>minor</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">minor<span class="tsd-signature-symbol">(</span>row<span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, col<span class="tsd-signature-symbol">: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a></li>
+						<li class="tsd-signature tsd-kind-icon">minor<span class="tsd-signature-symbol">(</span>row<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span>, col<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L275">src/class/Matrix.class.ts:275</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L264">src/class/Matrix.class.ts:264</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -573,19 +573,19 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>row: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>row: <span class="tsd-signature-type">bigint</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the index of the row to exclude</p>
 									</div>
 								</li>
 								<li>
-									<h5>col: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>col: <span class="tsd-signature-type">bigint</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the index of the column to exclude</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type">Matrix</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></h4>
 							<p>a new Matrix containing all rows and columns except those specified</p>
 						</li>
 					</ul>
@@ -594,13 +594,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 					<a name="minus" class="tsd-anchor"></a>
 					<h3>minus</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">minus<span class="tsd-signature-symbol">(</span>subtrahend<span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a></li>
+						<li class="tsd-signature tsd-kind-icon">minus<span class="tsd-signature-symbol">(</span>subtrahend<span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L320">src/class/Matrix.class.ts:320</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L309">src/class/Matrix.class.ts:309</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -612,13 +612,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>subtrahend: <a href="matrix.html" class="tsd-signature-type">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>subtrahend: <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the Matrix to subtract from this one</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type">Matrix</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></h4>
 							<p>a new Matrix representing the difference, <code>minuend - subtrahend</code></p>
 						</li>
 					</ul>
@@ -627,13 +627,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 					<a name="plus" class="tsd-anchor"></a>
 					<h3>plus</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">plus<span class="tsd-signature-symbol">(</span>addend<span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a></li>
+						<li class="tsd-signature tsd-kind-icon">plus<span class="tsd-signature-symbol">(</span>addend<span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L306">src/class/Matrix.class.ts:306</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L295">src/class/Matrix.class.ts:295</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -649,13 +649,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>addend: <a href="matrix.html" class="tsd-signature-type">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>addend: <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the Matrix to add to this one</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type">Matrix</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></h4>
 							<p>a new Matrix representing the sum, <code>augend + addend</code></p>
 						</li>
 					</ul>
@@ -664,13 +664,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 					<a name="scale" class="tsd-anchor"></a>
 					<h3>scale</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">scale<span class="tsd-signature-symbol">(</span>scalar<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a></li>
+						<li class="tsd-signature tsd-kind-icon">scale<span class="tsd-signature-symbol">(</span>scalar<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L333">src/class/Matrix.class.ts:333</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L322">src/class/Matrix.class.ts:322</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -682,13 +682,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> scalar: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 1</span></h5>
+									<h5>scalar: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 1</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the scale factor</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type">Matrix</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></h4>
 							<p>a new Matrix representing the product</p>
 						</li>
 					</ul>
@@ -697,13 +697,13 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 					<a name="submatrix" class="tsd-anchor"></a>
 					<h3>sub<wbr>Matrix</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">sub<wbr>Matrix<span class="tsd-signature-symbol">(</span>rows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span>, cols<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a></li>
+						<li class="tsd-signature tsd-kind-icon">sub<wbr>Matrix<span class="tsd-signature-symbol">(</span>rows<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">[]</span>, cols<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L255">src/class/Matrix.class.ts:255</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L252">src/class/Matrix.class.ts:252</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -715,38 +715,39 @@ m.transpose <span class="hljs-comment">// returns a new 3×2 matrix:</span>
 									that is, the indices of each returned cell are present in both arguments.
 								Note that the order of indices in each list is relevant.</p>
 								<p>Example:</p>
-								<pre><code>let m = new Matrix([
-    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
-    [ <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ],
-    [ <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span> ],
-])
-m.subMatrix([<span class="hljs-number">0</span>,<span class="hljs-number">2</span>], [<span class="hljs-number">1</span>]) <span class="hljs-comment">// returns a new 2×1 matrix:</span>
-<span class="hljs-comment">// [</span>
-<span class="hljs-comment">//     [2],</span>
-<span class="hljs-comment">//     [8],</span>
-<span class="hljs-comment">// ]</span>
-m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</span>], [<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]) <span class="hljs-comment">// returns a new 2×2 matrix: note the order of rows/columns:</span>
-<span class="hljs-comment">// [</span>
-<span class="hljs-comment">//     [9, 8],</span>
-<span class="hljs-comment">//     [3, 2],</span>
-<span class="hljs-comment">// ]</span></code></pre>
+								<pre><code><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">m</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Matrix</span><span style="color: #000000">([</span>
+<span style="color: #000000">    [ </span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #098658">3</span><span style="color: #000000"> ],</span>
+<span style="color: #000000">    [ </span><span style="color: #098658">4</span><span style="color: #000000">, </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #098658">6</span><span style="color: #000000"> ],</span>
+<span style="color: #000000">    [ </span><span style="color: #098658">7</span><span style="color: #000000">, </span><span style="color: #098658">8</span><span style="color: #000000">, </span><span style="color: #098658">9</span><span style="color: #000000"> ],</span>
+<span style="color: #000000">])</span>
+<span style="color: #001080">m</span><span style="color: #000000">.</span><span style="color: #795E26">subMatrix</span><span style="color: #000000">([</span><span style="color: #098658">0</span><span style="color: #000000">,</span><span style="color: #098658">2</span><span style="color: #000000">], [</span><span style="color: #098658">1</span><span style="color: #000000">]) </span><span style="color: #008000">// returns a new 2×1 matrix:</span>
+<span style="color: #008000">// [</span>
+<span style="color: #008000">//     [2],</span>
+<span style="color: #008000">//     [8],</span>
+<span style="color: #008000">// ]</span>
+<span style="color: #001080">m</span><span style="color: #000000">.</span><span style="color: #795E26">subMatrix</span><span style="color: #000000">([</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #098658">0</span><span style="color: #000000">], [</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #098658">1</span><span style="color: #000000">]) </span><span style="color: #008000">// returns a new 2×2 matrix: note the order of rows/columns:</span>
+<span style="color: #008000">// [</span>
+<span style="color: #008000">//     [9, 8],</span>
+<span style="color: #008000">//     [3, 2],</span>
+<span style="color: #008000">// ]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>rows: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>rows: <span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>a list of row    indices to include</p>
 									</div>
 								</li>
 								<li>
-									<h5>cols: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>cols: <span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>a list of column indices to include</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type">Matrix</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></h4>
 							<p>a new Matrix containg only the cells in this Matrix of the listed indices</p>
 						</li>
 					</ul>
@@ -755,13 +756,13 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 					<a name="times" class="tsd-anchor"></a>
 					<h3>times</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">times<span class="tsd-signature-symbol">(</span>multiplier<span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a></li>
+						<li class="tsd-signature tsd-kind-icon">times<span class="tsd-signature-symbol">(</span>multiplier<span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L346">src/class/Matrix.class.ts:346</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L335">src/class/Matrix.class.ts:335</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -779,13 +780,13 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>multiplier: <a href="matrix.html" class="tsd-signature-type">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>multiplier: <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the Matrix to multiply this one by</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type">Matrix</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></h4>
 							<p>a new Matrix representing the product, <code>multiplicand * multiplier</code></p>
 						</li>
 					</ul>
@@ -800,7 +801,7 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L175">src/class/Matrix.class.ts:175</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L175">src/class/Matrix.class.ts:175</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -818,13 +819,13 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 					<a name="addiden" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> add<wbr>Iden</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Iden<span class="tsd-signature-symbol">(</span>rows<span class="tsd-signature-symbol">?: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, cols<span class="tsd-signature-symbol">?: </span><a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Iden<span class="tsd-signature-symbol">(</span>rows<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">bigint</span>, cols<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L71">src/class/Matrix.class.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L74">src/class/Matrix.class.ts:74</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -836,19 +837,19 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> rows: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5>
+									<h5>rows: <span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> = ...</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the number of rows in the Matrix (its height)</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> cols: <a href="integer.html" class="tsd-signature-type">Integer</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = rows</span></h5>
+									<h5>cols: <span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> = ...</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the number of columns in the Matrix (its width)</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type">Matrix</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -856,13 +857,13 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 					<a name="assertsamedimensions" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> assert<wbr>Same<wbr>Dimensions</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">assert<wbr>Same<wbr>Dimensions<span class="tsd-signature-symbol">(</span>matrix1<span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a>, matrix2<span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type">Matrix</a>, message<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">assert<wbr>Same<wbr>Dimensions<span class="tsd-signature-symbol">(</span>matrix1<span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a>, matrix2<span class="tsd-signature-symbol">: </span><a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a>, message<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Matrix.class.ts#L59">src/class/Matrix.class.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Matrix.class.ts#L58">src/class/Matrix.class.ts:58</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -878,19 +879,19 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>matrix1: <a href="matrix.html" class="tsd-signature-type">Matrix</a></h5>
+									<h5>matrix1: <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>matrix1</p>
 									</div>
 								</li>
 								<li>
-									<h5>matrix2: <a href="matrix.html" class="tsd-signature-type">Matrix</a></h5>
+									<h5>matrix2: <a href="matrix.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>matrix2</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> message: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;Matrix dimensions are not equal.&quot;</span></h5>
+									<h5>message: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#x27;Matrix dimensions are not equal.&#x27;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>a message for the error</p>
 									</div>
@@ -905,8 +906,8 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
@@ -1042,9 +1043,6 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 						<a href="openinterval.html" class="tsd-kind-icon">Open<wbr>Interval</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
 						<a href="percentage.html" class="tsd-kind-icon">Percentage</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -1065,15 +1063,6 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 					<li class=" tsd-kind-class">
 						<a href="vector.html" class="tsd-kind-icon">Vector</a>
 					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#filterfn" class="tsd-kind-icon">Filter<wbr>Fn</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#names" class="tsd-kind-icon">NAMES</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="../globals.html#xjs_map_find" class="tsd-kind-icon">xjs_<wbr><wbr>Map_<wbr>find</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
@@ -1084,57 +1073,27 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
@@ -1144,6 +1103,5 @@ m.subMatrix([<span class="hljs-number">2</span>,<span class="hljs-number">0</spa
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

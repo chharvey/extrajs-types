@@ -4,16 +4,17 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Interval | extrajs-types</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for extrajs-types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -38,8 +39,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -51,7 +52,7 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
+					<a href="../modules.html">extrajs-types</a>
 				</li>
 				<li>
 					<a href="interval.html">Interval</a>
@@ -80,16 +81,16 @@
 						<span class="target">Interval</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="openinterval.html" class="tsd-signature-type">OpenInterval</a>
+								<a href="openinterval.html" class="tsd-signature-type" data-tsd-kind="Class">OpenInterval</a>
 							</li>
 							<li>
-								<a href="closedinterval.html" class="tsd-signature-type">ClosedInterval</a>
+								<a href="closedinterval.html" class="tsd-signature-type" data-tsd-kind="Class">ClosedInterval</a>
 							</li>
 							<li>
-								<a href="halfopenleftinterval.html" class="tsd-signature-type">HalfOpenLeftInterval</a>
+								<a href="halfopenleftinterval.html" class="tsd-signature-type" data-tsd-kind="Class">HalfOpenLeftInterval</a>
 							</li>
 							<li>
-								<a href="halfopenrightinterval.html" class="tsd-signature-type">HalfOpenRightInterval</a>
+								<a href="halfopenrightinterval.html" class="tsd-signature-type" data-tsd-kind="Class">HalfOpenRightInterval</a>
 							</li>
 						</ul>
 					</li>
@@ -130,13 +131,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Interval<span class="tsd-signature-symbol">(</span>lower<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, upper<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interval.html" class="tsd-signature-type">Interval</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Interval<span class="tsd-signature-symbol">(</span>lower<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, upper<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interval.html" class="tsd-signature-type" data-tsd-kind="Class">Interval</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Interval.class.ts#L18">src/class/Interval.class.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Interval.class.ts#L18">src/class/Interval.class.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -149,21 +150,17 @@
 								<li>
 									<h5>lower: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>the lower bound</p>
-										</div>
+										<p>the lower bound</p>
 									</div>
 								</li>
 								<li>
 									<h5>upper: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>the upper bound</p>
-										</div>
+										<p>the upper bound</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="interval.html" class="tsd-signature-type">Interval</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="interval.html" class="tsd-signature-type" data-tsd-kind="Class">Interval</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -172,11 +169,11 @@
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="length" class="tsd-anchor"></a>
-					<h3>LENGTH</h3>
-					<div class="tsd-signature tsd-kind-icon">LENGTH<span class="tsd-signature-symbol">:</span> <a href="length.html" class="tsd-signature-type">Length</a></div>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> LENGTH</h3>
+					<div class="tsd-signature tsd-kind-icon">LENGTH<span class="tsd-signature-symbol">:</span> <a href="length.html" class="tsd-signature-type" data-tsd-kind="Class">Length</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Interval.class.ts#L18">src/class/Interval.class.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Interval.class.ts#L18">src/class/Interval.class.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -187,11 +184,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="lower" class="tsd-anchor"></a>
-					<h3>LOWER</h3>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> LOWER</h3>
 					<div class="tsd-signature tsd-kind-icon">LOWER<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Interval.class.ts#L14">src/class/Interval.class.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Interval.class.ts#L14">src/class/Interval.class.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -202,11 +199,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="upper" class="tsd-anchor"></a>
-					<h3>UPPER</h3>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> UPPER</h3>
 					<div class="tsd-signature tsd-kind-icon">UPPER<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Interval.class.ts#L16">src/class/Interval.class.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Interval.class.ts#L16">src/class/Interval.class.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -228,7 +225,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Interval.class.ts#L36">src/class/Interval.class.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Interval.class.ts#L36">src/class/Interval.class.ts:36</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -254,13 +251,13 @@
 					<a name="equals" class="tsd-anchor"></a>
 					<h3>equals</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>iv<span class="tsd-signature-symbol">: </span><a href="interval.html" class="tsd-signature-type">Interval</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>iv<span class="tsd-signature-symbol">: </span><a href="interval.html" class="tsd-signature-type" data-tsd-kind="Class">Interval</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Interval.class.ts#L55">src/class/Interval.class.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Interval.class.ts#L55">src/class/Interval.class.ts:55</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -272,7 +269,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>iv: <a href="interval.html" class="tsd-signature-type">Interval</a></h5>
+									<h5>iv: <a href="interval.html" class="tsd-signature-type" data-tsd-kind="Class">Interval</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the Interval to test</p>
 									</div>
@@ -293,7 +290,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Interval.class.ts#L43">src/class/Interval.class.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Interval.class.ts#L43">src/class/Interval.class.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -324,8 +321,8 @@
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
@@ -416,9 +413,6 @@
 						<a href="openinterval.html" class="tsd-kind-icon">Open<wbr>Interval</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
 						<a href="percentage.html" class="tsd-kind-icon">Percentage</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -439,15 +433,6 @@
 					<li class=" tsd-kind-class">
 						<a href="vector.html" class="tsd-kind-icon">Vector</a>
 					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#filterfn" class="tsd-kind-icon">Filter<wbr>Fn</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#names" class="tsd-kind-icon">NAMES</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="../globals.html#xjs_map_find" class="tsd-kind-icon">xjs_<wbr><wbr>Map_<wbr>find</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
@@ -458,57 +443,27 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
@@ -518,6 +473,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

@@ -1,19 +1,16 @@
 {
 	"compilerOptions": {
-		"target"            : "ES2019",
+		"target"            : "ES2020",
 		"module"            : "commonjs",
 		"strict"            : true,
+		"importsNotUsedAsValues": "error",
 		"noImplicitReturns" : true,
 		"removeComments"    : true,
 		"noEmitOnError"     : true
 	},
 	"typedocOptions": {
-		"tsconfig": "./",
-		"mode"   : "file",
-		"name"   : "extrajs-types",
-		"out"    : "./docs/api/",
-		"includeDeclarations" : true,
-		"excludeExternals"    : true,
-		"ignoreCompilerErrors": true
+		"name":        "extrajs-types",
+		"entryPoints": "./index.ts",
+		"out":         "./docs/api/"
 	}
 }

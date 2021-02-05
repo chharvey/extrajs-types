@@ -4,16 +4,17 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Duration | extrajs-types</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for extrajs-types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -38,8 +39,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -51,7 +52,7 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
+					<a href="../modules.html">extrajs-types</a>
 				</li>
 				<li>
 					<a href="duration.html">Duration</a>
@@ -75,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="angle.html#number" class="tsd-signature-type">Number</a>
+						<span class="tsd-signature-type">Number</span>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">Duration</span>
@@ -97,7 +98,15 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="duration.html#number" class="tsd-kind-icon">Number</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="duration.html#epsilon" class="tsd-kind-icon">EPSILON</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="duration.html#max_safe_integer" class="tsd-kind-icon">MAX_<wbr>SAFE_<wbr>INTEGER</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="duration.html#max_value" class="tsd-kind-icon">MAX_<wbr>VALUE</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="duration.html#min_safe_integer" class="tsd-kind-icon">MIN_<wbr>SAFE_<wbr>INTEGER</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="duration.html#min_value" class="tsd-kind-icon">MIN_<wbr>VALUE</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="duration.html#negative_infinity" class="tsd-kind-icon">NEGATIVE_<wbr>INFINITY</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="duration.html#nan" class="tsd-kind-icon">NaN</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="duration.html#positive_infinity" class="tsd-kind-icon">POSITIVE_<wbr>INFINITY</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="duration.html#conversion" class="tsd-kind-icon">CONVERSION</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="duration.html#regexp" class="tsd-kind-icon">REGEXP</a></li>
 							</ul>
 						</section>
@@ -107,25 +116,25 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="duration.html#clamp" class="tsd-kind-icon">clamp</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="duration.html#convert" class="tsd-kind-icon">convert</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="duration.html#equals" class="tsd-kind-icon">equals</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="duration.html#isfinite" class="tsd-kind-icon">is<wbr>Finite</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="duration.html#isinteger" class="tsd-kind-icon">is<wbr>Integer</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="duration.html#isnan" class="tsd-kind-icon">is<wbr>NaN</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="duration.html#issafeinteger" class="tsd-kind-icon">is<wbr>Safe<wbr>Integer</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="duration.html#lessthan" class="tsd-kind-icon">less<wbr>Than</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="duration.html#minus" class="tsd-kind-icon">minus</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="duration.html#parsefloat" class="tsd-kind-icon">parse<wbr>Float</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="duration.html#parseint" class="tsd-kind-icon">parse<wbr>Int</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="duration.html#plus" class="tsd-kind-icon">plus</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="duration.html#ratio" class="tsd-kind-icon">ratio</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="duration.html#scale" class="tsd-kind-icon">scale</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="duration.html#toexponential" class="tsd-kind-icon">to<wbr>Exponential</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="duration.html#tofixed" class="tsd-kind-icon">to<wbr>Fixed</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="duration.html#tolocalestring" class="tsd-kind-icon">to<wbr>Locale<wbr>String</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="duration.html#toprecision" class="tsd-kind-icon">to<wbr>Precision</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="duration.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="duration.html#valueof" class="tsd-kind-icon">value<wbr>Of</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="duration.html#toexponential" class="tsd-kind-icon">to<wbr>Exponential</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="duration.html#tofixed" class="tsd-kind-icon">to<wbr>Fixed</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="duration.html#tolocalestring" class="tsd-kind-icon">to<wbr>Locale<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="duration.html#toprecision" class="tsd-kind-icon">to<wbr>Precision</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="duration.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="duration.html#valueof" class="tsd-kind-icon">value<wbr>Of</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="duration.html#max" class="tsd-kind-icon">max</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="duration.html#min" class="tsd-kind-icon">min</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Object literals</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-static"><a href="duration.html#conversion" class="tsd-kind-icon">CONVERSION</a></li>
 							</ul>
 						</section>
 					</div>
@@ -137,14 +146,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Duration<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">?: </span><a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, unit<span class="tsd-signature-symbol">?: </span><a href="../enums/durationunit.html" class="tsd-signature-type">DurationUnit</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a></li>
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Duration<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Duration<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a>, unit<span class="tsd-signature-symbol">?: </span><a href="../enums/durationunit.html#s" class="tsd-signature-type" data-tsd-kind="Enumeration member">S</a><span class="tsd-signature-symbol"> | </span><a href="../enums/durationunit.html#ms" class="tsd-signature-type" data-tsd-kind="Enumeration member">MS</a><span class="tsd-signature-symbol"> | </span><a href="../enums/durationunit.html#ns" class="tsd-signature-type" data-tsd-kind="Enumeration member">NS</a><span class="tsd-signature-symbol"> | </span><a href="../enums/durationunit.html#min" class="tsd-signature-type" data-tsd-kind="Enumeration member">MIN</a><span class="tsd-signature-symbol"> | </span><a href="../enums/durationunit.html#hr" class="tsd-signature-type" data-tsd-kind="Enumeration member">HR</a><span class="tsd-signature-symbol"> | </span><a href="../enums/durationunit.html#d" class="tsd-signature-type" data-tsd-kind="Enumeration member">D</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Duration<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L67">src/class/Duration.class.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L67">src/class/Duration.class.ts:67</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -155,24 +164,21 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> x: <a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> x: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>the numeric value of this Duration</p>
-										</div>
+										<p>the numeric value of this Duration</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> unit: <a href="../enums/durationunit.html" class="tsd-signature-type">DurationUnit</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> unit: <a href="../enums/durationunit.html#s" class="tsd-signature-type" data-tsd-kind="Enumeration member">S</a><span class="tsd-signature-symbol"> | </span><a href="../enums/durationunit.html#ms" class="tsd-signature-type" data-tsd-kind="Enumeration member">MS</a><span class="tsd-signature-symbol"> | </span><a href="../enums/durationunit.html#ns" class="tsd-signature-type" data-tsd-kind="Enumeration member">NS</a><span class="tsd-signature-symbol"> | </span><a href="../enums/durationunit.html#min" class="tsd-signature-type" data-tsd-kind="Enumeration member">MIN</a><span class="tsd-signature-symbol"> | </span><a href="../enums/durationunit.html#hr" class="tsd-signature-type" data-tsd-kind="Enumeration member">HR</a><span class="tsd-signature-symbol"> | </span><a href="../enums/durationunit.html#d" class="tsd-signature-type" data-tsd-kind="Enumeration member">D</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type">Duration</a></h4>
-							<p>a new Duration emulating the string</p>
+							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L74">src/class/Duration.class.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L74">src/class/Duration.class.ts:74</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -190,13 +196,11 @@
 								<li>
 									<h5>str: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>the string to parse</p>
-										</div>
+										<p>the string to parse</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type">Duration</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h4>
 							<p>a new Duration emulating the string</p>
 						</li>
 					</ul>
@@ -204,28 +208,163 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="number" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Number</h3>
-					<div class="tsd-signature tsd-kind-icon">Number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">NumberConstructor</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="epsilon" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> EPSILON</h3>
+					<div class="tsd-signature tsd-kind-icon">EPSILON<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:602</li>
+							<li>Defined in node_modules/typescript/lib/lib.es2015.core.d.ts:219</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>An object that represents a number of any kind. All JavaScript numbers are 64-bit floating-point numbers.</p>
+							<p>The value of Number.EPSILON is the difference between 1 and the smallest value greater than 1
+								that is representable as a Number value, which is approximately:
+							2.2204460492503130808472633361816 x 10‍−‍16.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="max_safe_integer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> MAX_<wbr>SAFE_<wbr>INTEGER</h3>
+					<div class="tsd-signature tsd-kind-icon">MAX_<wbr>SAFE_<wbr>INTEGER<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/typescript/lib/lib.es2015.core.d.ts:254</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The value of the largest integer n such that n and n + 1 are both exactly representable as
+								a Number value.
+							The value of Number.MAX_SAFE_INTEGER is 9007199254740991 2^53 − 1.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="max_value" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> MAX_<wbr>VALUE</h3>
+					<div class="tsd-signature tsd-kind-icon">MAX_<wbr>VALUE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:577</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The largest number that can be represented in JavaScript. Equal to approximately 1.79E+308.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="min_safe_integer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> MIN_<wbr>SAFE_<wbr>INTEGER</h3>
+					<div class="tsd-signature tsd-kind-icon">MIN_<wbr>SAFE_<wbr>INTEGER<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/typescript/lib/lib.es2015.core.d.ts:261</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The value of the smallest integer n such that n and n − 1 are both exactly representable as
+								a Number value.
+							The value of Number.MIN_SAFE_INTEGER is −9007199254740991 (−(2^53 − 1)).</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="min_value" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> MIN_<wbr>VALUE</h3>
+					<div class="tsd-signature tsd-kind-icon">MIN_<wbr>VALUE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:580</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The closest number to zero that can be represented in JavaScript. Equal to approximately 5.00E-324.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="negative_infinity" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> NEGATIVE_<wbr>INFINITY</h3>
+					<div class="tsd-signature tsd-kind-icon">NEGATIVE_<wbr>INFINITY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:592</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A value that is less than the largest negative number that can be represented in JavaScript.
+							JavaScript displays NEGATIVE_INFINITY values as -infinity.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="nan" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> NaN</h3>
+					<div class="tsd-signature tsd-kind-icon">NaN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:586</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A value that is not a number.
+							In equality comparisons, NaN does not equal any value, including itself. To test whether a value is equivalent to NaN, use the isNaN function.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="positive_infinity" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> POSITIVE_<wbr>INFINITY</h3>
+					<div class="tsd-signature tsd-kind-icon">POSITIVE_<wbr>INFINITY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:598</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A value greater than the largest number that can be represented in JavaScript.
+							JavaScript displays POSITIVE_INFINITY values as infinity.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="regexp" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> REGEXP</h3>
-					<div class="tsd-signature tsd-kind-icon">REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new RegExp(&#x60;^${xjs.Number.REGEXP.source.slice(1,-1)}(?:s|ms|ns|min|hr|d)$&#x60;)</span></div>
+					<a name="conversion" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagStatic">Static</span> CONVERSION</h3>
+					<div class="tsd-signature tsd-kind-icon">CONVERSION<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>0<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L45">src/class/Duration.class.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L33">src/class/Duration.class.ts:33</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A dictionary of conversion rates.</p>
+						</div>
+						<p>The value assigned to each unit is the number of units in one second.</p>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="regexp" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> <span class="tsd-flag ts-flagStatic">Static</span> REGEXP</h3>
+					<div class="tsd-signature tsd-kind-icon">REGEXP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L45">src/class/Duration.class.ts:45</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -241,13 +380,13 @@
 					<a name="clamp" class="tsd-anchor"></a>
 					<h3>clamp</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">clamp<span class="tsd-signature-symbol">(</span>min<span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, max<span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a></li>
+						<li class="tsd-signature tsd-kind-icon">clamp<span class="tsd-signature-symbol">(</span>min<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a>, max<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L138">src/class/Duration.class.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L138">src/class/Duration.class.ts:138</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -263,19 +402,19 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>min: <a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>min: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the lower bound</p>
 									</div>
 								</li>
 								<li>
-									<h5>max: <a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>max: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the upper bound</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type">Duration</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h4>
 							<p><code>Duration.min(Duration.max(min, this), max)</code></p>
 						</li>
 					</ul>
@@ -284,13 +423,13 @@
 					<a name="convert" class="tsd-anchor"></a>
 					<h3>convert</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">convert<span class="tsd-signature-symbol">(</span>unit<span class="tsd-signature-symbol">: </span><a href="../enums/durationunit.html" class="tsd-signature-type">DurationUnit</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">convert<span class="tsd-signature-symbol">(</span>unit<span class="tsd-signature-symbol">: </span><a href="../enums/durationunit.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DurationUnit</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L208">src/class/Duration.class.ts:208</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L208">src/class/Duration.class.ts:208</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -301,7 +440,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>unit: <a href="../enums/durationunit.html" class="tsd-signature-type">DurationUnit</a></h5>
+									<h5>unit: <a href="../enums/durationunit.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DurationUnit</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the unit to convert to</p>
 									</div>
@@ -316,13 +455,13 @@
 					<a name="equals" class="tsd-anchor"></a>
 					<h3>equals</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>duration<span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>duration<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L112">src/class/Duration.class.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L112">src/class/Duration.class.ts:112</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -333,7 +472,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>duration: <a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>duration: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the Duration to compare</p>
 									</div>
@@ -344,17 +483,145 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="lessthan" class="tsd-anchor"></a>
-					<h3>less<wbr>Than</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">less<wbr>Than<span class="tsd-signature-symbol">(</span>duration<span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="isfinite" class="tsd-anchor"></a>
+					<h3>is<wbr>Finite</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Finite<span class="tsd-signature-symbol">(</span>number<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L122">src/class/Duration.class.ts:122</a></li>
+									<li>Defined in node_modules/typescript/lib/lib.es2015.core.d.ts:227</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns true if passed value is finite.
+										Unlike the global isFinite, Number.isFinite doesn&#39;t forcibly convert the parameter to a
+									number. Only finite values of the type number, result in true.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>number: <span class="tsd-signature-type">unknown</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A numeric value.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="isinteger" class="tsd-anchor"></a>
+					<h3>is<wbr>Integer</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Integer<span class="tsd-signature-symbol">(</span>number<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typescript/lib/lib.es2015.core.d.ts:233</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns true if the value passed is an integer, false otherwise.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>number: <span class="tsd-signature-type">unknown</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A numeric value.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="isnan" class="tsd-anchor"></a>
+					<h3>is<wbr>NaN</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>NaN<span class="tsd-signature-symbol">(</span>number<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typescript/lib/lib.es2015.core.d.ts:241</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a Boolean value that indicates whether a value is the reserved value NaN (not a
+										number). Unlike the global isNaN(), Number.isNaN() doesn&#39;t forcefully convert the parameter
+									to a number. Only values of the type number, that are also NaN, result in true.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>number: <span class="tsd-signature-type">unknown</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A numeric value.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="issafeinteger" class="tsd-anchor"></a>
+					<h3>is<wbr>Safe<wbr>Integer</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Safe<wbr>Integer<span class="tsd-signature-symbol">(</span>number<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typescript/lib/lib.es2015.core.d.ts:247</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns true if the value passed is a safe integer.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>number: <span class="tsd-signature-type">unknown</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A numeric value.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="lessthan" class="tsd-anchor"></a>
+					<h3>less<wbr>Than</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">less<wbr>Than<span class="tsd-signature-symbol">(</span>duration<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L122">src/class/Duration.class.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -365,7 +632,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>duration: <a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>duration: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the Duration to compare</p>
 									</div>
@@ -380,13 +647,13 @@
 					<a name="minus" class="tsd-anchor"></a>
 					<h3>minus</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">minus<span class="tsd-signature-symbol">(</span>subtrahend<span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a></li>
+						<li class="tsd-signature tsd-kind-icon">minus<span class="tsd-signature-symbol">(</span>subtrahend<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L169">src/class/Duration.class.ts:169</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L169">src/class/Duration.class.ts:169</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -405,14 +672,81 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>subtrahend: <a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>subtrahend: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the Duration to subtract from this one</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type">Duration</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h4>
 							<p>a new Duration representing the difference, <code>minuend - subtrahend</code></p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="parsefloat" class="tsd-anchor"></a>
+					<h3>parse<wbr>Float</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Float<span class="tsd-signature-symbol">(</span>string<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typescript/lib/lib.es2015.core.d.ts:267</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts a string to a floating-point number.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>string: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A string that contains a floating-point number.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="parseint" class="tsd-anchor"></a>
+					<h3>parse<wbr>Int</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Int<span class="tsd-signature-symbol">(</span>string<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, radix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typescript/lib/lib.es2015.core.d.ts:276</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts A string to an integer.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>string: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> radix: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A value between 2 and 36 that specifies the base of the number in numString.
+											If this argument is not supplied, strings with a prefix of &#39;0x&#39; are considered hexadecimal.
+										All other strings are considered decimal.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -420,13 +754,13 @@
 					<a name="plus" class="tsd-anchor"></a>
 					<h3>plus</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">plus<span class="tsd-signature-symbol">(</span>addend<span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a></li>
+						<li class="tsd-signature tsd-kind-icon">plus<span class="tsd-signature-symbol">(</span>addend<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L150">src/class/Duration.class.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L150">src/class/Duration.class.ts:150</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -442,13 +776,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>addend: <a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>addend: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the Duration to add to this one</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type">Duration</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h4>
 							<p>a new Duration representing the sum, <code>augend + addend</code></p>
 						</li>
 					</ul>
@@ -457,13 +791,13 @@
 					<a name="ratio" class="tsd-anchor"></a>
 					<h3>ratio</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">ratio<span class="tsd-signature-symbol">(</span>divisor<span class="tsd-signature-symbol">?: </span><a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">ratio<span class="tsd-signature-symbol">(</span>divisor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L197">src/class/Duration.class.ts:197</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L197">src/class/Duration.class.ts:197</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -475,7 +809,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> divisor: <a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 1</span></h5>
+									<h5>divisor: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a><span class="tsd-signature-symbol"> = 1</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the Duration to divide this one by</p>
 									</div>
@@ -490,13 +824,13 @@
 					<a name="scale" class="tsd-anchor"></a>
 					<h3>scale</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">scale<span class="tsd-signature-symbol">(</span>scalar<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a></li>
+						<li class="tsd-signature tsd-kind-icon">scale<span class="tsd-signature-symbol">(</span>scalar<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L185">src/class/Duration.class.ts:185</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L185">src/class/Duration.class.ts:185</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -516,29 +850,28 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> scalar: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 1</span></h5>
+									<h5>scalar: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 1</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the scale factor</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type">Duration</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h4>
 							<p>a new Duration representing the product</p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a name="toexponential" class="tsd-anchor"></a>
 					<h3>to<wbr>Exponential</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Exponential<span class="tsd-signature-symbol">(</span>fractionDigits<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Exponential<span class="tsd-signature-symbol">(</span>fractionDigits<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="angle.html">Angle</a>.<a href="angle.html#toexponential">toExponential</a></p>
 								<ul>
-									<li>Defined in node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:559</li>
+									<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:559</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -549,7 +882,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fractionDigits: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fractionDigits: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Number of digits after the decimal point. Must be in the range 0 - 20, inclusive.</p>
 									</div>
@@ -559,18 +892,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a name="tofixed" class="tsd-anchor"></a>
 					<h3>to<wbr>Fixed</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Fixed<span class="tsd-signature-symbol">(</span>fractionDigits<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Fixed<span class="tsd-signature-symbol">(</span>fractionDigits<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="angle.html">Angle</a>.<a href="angle.html#tofixed">toFixed</a></p>
 								<ul>
-									<li>Defined in node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:553</li>
+									<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:553</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -581,7 +913,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fractionDigits: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fractionDigits: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Number of digits after the decimal point. Must be in the range 0 - 20, inclusive.</p>
 									</div>
@@ -591,18 +923,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a name="tolocalestring" class="tsd-anchor"></a>
 					<h3>to<wbr>Locale<wbr>String</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Locale<wbr>String<span class="tsd-signature-symbol">(</span>locales<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Intl.NumberFormatOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Locale<wbr>String<span class="tsd-signature-symbol">(</span>locales<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">NumberFormatOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="angle.html">Angle</a>.<a href="angle.html#tolocalestring">toLocaleString</a></p>
 								<ul>
-									<li>Defined in node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:4333</li>
+									<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4400</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -619,7 +950,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">Intl.NumberFormatOptions</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">NumberFormatOptions</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>An object that contains one or more properties that specify comparison options.</p>
 									</div>
@@ -629,18 +960,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a name="toprecision" class="tsd-anchor"></a>
 					<h3>to<wbr>Precision</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Precision<span class="tsd-signature-symbol">(</span>precision<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Precision<span class="tsd-signature-symbol">(</span>precision<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="angle.html">Angle</a>.<a href="angle.html#toprecision">toPrecision</a></p>
 								<ul>
-									<li>Defined in node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:565</li>
+									<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:565</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -651,7 +981,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> precision: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> precision: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Number of significant digits. Must be in the range 1 - 21, inclusive.</p>
 									</div>
@@ -661,18 +991,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="tostring" class="tsd-anchor"></a>
 					<h3>to<wbr>String</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span>radix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, unit<span class="tsd-signature-symbol">?: </span><a href="../enums/durationunit.html" class="tsd-signature-type">DurationUnit</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span>radix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, unit<span class="tsd-signature-symbol">?: </span><a href="../enums/durationunit.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DurationUnit</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="integer.html">Integer</a>.<a href="integer.html#tostring">toString</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L103">src/class/Duration.class.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L103">src/class/Duration.class.ts:103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -685,28 +1014,27 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> radix: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 10</span></h5>
+									<h5>radix: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 10</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> unit: <a href="../enums/durationunit.html" class="tsd-signature-type">DurationUnit</a><span class="tsd-signature-symbol"> = DurationUnit.S</span></h5>
+									<h5>unit: <a href="../enums/durationunit.html" class="tsd-signature-type" data-tsd-kind="Enumeration">DurationUnit</a><span class="tsd-signature-symbol"> = ...</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a name="valueof" class="tsd-anchor"></a>
 					<h3>value<wbr>Of</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
 						<li class="tsd-signature tsd-kind-icon">value<wbr>Of<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="angle.html">Angle</a>.<a href="angle.html#valueof">valueOf</a></p>
 								<ul>
-									<li>Defined in node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:568</li>
+									<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:568</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -722,13 +1050,13 @@
 					<a name="max" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> max</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>durations<span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a></li>
+						<li class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>durations<span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L53">src/class/Duration.class.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L53">src/class/Duration.class.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -744,13 +1072,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>durations: <a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>durations: <a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>two or more Durations to compare</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type">Duration</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h4>
 							<p>the greatest of all the arguments</p>
 						</li>
 					</ul>
@@ -759,13 +1087,13 @@
 					<a name="min" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> min</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>durations<span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type">Duration</a></li>
+						<li class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>durations<span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L64">src/class/Duration.class.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/ac12d14/src/class/Duration.class.ts#L64">src/class/Duration.class.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -781,58 +1109,24 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>durations: <a href="duration.html" class="tsd-signature-type">Duration</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>durations: <a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>two or more Durations to compare</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type">Duration</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="duration.html" class="tsd-signature-type" data-tsd-kind="Class">Duration</a></h4>
 							<p>the least of all the arguments</p>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Object literals</h2>
-				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class tsd-is-static">
-					<a name="conversion" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> CONVERSION</h3>
-					<div class="tsd-signature tsd-kind-icon">CONVERSION<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L33">src/class/Duration.class.ts:33</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>A dictionary of conversion rates.</p>
-						</div>
-						<p>The value assigned to each unit is the number of units in one second.</p>
-					</div>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="conversion.__computed" class="tsd-anchor"></a>
-						<h3>__computed</h3>
-						<div class="tsd-signature tsd-kind-icon">__computed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 1 / (24 * 60 * 60)</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L34">src/class/Duration.class.ts:34</a></li>
-								<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L35">src/class/Duration.class.ts:35</a></li>
-								<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L36">src/class/Duration.class.ts:36</a></li>
-								<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L37">src/class/Duration.class.ts:37</a></li>
-								<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L38">src/class/Duration.class.ts:38</a></li>
-								<li>Defined in <a href="https://github.com/chharvey/extrajs-types/blob/59da67a/src/class/Duration.class.ts#L39">src/class/Duration.class.ts:39</a></li>
-							</ul>
-						</aside>
-					</section>
 				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
@@ -867,8 +1161,32 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="duration.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="duration.html#epsilon" class="tsd-kind-icon">EPSILON</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="duration.html#max_safe_integer" class="tsd-kind-icon">MAX_<wbr>SAFE_<wbr>INTEGER</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="duration.html#max_value" class="tsd-kind-icon">MAX_<wbr>VALUE</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="duration.html#min_safe_integer" class="tsd-kind-icon">MIN_<wbr>SAFE_<wbr>INTEGER</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="duration.html#min_value" class="tsd-kind-icon">MIN_<wbr>VALUE</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="duration.html#negative_infinity" class="tsd-kind-icon">NEGATIVE_<wbr>INFINITY</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="duration.html#nan" class="tsd-kind-icon">NaN</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="duration.html#positive_infinity" class="tsd-kind-icon">POSITIVE_<wbr>INFINITY</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="duration.html#number" class="tsd-kind-icon">Number</a>
+								<a href="duration.html#conversion" class="tsd-kind-icon">CONVERSION</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
 								<a href="duration.html#regexp" class="tsd-kind-icon">REGEXP</a>
@@ -882,11 +1200,29 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="duration.html#equals" class="tsd-kind-icon">equals</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="duration.html#isfinite" class="tsd-kind-icon">is<wbr>Finite</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="duration.html#isinteger" class="tsd-kind-icon">is<wbr>Integer</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="duration.html#isnan" class="tsd-kind-icon">is<wbr>NaN</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="duration.html#issafeinteger" class="tsd-kind-icon">is<wbr>Safe<wbr>Integer</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="duration.html#lessthan" class="tsd-kind-icon">less<wbr>Than</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="duration.html#minus" class="tsd-kind-icon">minus</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="duration.html#parsefloat" class="tsd-kind-icon">parse<wbr>Float</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="duration.html#parseint" class="tsd-kind-icon">parse<wbr>Int</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="duration.html#plus" class="tsd-kind-icon">plus</a>
@@ -897,22 +1233,22 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="duration.html#scale" class="tsd-kind-icon">scale</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="duration.html#toexponential" class="tsd-kind-icon">to<wbr>Exponential</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="duration.html#tofixed" class="tsd-kind-icon">to<wbr>Fixed</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="duration.html#tolocalestring" class="tsd-kind-icon">to<wbr>Locale<wbr>String</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="duration.html#toprecision" class="tsd-kind-icon">to<wbr>Precision</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="duration.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="duration.html#valueof" class="tsd-kind-icon">value<wbr>Of</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
@@ -920,9 +1256,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="duration.html#min" class="tsd-kind-icon">min</a>
-							</li>
-							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-static">
-								<a href="duration.html#conversion" class="tsd-kind-icon">CONVERSION</a>
 							</li>
 						</ul>
 					</li>
@@ -962,9 +1295,6 @@
 						<a href="openinterval.html" class="tsd-kind-icon">Open<wbr>Interval</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="orphanerror.html" class="tsd-kind-icon">Orphan<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
 						<a href="percentage.html" class="tsd-kind-icon">Percentage</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -985,15 +1315,6 @@
 					<li class=" tsd-kind-class">
 						<a href="vector.html" class="tsd-kind-icon">Vector</a>
 					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#filterfn" class="tsd-kind-icon">Filter<wbr>Fn</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#names" class="tsd-kind-icon">NAMES</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="../globals.html#xjs_map_find" class="tsd-kind-icon">xjs_<wbr><wbr>Map_<wbr>find</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
@@ -1004,57 +1325,27 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
@@ -1064,6 +1355,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

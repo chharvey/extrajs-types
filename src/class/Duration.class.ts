@@ -94,8 +94,8 @@ export default class Duration extends Number {
 			]).get(unit_part) !()
 		}
 		x = x.valueOf()
-		xjs.Number.assertType(x, 'non-negative')
-		xjs.Number.assertType(x, 'finite')
+		xjs.Number.assertType(x, xjs.NumericType.NONNEGATIVE)
+		xjs.Number.assertType(x, xjs.NumericType.FINITE)
 		super(x / Duration.CONVERSION[unit])
 	}
 
@@ -183,7 +183,7 @@ export default class Duration extends Number {
 	 * @throws  {AssertionError} if `scalar` is negative
 	 */
 	scale(scalar: number = 1): Duration {
-		xjs.Number.assertType(scalar, 'non-negative')
+		xjs.Number.assertType(scalar, xjs.NumericType.NONNEGATIVE)
 		return new Duration(this.valueOf() * scalar)
 	}
 

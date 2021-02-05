@@ -1,7 +1,6 @@
 import * as xjs from 'extrajs'
 
-import Integer from './Integer.class'
-import MatrixSquare_import from './MatrixSquare.class'
+import type MatrixSquare_import from './MatrixSquare.class' // COMBAK circular dependency
 
 
 /**
@@ -43,7 +42,9 @@ export default class Vector {
 	 * @throws  {TypeError} if the assertion fails
 	 */
 	static assertSameDimensions(vector1: Vector, vector2: Vector, message: string = 'Vector dimensions are not equal.'): void {
-		if (!vector1.dimension.equals(vector2.dimension)) throw new TypeError(message)
+		if (vector1.dimension !== vector2.dimension) {
+			throw new TypeError(message);
+		};
 	}
 
 	/**
@@ -53,7 +54,7 @@ export default class Vector {
 	/**
 	 * The dimension of this Vector.
 	 */
-	private readonly _DIMENSION: Integer;
+	private readonly _DIMENSION: bigint;
 
 	/**
 	 * Construct a new Vector object.
@@ -61,9 +62,9 @@ export default class Vector {
 	 */
 	constructor(data: Vector|readonly number[] = []) {
 		if (data instanceof Vector) data = data.raw
-		data.forEach((c) => xjs.Number.assertType(c, 'finite'))
+		data.forEach((c) => xjs.Number.assertType(c, xjs.NumericType.FINITE))
 		this._DATA = data
-		this._DIMENSION = new Integer(data.length)
+		this._DIMENSION = BigInt(data.length);
 	}
 
 	/**
@@ -78,7 +79,7 @@ export default class Vector {
 	 * Get the dimension of this Vector: how many coordinates this Vector has.
 	 * @returns this Vector’s dimension
 	 */
-	get dimension(): Integer {
+	get dimension(): bigint {
 		return this._DIMENSION
 	}
 
@@ -122,11 +123,12 @@ export default class Vector {
 	 * @returns the value at the `i`th entry
 	 * @throws  {RangeError} if `i` is out of bounds
 	 */
-	at(i: Integer|number): number {
-		if (i instanceof Integer) {
-			if (i.lessThan(0) || !i.lessThan(this.dimension)) throw new RangeError(`Index ${i} out of bounds.`) // COMBAK extrajs^0.19:IndexOutOfBoundsError
-			return this._DATA[i.valueOf()]
-		} else return this.at(new Integer(i))
+	at(i: bigint): number {
+		const index: number = Number(i);
+		if (i < 0 || i >= this.dimension) {
+			throw new xjs.IndexOutOfBoundsError(index);
+		};
+		return this._DATA[index];
 	}
 
 	/**
@@ -140,7 +142,7 @@ export default class Vector {
 		if (this === vector) return true
 		return (vector instanceof Vector) ? (
 			Vector.assertSameDimensions(this, vector, 'Vector dimensions are incompatible for equality.'),
-			this._DATA.every((coord, i) => coord === vector.at(i))
+			this._DATA.every((coord, i) => coord === vector.at(BigInt(i)))
 		) : this.equals(new Vector(vector))
 	}
 
@@ -153,7 +155,7 @@ export default class Vector {
 	plus(addend: Vector|number[]): Vector {
 		return (addend instanceof Vector) ? (
 			Vector.assertSameDimensions(this, addend, 'Vector dimensions are incompatible for addition.'),
-			new Vector(this._DATA.map((coord, i) => coord + addend.at(i)))
+			new Vector(this._DATA.map((coord, i) => coord + addend.at(BigInt(i))))
 		) : this.plus(new Vector(addend))
 	}
 
@@ -207,7 +209,7 @@ export default class Vector {
 	 */
 	dot(multiplier: Vector): number {
 		Vector.assertSameDimensions(this, multiplier, 'Vector dimensions are incompatible for dot product.')
-		return this._DATA.map((coord, i) => coord * multiplier.at(new Integer(i))).reduce((a, b) => a + b)
+		return this._DATA.map((coord, i) => coord * multiplier.at(BigInt(i))).reduce((a, b) => a + b);
 	}
 
 	/**
@@ -221,20 +223,22 @@ export default class Vector {
 	 * @throws  {TypeError} if `this` or the argument are not of the correct dimension
 	 */
 	cross(multiplier: Vector): Vector {
-		if (!this.dimension.equals(3) || !multiplier.dimension.equals(3)) throw new TypeError('Vector dimensions are incompatible for cross product.')
-		const MatrixSquare: typeof MatrixSquare_import = require('./MatrixSquare.class.js').default
+		if (this.dimension !== 3n || multiplier.dimension !== 3n) {
+			throw new TypeError('Vector dimensions are incompatible for cross product.');
+		};
+		const MatrixSquare: typeof MatrixSquare_import = require('../../dist/class/MatrixSquare.class.js').default // COMBAK circular dependency
 		return new Vector([
 			new MatrixSquare([
-				[this      .at(1), this      .at(2)],
-				[multiplier.at(1), multiplier.at(2)],
+				[this      .at(1n), this      .at(2n)],
+				[multiplier.at(1n), multiplier.at(2n)],
 			]).det,
 			-1 * new MatrixSquare([
-				[this      .at(0), this      .at(2)],
-				[multiplier.at(0), multiplier.at(2)],
+				[this      .at(0n), this      .at(2n)],
+				[multiplier.at(0n), multiplier.at(2n)],
 			]).det,
 			new MatrixSquare([
-				[this      .at(0), this      .at(1)],
-				[multiplier.at(0), multiplier.at(1)],
+				[this      .at(0n), this      .at(1n)],
+				[multiplier.at(0n), multiplier.at(1n)],
 			]).det,
 		])
 	}
