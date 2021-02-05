@@ -43,7 +43,9 @@ export default class Vector {
 	 * @throws  {TypeError} if the assertion fails
 	 */
 	static assertSameDimensions(vector1: Vector, vector2: Vector, message: string = 'Vector dimensions are not equal.'): void {
-		if (!vector1.dimension.equals(vector2.dimension)) throw new TypeError(message)
+		if (vector1.dimension !== vector2.dimension) {
+			throw new TypeError(message);
+		};
 	}
 
 	/**
@@ -53,7 +55,7 @@ export default class Vector {
 	/**
 	 * The dimension of this Vector.
 	 */
-	private readonly _DIMENSION: Integer;
+	private readonly _DIMENSION: bigint;
 
 	/**
 	 * Construct a new Vector object.
@@ -63,7 +65,7 @@ export default class Vector {
 		if (data instanceof Vector) data = data.raw
 		data.forEach((c) => xjs.Number.assertType(c, xjs.NumericType.FINITE))
 		this._DATA = data
-		this._DIMENSION = new Integer(data.length)
+		this._DIMENSION = BigInt(data.length);
 	}
 
 	/**
@@ -78,7 +80,7 @@ export default class Vector {
 	 * Get the dimension of this Vector: how many coordinates this Vector has.
 	 * @returns this Vector’s dimension
 	 */
-	get dimension(): Integer {
+	get dimension(): bigint {
 		return this._DIMENSION
 	}
 
@@ -124,7 +126,9 @@ export default class Vector {
 	 */
 	at(i: Integer|number): number {
 		if (i instanceof Integer) {
-			if (i.lessThan(0) || !i.lessThan(this.dimension)) throw new xjs.IndexOutOfBoundsError(i.valueOf())
+			if (i.lessThan(0) || !i.lessThan(Number(this.dimension))) {
+				throw new xjs.IndexOutOfBoundsError(i.valueOf());
+			};
 			return this._DATA[i.valueOf()]
 		} else return this.at(new Integer(i))
 	}
@@ -221,7 +225,9 @@ export default class Vector {
 	 * @throws  {TypeError} if `this` or the argument are not of the correct dimension
 	 */
 	cross(multiplier: Vector): Vector {
-		if (!this.dimension.equals(3) || !multiplier.dimension.equals(3)) throw new TypeError('Vector dimensions are incompatible for cross product.')
+		if (this.dimension !== 3n || multiplier.dimension !== 3n) {
+			throw new TypeError('Vector dimensions are incompatible for cross product.');
+		};
 		const MatrixSquare: typeof MatrixSquare_import = require('../../dist/class/MatrixSquare.class.js').default // COMBAK circular dependency
 		return new Vector([
 			new MatrixSquare([
