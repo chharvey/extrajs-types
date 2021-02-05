@@ -1,6 +1,5 @@
 import * as xjs from 'extrajs'
 
-import Integer from './Integer.class'
 import type MatrixSquare_import from './MatrixSquare.class' // COMBAK circular dependency
 
 
@@ -124,13 +123,12 @@ export default class Vector {
 	 * @returns the value at the `i`th entry
 	 * @throws  {RangeError} if `i` is out of bounds
 	 */
-	at(i: Integer|number): number {
-		if (i instanceof Integer) {
-			if (i.lessThan(0) || !i.lessThan(Number(this.dimension))) {
-				throw new xjs.IndexOutOfBoundsError(i.valueOf());
-			};
-			return this._DATA[i.valueOf()]
-		} else return this.at(new Integer(i))
+	at(i: bigint): number {
+		const index: number = Number(i);
+		if (i < 0 || i >= this.dimension) {
+			throw new xjs.IndexOutOfBoundsError(index);
+		};
+		return this._DATA[index];
 	}
 
 	/**
@@ -144,7 +142,7 @@ export default class Vector {
 		if (this === vector) return true
 		return (vector instanceof Vector) ? (
 			Vector.assertSameDimensions(this, vector, 'Vector dimensions are incompatible for equality.'),
-			this._DATA.every((coord, i) => coord === vector.at(i))
+			this._DATA.every((coord, i) => coord === vector.at(BigInt(i)))
 		) : this.equals(new Vector(vector))
 	}
 
@@ -157,7 +155,7 @@ export default class Vector {
 	plus(addend: Vector|number[]): Vector {
 		return (addend instanceof Vector) ? (
 			Vector.assertSameDimensions(this, addend, 'Vector dimensions are incompatible for addition.'),
-			new Vector(this._DATA.map((coord, i) => coord + addend.at(i)))
+			new Vector(this._DATA.map((coord, i) => coord + addend.at(BigInt(i))))
 		) : this.plus(new Vector(addend))
 	}
 
@@ -211,7 +209,7 @@ export default class Vector {
 	 */
 	dot(multiplier: Vector): number {
 		Vector.assertSameDimensions(this, multiplier, 'Vector dimensions are incompatible for dot product.')
-		return this._DATA.map((coord, i) => coord * multiplier.at(new Integer(i))).reduce((a, b) => a + b)
+		return this._DATA.map((coord, i) => coord * multiplier.at(BigInt(i))).reduce((a, b) => a + b);
 	}
 
 	/**
@@ -231,16 +229,16 @@ export default class Vector {
 		const MatrixSquare: typeof MatrixSquare_import = require('../../dist/class/MatrixSquare.class.js').default // COMBAK circular dependency
 		return new Vector([
 			new MatrixSquare([
-				[this      .at(1), this      .at(2)],
-				[multiplier.at(1), multiplier.at(2)],
+				[this      .at(1n), this      .at(2n)],
+				[multiplier.at(1n), multiplier.at(2n)],
 			]).det,
 			-1 * new MatrixSquare([
-				[this      .at(0), this      .at(2)],
-				[multiplier.at(0), multiplier.at(2)],
+				[this      .at(0n), this      .at(2n)],
+				[multiplier.at(0n), multiplier.at(2n)],
 			]).det,
 			new MatrixSquare([
-				[this      .at(0), this      .at(1)],
-				[multiplier.at(0), multiplier.at(1)],
+				[this      .at(0n), this      .at(1n)],
+				[multiplier.at(0n), multiplier.at(1n)],
 			]).det,
 		])
 	}
