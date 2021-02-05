@@ -1,6 +1,5 @@
 import * as xjs from 'extrajs'
 
-import Integer from './Integer.class'
 import Vector from './Vector.class'
 import Matrix from './Matrix.class'
 
@@ -33,13 +32,9 @@ export default class MatrixSquare extends Matrix {
 	 * except for the cells in the main diagonal, which will all be 1.
 	 * @param   size the number of rows and columns in the Matrix (its size)
 	 */
-	static multIden(size: Integer|number = 0): MatrixSquare {
-		return (size instanceof Integer) ?
-			new MatrixSquare(new Array(size.valueOf()).fill([]).map((_row: number[], i) =>
-				new Array(size.valueOf()).fill(0).map((cell: number, j) =>
-					(i === j) ? 1 : cell
-				)
-			)) : MatrixSquare.multIden(new Integer(size))
+	static multIden(size: bigint = 0n): MatrixSquare {
+		const nsize: number = Number(size);
+		return new MatrixSquare(Array.from(new Array(nsize), (_row, i) => Array.from(new Array(nsize), (_cell, j) => (i === j) ? 1 : 0)));
 	}
 
 
@@ -70,7 +65,7 @@ export default class MatrixSquare extends Matrix {
 	 * Get this matrix’s size, the number of rows and columns in this matrix.
 	 * @returns `this.height` or `this.width` — they are equal
 	 */
-	get size(): Integer {
+	get size(): bigint {
 		return this.height
 	}
 
@@ -80,10 +75,14 @@ export default class MatrixSquare extends Matrix {
 	 * @throws  {TypeError} if this MatrixSquare is empty
 	 */
 	get det(): number {
-		if (this.size.equals(0)) throw new TypeError('Determinant of an empty matrix is undefined.')
-		if (this.size.equals(1)) return this.at(0,0)
+		if (this.size === 0n) {
+			throw new TypeError('Determinant of an empty matrix is undefined.');
+		};
+		if (this.size === 1n) {
+			return this.at(0n, 0n);
+		};
 		return this._DATA[0].map((cell, j) =>
-			((j % 2 === 0) ? 1 : -1) * cell * this.minor(0, j).det
+			((j % 2 === 0) ? 1 : -1) * cell * this.minor(0n, BigInt(j)).det
 		).reduce((a, b) => a + b)
 	}
 
@@ -98,18 +97,20 @@ export default class MatrixSquare extends Matrix {
 	 */
 	get reciprocal(): MatrixSquare {
 		if (this.det === 0) throw new TypeError('A matrix whose determinant is 0 has no reciprocal.')
-		if (this.size.equals(0)) return new MatrixSquare()
-		if (this.size.equals(1)) return new MatrixSquare([[1 / this.det]])
-		return new MatrixSquare(this._DATA.map((row, i) =>
-			row.map((_cell, j) => (((i+j) % 2 === 0) ? 1 : -1) * this.transposition.minor(i, j).det) // NB transposed on purpose; see <http://mathworld.wolfram.com/MatrixInverse.html>
-		)).scale(1 / this.det)
+		return (
+			(this.size === 0n) ? new MatrixSquare() :
+			(this.size === 1n) ? new MatrixSquare([[1 / this.det]]) :
+			new MatrixSquare(this._DATA.map((row, i) =>
+				row.map((_cell, j) => (((i + j) % 2 === 0) ? 1 : -1) * this.transposition.minor(BigInt(i), BigInt(j)).det) // NB transposed on purpose; see <http://mathworld.wolfram.com/MatrixInverse.html>
+			)).scale(1 / this.det)
+		);
 	}
 
 	/**
 	 * The minor of a square matrix is always a square matrix.
 	 * @override Matrix
 	 */
-	minor(row: Integer|number, col: Integer|number): MatrixSquare {
+	minor(row: bigint, col: bigint): MatrixSquare {
 		return new MatrixSquare(super.minor(row, col))
 	}
 
