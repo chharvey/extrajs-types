@@ -1,6 +1,5 @@
 import * as xjs from 'extrajs'
 
-import Integer from './Integer.class'
 import Vector from './Vector.class'
 
 
@@ -72,11 +71,8 @@ export default class Matrix {
 	 * @param   rows the number of rows in the Matrix (its height)
 	 * @param   cols the number of columns in the Matrix (its width)
 	 */
-	static addIden(rows: Integer|number = 0, cols: Integer|number = rows): Matrix {
-		return (rows instanceof Integer && cols instanceof Integer) ?
-			new Matrix(new Array(rows.valueOf()).fill([]).map((_row: number[]) =>
-				new Array(cols.valueOf()).fill(0)
-			)) : Matrix.addIden(new Integer(rows), new Integer(cols))
+	static addIden(rows: bigint = 0n, cols: bigint = rows): Matrix {
+		return new Matrix(new Array(Number(rows)).fill(new Array(Number(cols)).fill(0)));
 	}
 
 
@@ -169,8 +165,8 @@ export default class Matrix {
 	 */
 	get transposition(): Matrix {
 		return this.subMatrix(
-			this._DATA   .map((_row, i) => i).reverse(),
-			this._DATA[0].map((_col, j) => j).reverse(),
+			this._DATA   .map((_row, i) => BigInt(i)).reverse(),
+			this._DATA[0].map((_col, j) => BigInt(j)).reverse(),
 		)
 	}
 
@@ -188,12 +184,11 @@ export default class Matrix {
 	 * @throws  {RangeError} if `i` is out of bounds
 	 * @throws  {RangeError} if `j` is out of bounds
 	 */
-	at(i: Integer|number, j: Integer|number): number {
-		if (i instanceof Integer && j instanceof Integer) {
-			if (i.lessThan(0) || !i.lessThan(Number(this.height))) throw new xjs.IndexOutOfBoundsError(i.valueOf());
-			if (j.lessThan(0) || !j.lessThan(Number(this.width) )) throw new xjs.IndexOutOfBoundsError(j.valueOf());
-			return this._DATA[i.valueOf()][j.valueOf()]
-		} else return this.at(new Integer(i), new Integer(j))
+	at(i: bigint, j: bigint): number {
+		const [index, jndex]: number[] = [Number(i), Number(j)];
+		if (index < 0 || index >= this.height) throw new xjs.IndexOutOfBoundsError(index);
+		if (jndex < 0 || jndex >= this.width)  throw new xjs.IndexOutOfBoundsError(jndex);
+		return this._DATA[index][jndex];
 	}
 
 	/**
@@ -202,13 +197,12 @@ export default class Matrix {
 	 * @returns the row of entries
 	 * @throws  {RangeError} if `i` is out of bounds
 	 */
-	getRow(i: Integer|number): Vector {
-		if (i instanceof Integer) {
-			if (i.lessThan(0) || !i.lessThan(Number(this.height))) {
-				throw new xjs.IndexOutOfBoundsError(i.valueOf());
-			};
-			return new Vector(this._DATA[i.valueOf()])
-		} else return this.getRow(new Integer(i))
+	getRow(i: bigint): Vector {
+		const index: number = Number(i);
+		if (i < 0 || i >= this.height) {
+			throw new xjs.IndexOutOfBoundsError(index);
+		};
+		return new Vector(this._DATA[index]);
 	}
 
 	/**
@@ -217,17 +211,12 @@ export default class Matrix {
 	 * @returns the column of entries
 	 * @throws  {RangeError} if `j` is out of bounds
 	 */
-	getCol(j: Integer|number): Vector {
-		if (j instanceof Integer) {
-			if (j.lessThan(0) || !j.lessThan(Number(this.width))) {
-				throw new xjs.IndexOutOfBoundsError(j.valueOf());
-			};
-			let col: number[] = []
-			this._DATA.forEach((row) => {
-				col.push(row[j.valueOf()])
-			})
-			return new Vector(col)
-		} else return this.getCol(new Integer(j))
+	getCol(j: bigint): Vector {
+		const jndex: number = Number(j);
+		if (j < 0 || j >= this.width) {
+			throw new xjs.IndexOutOfBoundsError(jndex);
+		};
+		return new Vector(this._DATA.map((row) => row[jndex]));
 	}
 
 	/**
@@ -260,16 +249,8 @@ export default class Matrix {
 	 * @param   cols a list of column indices to include
 	 * @returns a new Matrix containg only the cells in this Matrix of the listed indices
 	 */
-	subMatrix(rows: (Integer|number)[], cols: (Integer|number)[]): Matrix {
-		const matrix: number[][] = []
-		rows.forEach((rowindex) => {
-			const row: number[] = []
-			cols.forEach((colindex) => {
-				row.push(this.at(rowindex, colindex))
-			})
-			matrix.push(row)
-		})
-		return new Matrix(matrix)
+	subMatrix(rows: bigint[], cols: bigint[]): Matrix {
+		return new Matrix(rows.map((i) => cols.map((j) => this.at(i, j))));
 	}
 
 	/**
@@ -280,14 +261,14 @@ export default class Matrix {
 	 * @param   col the index of the column to exclude
 	 * @returns a new Matrix containing all rows and columns except those specified
 	 */
-	minor(row: Integer|number, col: Integer|number): Matrix {
-		const rowindices: number[] = Array.from(new Array(Number(this.height)), (_, i) => i); // [0, 1, 2, ..., this.height - 1]
-		const colindices: number[] = Array.from(new Array(Number(this.width )), (_, j) => j); // [0, 1, 2, ..., this.width  - 1]
-		if (row instanceof Integer && col instanceof Integer) {
-			let rows: number[] = rowindices.slice(0, row.valueOf()).concat(rowindices.slice(row.plus(1).valueOf()))
-			let cols: number[] = colindices.slice(0, col.valueOf()).concat(colindices.slice(col.plus(1).valueOf()))
-			return this.subMatrix(rows, cols)
-		} else return this.minor(new Integer(row), new Integer(col))
+	minor(row: bigint, col: bigint): Matrix {
+		const rowindices: bigint[] = Array.from(new Array(Number(this.height)), (_, i) => BigInt(i)); // [0n, 1n, 2n, ..., this.height - 1n]
+		const colindices: bigint[] = Array.from(new Array(Number(this.width )), (_, j) => BigInt(j)); // [0n, 1n, 2n, ..., this.width  - 1n]
+		const [nrow, ncol]: number[] = [Number(row), Number(col)];
+		return this.subMatrix(
+			[...rowindices.slice(0, nrow), ...rowindices.slice(nrow + 1)],
+			[...colindices.slice(0, ncol), ...colindices.slice(ncol + 1)],
+		);
 	}
 
 	/**
@@ -356,15 +337,7 @@ export default class Matrix {
 			if (this.width !== multiplier.height) {
 				throw new RangeError('Matrix dimensions are incompatible for multiplication.');
 			};
-			const matrix: number[][] = []
-			this._DATA.forEach((_row, i) => {
-				const newrow: number[] = []
-				this._DATA[0].forEach((_col, j) => {
-					newrow.push(this.getRow(i).dot(multiplier.getCol(j)))
-				})
-				matrix.push(newrow)
-			})
-			return new Matrix(matrix)
+			return new Matrix(this._DATA.map((_row, i) => multiplier._DATA[i].map((_col, j) => this.getRow(BigInt(i)).dot(multiplier.getCol(BigInt(j))))));
 		} else return this.times(new Matrix(multiplier))
 	}
 }
