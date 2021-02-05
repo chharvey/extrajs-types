@@ -41,7 +41,7 @@ export abstract class Interval {
 	 * @returns is the argument in this interval?
 	 */
 	has(x: number): boolean {
-		xjs.Number.assertType(x, 'finite')
+		xjs.Number.assertType(x, xjs.NumericType.FINITE)
 		return this._doHas(x)
 	}
 

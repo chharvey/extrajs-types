@@ -1,6 +1,5 @@
 import * as xjs from 'extrajs'
 
-import Integer from './Integer.class'
 import TreeNode from './TreeNode.class'
 
 
@@ -27,12 +26,12 @@ export default class TreeNodeBreadth extends TreeNode {
 	 * - etc.
 	 * @param   level the tree level
 	 * @returns an array of nodes at the given level, in sibling order
-	 * @throws  {AssertionError} if the given level is negative
 	 */
-	private _givenLevel(level: Integer): this[] {
-		xjs.Number.assertType(level.valueOf(), 'non-negative') // TODO Integer#assertType
-		return (level.equals(0)) ? [this] :
-			this._CHILDREN.map((child) => child._givenLevel(level.prev)).flat()
+	private _givenLevel(level: bigint): this[] {
+		xjs.BigInt.assertType(level, xjs.NumericType.NONNEGATIVE)
+		return (level === 0n)
+			? [this]
+			: this._CHILDREN.map((child) => child._givenLevel(level - 1n)).flat()
 	}
 
 	/**
@@ -40,10 +39,6 @@ export default class TreeNodeBreadth extends TreeNode {
 	 * @override TreeNode
 	 */
 	nodes(): this[] {
-		const returned: this[] = []
-		for (let i: Integer = new Integer(0); i < this.height; i = i.next) {
-			returned.push(...this._givenLevel(i))
-		}
-		return returned
+		return [...new Array(Number(this.height))].flatMap((_, i) => this._givenLevel(BigInt(i)))
 	}
 }

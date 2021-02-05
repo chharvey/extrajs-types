@@ -1,6 +1,5 @@
 import * as xjs from 'extrajs'
 
-import Integer from './Integer.class'
 import Percentage from './Percentage.class'
 import Fraction from './Fraction.class'
 import Angle, {AngleUnit} from './Angle.class'
@@ -9,11 +8,7 @@ import { HalfOpenRightInterval } from './Interval.class'
 const NAMES: { [index: string]: string } = require('../../src/color-names.json')
 
 
-// TODO xjs.Map.find
-function xjs_Map_find<K, V>(map: Map<K, V>, predicate: (value: V, key: K, map: Map<K, V>) => boolean, this_arg?: any): V|null {
-	const returned: [K, V]|null = [...map].find((entry) => predicate.call(this_arg, entry[1], entry[0], map)) || null
-	return (returned) ? returned[1] : null
-}
+type Triple = [number, number, number]
 
 
 /**
@@ -203,15 +198,13 @@ export default class Color {
 	 * @param   alpha the alpha channel of this color
 	 * @returns a new Color object with rgba(red, green, blue, alpha)
 	 */
-	static fromRGB(red: Integer|number = 0, green: Integer|number = 0, blue: Integer|number = 0, alpha: Fraction|number = 1): Color {
-		return (red instanceof Integer && green instanceof Integer && blue instanceof Integer && alpha instanceof Fraction) ?
-			new Color(
-				new Fraction(red  .clamp(0, 255).dividedBy(255)),
-				new Fraction(green.clamp(0, 255).dividedBy(255)),
-				new Fraction(blue .clamp(0, 255).dividedBy(255)),
-				alpha
-			) :
-			Color.fromRGB(new Integer(red), new Integer(green), new Integer(blue), new Fraction(alpha))
+	static fromRGB(red: number = 0, green: number = 0, blue: number = 0, alpha: Fraction | number = 1): Color {
+		return new Color(
+			new Fraction(xjs.Math.clamp(0, red,   255) / 255),
+			new Fraction(xjs.Math.clamp(0, green, 255) / 255),
+			new Fraction(xjs.Math.clamp(0, blue,  255) / 255),
+			(alpha instanceof Fraction) ? alpha : new Fraction(alpha),
+		);
 	}
 
 	/**
@@ -255,7 +248,7 @@ export default class Color {
 			let c: number = s * v
 			let x: number = c * (1 - Math.abs(hue.convert(AngleUnit.DEG) / 60 % 2 - 1))
 			let m: number = v - c
-			let rgb: number[] = xjs_Map_find(new Map([
+			const [red, green, blue]: Triple = xjs.Map.find<HalfOpenRightInterval, Triple>(new Map<HalfOpenRightInterval, Triple>([
 				[new HalfOpenRightInterval(0/6, 1/6), [c, x, 0]],
 				[new HalfOpenRightInterval(1/6, 2/6), [x, c, 0]],
 				[new HalfOpenRightInterval(2/6, 3/6), [0, c, x]],
@@ -264,9 +257,9 @@ export default class Color {
 				[new HalfOpenRightInterval(5/6, 6/6), [c, 0, x]],
 			]), (_arr, iv) => iv.has(hue.valueOf())) || [c, x, 0]
 			return new Color(
-				new Fraction(Math.min(rgb[0] + m, 1)),
-				new Fraction(Math.min(rgb[1] + m, 1)),
-				new Fraction(Math.min(rgb[2] + m, 1)),
+				new Fraction(Math.min(red   + m, 1)),
+				new Fraction(Math.min(green + m, 1)),
+				new Fraction(Math.min(blue  + m, 1)),
 				alpha
 			)
 		})() : Color.fromHSV(
@@ -293,7 +286,7 @@ export default class Color {
 			let c: number = s * (1 - Math.abs(2*l - 1))
 			let x: number = c * (1 - Math.abs(hue.convert(AngleUnit.DEG) / 60 % 2 - 1))
 			let m: number = l - c/2
-			let rgb: number[] = xjs_Map_find(new Map([
+			const [red, green, blue]: Triple = xjs.Map.find<HalfOpenRightInterval, Triple>(new Map<HalfOpenRightInterval, Triple>([
 				[new HalfOpenRightInterval(0/6, 1/6), [c, x, 0]],
 				[new HalfOpenRightInterval(1/6, 2/6), [x, c, 0]],
 				[new HalfOpenRightInterval(2/6, 3/6), [0, c, x]],
@@ -302,9 +295,9 @@ export default class Color {
 				[new HalfOpenRightInterval(5/6, 6/6), [c, 0, x]],
 			]), (_arr, iv) => iv.has(hue.valueOf())) || [c, x, 0]
 			return new Color(
-				new Fraction(Math.min(rgb[0] + m, 1)),
-				new Fraction(Math.min(rgb[1] + m, 1)),
-				new Fraction(Math.min(rgb[2] + m, 1)),
+				new Fraction(Math.min(red   + m, 1)),
+				new Fraction(Math.min(green + m, 1)),
+				new Fraction(Math.min(blue  + m, 1)),
 				alpha
 			)
 		})() : Color.fromHSL(
@@ -691,7 +684,7 @@ export default class Color {
 	 */
 	get hsvHue(): Angle {
 		if (this._CHROMA === 0) return new Angle()
-		let [r, g, b]: [number, number, number] = [
+		const [r, g, b]: Triple = [
 			this._RED.valueOf(),
 			this._GREEN.valueOf(),
 			this._BLUE.valueOf(),
